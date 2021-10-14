@@ -15,7 +15,7 @@ object Versions {
     // Plugins
     const val kotlin = "1.5.21"
     const val kotlin_gradle_plugin = "1.5.21"
-    const val android_gradle_plugin = "7.1.0-alpha13"
+    const val android_gradle_plugin = "7.0.1"
     const val desktop_compose_plugin = "1.0.0-alpha3"
     const val compose_version= "1.1.0-alpha03"
     const val coroutines = "1.5.0-native-mt"
