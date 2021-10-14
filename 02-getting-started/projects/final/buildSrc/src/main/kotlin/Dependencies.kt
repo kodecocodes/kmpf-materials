@@ -13,15 +13,15 @@ object Versions {
 
     // 2
     // Plugins
-    const val kotlin = "1.5.21"
-    const val kotlin_gradle_plugin = "1.5.21"
+    const val kotlin = "1.5.31"
+    const val kotlin_gradle_plugin = "1.5.31"
     const val android_gradle_plugin = "7.0.1"
     const val desktop_compose_plugin = "1.0.0-alpha3"
-    const val compose_version= "1.1.0-alpha03"
+    const val compose_version= "1.1.0-alpha05"
     const val coroutines = "1.5.0-native-mt"
     const val koin = "3.1.1"
     const val junit = "4.13.2"
-    const val material = "1.3.0"
+    const val material = "1.4.0"
     const val kotlinxDateTime = "0.2.1"
     const val activity_compose = "1.3.1"
     const val nav_compose = "2.4.0-alpha08"
