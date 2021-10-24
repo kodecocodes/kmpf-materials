@@ -17,7 +17,7 @@ import com.raywenderlich.findtime.android.theme.AppTheme
 
 sealed class Screen(val title: String) {
     object TimeZonesScreen : Screen("Timezones")
-    object TimezoneCalcScreen : Screen("Calculator")
+    object FindTimeScreen : Screen("Find Time")
 }
 
 data class BottomNavigationItem(
@@ -33,9 +33,9 @@ val bottomNavigationItems = listOf(
         "Timezones"
     ),
     BottomNavigationItem(
-        Screen.TimezoneCalcScreen.title,
+        Screen.FindTimeScreen.title,
         Icons.Filled.Place,
-        "Calculator"
+        "Find Time"
     )
 )
 
