@@ -6,18 +6,16 @@ const val composePlugin = "org.jetbrains.compose"
 const val cocopods = "native.cocoapods"
 
 object Versions {
-    // 1
     const val min_sdk = 24
     const val target_sdk = 31
     const val compile_sdk = 31
 
-    // 2
     // Plugins
-    const val kotlin = "1.5.21"
-    const val kotlin_gradle_plugin = "1.5.21"
+    const val kotlin = "1.5.31"
+    const val kotlin_gradle_plugin = "1.5.31"
     const val android_gradle_plugin = "7.0.1"
     const val desktop_compose_plugin = "1.0.0-alpha3"
-    const val compose_version= "1.1.0-alpha03"
+    const val compose_version= "1.1.0-alpha05"
     const val coroutines = "1.5.0-native-mt"
     const val koin = "3.1.1"
     const val junit = "4.13.2"
@@ -71,5 +69,4 @@ object Deps {
         const val uiDesktop = "org.jetbrains.compose.ui:ui-desktop:${Versions.desktop_compose_plugin}"
         const val uiUtil = "org.jetbrains.compose.ui:ui-util:${Versions.desktop_compose_plugin}"
     }
-
 }
