@@ -4,22 +4,12 @@ plugins {
 }
 
 dependencies {
-    // 1
     implementation(project(":shared"))
-    // 2
     with(Deps) {
         implementation(napier)
         implementation(material)
     }
 
-    // 3
-    // Koin
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-    }
-
-    // 4
     //Compose
     with(Deps.Compose) {
         implementation(runtime)
