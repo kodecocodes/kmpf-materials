@@ -12,13 +12,6 @@ dependencies {
         implementation(material)
     }
 
-    // 3
-    // Koin
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-    }
-
     // 4
     //Compose
     with(Deps.Compose) {

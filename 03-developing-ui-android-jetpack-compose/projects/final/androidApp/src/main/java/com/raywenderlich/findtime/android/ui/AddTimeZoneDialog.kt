@@ -21,9 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.raywenderlich.findtime.TimeZoneHelper
+import com.raywenderlich.findtime.TimeZoneHelperImpl
 import com.raywenderlich.findtime.android.R
 import kotlinx.coroutines.*
-import org.koin.java.KoinJavaComponent.get
 
 fun isSelected(selectedStates: Map<Int, Boolean>, index: Int): Boolean {
     return (selectedStates.containsKey(index) && (true == selectedStates[index]))
@@ -31,7 +31,7 @@ fun isSelected(selectedStates: Map<Int, Boolean>, index: Int): Boolean {
 
 @Composable
 fun AddTimeZoneDialog(
-    timezoneHelper: TimeZoneHelper = get(TimeZoneHelper::class.java),
+    timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl(),
     onAdd: (List<String>) -> Unit,
     onDismiss: () -> Unit
 ) = Dialog(

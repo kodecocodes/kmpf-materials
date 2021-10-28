@@ -5,7 +5,6 @@
     <application
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:name=".TimezoneApp"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"

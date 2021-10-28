@@ -26,7 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.findtime.TimeZoneHelper
-import org.koin.java.KoinJavaComponent.inject
+import com.raywenderlich.findtime.TimeZoneHelperImpl
 
 @Composable
 fun FindMeetingScreen(
@@ -46,7 +46,7 @@ fun FindMeetingScreen(
         for (i in 0..timezoneStrings.size-1) selected[i] = true
         selected
     }
-    val timezoneHelper: TimeZoneHelper by inject(TimeZoneHelper::class.java)
+    val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
     val showMeetingDialog = remember { mutableStateOf(false) }
     val meetingHours = remember { SnapshotStateList<Int>() }
 

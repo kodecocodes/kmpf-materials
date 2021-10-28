@@ -10,12 +10,6 @@ dependencies {
         implementation(material)
     }
 
-    // Koin
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-    }
-
     //Compose
     with(Deps.Compose) {
         implementation(runtime)

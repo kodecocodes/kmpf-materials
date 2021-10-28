@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.findtime.TimeZoneHelper
+import com.raywenderlich.findtime.TimeZoneHelperImpl
 import kotlinx.coroutines.delay
-import org.koin.java.KoinJavaComponent.inject
 
 const val timeMillis = 1000 * 60L // 1 second
 
@@ -24,7 +24,7 @@ const val timeMillis = 1000 * 60L // 1 second
 fun TimeZoneScreen(
     currentTimezoneStrings: SnapshotStateList<String>
 ) {
-    val timezoneHelper: TimeZoneHelper by inject(TimeZoneHelper::class.java)
+    val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
     val listState = rememberLazyListState()
     Column(
         modifier = Modifier

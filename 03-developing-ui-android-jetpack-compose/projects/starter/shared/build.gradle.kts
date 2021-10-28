@@ -31,8 +31,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Deps.JetBrains.datetime)
-                // koin
-                api(Deps.Koin.core)
 
                 implementation(Deps.napier)
             }
