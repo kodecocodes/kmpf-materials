@@ -32,36 +32,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
-  @State private var shouldOpenAbout = false
-
+struct RemindersView: View {
   var body: some View {
-    NavigationView {
-      RemindersView()
-    }
-    .toolbar {
-      ToolbarItem(placement: .bottomBar) {
-        Button {
-          shouldOpenAbout = true
-        } label: {
-          Label("About", systemImage: "info.circle")
-            .labelStyle(.titleAndIcon)
-        }
-        .padding(8)
-        .popover(isPresented: $shouldOpenAbout) {
-          AboutView()
-            .frame(
-              idealWidth: 350,
-              idealHeight: 450
-            )
-        }
-      }
-    }
+    Text("Hello World!")
+      .navigationTitle("Reminders")
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+struct RemindersView_Previews: PreviewProvider {
+  static var previews: some View {
+    RemindersView()
+  }
 }

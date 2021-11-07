@@ -32,36 +32,29 @@
 
 import SwiftUI
 
-struct ContentView: View {
-  @State private var shouldOpenAbout = false
+struct AboutView: View {
+  @Environment(\.dismiss) private var dismiss
 
   var body: some View {
     NavigationView {
-      RemindersView()
-    }
-    .toolbar {
-      ToolbarItem(placement: .bottomBar) {
-        Button {
-          shouldOpenAbout = true
-        } label: {
-          Label("About", systemImage: "info.circle")
-            .labelStyle(.titleAndIcon)
+      Text("Hello World!")
+        .navigationTitle("About Device")
+        .toolbar {
+          ToolbarItem(placement: .primaryAction) {
+            Button {
+              dismiss()
+            } label: {
+              Text("Done")
+                .bold()
+            }
+          }
         }
-        .padding(8)
-        .popover(isPresented: $shouldOpenAbout) {
-          AboutView()
-            .frame(
-              idealWidth: 350,
-              idealHeight: 450
-            )
-        }
-      }
     }
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+struct AboutView_Previews: PreviewProvider {
+  static var previews: some View {
+    AboutView()
+  }
 }

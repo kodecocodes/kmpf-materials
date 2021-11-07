@@ -47,6 +47,8 @@ import androidx.compose.ui.tooling.preview.Preview
 fun AboutView(
   onUpButtonClick: () -> Unit
 ) {
+  Toolbar(onUpButtonClick = onUpButtonClick)
+  ContentView()
 }
 
 @Composable
@@ -66,9 +68,13 @@ private fun Toolbar(
   )
 }
 
-@Preview(showSystemUi = true)
 @Composable
-private fun RowViewPreview() {
+private fun ContentView() {
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AboutPreview() {
   AboutView {
   }
 }

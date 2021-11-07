@@ -35,6 +35,7 @@
 package com.raywenderlich.organize.android.ui.reminders
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -51,6 +52,10 @@ import androidx.compose.ui.tooling.preview.Preview
 fun RemindersView(
   onAboutButtonClick: () -> Unit,
 ) {
+  Column {
+    Toolbar(onAboutButtonClick = onAboutButtonClick)
+    ContentView()
+  }
 }
 
 @Composable

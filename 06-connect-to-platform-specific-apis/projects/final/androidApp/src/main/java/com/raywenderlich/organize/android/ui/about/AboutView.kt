@@ -134,7 +134,7 @@ private fun makeItems(): List<Pair<String, String>> {
 
 @Preview(showBackground = true)
 @Composable
-private fun RowViewPreview() {
+private fun AboutPreview() {
   AboutView {
   }
 }
