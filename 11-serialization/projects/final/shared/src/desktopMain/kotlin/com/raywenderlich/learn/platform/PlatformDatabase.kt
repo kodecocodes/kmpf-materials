@@ -32,14 +32,22 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn
+package com.raywenderlich.learn.platform
 
-import kotlin.test.Test
+import com.squareup.sqldelight.db.SqlDriver
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver.Companion.IN_MEMORY
+import data.AppDb
 
-class CommonGreetingTest {
+public actual class PlatformDatabase {
 
-  @Test
-  fun testExample() {
-    //TODO
+  public actual fun createDatabase(): AppDb {
+    return AppDb(createDriver())
+  }
+
+  private fun createDriver(): SqlDriver {
+    val driver: SqlDriver = JdbcSqliteDriver(IN_MEMORY)
+    AppDb.Schema.create(driver)
+    return driver
   }
 }
