@@ -34,9 +34,6 @@
 
 package com.raywenderlich.learn.data.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class RWEntry(
   val id: String = "",
   val link: String = "",

@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    kotlin("plugin.serialization")
     kotlin("android")
 }
 
@@ -23,8 +22,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
-
     implementation("io.coil-kt:coil-compose:1.3.2")
 }
 

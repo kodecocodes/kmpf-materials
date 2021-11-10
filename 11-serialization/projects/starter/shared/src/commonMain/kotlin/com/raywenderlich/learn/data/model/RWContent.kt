@@ -34,10 +34,6 @@
 
 package com.raywenderlich.learn.data.model
 
-import com.raywenderlich.learn.data.RWSerializer
-import kotlinx.serialization.Serializable
-
-@Serializable(with = RWSerializer::class)
 enum class PLATFORM(val value: String) {
 
   ALL("all"),
@@ -47,7 +43,6 @@ enum class PLATFORM(val value: String) {
   FLUTTER("flutter")
 }
 
-@Serializable
 data class RWContent(
   val platform: PLATFORM,
   val url: String,

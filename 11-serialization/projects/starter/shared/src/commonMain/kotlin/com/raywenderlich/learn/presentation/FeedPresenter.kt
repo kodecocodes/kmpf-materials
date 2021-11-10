@@ -36,8 +36,6 @@ package com.raywenderlich.learn.presentation
 
 import com.raywenderlich.learn.data.model.RWContent
 import com.raywenderlich.learn.domain.GetFeedData
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 
 private const val TAG = "FeedPresenter"
 
@@ -51,9 +49,7 @@ private const val RW_CONTENT = "[" +
 
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val json = Json { ignoreUnknownKeys = true }
-
   val content: List<RWContent> by lazy {
-    json.decodeFromString(RW_CONTENT)
+    emptyList()
   }
 }
