@@ -34,6 +34,7 @@
 
 package com.raywenderlich.organize.android.ui.about
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -47,8 +48,10 @@ import androidx.compose.ui.tooling.preview.Preview
 fun AboutView(
   onUpButtonClick: () -> Unit
 ) {
-  Toolbar(onUpButtonClick = onUpButtonClick)
-  ContentView()
+  Column {
+    Toolbar(onUpButtonClick = onUpButtonClick)
+    ContentView()
+  }
 }
 
 @Composable
