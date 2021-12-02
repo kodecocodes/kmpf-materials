@@ -36,9 +36,11 @@ package com.raywenderlich.learn.android.ui.home
 
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
@@ -56,6 +58,9 @@ class FeedViewModel : ViewModel(), FeedData {
   private val _items = mutableStateMapOf<PLATFORM, List<RWEntry>>()
   val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = _items
 
+  private val _profile = MutableLiveData(GravatarEntry())
+  val profile: MutableLiveData<GravatarEntry> = _profile
+
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
   }
@@ -65,9 +70,9 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchAllFeeds(this)
   }
 
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    presenter.fetchLinkImage(platform, id, link, this)
+  fun fetchMyGravatar() {
+    Logger.d(TAG, "fetchMyGravatar")
+    presenter.fetchMyGravatar(this)
   }
 
   // region FeedData
@@ -76,28 +81,20 @@ class FeedViewModel : ViewModel(), FeedData {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        _items[platform] = items.subList(0, FETCH_N_IMAGES)
-
-        for (item in _items[platform]!!) {
-          fetchLinkImage(platform, item.id, item.link)
-        }
+        _items[platform] = items
       }
     }
   }
 
   override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  }
+
+  override fun onMyGravatarData(item: GravatarEntry) {
+    Logger.d(TAG, "onMyGravatarData | items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-
-        Logger.d(TAG, "items=${_items.keys}")
-
-        val item = _items[platform]?.firstOrNull { it.id == id } ?: return@withContext
-        val list = _items[platform]?.toMutableList() ?: return@withContext
-        val index = list.indexOf(item)
-
-        list[index] = item.copy(imageUrl = url)
-        _items[platform] = list
+        _profile.value = item
       }
     }
   }

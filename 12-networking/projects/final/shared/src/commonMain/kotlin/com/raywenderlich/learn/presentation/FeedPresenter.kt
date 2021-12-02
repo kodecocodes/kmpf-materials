@@ -34,13 +34,15 @@
 
 package com.raywenderlich.learn.presentation
 
-import com.raywenderlich.learn.PresenterCoroutineScope
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWContent
 import com.raywenderlich.learn.domain.GetFeedData
 import com.raywenderlich.learn.domain.cb.FeedData
-import com.raywenderlich.learn.domain.defaultDispatcher
+import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -55,14 +57,14 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
+private const val GRAVATAR_EMAIL = "cafonsopcmota@gmail.com"
+
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val scope = PresenterCoroutineScope(defaultDispatcher)
   private var listener: FeedData? = null
 
   private val json = Json { ignoreUnknownKeys = true }
 
-  //TODO This should be private in the future
   val content: List<RWContent> by lazy {
     json.decodeFromString(RW_CONTENT)
   }
@@ -76,49 +78,37 @@ class FeedPresenter(private val feed: GetFeedData) {
     }
   }
 
-  public fun fetchFeed(platform: PLATFORM, cb: FeedData) {
-    Logger.d(TAG, "fetchFeed | platform=$platform")
-    listener = cb
-
-    val item = content.firstOrNull { it.platform == platform }
-    if (item == null) {
-      val exception = Exception("Platform: $platform doesn't have an associated feed url")
-      cb.onNewDataAvailable(emptyList(), platform, exception)
-    } else {
-      fetchFeed(platform, item.url)
-    }
-  }
-
-  public fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
-    Logger.d(TAG, "fetchFeed")
-    listener = cb
-    fetchFeed(platform, feedUrl)
-  }
-
+  @OptIn(DelicateCoroutinesApi::class)
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
-    scope.launch {
-      feed.invokeFetchRWEntry(
-        platform = platform,
-        feedUrl = feedUrl,
-        onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-        onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
-      )
+    GlobalScope.apply {
+      launch {
+        feed.invokeFetchRWEntry(
+          platform = platform,
+          feedUrl = feedUrl,
+          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        )
+      }
     }
   }
 
-  public fun fetchLinkImage(platform: PLATFORM, id: String, link: String, cb: FeedData) {
-    Logger.d(TAG, "fetchLinkImage")
+  public fun fetchMyGravatar(cb: FeedData) {
+    Logger.d(TAG, "fetchMyGravatar")
     listener = cb
-    fetchLinkImage(platform, id, link)
+
+    fetchMyGravatar()
   }
 
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    scope.launch {
-      feed.invokeFetchImageUrlFromLink(
-        link,
-        onSuccess = { listener?.onNewImageUrlAvailable(id, it, platform, null) },
-        onFailure = { listener?.onNewImageUrlAvailable(id, "", platform, it) }
-      )
+  @OptIn(DelicateCoroutinesApi::class)
+  private fun fetchMyGravatar() {
+    GlobalScope.apply {
+      launch {
+        feed.invokeGetMyGravatar(
+          hash = md5(GRAVATAR_EMAIL),
+          onSuccess = { listener?.onMyGravatarData(it) },
+          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+        )
+      }
     }
   }
 }

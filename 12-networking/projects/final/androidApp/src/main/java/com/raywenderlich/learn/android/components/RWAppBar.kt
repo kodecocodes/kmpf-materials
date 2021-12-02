@@ -60,6 +60,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.raywenderlich.learn.android.ui.theme.colorAccent
 
 private val AppBarHeight = 56.dp
 
@@ -84,26 +85,32 @@ fun RWTopAppBar(
     RectangleShape,
     modifier
   ) {
-    Row(
-      Modifier.fillMaxSize(),
-      verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.Center
+
+    Surface(
+      color = Color.Transparent,
+      contentColor = colorAccent
     ) {
-      ProvideTextStyle(value = MaterialTheme.typography.h6) {
-        CompositionLocalProvider(
-          LocalContentAlpha provides ContentAlpha.high,
-          content = title
+      Row(
+        Modifier.fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+      ) {
+        ProvideTextStyle(value = MaterialTheme.typography.h6) {
+          CompositionLocalProvider(
+            LocalContentAlpha provides ContentAlpha.high,
+            content = title
+          )
+        }
+      }
+
+      CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+        Row(
+          Modifier.fillMaxSize(),
+          horizontalArrangement = Arrangement.End,
+          verticalAlignment = Alignment.CenterVertically,
+          content = actions
         )
       }
-    }
-
-    CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-      Row(
-        Modifier.fillMaxHeight(),
-        horizontalArrangement = Arrangement.End,
-        verticalAlignment = Alignment.CenterVertically,
-        content = actions
-      )
     }
   }
 }

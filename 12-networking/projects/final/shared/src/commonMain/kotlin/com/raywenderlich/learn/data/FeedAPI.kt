@@ -34,17 +34,45 @@
 
 package com.raywenderlich.learn.data
 
-import io.ktor.client.HttpClient
-import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
+import com.raywenderlich.learn.data.model.GravatarProfile
+import io.ktor.client.*
+import io.ktor.client.features.cookies.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import kotlinx.serialization.json.Json
 import kotlin.native.concurrent.ThreadLocal
+
+public const val GRAVATAR_URL = "https://en.gravatar.com/"
+public const val GRAVATAR_RESPONSE_FORMAT = ".json"
 
 @ThreadLocal
 public object FeedAPI {
 
-  private val client: HttpClient = HttpClient()
+  private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
+
+  private val client: HttpClient = HttpClient {
+
+    install(JsonFeature) {
+      serializer = KotlinxSerializer(nonStrictJson)
+    }
+
+    install(Logging) {
+      logger = HttpClientLogger
+      level = LogLevel.ALL
+    }
+
+    install(HttpCookies) {
+      storage = AcceptAllCookiesStorage()
+    }
+  }
 
   public suspend fun fetchRWEntry(feedUrl: String): HttpResponse = client.get(feedUrl)
 
   public suspend fun fetchImageUrlFromLink(link: String): HttpResponse = client.get(link)
+
+  public suspend fun fetchMyGravatar(hash: String): GravatarProfile =
+    client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT")
 }

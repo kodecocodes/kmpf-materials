@@ -16,6 +16,8 @@
     <string name="search_hint">Search</string>
 
     <!-- Actions -->
+    <string name="action_hello">Hello %s!</string>
+
     <string name="action_add_bookmarks">Add to bookmarks</string>
     <string name="action_remove_bookmarks">Remove from bookmarks</string>
     <string name="action_share_link">Share as link</string>
@@ -28,6 +30,7 @@
     <string name="description_search">Search for a specific article</string>
     <string name="description_feed_icon">Feed icon</string>
     <string name="description_more">More actions</string>
+    <string name="description_open_gallery">Open gallery</string>
     <string name="description_preview">Image preview</string>
     <string name="description_preview_error">Unable to load image preview</string>
 </resources>
