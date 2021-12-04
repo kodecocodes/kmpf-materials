@@ -34,16 +34,21 @@
 
 package com.raywenderlich.learn.data
 
+import com.raywenderlich.learn.APP_NAME
+import com.raywenderlich.learn.X_APP_NAME
 import com.raywenderlich.learn.data.model.GravatarProfile
-import io.ktor.client.*
-import io.ktor.client.features.cookies.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import kotlinx.serialization.json.Json
+import com.raywenderlich.learn.platform.PlatformIdentifier
+import io.ktor.client.HttpClient
+import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logging
+import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.client.statement.HttpResponse
 import kotlin.native.concurrent.ThreadLocal
+import kotlinx.serialization.json.Json
 
 public const val GRAVATAR_URL = "https://en.gravatar.com/"
 public const val GRAVATAR_RESPONSE_FORMAT = ".json"
@@ -53,7 +58,11 @@ public object FeedAPI {
 
   private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
-  private val client: HttpClient = HttpClient {
+  private val client: HttpClient = HttpClient() {
+
+    defaultRequest {
+      header(X_APP_NAME, PlatformIdentifier.identifier)
+    }
 
     install(JsonFeature) {
       serializer = KotlinxSerializer(nonStrictJson)
@@ -62,10 +71,6 @@ public object FeedAPI {
     install(Logging) {
       logger = HttpClientLogger
       level = LogLevel.ALL
-    }
-
-    install(HttpCookies) {
-      storage = AcceptAllCookiesStorage()
     }
   }
 

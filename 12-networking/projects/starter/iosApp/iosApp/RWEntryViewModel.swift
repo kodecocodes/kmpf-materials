@@ -41,10 +41,25 @@ class RWEntryViewModel: ObservableObject {
     
     @Published var bookmarks = [RWEntry]()
     
+    @Published var profile = GravatarEntry(
+        id: nil,
+        hash: nil,
+        preferredUsername: nil,
+        thumbnailUrl: nil,
+        aboutMe: nil
+    )
+    
     let FETCH_N_IMAGES = 5
     
     func getContent() -> [RWContent] {
         return FeedClient.getContent()
+    }
+    
+    func fetchProfile() {
+        return FeedClient.fetchProfile { profile in
+            Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
+            //self.profile = profile
+        }
     }
  
     func fetchFeeds() {

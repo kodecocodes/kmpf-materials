@@ -30,7 +30,6 @@
     <string name="description_search">Search for a specific article</string>
     <string name="description_feed_icon">Feed icon</string>
     <string name="description_more">More actions</string>
-    <string name="description_open_gallery">Open gallery</string>
     <string name="description_preview">Image preview</string>
     <string name="description_preview_error">Unable to load image preview</string>
 </resources>

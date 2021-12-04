@@ -57,8 +57,8 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    feedViewModel.fetchMyGravatar()
     feedViewModel.fetchAllFeeds()
+    feedViewModel.fetchMyGravatar()
     bookmarkViewModel.getBookmarks()
 
     setContent {

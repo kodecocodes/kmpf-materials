@@ -34,9 +34,12 @@
 
 package com.raywenderlich.learn.ui.home
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import com.raywenderlich.learn.ServiceLocator
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
@@ -50,9 +53,18 @@ private const val FETCH_N_IMAGES = 5
 class FeedViewModel : ViewModel(), FeedData {
 
   val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
+  }
+
+  fun fetchAllFeeds() {
+    Logger.d(TAG, "fetchAllFeeds")
+  }
+
+  fun fetchMyGravatar() {
+    Logger.d(TAG, "fetchMyGravatar")
   }
 
   // region FeedData
@@ -63,6 +75,10 @@ class FeedViewModel : ViewModel(), FeedData {
 
   override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  }
+
+  override fun onMyGravatarData(item: GravatarEntry) {
+    Logger.d(TAG, "onMyGravatarData | item=$item")
   }
 
   // endregion FeedData

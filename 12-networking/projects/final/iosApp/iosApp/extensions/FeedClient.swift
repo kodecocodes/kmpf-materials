@@ -37,17 +37,26 @@ public class FeedClient {
     public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
     public typealias FeedHandlerImage = (_ id: String, _ url: String, _ platform: PLATFORM) -> Void
     
+    public typealias ProfileHandler = (_ profile: GravatarEntry) -> Void
+    
     private static let shared = FeedClient()
 
     private let feedPresenter = ServiceLocator.init().getFeedPresenter
     private var handler: FeedHandler?
     private var handlerImage: FeedHandlerImage?
+    private var handlerProfile: ProfileHandler?
     
     public static func getContent() -> [RWContent] {
         return FeedClient.shared.feedPresenter.content
     }
     
+    public static func fetchProfile(completion: @escaping ProfileHandler) {
+        FeedClient.shared.feedPresenter.fetchMyGravatar(cb: FeedClient.shared)
+        FeedClient.shared.handlerProfile = completion
+    }
+    
     public static func fetchFeeds(completion: @escaping FeedHandler) {
+        FeedClient.shared.feedPresenter.fetchAllFeeds(cb: FeedClient.shared)
         FeedClient.shared.handler = completion
     }
     
@@ -66,5 +75,10 @@ extension FeedClient: FeedData {
     public func onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: KotlinException?) {
         Logger().d(tag: TAG, message: "onNewImageUrlAvailable")
         self.handlerImage?(id, url, platform)
+    }
+    
+    public func onMyGravatarData(item: GravatarEntry) {
+        Logger().d(tag: TAG, message: "onMyGravatarData")
+        self.handlerProfile?(item)
     }
 }

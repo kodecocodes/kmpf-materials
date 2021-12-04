@@ -91,7 +91,7 @@ class FeedViewModel : ViewModel(), FeedData {
   }
 
   override fun onMyGravatarData(item: GravatarEntry) {
-    Logger.d(TAG, "onMyGravatarData | items=${items.size}")
+    Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
         _profile.value = item

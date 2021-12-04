@@ -32,9 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.data.model
+package com.raywenderlich.learn.platform
 
-import android.content.ContentResolver
-import android.net.Uri
+import platform.Foundation.NSBundle
 
-public data class MediaUri(public val uri: Uri, public val contentResolver: ContentResolver)
+public actual object PlatformIdentifier {
+
+  public actual val identifier: String = NSBundle.mainBundle.bundleIdentifier ?: "learn"
+}

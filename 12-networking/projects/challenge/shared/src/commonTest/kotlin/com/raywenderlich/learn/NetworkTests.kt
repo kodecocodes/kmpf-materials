@@ -32,25 +32,28 @@
  * THE SOFTWARE.
  */
 
-import com.raywenderlich.learn.platform.runTest
+package com.raywenderlich.learn
+
 import com.raywenderlich.learn.data.GRAVATAR_RESPONSE_FORMAT
 import com.raywenderlich.learn.data.GRAVATAR_URL
 import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.GravatarProfile
-import io.ktor.client.*
-import io.ktor.client.engine.mock.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import com.raywenderlich.learn.platform.runTest
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.request
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.headersOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
-public class NetworkTests {
-
-  private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
+class NetworkTests {
 
   private val profile = GravatarProfile(
     entry = listOf(
@@ -63,8 +66,11 @@ public class NetworkTests {
     )
   )
 
+  private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
+
   private fun getHttpClient(): HttpClient {
     return HttpClient(MockEngine) {
+
       install(JsonFeature) {
         serializer = KotlinxSerializer(nonStrictJson)
       }
@@ -72,11 +78,13 @@ public class NetworkTests {
       engine {
         addHandler { request ->
           if (request.url.toString().contains(GRAVATAR_URL)) {
-              respond(
-                content = Json.encodeToString(profile),
-                headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString()))
-            }
-            else {
+            val respond = respond(
+              content = Json.encodeToString(profile),
+              headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            )
+            respond
+          }
+          else {
             error("Unhandled ${request.url}")
           }
         }

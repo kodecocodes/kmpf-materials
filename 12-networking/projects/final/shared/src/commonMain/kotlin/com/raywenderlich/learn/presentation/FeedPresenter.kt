@@ -42,8 +42,10 @@ import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -57,11 +59,9 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "cafonsopcmota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
-
-  private var listener: FeedData? = null
 
   private val json = Json { ignoreUnknownKeys = true }
 
@@ -69,8 +69,11 @@ class FeedPresenter(private val feed: GetFeedData) {
     json.decodeFromString(RW_CONTENT)
   }
 
+  private var listener: FeedData? = null
+
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
+
     listener = cb
 
     for (feed in content) {
@@ -82,18 +85,21 @@ class FeedPresenter(private val feed: GetFeedData) {
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
     GlobalScope.apply {
       launch {
-        feed.invokeFetchRWEntry(
-          platform = platform,
-          feedUrl = feedUrl,
-          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
-        )
+        withContext(Dispatchers.Main) {
+          feed.invokeFetchRWEntry(
+            platform = platform,
+            feedUrl = feedUrl,
+            onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+            onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+          )
+        }
       }
     }
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
+
     listener = cb
 
     fetchMyGravatar()
@@ -103,11 +109,13 @@ class FeedPresenter(private val feed: GetFeedData) {
   private fun fetchMyGravatar() {
     GlobalScope.apply {
       launch {
-        feed.invokeGetMyGravatar(
-          hash = md5(GRAVATAR_EMAIL),
-          onSuccess = { listener?.onMyGravatarData(it) },
-          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
-        )
+        withContext(Dispatchers.Main) {
+          feed.invokeGetMyGravatar(
+            hash = md5(GRAVATAR_EMAIL),
+            onSuccess = { listener?.onMyGravatarData(it) },
+            onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+          )
+        }
       }
     }
   }

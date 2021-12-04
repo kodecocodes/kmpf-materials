@@ -57,11 +57,23 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    feedViewModel.fetchAllFeeds()
+    feedViewModel.fetchMyGravatar()
     bookmarkViewModel.getBookmarks()
 
     setContent {
 
       val items = feedViewModel.items
+      val profile = feedViewModel.profile.observeAsState()
+      if (!profile.value?.preferredUsername.isNullOrEmpty()) {
+        val name = profile.value!!.preferredUsername
+        Toast.makeText(
+          applicationContext,
+          getString(R.string.action_hello, name),
+          Toast.LENGTH_SHORT).
+        show()
+      }
+
       val bookmarks = bookmarkViewModel.items.observeAsState()
 
       RWTheme {

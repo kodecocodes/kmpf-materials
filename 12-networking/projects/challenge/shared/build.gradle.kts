@@ -43,7 +43,7 @@ kotlin {
             }
         }
     }
-
+    
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -86,9 +86,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-ios:1.6.4")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt") {
-                    version {
-                        strictly("1.5.2-native-mt")
-                    }
+                  version {
+                    strictly("1.5.2-native-mt")
+                  }
                 }
             }
         }

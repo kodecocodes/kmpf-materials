@@ -51,7 +51,6 @@ public class GetFeedData {
   //TODO: Chapter 12 - Networking
 }
 
-
 private fun parsePage(content: String): String {
   val start =
     content.substringAfterOrNull(WEBSITE_PREVIEW_START_DELIMITER)

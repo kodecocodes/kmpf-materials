@@ -30,6 +30,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import AlertToast
 import SwiftUI
 import SharedKit
 import SDWebImageSwiftUI
@@ -41,6 +42,8 @@ struct HomeView: View {
     @State private var showActionSheet = false
     
     @State private var filter = PLATFORM.all.description()
+    
+    @State private var showToast = false
     
     @ObservedObject var feedViewModel = RWEntryViewModel()
     
@@ -138,6 +141,9 @@ struct HomeView: View {
         .onAppear() {
             Logger().d(tag: TAG, message: "Retrieving all feeds")
             feedViewModel.fetchFeeds()
+        }
+        .toast(isPresenting: $showToast){
+            AlertToast(type: .regular, title: "Hello cafonsomota")
         }
     }
 }

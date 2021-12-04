@@ -27,6 +27,7 @@
 		676EC0932714F59D00316DED /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; };
 		676EC0942714F59D00316DED /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		E65E8BF968330726D1176751 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D42ADC72E81E194057DD5 /* libPods-iosApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		0A7253495B503C53289755E1 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		245D42ADC72E81E194057DD5 /* libPods-iosApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		247688B1D254ABA6DFD3FE76 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				676EC0932714F59D00316DED /* SharedKit.xcframework in Frameworks */,
+				E65E8BF968330726D1176751 /* libPods-iosApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +166,7 @@
 			children = (
 				676EC0922714F58200316DED /* SharedKit-1.0.zip */,
 				676EC08E2714EDCC00316DED /* SharedKit.xcframework */,
+				245D42ADC72E81E194057DD5 /* libPods-iosApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

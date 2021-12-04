@@ -32,9 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.data.model
+package com.raywenderlich.learn
 
-import android.content.ContentResolver
-import android.net.Uri
+import com.soywiz.korio.lang.toByteArray
+import com.soywiz.krypto.md5
 
-public data class MediaUri(public val uri: Uri, public val contentResolver: ContentResolver)
+fun md5(str: String): String {
+  return str.toByteArray().md5().hex
+}
