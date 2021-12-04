@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A21FCE4273D8111009AA0A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A21FCE3273D8111009AA0A8 /* Assets.xcassets */; };
+		0A54A956275894F3002F939D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A955275894F3002F939D /* Utils.swift */; };
+		0A54A95C2759DA2E002F939D /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A95B2759DA2E002F939D /* ListModifier.swift */; };
 		0AD2FE7A2740CFFC0040328A /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE762740CFFC0040328A /* TimezoneDialog.swift */; };
 		0AD2FE7B2740CFFC0040328A /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE772740CFFC0040328A /* Searchbar.swift */; };
 		0AD2FE7C2740CFFC0040328A /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE782740CFFC0040328A /* PresentationSettings.swift */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		0A21FCE3273D8111009AA0A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A54A955275894F3002F939D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0A54A95B2759DA2E002F939D /* ListModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
 		0AD2FE762740CFFC0040328A /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
 		0AD2FE772740CFFC0040328A /* Searchbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
 		0AD2FE782740CFFC0040328A /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				0AD2FE7E27417D920040328A /* TimezoneItem.swift */,
 				0AD2FE82274377EF0040328A /* TimezoneView.swift */,
 				0AD2FE962749F7410040328A /* HourSheet.swift */,
+				0A54A955275894F3002F939D /* Utils.swift */,
+				0A54A95B2759DA2E002F939D /* ListModifier.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -212,12 +218,14 @@
 				0AD2FE7C2740CFFC0040328A /* PresentationSettings.swift in Sources */,
 				0AD2FE8527437D420040328A /* TimeCard.swift in Sources */,
 				0AD2FE89274380540040328A /* NumberTimeCard.swift in Sources */,
+				0A54A956275894F3002F939D /* Utils.swift in Sources */,
 				2152FB042600AC8F00CF470E /* TimezoneApp.swift in Sources */,
 				0AD2FE83274377EF0040328A /* TimezoneView.swift in Sources */,
 				0AD2FE7D2740CFFC0040328A /* CardModifier.swift in Sources */,
 				0AD2FE7B2740CFFC0040328A /* Searchbar.swift in Sources */,
 				0AD2FE972749F7410040328A /* HourSheet.swift in Sources */,
 				0AD2FE7A2740CFFC0040328A /* TimezoneDialog.swift in Sources */,
+				0A54A95C2759DA2E002F939D /* ListModifier.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TELQUP4TY8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -366,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TELQUP4TY8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

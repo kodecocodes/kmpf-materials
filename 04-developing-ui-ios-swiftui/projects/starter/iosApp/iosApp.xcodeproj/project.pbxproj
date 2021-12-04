@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A54A9582759C32E002F939D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A9572759C32E002F939D /* Utils.swift */; };
+		0A54A9602759DBA1002F939D /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A95F2759DBA1002F939D /* ListModifier.swift */; };
 		0AD2FE722740CEED0040328A /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE6E2740CEED0040328A /* CardModifier.swift */; };
 		0AD2FE732740CEED0040328A /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */; };
 		0AD2FE742740CEED0040328A /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE702740CEED0040328A /* PresentationSettings.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A54A9572759C32E002F939D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0A54A95F2759DBA1002F939D /* ListModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
 		0AD2FE6E2740CEED0040328A /* CardModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
 		0AD2FE702740CEED0040328A /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
@@ -109,12 +113,14 @@
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				0A54A95F2759DBA1002F939D /* ListModifier.swift */,
 				0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */,
 				0AD2FE702740CEED0040328A /* PresentationSettings.swift */,
 				0AD2FE712740CEED0040328A /* Searchbar.swift */,
 				0AD2FE8627437D4D0040328A /* TimeCard.swift */,
 				0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */,
 				0AD2FE8027417DA30040328A /* TimezoneItem.swift */,
+				0A54A9572759C32E002F939D /* Utils.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -219,6 +225,8 @@
 				0AD2FE8727437D4D0040328A /* TimeCard.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				0A54A9582759C32E002F939D /* Utils.swift in Sources */,
+				0A54A9602759DBA1002F939D /* ListModifier.swift in Sources */,
 				0AD2FE8B2743805F0040328A /* NumberTimeCard.swift in Sources */,
 				0AD2FE732740CEED0040328A /* TimezoneDialog.swift in Sources */,
 				0AD2FE722740CEED0040328A /* CardModifier.swift in Sources */,

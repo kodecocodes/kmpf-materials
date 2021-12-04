@@ -9,25 +9,36 @@
 import SwiftUI
 
 struct HourSheet: View {
-  @Binding var hours: [Int]
-  @Binding var showHoursDialog: Bool
-
-  var body: some View {
-    List {
-      ForEach(hours, id: \.self) {  hour in
-        Text("\(hour)")
-      }
+    @Binding var hours: [Int]
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(hours, id: \.self) {  hour in
+                        Text("\(hour)")
+                    }
+                } // List
+            } // VStack
+            .navigationTitle("Found Meeting Hours")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Dismiss")
+                            .frame(alignment: .trailing)
+                            .foregroundColor(.black)
+                    }
+                } // ToolbarItem
+            } // toolbar
+        } // NavigationView
     }
-    Spacer()
-    Button("Dismiss") {
-      showHoursDialog = false
-    }
-
-  }
 }
 
 struct HourSheet_Previews: PreviewProvider {
     static var previews: some View {
-      HourSheet(hours: .constant([8, 9, 10]), showHoursDialog: .constant(true))
+        HourSheet(hours: .constant([8,9,10]))
     }
 }

@@ -34,97 +34,68 @@ import SwiftUI
 import shared
 
 struct TimezoneView: View {
-  @EnvironmentObject var timezoneItems: TimezoneItems
-  @State private var timezoneHelper = TimeZoneHelperImpl()
-  @State var currentDate = Date()
-  let timer = Timer.publish(every: 1000, on: .main, in: .common).autoconnect()
-  let timeFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
-    return formatter
-  }()
-  let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .long
-    formatter.timeStyle = .none
-    return formatter
-  }()
-  @State var showTimezoneDialog = false
-  var body: some View {
-    VStack {
-      NavigationView {
-        VStack {
-          TimeCard(timezone: timezoneHelper.currentTimeZone(),
-                   time: timeFormatter.string(from: currentDate), date: dateFormatter.string(from: currentDate))
+    @EnvironmentObject private var timezoneItems: TimezoneItems
+    private var timezoneHelper = TimeZoneHelperImpl()
+    @State private var currentDate = Date()
+    let timer = Timer.publish(every: 1000, on: .main, in: .common).autoconnect()
+    @State private var showTimezoneDialog = false
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                TimeCard(timezone: timezoneHelper.currentTimeZone(),
+                         time: DateFormatter.short.string(from: currentDate),
+                         date: DateFormatter.long.string(from: currentDate))
+                Spacer()
+                List {
+                    ForEach(Array(timezoneItems.selectedTimezones), id: \.self) {  timezone in
+                        NumberTimeCard(timezone: timezone,
+                                       time: timezoneHelper.getTime(timezoneId: timezone),
+                                       hours: "\(timezoneHelper.hoursFromTimeZone(otherTimeZoneId: timezone)) hours from local",
+                                       date: timezoneHelper.getDate(timezoneId: timezone))
+                            .withListModifier()
+                    } // ForEach
+                    .onDelete(perform: deleteItems)
+                    
+                } // List
+                .listStyle(.plain)
+                
+                Spacer()
+            } // VStack
             .onReceive(timer) { input in
-              currentDate = input
+                currentDate = input
             }
-          Spacer()
-          List {
-            ForEach(Array(timezoneItems.selectedTimezones), id: \.self) {  timezone in
-              if #available(iOS 15.0, *) {
-                NumberTimeCard(timezone: timezone,
-                               time: timezoneHelper.getTime(timezoneId: timezone),
-                               hours: "\(timezoneHelper.hoursFromTimeZone(otherTimeZoneId: timezone)) hours from local",
-                               date: timezoneHelper.getDate(timezoneId: timezone))
-                  .listRowInsets(.init())
-                  .listRowSeparator(.hidden)
-              } else {
-                NumberTimeCard(timezone: timezone,
-                               time: timezoneHelper.getTime(timezoneId: timezone),
-                               hours: "\(timezoneHelper.hoursFromTimeZone(otherTimeZoneId: timezone)) hours from local",
-                               date: timezoneHelper.getDate(timezoneId: timezone))
-              }
-            } // ForEach
-            .onDelete(perform: deleteItems)
-
-          } // List
-          .listStyle(PlainListStyle())
-
-          Spacer()
-        } // VStack
-        .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            HStack {
-              Spacer()
-              Image(systemName: "plus")
-                .frame(alignment: .trailing)
-                .onTapGesture {
-                  showTimezoneDialog = true
-                }
-            } // HStack
-          } // ToolbarItem
-        } // toolbar
-
-      } // NavigationView
-      .frame(
-        minWidth: 0,
-        maxWidth: .infinity,
-        minHeight: 0,
-        maxHeight: .infinity,
-        alignment: .top
-      )
-
-    } // VStack
-    .fullScreenCover(isPresented: $showTimezoneDialog) {
-      TimezoneDialog(showTimezoneDialog: $showTimezoneDialog)
-        .environmentObject(timezoneItems)
+            .navigationTitle("World Clocks")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showTimezoneDialog = true
+                    }) {
+                        Image(systemName: "plus")
+                            .frame(alignment: .trailing)
+                            .foregroundColor(.black)
+                    }
+                } // ToolbarItem
+            } // toolbar
+        } // NavigationView        
+        .fullScreenCover(isPresented: $showTimezoneDialog) {
+            TimezoneDialog()
+                .environmentObject(timezoneItems)
+        }
+    } // body
+    
+    func deleteItems(at offsets: IndexSet) {
+        let timezoneArray = Array(timezoneItems.selectedTimezones)
+        for index in offsets {
+            let element = timezoneArray[index]
+            timezoneItems.selectedTimezones.remove(element)
+        }
     }
-  } // body
-
-  func deleteItems(at offsets: IndexSet) {
-    let timezoneArray = Array(timezoneItems.selectedTimezones)
-    for index in offsets {
-      let element = timezoneArray[index]
-      timezoneItems.selectedTimezones.remove(element)
-    }
-  }
 }
 
 struct TimezoneView_Previews: PreviewProvider {
-  static var previews: some View {
-    TimezoneView()
-      .environmentObject(TimezoneItems())
-  }
+    static var previews: some View {
+        TimezoneView()
+            .environmentObject(TimezoneItems())
+    }
 }

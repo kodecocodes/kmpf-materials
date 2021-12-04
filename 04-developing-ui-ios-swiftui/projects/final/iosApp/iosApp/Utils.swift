@@ -29,15 +29,19 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+import Foundation
 
-import SwiftUI
-import shared
-
-class TimezoneItems: ObservableObject {
-  @Published var timezones: [String] = []
-  @Published var selectedTimezones = Set<String>()
-
-  init() {
-      self.timezones = TimeZoneHelperImpl().getTimeZoneStrings()
-  }
+extension DateFormatter {
+    static let short: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    static let long: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
 }
