@@ -40,7 +40,7 @@ import com.raywenderlich.organize.domain.Reminder
 class RemindersViewModel : BaseViewModel() {
   private val repository = RemindersRepository()
 
-  private val reminders: List<Reminder>
+  internal val reminders: List<Reminder>
     get() = repository.reminders
 
   var onRemindersUpdated: ((List<Reminder>) -> Unit)? = null
