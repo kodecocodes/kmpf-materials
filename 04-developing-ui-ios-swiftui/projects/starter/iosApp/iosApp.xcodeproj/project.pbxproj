@@ -13,7 +13,7 @@
 		0AD2FE732740CEED0040328A /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */; };
 		0AD2FE742740CEED0040328A /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE702740CEED0040328A /* PresentationSettings.swift */; };
 		0AD2FE752740CEED0040328A /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE712740CEED0040328A /* Searchbar.swift */; };
-		0AD2FE8127417DA30040328A /* TimezoneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8027417DA30040328A /* TimezoneItem.swift */; };
+		0AD2FE8127417DA30040328A /* TimezoneItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8027417DA30040328A /* TimezoneItems.swift */; };
 		0AD2FE8727437D4D0040328A /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8627437D4D0040328A /* TimeCard.swift */; };
 		0AD2FE8B2743805F0040328A /* NumberTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */; };
 		0AD2FE8F27498F850040328A /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2FE8E27498F850040328A /* shared.framework */; };
@@ -44,7 +44,7 @@
 		0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
 		0AD2FE702740CEED0040328A /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
 		0AD2FE712740CEED0040328A /* Searchbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
-		0AD2FE8027417DA30040328A /* TimezoneItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneItem.swift; sourceTree = "<group>"; };
+		0AD2FE8027417DA30040328A /* TimezoneItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneItems.swift; sourceTree = "<group>"; };
 		0AD2FE8627437D4D0040328A /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
 		0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTimeCard.swift; sourceTree = "<group>"; };
 		0AD2FE8E27498F850040328A /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = ../shared/build/cocoapods/framework/shared.framework; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				0AD2FE712740CEED0040328A /* Searchbar.swift */,
 				0AD2FE8627437D4D0040328A /* TimeCard.swift */,
 				0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */,
-				0AD2FE8027417DA30040328A /* TimezoneItem.swift */,
+				0AD2FE8027417DA30040328A /* TimezoneItems.swift */,
 				0A54A9572759C32E002F939D /* Utils.swift */,
 			);
 			path = iosApp;
@@ -220,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD2FE8127417DA30040328A /* TimezoneItem.swift in Sources */,
+				0AD2FE8127417DA30040328A /* TimezoneItems.swift in Sources */,
 				0AD2FE742740CEED0040328A /* PresentationSettings.swift in Sources */,
 				0AD2FE8727437D4D0040328A /* TimeCard.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
