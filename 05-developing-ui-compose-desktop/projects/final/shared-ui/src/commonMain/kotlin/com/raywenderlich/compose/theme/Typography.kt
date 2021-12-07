@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.theme
+package com.raywenderlich.compose.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color

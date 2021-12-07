@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.ui
+package com.raywenderlich.compose.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.findtime.android.theme.primaryColor
-import com.raywenderlich.findtime.android.theme.primaryDarkColor
-import com.raywenderlich.findtime.android.theme.typography
+import com.raywenderlich.compose.theme.primaryColor
+import com.raywenderlich.compose.theme.primaryDarkColor
+import com.raywenderlich.compose.theme.typography
 
 @Composable
 fun localTimeCard(city: String, time: String, date: String) {

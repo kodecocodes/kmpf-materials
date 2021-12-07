@@ -1,6 +1,7 @@
-package com.raywenderlich.findtime.android.ui
+package com.raywenderlich.compose.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -22,6 +23,8 @@ fun numberTimeCard(label: String, hour: MutableState<Int>) {
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(1.dp, Color.White),
         elevation = 4.dp,
+        backgroundColor = MaterialTheme.colors.primary
+
     ) {
         Row(
             modifier = Modifier

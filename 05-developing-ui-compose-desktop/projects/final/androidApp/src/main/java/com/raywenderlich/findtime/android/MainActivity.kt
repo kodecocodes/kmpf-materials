@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.ui.res.stringResource
-import com.raywenderlich.findtime.android.ui.MainView
+import com.raywenderlich.compose.ui.MainView
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 

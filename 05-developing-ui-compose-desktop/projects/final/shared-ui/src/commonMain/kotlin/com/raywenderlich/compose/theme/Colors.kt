@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.theme
+package com.raywenderlich.compose.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -10,3 +10,4 @@ val secondaryLightColor = Color(0xFF64d8cb)
 val secondaryDarkColor = Color(0xFF00766c)
 val primaryTextColor = Color(0xFF000000)
 val secondaryTextColor = Color(0xFF000000)
+val lightGrey = Color(0xFFA2B4B5)

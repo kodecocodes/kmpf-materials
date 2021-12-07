@@ -10,6 +10,11 @@ version = "1.0"
 
 kotlin {
     android()
+    jvm("desktop"){
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
+        }
+    }
 
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
@@ -18,9 +23,11 @@ kotlin {
             ::iosX64
 
     iosTarget("ios") {}
+    // Add the ARM64 simulator target
+    iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
+        summary = "Holds Time zone information"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         frameworkName = "shared"
@@ -48,8 +55,16 @@ kotlin {
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+
+        // Set up dependencies between the source sets
+        val iosMain by getting {
+            dependsOn(commonMain)
+        }
         val iosTest by getting
+        val iosSimulatorArm64Main by getting
+        val iosSimulatorArm64Test by getting
+        iosSimulatorArm64Main.dependsOn(iosMain)
+        iosSimulatorArm64Test.dependsOn(iosTest)
     }
 }
 

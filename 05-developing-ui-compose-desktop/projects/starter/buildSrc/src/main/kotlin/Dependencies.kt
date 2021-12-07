@@ -13,20 +13,18 @@ object Versions {
     // Plugins
     const val kotlin = "1.5.31"
     const val kotlin_gradle_plugin = "1.5.31"
-    const val android_gradle_plugin = "7.0.1"
+    const val android_gradle_plugin = "7.0.3"
     const val desktop_compose_plugin = "1.0.0-alpha3"
     const val compose_version= "1.1.0-alpha05"
     const val coroutines = "1.5.0-native-mt"
-    const val koin = "3.1.1"
     const val junit = "4.13.2"
     const val material = "1.3.0"
     const val kotlinxDateTime = "0.3.0"
     const val activity_compose = "1.3.1"
     const val nav_compose = "2.4.0-alpha08"
-    const val napier = "1.4.1"
+    const val napier = "2.1.0"
     const val junit5 = "1.5.10"
     const val frameworkName = "shared"
-    const val coil= "0.8.1"
 }
 object Deps {
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
@@ -37,13 +35,6 @@ object Deps {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"
 
-    object Koin {
-        val core = "io.insert-koin:koin-core:${Versions.koin}"
-        val jvm = "io.insert-koin:koin-core-jvm:${Versions.koin}"
-        val test = "io.insert-koin:koin-test:${Versions.koin}"
-        val android = "io.insert-koin:koin-android:${Versions.koin}"
-
-    }
     object Compose {
         const val ui = "androidx.compose.ui:ui:${Versions.compose_version}"
         const val uiUtil = "androidx.compose.ui:ui-util:${Versions.compose_version}"

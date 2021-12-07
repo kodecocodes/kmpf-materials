@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.ui
+package com.raywenderlich.compose.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

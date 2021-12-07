@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.ui
+package com.raywenderlich.compose.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,11 +12,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -131,12 +127,15 @@ fun FindMeetingScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.2F)
+                .weight(0.3F)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(start = 4.dp, end = 4.dp)
 
         ) {
-            OutlinedButton(onClick = {
+            OutlinedButton(
+                colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.primary,
+                contentColor = MaterialTheme.colors.secondaryVariant),
+                onClick = {
                 meetingHours.clear()
                 meetingHours.addAll(
                     timezoneHelper.search(

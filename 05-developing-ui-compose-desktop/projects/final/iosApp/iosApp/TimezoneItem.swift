@@ -38,8 +38,6 @@ class TimezoneItems: ObservableObject {
   @Published var selectedTimezones = Set<String>()
 
   init() {
-    DispatchQueue.main.async {
       self.timezones = TimeZoneHelperImpl().getTimeZoneStrings()
-    }
   }
 }

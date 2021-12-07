@@ -1,4 +1,4 @@
-package com.raywenderlich.findtime.android.ui
+package com.raywenderlich.compose.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -11,9 +11,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.findtime.android.theme.AppTheme
+import com.raywenderlich.compose.theme.AppTheme
 
 sealed class Screen(val title: String) {
     object TimeZonesScreen : Screen("Timezones")
@@ -66,9 +67,16 @@ fun MainView(actionBarFun: topBarFun = { emptyComposable() }) {
                 }
             },
             bottomBar = {
-                BottomNavigation {
+                BottomNavigation(
+                    backgroundColor = MaterialTheme.colors.primary
+                ) {
                     bottomNavigationItems.forEachIndexed { i, bottomNavigationitem ->
                         BottomNavigationItem(
+                            selectedContentColor = Color.White,
+                            unselectedContentColor = Color.Black,
+                            label = {
+                                Text(bottomNavigationitem.route, style = MaterialTheme.typography.h4)
+                            },
                             icon = {
                                 Icon(
                                     bottomNavigationitem.icon,
