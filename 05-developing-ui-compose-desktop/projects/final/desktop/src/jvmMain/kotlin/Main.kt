@@ -16,14 +16,14 @@ data class WindowInfo(val windowName: String, val windowState: WindowState)
 fun main() {
 
     application {
-        val intitialized = remember { mutableStateOf(false) }
-        val windowCount = remember { mutableStateOf(1) }
+        var initialized by remember { mutableStateOf(false) }
+        var windowCount by remember { mutableStateOf(1) }
         val windowList = remember { SnapshotStateList<WindowInfo>() }
 
         // Add initial window
-        if (!intitialized.value) {
-            windowList.add(WindowInfo("Timezone-${windowCount.value}", rememberWindowState()))
-            intitialized.value = true
+        if (!initialized) {
+            windowList.add(WindowInfo("Timezone-${windowCount}", rememberWindowState()))
+            initialized = true
         }
         windowList.forEachIndexed { i, window ->
             Window(
@@ -38,10 +38,10 @@ fun main() {
                         val nextWindowState = rememberWindowState()
                         Item(
                             "New", onClick = {
-                                windowCount.value++
+                                windowCount++
                                 windowList.add(
                                     WindowInfo(
-                                        "Timezone-${windowCount.value}",
+                                        "Timezone-${windowCount}",
                                         nextWindowState
                                     )
                                 )

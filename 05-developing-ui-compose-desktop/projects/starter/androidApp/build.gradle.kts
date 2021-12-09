@@ -21,7 +21,6 @@ dependencies {
         implementation(material)
         implementation(material_icons)
         implementation(activity)
-        implementation(navigation)
     }
 }
 
@@ -38,6 +37,13 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true

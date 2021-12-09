@@ -40,7 +40,7 @@ fun AddTimeZoneDialog(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colors.background, shape = RoundedCornerShape(8.dp))
             .padding(16.dp)
     ) {
         val timeZoneStrings by remember {
@@ -100,7 +100,8 @@ fun AddTimeZoneDialog(
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth(),
-                    color = if (isSelected(selectedStates, i)) Color.Gray else Color.White
+                        color = if (isSelected(selectedStates,i))
+                            MaterialTheme.colors.primary else MaterialTheme.colors.primaryVariant
 
                 ) {
                     Row(

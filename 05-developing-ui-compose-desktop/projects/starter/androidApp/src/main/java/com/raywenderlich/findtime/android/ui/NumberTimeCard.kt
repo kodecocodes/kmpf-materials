@@ -22,6 +22,8 @@ fun numberTimeCard(label: String, hour: MutableState<Int>) {
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(1.dp, Color.White),
         elevation = 4.dp,
+        backgroundColor = MaterialTheme.colors.primary
+
     ) {
         Row(
             modifier = Modifier

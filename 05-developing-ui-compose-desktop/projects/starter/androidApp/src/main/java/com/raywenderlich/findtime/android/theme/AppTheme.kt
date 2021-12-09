@@ -17,6 +17,8 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
                 secondary = secondaryDarkColor,
                 secondaryVariant = secondaryLightColor,
                 onPrimary = Color.White,
+                background = lightGrey,
+                onSurface = lightGrey
             )
     } else {
         lightColors()
@@ -26,6 +28,7 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
                 secondary = secondaryColor,
                 secondaryVariant = secondaryLightColor,
                 onPrimary = Color.Black,
+                background = Color.White
             )
     }
     MaterialTheme(
