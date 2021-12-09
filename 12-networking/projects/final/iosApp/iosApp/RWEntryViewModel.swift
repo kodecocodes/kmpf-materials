@@ -58,7 +58,7 @@ class RWEntryViewModel: ObservableObject {
     func fetchProfile() {
         return FeedClient.fetchProfile { profile in
             Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
-            //self.profile = profile
+            self.profile = profile
         }
     }
  

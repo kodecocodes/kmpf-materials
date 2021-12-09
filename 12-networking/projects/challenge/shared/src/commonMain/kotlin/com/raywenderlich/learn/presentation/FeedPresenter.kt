@@ -44,6 +44,7 @@ import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
@@ -84,15 +85,13 @@ class FeedPresenter(private val feed: GetFeedData) {
   @OptIn(DelicateCoroutinesApi::class)
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
     GlobalScope.apply {
-      launch {
-        withContext(Dispatchers.Main) {
-          feed.invokeFetchRWEntry(
-            platform = platform,
-            feedUrl = feedUrl,
-            onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-            onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
-          )
-        }
+      MainScope().launch {
+        feed.invokeFetchRWEntry(
+          platform = platform,
+          feedUrl = feedUrl,
+          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        )
       }
     }
   }
@@ -108,14 +107,12 @@ class FeedPresenter(private val feed: GetFeedData) {
   @OptIn(DelicateCoroutinesApi::class)
   private fun fetchMyGravatar() {
     GlobalScope.apply {
-      launch {
-        withContext(Dispatchers.Main) {
-          feed.invokeGetMyGravatar(
-            hash = md5(GRAVATAR_EMAIL),
-            onSuccess = { listener?.onMyGravatarData(it) },
-            onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
-          )
-        }
+      MainScope().launch {
+        feed.invokeGetMyGravatar(
+          hash = md5(GRAVATAR_EMAIL),
+          onSuccess = { listener?.onMyGravatarData(it) },
+          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+        )
       }
     }
   }

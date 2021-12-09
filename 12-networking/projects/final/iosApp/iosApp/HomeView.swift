@@ -44,7 +44,7 @@ struct HomeView: View {
     @State private var filter = PLATFORM.all.description()
     
     @State private var showToast = false
-    
+
     @ObservedObject var feedViewModel = RWEntryViewModel()
     
     var body: some View {
@@ -140,10 +140,14 @@ struct HomeView: View {
         }
         .onAppear() {
             Logger().d(tag: TAG, message: "Retrieving all feeds")
+            feedViewModel.fetchProfile()
             feedViewModel.fetchFeeds()
         }
+        .onReceive(feedViewModel.$profile) { item in
+            showToast = true
+        }
         .toast(isPresenting: $showToast){
-            AlertToast(type: .regular, title: "Hello cafonsomota")
+            AlertToast(type: .regular, title: "Hello \(String(describing: feedViewModel.profile.preferredUsername))")
         }
     }
 }
