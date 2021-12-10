@@ -48,6 +48,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
     implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
+
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["composeVersion"]}")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:${rootProject.extra["composeVersion"]}")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.4.0")
+    androidTestImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:runner:1.4.0")
 }
 
 android {
@@ -58,6 +64,8 @@ android {
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
@@ -80,5 +88,9 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
 }

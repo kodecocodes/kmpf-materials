@@ -54,6 +54,8 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -82,7 +84,10 @@ private fun Toolbar(
   TopAppBar(
     title = { Text(text = "Reminders") },
     actions = {
-      IconButton(onClick = onAboutButtonClick) {
+      IconButton(
+        onClick = onAboutButtonClick,
+        modifier = Modifier.semantics { contentDescription = "aboutButton" },
+      ) {
         Icon(
           imageVector = Icons.Outlined.Info,
           contentDescription = "About Device Button",
