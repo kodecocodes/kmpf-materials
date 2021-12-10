@@ -32,57 +32,61 @@
  * THE SOFTWARE.
  */
 
-plugins {
-    id("com.android.application")
-    kotlin("android")
-}
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import com.raywenderlich.organize.presentation.Screen
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import ui.about.AboutView
+import ui.reminders.RemindersView
 
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-    implementation("androidx.compose.ui:ui:${rootProject.extra["composeVersion"]}")
-    implementation("androidx.compose.material:material:${rootProject.extra["composeVersion"]}")
-    implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["composeVersion"]}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
-}
+class AppUITest {
+  @get:Rule
+  val composeTestRule = createComposeRule()
 
-android {
-    compileSdk = 31
-    defaultConfig {
-        applicationId = "com.raywenderlich.organize.android"
-        minSdk = 23
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    buildFeatures {
-        compose = true
-    }
+  @Before
+  fun setUp() {
+    composeTestRule.setContent {
+      var screenState by remember { mutableStateOf(Screen.Reminders) }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+      when (screenState) {
+        Screen.Reminders ->
+          RemindersView(
+            onAboutButtonClick = { screenState = Screen.AboutDevice }
+          )
+        Screen.AboutDevice -> AboutView()
+      }
     }
+  }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi"
-    }
+  @Test
+  fun testAboutButtonExistence() {
+    composeTestRule
+      .onNodeWithContentDescription("aboutButton")
+      .assertExists()
+  }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
-    }
-    
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-    }
+  @Test
+  fun testOpeningAboutPage() {
+    composeTestRule
+      .onNodeWithText("Reminders")
+      .assertExists()
+
+    composeTestRule
+      .onNodeWithContentDescription("aboutButton")
+      .performClick()
+
+    composeTestRule.waitForIdle()
+
+    composeTestRule
+      .onNodeWithContentDescription("aboutView")
+      .assertExists()
+  }
 }
