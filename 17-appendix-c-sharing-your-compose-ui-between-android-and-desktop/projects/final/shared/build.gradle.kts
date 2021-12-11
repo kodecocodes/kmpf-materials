@@ -54,7 +54,6 @@ kotlin {
 
         val desktopMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-apache:1.6.6")
                 implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
             }
         }
