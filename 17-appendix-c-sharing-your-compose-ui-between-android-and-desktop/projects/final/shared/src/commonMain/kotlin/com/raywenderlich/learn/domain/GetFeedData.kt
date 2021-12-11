@@ -34,15 +34,14 @@
 
 package com.raywenderlich.learn.domain
 
-import io.ktor.client.statement.readText
 import com.raywenderlich.learn.data.FeedAPI
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.domain.dao.RWEntryDAO
 import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
+import io.ktor.client.statement.readText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"

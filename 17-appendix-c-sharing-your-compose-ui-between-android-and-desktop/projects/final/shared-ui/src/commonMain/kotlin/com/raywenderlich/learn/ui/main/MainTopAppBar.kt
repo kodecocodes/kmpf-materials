@@ -45,8 +45,6 @@ import com.raywenderlich.learn.components.RWTopAppBar
 import com.raywenderlich.learn.ui.theme.Fonts
 import com.raywenderlich.learn.ui.ui.theme.colorContent
 import com.raywenderlich.learn.ui.utils.getString
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 
 @Composable
 fun MainTopAppBar() {

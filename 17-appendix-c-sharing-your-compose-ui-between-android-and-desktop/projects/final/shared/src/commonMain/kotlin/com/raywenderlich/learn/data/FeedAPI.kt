@@ -35,13 +35,15 @@
 package com.raywenderlich.learn.data
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
+import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.Logging
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.statement.HttpResponse
-import io.ktor.http.*
+import io.ktor.http.HttpHeaders
 import kotlinx.serialization.json.Json
 
 public object FeedAPI {
@@ -60,7 +62,7 @@ public object FeedAPI {
 
     install(Logging) {
       logger = HttpClientLogger
-      level = LogLevel.NONE
+      level = LogLevel.HEADERS
     }
   }
 

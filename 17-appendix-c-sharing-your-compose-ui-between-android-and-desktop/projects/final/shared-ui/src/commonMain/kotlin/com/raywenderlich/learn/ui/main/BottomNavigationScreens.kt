@@ -42,9 +42,6 @@ import com.raywenderlich.learn.ui.theme.icHome
 import com.raywenderlich.learn.ui.theme.icLatest
 import com.raywenderlich.learn.ui.theme.icSearch
 import com.raywenderlich.learn.ui.utils.getString
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.ResourceStringDesc
-import dev.icerock.moko.resources.desc.StringDesc
 
 sealed class BottomNavigationScreens(
   val route: String,

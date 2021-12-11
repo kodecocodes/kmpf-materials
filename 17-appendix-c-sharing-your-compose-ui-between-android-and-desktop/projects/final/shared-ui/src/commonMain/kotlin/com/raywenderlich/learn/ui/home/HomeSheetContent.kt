@@ -48,10 +48,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.MR
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.Fonts
+import com.raywenderlich.learn.ui.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

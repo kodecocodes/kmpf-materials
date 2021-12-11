@@ -48,10 +48,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import com.raywenderlich.learn.MR
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.icBrand
+import com.raywenderlich.learn.ui.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.ui.theme.colorContent
 import com.raywenderlich.learn.ui.utils.getString
 import io.kamel.core.Resource
 import io.kamel.image.KamelImage

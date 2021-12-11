@@ -19,7 +19,6 @@
 package com.google.accompanist.pager
 
 import androidx.annotation.FloatRange
-import androidx.annotation.IntRange
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.DecayAnimationSpec

@@ -58,13 +58,13 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.MR
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorAccent25Transparency
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.Fonts
 import com.raywenderlich.learn.ui.theme.icLauncher
 import com.raywenderlich.learn.ui.theme.icMore
+import com.raywenderlich.learn.ui.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.ui.theme.colorAccent25Transparency
 import com.raywenderlich.learn.ui.utils.converterIso8601ToReadableDate
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope

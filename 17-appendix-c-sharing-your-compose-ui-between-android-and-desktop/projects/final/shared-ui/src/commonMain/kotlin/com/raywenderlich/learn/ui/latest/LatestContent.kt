@@ -50,7 +50,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,19 +64,17 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.raywenderlich.learn.MR
 import com.raywenderlich.learn.components.AddImagePreview
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
-import com.raywenderlich.learn.ui.ui.theme.colorContent20Transparency
-import com.raywenderlich.learn.ui.ui.theme.colorContent85Transparency
-import com.raywenderlich.learn.ui.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.Fonts
+import com.raywenderlich.learn.ui.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.ui.theme.colorContent
+import com.raywenderlich.learn.ui.ui.theme.colorContent20Transparency
+import com.raywenderlich.learn.ui.ui.theme.colorContent85Transparency
+import com.raywenderlich.learn.ui.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.ui.utils.getString
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 
 private const val TAG = "LatestContent"
 

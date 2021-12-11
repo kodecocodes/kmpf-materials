@@ -34,10 +34,9 @@
 
 package com.raywenderlich.learn.platform
 
-import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import data.AppDb
-import java.io.File
 
 public actual class PlatformDatabase {
 
