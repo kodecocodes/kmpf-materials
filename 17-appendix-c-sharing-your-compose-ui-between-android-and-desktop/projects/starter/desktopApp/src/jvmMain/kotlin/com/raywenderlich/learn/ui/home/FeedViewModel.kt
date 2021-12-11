@@ -75,16 +75,9 @@ class FeedViewModel : ViewModel(), FeedData {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items[platform] = newItems
+        items[platform] = newItems.subList(0, FETCH_N_IMAGES)
 
-        val maxItems = if ((items[platform]?.size ?: 0) < FETCH_N_IMAGES) {
-          items[platform]?.size ?: 0
-        } else {
-          FETCH_N_IMAGES
-        }
-
-        for (index in 0 until maxItems) {
-          val item = items[platform]!![index]
+        for (item in items[platform]!!) {
           fetchLinkImage(platform, item.id, item.link)
         }
       }

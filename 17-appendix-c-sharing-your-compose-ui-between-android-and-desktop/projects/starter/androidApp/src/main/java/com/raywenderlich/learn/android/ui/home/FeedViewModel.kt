@@ -32,10 +32,12 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.ui.home
+package com.raywenderlich.learn.android.ui.home
 
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
@@ -44,8 +46,6 @@ import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
 
 private const val TAG = "FeedViewModel"
 
@@ -53,7 +53,8 @@ private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
-  val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  private val _items = mutableStateMapOf<PLATFORM, List<RWEntry>>()
+  val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = _items
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
@@ -71,20 +72,20 @@ class FeedViewModel : ViewModel(), FeedData {
 
   // region FeedData
 
-  override fun onNewDataAvailable(newItems: List<RWEntry>, platform: PLATFORM, e: Exception?) {
+  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items[platform] = newItems
+        _items[platform] = items
 
-        val maxItems = if ((items[platform]?.size ?: 0) < FETCH_N_IMAGES) {
-          items[platform]?.size ?: 0
+        val maxItems = if ((_items[platform]?.size ?: 0) < FETCH_N_IMAGES) {
+          _items[platform]?.size ?: 0
         } else {
           FETCH_N_IMAGES
         }
 
         for (index in 0 until maxItems) {
-          val item = items[platform]!![index]
+          val item = _items[platform]!![index]
           fetchLinkImage(platform, item.id, item.link)
         }
       }
@@ -96,14 +97,14 @@ class FeedViewModel : ViewModel(), FeedData {
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
 
-        Logger.d(TAG, "items=${items.keys}")
+        Logger.d(TAG, "items=${_items.keys}")
 
-        val item = items[platform]?.firstOrNull { it.id == id } ?: return@withContext
-        val list = items[platform]?.toMutableList() ?: return@withContext
+        val item = _items[platform]?.firstOrNull { it.id == id } ?: return@withContext
+        val list = _items[platform]?.toMutableList() ?: return@withContext
         val index = list.indexOf(item)
 
         list[index] = item.copy(imageUrl = url)
-        items[platform] = list
+        _items[platform] = list
       }
     }
   }

@@ -32,80 +32,62 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.ui.home
+package com.raywenderlich.learn.ui.bookmark
 
-import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import com.raywenderlich.learn.ServiceLocator
-import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.domain.cb.FeedData
+import com.raywenderlich.learn.domain.cb.BookmarkData
 import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import moe.tlaster.precompose.lifecycle.Lifecycle
+import moe.tlaster.precompose.livedata.LiveData
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
-private const val TAG = "FeedViewModel"
+private const val TAG = "BookmarkViewModel"
 
-private const val FETCH_N_IMAGES = 5
+class BookmarkViewModel : ViewModel(), BookmarkData {
 
-class FeedViewModel : ViewModel(), FeedData {
-
-  val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  val items: MutableState<List<RWEntry>> = mutableStateOf(emptyList())
 
   private val presenter by lazy {
-    ServiceLocator.getFeedPresenter
+    ServiceLocator.getBookmarkPresenter
   }
 
-  fun fetchAllFeeds() {
-    Logger.d(TAG, "fetchAllFeeds")
-    presenter.fetchAllFeeds(this)
+  fun getBookmarks() {
+    Logger.d(TAG, "getBookmarks")
+    presenter.getBookmarks(this)
   }
 
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    presenter.fetchLinkImage(platform, id, link, this)
+  fun addAsBookmark(entry: RWEntry) {
+    Logger.d(TAG, "addAsBookmark")
+    presenter.addAsBookmark(entry, this)
+  }
+
+  fun removeFromBookmark(entry: RWEntry) {
+    Logger.d(TAG, "removeFromBookmark")
+    presenter.removeFromBookmark(entry, this)
   }
 
   // region FeedData
 
-  override fun onNewDataAvailable(newItems: List<RWEntry>, platform: PLATFORM, e: Exception?) {
-    Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
+  override fun onNewBookmarksList(newItems: List<RWEntry>) {
+    Logger.d(TAG, "onNewBookmarksList | items=${newItems.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items[platform] = newItems
-
-        val maxItems = if ((items[platform]?.size ?: 0) < FETCH_N_IMAGES) {
-          items[platform]?.size ?: 0
-        } else {
-          FETCH_N_IMAGES
-        }
-
-        for (index in 0 until maxItems) {
-          val item = items[platform]!![index]
-          fetchLinkImage(platform, item.id, item.link)
-        }
+        items.value = newItems
       }
     }
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
-    Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-
-        Logger.d(TAG, "items=${items.keys}")
-
-        val item = items[platform]?.firstOrNull { it.id == id } ?: return@withContext
-        val list = items[platform]?.toMutableList() ?: return@withContext
-        val index = list.indexOf(item)
-
-        list[index] = item.copy(imageUrl = url)
-        items[platform] = list
-      }
-    }
+  override fun onBookmarkStateUpdated(item: RWEntry, added: Boolean) {
+    Logger.d(TAG, "onBookmarkStateUpdated | item=$item | added=$added")
+    // Do nothing
   }
 
   // endregion FeedData
