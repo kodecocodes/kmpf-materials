@@ -3,10 +3,6 @@ buildscript {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://kotlin.bintray.com/kotlinx/")
-        maven(url = "https://www.jetbrains.com/intellij-repository/releases")
-        maven(url = "https://jetbrains.bintray.com/intellij-third-party-dependencies")
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
@@ -21,11 +17,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://kotlin.bintray.com/kotlinx/")
-        maven(url = "https://www.jetbrains.com/intellij-repository/releases")
-        maven(url = "https://jetbrains.bintray.com/intellij-third-party-dependencies")
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
     }
 }
 
