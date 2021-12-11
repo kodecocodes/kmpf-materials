@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.domain
+package com.raywenderlich.learn.data
 
 import com.raywenderlich.learn.data.model.PLATFORM
 import kotlinx.serialization.ExperimentalSerializationApi

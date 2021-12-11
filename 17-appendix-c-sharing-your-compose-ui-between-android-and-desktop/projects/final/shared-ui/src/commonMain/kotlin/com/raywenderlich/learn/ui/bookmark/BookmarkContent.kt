@@ -49,7 +49,7 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.common.AddEntryContent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope
 

@@ -34,7 +34,7 @@
 
 package com.raywenderlich.learn.data.model
 
-import com.raywenderlich.learn.domain.RWSerializer
+import com.raywenderlich.learn.data.RWSerializer
 import kotlinx.serialization.Serializable
 
 @Serializable(with = RWSerializer::class)

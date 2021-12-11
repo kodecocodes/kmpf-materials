@@ -44,8 +44,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.raywenderlich.learn.ui.theme.Fonts
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorContent
 
 @Composable
 fun AddEmptyScreen(text: String) {

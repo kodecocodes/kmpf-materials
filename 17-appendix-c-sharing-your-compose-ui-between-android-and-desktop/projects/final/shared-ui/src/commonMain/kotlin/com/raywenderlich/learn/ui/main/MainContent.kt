@@ -50,8 +50,8 @@ import com.raywenderlich.learn.ui.bookmark.BookmarkContent
 import com.raywenderlich.learn.ui.home.HomeContent
 import com.raywenderlich.learn.ui.latest.LatestContent
 import com.raywenderlich.learn.ui.search.SearchContent
-import com.raywenderlich.learn.ui.ui.theme.BottomNavigationHeight
-import com.raywenderlich.learn.ui.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.BottomNavigationHeight
+import com.raywenderlich.learn.ui.theme.colorContent
 import kotlinx.coroutines.CoroutineScope
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator

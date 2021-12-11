@@ -69,11 +69,11 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.Fonts
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
-import com.raywenderlich.learn.ui.ui.theme.colorContent20Transparency
-import com.raywenderlich.learn.ui.ui.theme.colorContent85Transparency
-import com.raywenderlich.learn.ui.ui.theme.colorContentSecondary
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorContent20Transparency
+import com.raywenderlich.learn.ui.theme.colorContent85Transparency
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.ui.utils.getString
 
 private const val TAG = "LatestContent"

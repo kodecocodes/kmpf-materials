@@ -43,7 +43,7 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
-import com.raywenderlich.learn.ui.ui.theme.RWTheme
+import com.raywenderlich.learn.ui.theme.RWTheme
 import moe.tlaster.precompose.lifecycle.PreComposeActivity
 import moe.tlaster.precompose.lifecycle.setContent
 import moe.tlaster.precompose.ui.viewModel

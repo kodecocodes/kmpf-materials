@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.ui.ui.theme
+package com.raywenderlich.learn.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

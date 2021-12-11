@@ -32,11 +32,12 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.ui.ui.theme
+package com.raywenderlich.learn.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import com.raywenderlich.learn.ui.theme.Shapes
 import com.raywenderlich.learn.ui.theme.Typography
 
 val BottomNavigationHeight = 56.dp

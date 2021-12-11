@@ -43,16 +43,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:1.6.6")
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
 
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-                implementation("io.ktor:ktor-client-mock:1.6.6")
-            }
-        }
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
@@ -60,18 +51,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:1.6.6")
             }
         }
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-            }
-        }
+
         val desktopMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-apache:1.6.3")
                 implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
             }
         }
-        val desktopTest by getting
     }
 }

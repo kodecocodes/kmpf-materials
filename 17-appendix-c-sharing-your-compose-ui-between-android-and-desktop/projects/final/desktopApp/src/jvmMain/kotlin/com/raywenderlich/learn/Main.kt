@@ -11,7 +11,7 @@ import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
-import com.raywenderlich.learn.ui.ui.theme.RWTheme
+import com.raywenderlich.learn.ui.theme.RWTheme
 import com.raywenderlich.learn.ui.utils.getString
 import moe.tlaster.precompose.PreComposeWindow
 import moe.tlaster.precompose.ui.viewModel

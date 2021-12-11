@@ -63,9 +63,9 @@ import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEntryContent
 import com.raywenderlich.learn.ui.theme.Fonts
 import com.raywenderlich.learn.ui.theme.icSearch
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorContent
-import com.raywenderlich.learn.ui.ui.theme.colorPrimary
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorPrimary
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope
 

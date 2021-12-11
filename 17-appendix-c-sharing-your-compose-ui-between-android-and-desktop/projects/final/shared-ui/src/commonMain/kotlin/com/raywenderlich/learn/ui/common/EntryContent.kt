@@ -63,8 +63,8 @@ import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.Fonts
 import com.raywenderlich.learn.ui.theme.icLauncher
 import com.raywenderlich.learn.ui.theme.icMore
-import com.raywenderlich.learn.ui.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.ui.theme.colorAccent25Transparency
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorAccent25Transparency
 import com.raywenderlich.learn.ui.utils.converterIso8601ToReadableDate
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope

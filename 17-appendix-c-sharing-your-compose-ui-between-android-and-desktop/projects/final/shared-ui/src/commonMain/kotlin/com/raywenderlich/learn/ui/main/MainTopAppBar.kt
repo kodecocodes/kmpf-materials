@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.MR
 import com.raywenderlich.learn.components.RWTopAppBar
 import com.raywenderlich.learn.ui.theme.Fonts
-import com.raywenderlich.learn.ui.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.utils.getString
 
 @Composable
