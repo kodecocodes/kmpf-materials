@@ -14,7 +14,7 @@ kotlin {
     //iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
+        summary = "Holds Time zone information"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
