@@ -62,7 +62,6 @@ class FeedPresenter(private val feed: GetFeedData) {
 
   private val json = Json { ignoreUnknownKeys = true }
 
-  //TODO This should be private in the future
   val content: List<RWContent> by lazy {
     json.decodeFromString(RW_CONTENT)
   }
