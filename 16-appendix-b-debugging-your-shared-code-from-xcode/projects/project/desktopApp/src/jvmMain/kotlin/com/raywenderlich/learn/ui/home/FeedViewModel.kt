@@ -34,9 +34,12 @@
 
 package com.raywenderlich.learn.ui.home
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import com.raywenderlich.learn.ServiceLocator
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
@@ -54,6 +57,7 @@ private const val FETCH_N_IMAGES = 5
 class FeedViewModel : ViewModel(), FeedData {
 
   val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
@@ -64,9 +68,9 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchAllFeeds(this)
   }
 
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    presenter.fetchLinkImage(platform, id, link, this)
+  fun fetchMyGravatar() {
+    Logger.d(TAG, "fetchMyGravatar")
+    presenter.fetchMyGravatar(this)
   }
 
   // region FeedData
@@ -75,28 +79,20 @@ class FeedViewModel : ViewModel(), FeedData {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items[platform] = newItems.subList(0, FETCH_N_IMAGES)
-
-        for (item in items[platform]!!) {
-          fetchLinkImage(platform, item.id, item.link)
-        }
+        items[platform] = newItems
       }
     }
   }
 
   override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  }
+
+  override fun onMyGravatarData(item: GravatarEntry) {
+    Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-
-        Logger.d(TAG, "items=${items.keys}")
-
-        val item = items[platform]?.firstOrNull { it.id == id } ?: return@withContext
-        val list = items[platform]?.toMutableList() ?: return@withContext
-        val index = list.indexOf(item)
-
-        list[index] = item.copy(imageUrl = url)
-        items[platform] = list
+        profile.value = item
       }
     }
   }

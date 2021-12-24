@@ -34,14 +34,15 @@
 
 package com.raywenderlich.learn.domain
 
-import io.ktor.client.statement.readText
 import com.raywenderlich.learn.data.FeedAPI
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
+import io.ktor.client.statement.readText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
@@ -85,27 +86,32 @@ public class GetFeedData {
     }
   }
 
-  public suspend fun invokeFetchImageUrlFromLink(
-    link: String,
-    onSuccess: (String) -> Unit,
+  public suspend fun invokeGetMyGravatar(
+    hash: String,
+    onSuccess: (GravatarEntry) -> Unit,
     onFailure: (Exception) -> Unit
   ) {
     try {
+      val result = FeedAPI.fetchMyGravatar(hash)
+      Logger.d(TAG, "invokeGetMyGravatar | result=$result")
 
-      val result = FeedAPI.fetchImageUrlFromLink(link)
-      val url = parsePage(result.readText())
-
-      coroutineScope {
-        onSuccess(url)
+      if (result.entry.isEmpty()) {
+        coroutineScope {
+          onFailure(Exception("No profile found for hash=$hash"))
+        }
+      } else {
+        coroutineScope {
+          onSuccess(result.entry[0])
+        }
       }
     } catch (e: Exception) {
+      Logger.e(TAG, "Unable to fetch my gravatar. Error: $e")
       coroutineScope {
         onFailure(e)
       }
     }
   }
 }
-
 
 private fun parsePage(content: String): String {
   val start =

@@ -35,7 +35,6 @@
 package com.raywenderlich.learn.ui.bookmark
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.data.model.RWEntry
@@ -44,8 +43,6 @@ import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import moe.tlaster.precompose.lifecycle.Lifecycle
-import moe.tlaster.precompose.livedata.LiveData
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
@@ -61,33 +58,24 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
 
   fun getBookmarks() {
     Logger.d(TAG, "getBookmarks")
-    presenter.getBookmarks(this)
   }
 
   fun addAsBookmark(entry: RWEntry) {
     Logger.d(TAG, "addAsBookmark")
-    presenter.addAsBookmark(entry, this)
   }
 
   fun removeFromBookmark(entry: RWEntry) {
     Logger.d(TAG, "removeFromBookmark")
-    presenter.removeFromBookmark(entry, this)
   }
 
   // region FeedData
 
   override fun onNewBookmarksList(newItems: List<RWEntry>) {
     Logger.d(TAG, "onNewBookmarksList | items=${newItems.size}")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        items.value = newItems
-      }
-    }
   }
 
   override fun onBookmarkStateUpdated(item: RWEntry, added: Boolean) {
     Logger.d(TAG, "onBookmarkStateUpdated | item=$item | added=$added")
-    // Do nothing
   }
 
   // endregion FeedData

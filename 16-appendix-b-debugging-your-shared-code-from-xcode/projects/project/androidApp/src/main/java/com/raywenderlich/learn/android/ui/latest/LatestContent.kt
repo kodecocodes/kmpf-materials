@@ -141,8 +141,7 @@ fun AddNewPage(
   onOpenEntry: (String) -> Unit
 ) {
   val pagerState = rememberPagerState(
-    pageCount = items.size,
-    initialOffscreenLimit = 2,
+    initialPage = 0
   )
 
   Column(
@@ -157,6 +156,7 @@ fun AddNewPage(
     HorizontalPager(
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
+      count = items.size
     ) { page ->
 
       AddNewPageEntry(
