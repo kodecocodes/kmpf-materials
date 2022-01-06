@@ -23,7 +23,7 @@ import com.raywenderlich.findtime.android.theme.primaryDarkColor
 import com.raywenderlich.findtime.android.theme.typography
 
 @Composable
-fun localTimeCard(city: String, time: String, date: String) {
+fun LocalTimeCard(city: String, time: String, date: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

@@ -1,7 +1,11 @@
 package com.raywenderlich.findtime.android.ui
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Language
@@ -67,12 +71,12 @@ fun MainView(actionBarFun: topBarFun = { emptyComposable() }) {
             },
             bottomBar = {
                 BottomNavigation {
-                    bottomNavigationItems.forEachIndexed { i, bottomNavigationitem ->
+                    bottomNavigationItems.forEachIndexed { i, bottomNavigationItem ->
                         BottomNavigationItem(
                             icon = {
                                 Icon(
-                                    bottomNavigationitem.icon,
-                                    contentDescription = bottomNavigationitem.iconContentDescription
+                                    bottomNavigationItem.icon,
+                                    contentDescription = bottomNavigationItem.iconContentDescription
                                 )
                             },
                             selected = selectedIndex.value == i,
