@@ -14,7 +14,7 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
+        summary = "Holds Time zone information"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
@@ -22,7 +22,7 @@ kotlin {
         }
         podfile = project.file("../iosApp/Podfile")
     }
-
+    
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -60,7 +60,7 @@ kotlin {
             dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
-            //iosSimulatorArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
         }
     }
 }
