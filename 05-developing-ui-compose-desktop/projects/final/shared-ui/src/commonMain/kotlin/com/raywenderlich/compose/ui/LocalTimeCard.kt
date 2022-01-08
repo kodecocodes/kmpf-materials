@@ -23,7 +23,7 @@ import com.raywenderlich.compose.theme.primaryDarkColor
 import com.raywenderlich.compose.theme.typography
 
 @Composable
-fun localTimeCard(city: String, time: String, date: String) {
+fun LocalTimeCard(city: String, time: String, date: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

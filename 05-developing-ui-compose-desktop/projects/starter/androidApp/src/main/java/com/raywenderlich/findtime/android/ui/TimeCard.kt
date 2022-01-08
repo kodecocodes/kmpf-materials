@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun timeCard(timezone: String, hours: Double, time: String, date: String) {
+fun TimeCard(timezone: String, hours: Double, time: String, date: String) {
     Box(
         modifier = Modifier
             .fillMaxSize()

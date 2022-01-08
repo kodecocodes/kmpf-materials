@@ -39,7 +39,7 @@ struct ContentView: View {
         TabView {
             TimezoneView()
                 .tabItem {
-                    Label("Timezones", systemImage: "network")
+                    Label("Time Zones", systemImage: "network")
                 }
             FindMeeting()
                 .tabItem {

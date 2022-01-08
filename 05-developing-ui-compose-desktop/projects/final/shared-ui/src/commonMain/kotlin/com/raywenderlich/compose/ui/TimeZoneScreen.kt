@@ -37,7 +37,7 @@ fun TimeZoneScreen(
                 delay(timeMillis) // Every minute
             }
         }
-        localTimeCard(
+        LocalTimeCard(
             city = timezoneHelper.currentTimeZone(),
             time = time, date = timezoneHelper.getDate(timezoneHelper.currentTimeZone())
         )
@@ -73,7 +73,7 @@ fun TimeZoneScreen(
                         }
                     },
                     content = {
-                        timeCard(
+                        TimeCard(
                             timezone = timezoneString,
                             hours = timezoneHelper.hoursFromTimeZone(timezoneString),
                             time = timezoneHelper.getTime(timezoneString),
