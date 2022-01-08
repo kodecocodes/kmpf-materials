@@ -79,9 +79,9 @@ fun FindMeetingScreen(
 
             ) {
             Spacer(modifier = Modifier.size(16.dp))
-            numberTimeCard("Start", startTime)
+            NumberTimeCard("Start", startTime)
             Spacer(modifier = Modifier.size(32.dp))
-            numberTimeCard("End", endTime)
+            NumberTimeCard("End", endTime)
         }
         Spacer(modifier = Modifier.size(16.dp))
         Row(

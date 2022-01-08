@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun numberTimeCard(label: String, hour: MutableState<Int>) {
+fun NumberTimeCard(label: String, hour: MutableState<Int>) {
     Card(
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(1.dp, Color.White),
