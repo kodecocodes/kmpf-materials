@@ -4,15 +4,12 @@ plugins {
 }
 
 dependencies {
-    // 1
     implementation(project(":shared"))
-    // 2
     with(Deps) {
         implementation(napier)
         implementation(material)
     }
 
-    // 4
     //Compose
     with(Deps.Compose) {
         implementation(compiler)
