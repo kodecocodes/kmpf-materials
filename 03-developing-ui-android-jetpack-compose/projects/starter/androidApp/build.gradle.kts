@@ -15,6 +15,7 @@ dependencies {
     // 4
     //Compose
     with(Deps.Compose) {
+        implementation(compiler)
         implementation(runtime)
         implementation(runtime_livedata)
         implementation(ui)
@@ -24,7 +25,6 @@ dependencies {
         implementation(material)
         implementation(material_icons)
         implementation(activity)
-        implementation(navigation)
     }
 }
 

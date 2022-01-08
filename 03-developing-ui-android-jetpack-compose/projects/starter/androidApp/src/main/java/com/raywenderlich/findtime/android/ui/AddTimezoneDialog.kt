@@ -18,7 +18,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.raywenderlich.findtime.TimeZoneHelper
@@ -32,7 +31,7 @@ fun isSelected(selectedStates: Map<Int, Boolean>, index: Int): Boolean {
 
 @Composable
 fun AddTimeZoneDialog(
-    timezoneHelper: TimeZoneHelper =  TimeZoneHelperImpl(),
+    timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl(),
     onAdd: (List<String>) -> Unit,
     onDismiss: () -> Unit
 ) = Dialog(
@@ -41,7 +40,7 @@ fun AddTimeZoneDialog(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colors.background, shape = RoundedCornerShape(8.dp))
             .padding(16.dp)
     ) {
         val timeZoneStrings by remember {
@@ -54,12 +53,12 @@ fun AddTimeZoneDialog(
         val searchValue = remember { mutableStateOf("") }
         val coroutineScope = rememberCoroutineScope()
         val focusRequester = remember { FocusRequester() }
-
         OutlinedTextField(
             singleLine = true,
             value = searchValue.value,
-            modifier = Modifier.focusRequester(focusRequester)
-            .fillMaxWidth(),
+            modifier = Modifier
+                .focusRequester(focusRequester)
+                .fillMaxWidth(),
             onValueChange = {
                 searchValue.value = it
                 if (searchValue.value.isEmpty()) {
@@ -78,6 +77,7 @@ fun AddTimeZoneDialog(
                 }) {
                     Icon(
                         Icons.Filled.Cancel,
+                        tint = MaterialTheme.colors.secondary,
                         contentDescription = "Cancel",
                     )
                 }
@@ -87,7 +87,6 @@ fun AddTimeZoneDialog(
             focusRequester.requestFocus()
             onDispose { }
         }
-
         Spacer(modifier = Modifier.size(16.dp))
         LazyColumn(
             modifier = Modifier
@@ -102,7 +101,8 @@ fun AddTimeZoneDialog(
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth(),
-                    color = if (isSelected(selectedStates, i)) Color.Gray else Color.White
+                        color = if (isSelected(selectedStates,i))
+                            MaterialTheme.colors.primary else MaterialTheme.colors.background
 
                 ) {
                     Row(
@@ -123,7 +123,6 @@ fun AddTimeZoneDialog(
         Row(
             modifier = Modifier.align(Alignment.End),
         ) {
-
             Button(
                 onClick = {
                     onDismiss()
@@ -168,18 +167,4 @@ fun getTimezones(selectedStates: Map<Int, Boolean>, timeZoneStrings: List<String
         }
     }
     return timezones
-}
-
-@Preview
-@Composable
-fun PreviewDialog() {
-    MaterialTheme {
-        AddTimeZoneDialog(
-            timezoneHelper = TimeZoneHelperImpl(),
-            onAdd = {
-            },
-            onDismiss = {
-            }
-        )
-    }
 }
