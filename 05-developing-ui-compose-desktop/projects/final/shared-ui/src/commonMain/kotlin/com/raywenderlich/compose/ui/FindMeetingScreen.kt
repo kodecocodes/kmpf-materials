@@ -108,7 +108,7 @@ fun FindMeetingScreen(
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth(),
-
+                     color = MaterialTheme.colors.background
                     ) {
                     Row(
                         modifier = Modifier

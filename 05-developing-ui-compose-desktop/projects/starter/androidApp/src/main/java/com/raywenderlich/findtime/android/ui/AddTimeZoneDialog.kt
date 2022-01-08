@@ -77,6 +77,7 @@ fun AddTimeZoneDialog(
                 }) {
                     Icon(
                         Icons.Filled.Cancel,
+                        tint = MaterialTheme.colors.secondary,
                         contentDescription = "Cancel",
                     )
                 }
@@ -101,7 +102,7 @@ fun AddTimeZoneDialog(
                         .padding(8.dp)
                         .fillMaxWidth(),
                         color = if (isSelected(selectedStates,i))
-                            MaterialTheme.colors.primary else MaterialTheme.colors.primaryVariant
+                            MaterialTheme.colors.primary else MaterialTheme.colors.background
 
                 ) {
                     Row(

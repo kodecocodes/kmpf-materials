@@ -13,6 +13,7 @@ dependencies {
 
     //Compose
     with(Deps.Compose) {
+        implementation(compiler)
         implementation(runtime)
         implementation(runtime_livedata)
         implementation(ui)
@@ -50,6 +51,6 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose_version
+        kotlinCompilerExtensionVersion = Versions.compose_compiler_version
     }
 }

@@ -43,7 +43,7 @@ struct ContentView: View {
                 }
             FindMeeting()
                 .tabItem {
-                    Label("Find Meeting", systemImage: "function")
+                    Label("Find Meeting", systemImage: "clock")
                 }
         }
         .accentColor(Color.white)

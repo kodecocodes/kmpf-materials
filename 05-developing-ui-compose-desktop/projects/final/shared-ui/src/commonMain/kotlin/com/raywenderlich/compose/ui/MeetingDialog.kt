@@ -34,7 +34,7 @@ fun MeetingDialog(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colors.background, shape = RoundedCornerShape(8.dp))
                 .padding(16.dp)
         ) {
             val listState = rememberLazyListState()
@@ -57,8 +57,9 @@ fun MeetingDialog(
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxWidth(),
+                        color = MaterialTheme.colors.background
 
-                        ) {
+                    ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth(),
