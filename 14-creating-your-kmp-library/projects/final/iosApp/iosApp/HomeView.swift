@@ -30,9 +30,9 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import AlertToast
 import SwiftUI
 import SharedKit
+import SharedAction
 import SDWebImageSwiftUI
 
 struct HomeView: View {
@@ -43,8 +43,6 @@ struct HomeView: View {
     
     @State private var filter = PLATFORM.all.description()
     
-    @State private var showToast = false
-
     @ObservedObject var feedViewModel = RWEntryViewModel()
     
     var body: some View {
@@ -78,60 +76,66 @@ struct HomeView: View {
                         let items = feedViewModel.items[filter] ?? []
                         
                         ForEach(items, id: \.id) { item in
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    AppIcon()
-                                    VStack(alignment: .leading) {
-                                        Text("Ray Wenderlich")
-                                            .foregroundColor(.white)
-                                            .font(Font.custom("Bitter-Bold", size: 15))
-                                        Text(formatStringDate(date: item.updated))
-                                            .foregroundColor(.white)
-                                            .font(Font.custom("Bitter-Bold", size: 12))
+                            Button(action: {
+                                Action().openLink(url: "\(item.link)")
+                            }) {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        AppIcon()
+                                        VStack(alignment: .leading) {
+                                            Text("Ray Wenderlich")
+                                                .foregroundColor(.white)
+                                                .font(Font.custom("Bitter-Bold", size: 15))
+                                            Text(formatStringDate(date: item.updated))
+                                                .foregroundColor(.white)
+                                                .font(Font.custom("Bitter-Bold", size: 12))
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            showActionSheet = true
+                                        }) {
+                                            Image("ic_more")
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding(.trailing, 1)
+                                        
+                                        .actionSheet(isPresented: $showActionSheet) {
+                                            ActionSheet(title: Text(""),
+                                                        message: Text("Select an option"),
+                                                        buttons: [
+                                                            .cancel(),
+                                                            .default(
+                                                                Text("Add to bookmarks"),
+                                                                action: { feedViewModel.addToBookmarks(entry: item) }
+                                                            ),
+                                                            .default(
+                                                                Text("Share as link"),
+                                                                action: {
+                                                                    guard let data = URL(string: item.link) else { return }
+                                                                    let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+                                                                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                                                                }
+                                                            )
+                                                        ]
+                                            )
+                                        }
                                     }
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {
-                                        showActionSheet = true
-                                    }) {
-                                        Image("ic_more")
-                                            .foregroundColor(.white)
-                                    }
-                                    .padding(.trailing, 1)
-                                    
-                                    .actionSheet(isPresented: $showActionSheet) {
-                                        ActionSheet(title: Text(""),
-                                                    message: Text("Select an option"),
-                                                    buttons: [
-                                                        .cancel(),
-                                                        .default(
-                                                            Text("Add to bookmarks"),
-                                                            action: { feedViewModel.addToBookmarks(entry: item) }
-                                                        ),
-                                                        .default(
-                                                            Text("Share as link"),
-                                                            action: {
-                                                                guard let data = URL(string: item.link) else { return }
-                                                                let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-                                                                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-                                                            }
-                                                        )
-                                                    ]
-                                        )
-                                    }                                    
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    Text(item.title)
+                                        .lineLimit(2)
+                                        .foregroundColor(.white)
+                                        .font(Font.custom("Bitter-Bold", size: 15))
+                                        .multilineTextAlignment(.leading)
+                                    Text(item.summary)
+                                        .lineLimit(2)
+                                        .foregroundColor(.white)
+                                        .font(Font.custom("Bitter-Regular", size: 14))
+                                        .multilineTextAlignment(.leading)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                Text(item.title)
-                                    .lineLimit(2)
-                                    .foregroundColor(.white)
-                                    .font(Font.custom("Bitter-Bold", size: 15))
-                                Text(item.summary)
-                                    .lineLimit(2)
-                                    .foregroundColor(.white)
-                                    .font(Font.custom("Bitter-Regular", size: 14))
+                                .padding(.horizontal, 16.0)
                             }
-                            .padding(.horizontal, 16.0)
                         }
                     }
                 }
@@ -140,14 +144,7 @@ struct HomeView: View {
         }
         .onAppear() {
             Logger().d(tag: TAG, message: "Retrieving all feeds")
-            feedViewModel.fetchProfile()
             feedViewModel.fetchFeeds()
-        }
-        .onReceive(feedViewModel.$profile) { item in
-            showToast = true
-        }
-        .toast(isPresenting: $showToast){
-            AlertToast(type: .regular, title: "Hello \(String(describing: feedViewModel.profile.preferredUsername))")
         }
     }
 }

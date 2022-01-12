@@ -75,6 +75,7 @@ import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.ui.utils.SHOW_N_IMAGES
 
 private const val TAG = "LatestContent"
 
@@ -102,7 +103,6 @@ fun AddPages(
   onOpenEntry: (String) -> Unit
 ) {
 
-
   LazyColumn(
     modifier = Modifier
       .fillMaxSize()
@@ -121,7 +121,7 @@ fun AddPages(
       for (platform in platforms) {
         AddNewPage(
           platform = platform,
-          items = items[platform] ?: emptyList(),
+          items = items[platform]?.subList(0, SHOW_N_IMAGES) ?: emptyList(),
           onOpenEntry = onOpenEntry
         )
       }
@@ -140,10 +140,7 @@ fun AddNewPage(
   items: List<RWEntry>,
   onOpenEntry: (String) -> Unit
 ) {
-  val pagerState = rememberPagerState(
-    pageCount = items.size,
-    initialOffscreenLimit = 2,
-  )
+  val pagerState = rememberPagerState()
 
   Column(
     modifier = Modifier.padding(start = 16.dp, end = 16.dp)
@@ -155,6 +152,7 @@ fun AddNewPage(
     )
 
     HorizontalPager(
+      count = items.size,
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
     ) { page ->

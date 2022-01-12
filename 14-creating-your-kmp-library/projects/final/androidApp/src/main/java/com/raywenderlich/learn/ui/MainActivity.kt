@@ -35,7 +35,6 @@
 package com.raywenderlich.learn.ui
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
@@ -43,6 +42,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.livedata.observeAsState
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.action.activityContext
+import com.raywenderlich.learn.action.Action.openLink
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
@@ -108,8 +109,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun openEntry(url: String) {
-    val intent = Intent(Intent.ACTION_VIEW)
-    intent.data = Uri.parse(url)
-    startActivity(intent)
+    activityContext = this
+    openLink(url)
   }
 }

@@ -9,21 +9,21 @@ dependencies {
 
     implementation("com.google.android.material:material:1.4.0")
     
-    implementation("com.google.accompanist:accompanist-pager:0.17.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.17.0")
+    implementation("com.google.accompanist:accompanist-pager:0.19.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.19.0")
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
-    implementation("androidx.compose.ui:ui:1.0.4")
-    implementation("androidx.compose.material:material:1.0.4")
-    implementation("androidx.compose.ui:ui-tooling:1.0.4")
-    implementation("androidx.compose.runtime:runtime-livedata:1.0.4")
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta01")
+    implementation("androidx.compose.ui:ui:1.0.5")
+    implementation("androidx.compose.material:material:1.0.5")
+    implementation("androidx.compose.ui:ui-tooling:1.0.5")
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
+    implementation("androidx.navigation:navigation-compose:2.4.0-rc01")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
 
     implementation("io.coil-kt:coil-compose:1.3.2")
 }

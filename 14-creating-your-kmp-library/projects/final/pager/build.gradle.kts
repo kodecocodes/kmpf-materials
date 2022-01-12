@@ -16,7 +16,7 @@
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-beta5"
+    id("org.jetbrains.compose") version "1.0.0"
 }
 
 kotlin {
@@ -33,7 +33,7 @@ kotlin {
                 api(compose.material)
                 api(compose.ui)
 
-                implementation("androidx.annotation:annotation:1.2.0")
+                implementation("androidx.annotation:annotation:1.3.0")
                 implementation("io.github.aakira:napier:2.1.0")
             }
         }

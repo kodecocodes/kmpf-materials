@@ -78,41 +78,47 @@ struct Section: View {
     
     var body: some View {
         
-        LazyVStack {
-            HStack {
-                Text(platform)
-                    .foregroundColor(.white)
-                    .font(Font.custom("Bitter-Bold", size: 18))
-                    .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+        let max = entries.count < ITEMS_SECTION ? entries.count : ITEMS_SECTION
+        let subEntries = max == 0 ? [] : entries[0...max]
+        
+        if (!subEntries.isEmpty) {
+            
+            LazyVStack {
+                HStack {
+                    Text(platform)
+                        .foregroundColor(.white)
+                        .font(Font.custom("Bitter-Bold", size: 18))
+                        .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                    
+                    Spacer()
+                }
+                .padding(.leading, 10)
+                .frame(maxWidth: .infinity)
                 
-                Spacer()
-            }
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity)
-            
-            let subEntries = entries[0...ITEMS_SECTION]
-            
-            TabView {
-                ForEach(subEntries, id: \.id) { item in
-                    VStack{
-                        Button(action: {
-                            openURL(URL(string: "\(item.link)")!)
-                        }, label: {
-                            if (item.imageUrl == "") {
-                              Rectangle().foregroundColor(.gray)
-                              Image("razerware")
-                            }
-                            AnimatedImage(url: URL(string: "\(item.imageUrl)"))
-                                .resizable()
-                                .scaledToFit()
-                                .cornerRadius(8)
-                            
-                        })
+                
+                TabView {
+                    ForEach(subEntries, id: \.id) { item in
+                        VStack{
+                            Button(action: {
+                                openURL(URL(string: "\(item.link)")!)
+                            }, label: {
+                                if (item.imageUrl == "") {
+                                    Rectangle().foregroundColor(.gray)
+                                    Image("razerware")
+                                }
+                                AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+                                    .resizable()
+                                    .scaledToFit()
+                                    .cornerRadius(8)
+                                
+                            })
+                        }
                     }
                 }
+                
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                .tabViewStyle(PageTabViewStyle())
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-            .tabViewStyle(PageTabViewStyle())
         }
     }
 }

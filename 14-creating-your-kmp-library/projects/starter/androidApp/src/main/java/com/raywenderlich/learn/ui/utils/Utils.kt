@@ -44,6 +44,8 @@ private const val TAG = "Utils"
 
 private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
 
+const val SHOW_N_IMAGES = 5
+
 fun converterIso8601ToReadableDate(date: String): String {
   return try {
     val instant = date.toInstant()

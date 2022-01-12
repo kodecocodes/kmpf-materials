@@ -43,13 +43,12 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.ui.utils.SHOW_N_IMAGES
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val TAG = "FeedViewModel"
-
-private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
@@ -78,10 +77,10 @@ class FeedViewModel : ViewModel(), FeedData {
       withContext(Dispatchers.Main) {
         _items[platform] = items
 
-        val maxItems = if ((_items[platform]?.size ?: 0) < FETCH_N_IMAGES) {
+        val maxItems = if ((_items[platform]?.size ?: 0) < SHOW_N_IMAGES) {
           _items[platform]?.size ?: 0
         } else {
-          FETCH_N_IMAGES
+          SHOW_N_IMAGES
         }
 
         for (index in 0 until maxItems) {

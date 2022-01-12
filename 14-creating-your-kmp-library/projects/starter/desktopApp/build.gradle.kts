@@ -26,7 +26,7 @@ kotlin {
 
                 implementation("com.alialbaali.kamel:kamel-image:0.3.0")
 
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
 
                 implementation(project(":shared"))
                 implementation(project(":pager"))
