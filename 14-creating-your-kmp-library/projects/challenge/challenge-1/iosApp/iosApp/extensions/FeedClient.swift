@@ -1,0 +1,73 @@
+/// Copyright (c) 2021 Razeware LLC
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy
+/// of this software and associated documentation files (the "Software"), to deal
+/// in the Software without restriction, including without limitation the rights
+/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+/// copies of the Software, and to permit persons to whom the Software is
+/// furnished to do so, subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in
+/// all copies or substantial portions of the Software.
+///
+/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+/// distribute, sublicense, create a derivative work, and/or sell copies of the
+/// Software in any work that is designed, intended, or marketed for pedagogical or
+/// instructional purposes related to programming, coding, application development,
+/// or information technology.  Permission for such use, copying, modification,
+/// merger, publication, distribution, sublicensing, creation of derivative works,
+/// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+/// THE SOFTWARE.
+
+import SharedKit
+import SharedLogger
+
+public class FeedClient {
+    
+    public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
+    public typealias FeedHandlerImage = (_ id: String, _ url: String, _ platform: PLATFORM) -> Void
+    
+    private static let shared = FeedClient()
+
+    private let feedPresenter = ServiceLocator.init().getFeedPresenter
+    private var handler: FeedHandler?
+    private var handlerImage: FeedHandlerImage?
+    
+    public static func getContent() -> [RWContent] {
+        return FeedClient.shared.feedPresenter.content
+    }
+    
+    public static func fetchFeeds(completion: @escaping FeedHandler) {
+        FeedClient.shared.feedPresenter.fetchAllFeeds(cb: FeedClient.shared)
+        FeedClient.shared.handler = completion
+    }
+    
+    public static func fetchLinkImage(platform: PLATFORM, id: String, link: String, completion: @escaping FeedHandlerImage) {
+        FeedClient.shared.feedPresenter.fetchLinkImage(platform: platform, id: id, link: link, cb: FeedClient.shared)
+        FeedClient.shared.handlerImage = completion
+    }
+}
+
+extension FeedClient: FeedData {
+    
+    public func onNewDataAvailable(items: [RWEntry], platform: PLATFORM, e: KotlinException?) {
+        Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
+        self.handler?(platform.description(), items)
+    }
+    
+    public func onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: KotlinException?) {
+        Logger().d(tag: TAG, message: "onNewImageUrlAvailable")
+        self.handlerImage?(id, url, platform)
+    }
+}
