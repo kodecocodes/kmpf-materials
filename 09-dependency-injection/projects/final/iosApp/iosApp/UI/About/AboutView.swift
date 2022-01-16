@@ -35,9 +35,7 @@ import shared
 
 struct AboutView: View {
   @Environment(\.dismiss) private var dismiss
-  @StateObject private var viewModel = AboutViewModel(
-    platform: Koin.instance.get()
-  )
+  @StateObject private var viewModel: AboutViewModel = Koin.instance.get()
 
   var body: some View {
     NavigationView {

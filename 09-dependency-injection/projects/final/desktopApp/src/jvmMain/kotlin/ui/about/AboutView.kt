@@ -52,7 +52,7 @@ import com.raywenderlich.organize.presentation.AboutViewModel
 import koin
 
 @Composable
-fun AboutView(viewModel: AboutViewModel = AboutViewModel(koin.get())) {
+fun AboutView(viewModel: AboutViewModel = koin.get()) {
   ContentView(items = viewModel.items)
 }
 

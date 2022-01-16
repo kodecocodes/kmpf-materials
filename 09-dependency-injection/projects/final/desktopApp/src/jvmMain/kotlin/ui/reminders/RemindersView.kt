@@ -67,7 +67,7 @@ import koin
 
 @Composable
 fun RemindersView(
-  viewModel: RemindersViewModel = RemindersViewModel(koin.get()),
+  viewModel: RemindersViewModel = koin.get(),
   onAboutButtonClick: () -> Unit,
 ) {
   Column {
