@@ -34,7 +34,6 @@
 
 package com.raywenderlich.organize.presentation
 
-import com.raywenderlich.organize.data.RemindersRepository
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
@@ -44,7 +43,7 @@ class RemindersViewModelTest {
 
   @BeforeTest
   fun setup() {
-    viewModel = RemindersViewModel(RemindersRepository())
+    viewModel = RemindersViewModel()
   }
 
   @Test
