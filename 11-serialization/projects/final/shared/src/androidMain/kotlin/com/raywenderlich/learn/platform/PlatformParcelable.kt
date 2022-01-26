@@ -32,27 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.data.model
+package com.raywenderlich.learn.platform
 
-import com.raywenderlich.learn.data.RWSerializer
-import com.raywenderlich.learn.platform.Parcelable
-import com.raywenderlich.learn.platform.Parcelize
-import kotlinx.serialization.Serializable
-
-@Serializable(with = RWSerializer::class)
-enum class PLATFORM(val value: String) {
-
-  ALL("all"),
-  ANDROID("android"),
-  IOS("ios"),
-  UNITY("unity"),
-  FLUTTER("flutter")
-}
-
-@Parcelize
-@Serializable
-data class RWContent(
-  val platform: PLATFORM,
-  val url: String,
-  val image: String
-): Parcelable
+actual typealias Parcelable = android.os.Parcelable
+actual typealias Parcelize = kotlinx.android.parcel.Parcelize

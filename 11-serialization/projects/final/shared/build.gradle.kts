@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("multiplatform")
     id("com.squareup.sqldelight")
+    id("kotlin-parcelize")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
