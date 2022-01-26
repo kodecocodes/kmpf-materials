@@ -1,0 +1,1 @@
+../../../Target Support Files/SDWebImageSwiftUI/SDWebImageSwiftUI-umbrella.h
