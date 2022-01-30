@@ -35,7 +35,7 @@ fun main() {
     PreComposeWindow(
       onCloseRequest = ::exitApplication,
       state = windowState,
-      title = "Unsplash"
+      title = "learn"
     ) {
       bookmarkViewModel = viewModel {
         BookmarkViewModel()
