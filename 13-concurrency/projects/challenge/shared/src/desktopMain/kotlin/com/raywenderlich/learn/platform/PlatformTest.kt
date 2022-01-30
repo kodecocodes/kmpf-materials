@@ -34,12 +34,6 @@
 
 package com.raywenderlich.learn.platform
 
-import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.runBlocking
-import java.util.concurrent.Executors
-import kotlin.coroutines.CoroutineContext
 
 public actual fun runTest(block: suspend () -> Unit) = runBlocking { block() }
-
-public actual val coroutineContextTest: CoroutineContext =
-  Executors.newSingleThreadExecutor().asCoroutineDispatcher()

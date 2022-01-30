@@ -48,17 +48,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-private const val TAG = "FeedPresenter"
+private const val TAG = "YOUR_GRAVATAR_EMAIL"
 
 private const val RW_CONTENT = "[" +
-    "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
-    "{\"platform\":\"android\", \"url\":\"https://raywenderlich.com/android/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2017/11/android-love-1-1.png\"}," +
-    "{\"platform\":\"ios\", \"url\":\"https://raywenderlich.com/ios/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/09/iOS12_LaunchParty-feature.png\"}," +
-    "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/gametech/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
-    "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
-    "]"
+        "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
+        "{\"platform\":\"android\", \"url\":\"https://raywenderlich.com/android/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2017/11/android-love-1-1.png\"}," +
+        "{\"platform\":\"ios\", \"url\":\"https://raywenderlich.com/ios/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/09/iOS12_LaunchParty-feature.png\"}," +
+        "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/gametech/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
+        "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
+        "]"
 
-private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
 
@@ -83,27 +83,29 @@ class FeedPresenter(private val feed: GetFeedData) {
   }
 
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
-    MainScope().launch {
+    scope.launch {
       val entries = feed.invokeFetchRWEntry(
-        platform = platform,
-        feedUrl = feedUrl,
+              platform = platform,
+              feedUrl = feedUrl,
       ) ?: return@launch
 
+      val tasks = mutableListOf<Job>()
       for (entry in entries) {
-        fetchLinkImage(entry.link).collect {
-          entry.imageUrl = it ?: ""
-        }
+        tasks.add(scope.launch {
+           entry.imageUrl = fetchLinkImage(entry.link)
+          }
+        )
       }
 
+      tasks.joinAll()
       listener?.onNewDataAvailable(entries, platform, null)
     }
   }
 
-  public fun fetchLinkImage(link: String) = flow {
-    val result = feed.invokeFetchImageUrlFromLink(
-        link
-    )
-    emit(result)
+  public suspend fun fetchLinkImage(link: String): String {
+    return scope.async {
+      feed.invokeFetchImageUrlFromLink(link)
+    }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
@@ -111,16 +113,16 @@ class FeedPresenter(private val feed: GetFeedData) {
 
     listener = cb
 
-    fetchMyGravatar()
+    CoroutineScope(Dispatchers.Default).launch {
+      listener?.onMyGravatarData(fetchMyGravatar())
+    }
   }
 
-  private fun fetchMyGravatar() {
-    scope.launch {
+  private suspend fun fetchMyGravatar(): GravatarEntry {
+    return CoroutineScope(Dispatchers.Default).async {
       feed.invokeGetMyGravatar(
-        hash = md5(GRAVATAR_EMAIL),
-        onSuccess = { listener?.onMyGravatarData(it) },
-        onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+              hash = md5(GRAVATAR_EMAIL)
       )
-    }
+    }.await()
   }
 }

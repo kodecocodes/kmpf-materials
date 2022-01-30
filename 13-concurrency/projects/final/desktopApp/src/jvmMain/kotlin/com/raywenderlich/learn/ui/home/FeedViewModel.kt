@@ -76,7 +76,7 @@ class FeedViewModel : ViewModel(), FeedData {
   private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
     Logger.d(TAG, "fetchLinkImage | link=$link")
     viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link) ?: return@launch
+      val url = presenter.fetchLinkImage(link)
 
       val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
       val list = _items[platform]?.toMutableList() ?: return@launch

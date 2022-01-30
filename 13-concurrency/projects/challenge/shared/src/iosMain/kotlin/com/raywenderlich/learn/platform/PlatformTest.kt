@@ -35,9 +35,5 @@
 package com.raywenderlich.learn.platform
 
 import kotlinx.coroutines.runBlocking
-import kotlin.coroutines.CoroutineContext
 
 public actual fun runTest(block: suspend () -> Unit): Unit = runBlocking { block() }
-
-public actual val coroutineContextTest: CoroutineContext =
-  newSingleThreadContext("UI thread")

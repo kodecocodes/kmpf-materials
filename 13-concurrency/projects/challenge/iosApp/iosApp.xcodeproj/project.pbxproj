@@ -24,20 +24,20 @@
 		67099093271640400048A7B5 /* BitterSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6709908E271640400048A7B5 /* BitterSemiBold.ttf */; };
 		67099095271646B70048A7B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67099094271646B70048A7B5 /* LaunchScreen.storyboard */; };
 		6709909D2717ABF80048A7B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709909C2717ABF80048A7B5 /* Utils.swift */; };
-		67D41024279DEF30004F4F45 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; };
-		67D41025279DEF30004F4F45 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6795B88027A603340028DEB5 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; };
+		6795B88127A603340028DEB5 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		E65E8BF968330726D1176751 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D42ADC72E81E194057DD5 /* libPods-iosApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		67D41026279DEF30004F4F45 /* Embed Frameworks */ = {
+		6795B88227A603340028DEB5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				67D41025279DEF30004F4F45 /* SharedKit.xcframework in Embed Frameworks */,
+				6795B88127A603340028DEB5 /* SharedKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65E8BF968330726D1176751 /* libPods-iosApp.a in Frameworks */,
-				67D41024279DEF30004F4F45 /* SharedKit.xcframework in Frameworks */,
+				6795B88027A603340028DEB5 /* SharedKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +183,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				CACF3F8D9D78A3F656C6B24D /* Frameworks */,
-				67D41026279DEF30004F4F45 /* Embed Frameworks */,
+				6795B88227A603340028DEB5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -43,8 +43,6 @@ import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -58,7 +56,7 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
 
@@ -83,27 +81,20 @@ class FeedPresenter(private val feed: GetFeedData) {
   }
 
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
-    MainScope().launch {
-      val entries = feed.invokeFetchRWEntry(
-        platform = platform,
-        feedUrl = feedUrl,
-      ) ?: return@launch
-
-      for (entry in entries) {
-        fetchLinkImage(entry.link).collect {
-          entry.imageUrl = it ?: ""
-        }
-      }
-
-      listener?.onNewDataAvailable(entries, platform, null)
+    scope.launch {
+      feed.invokeFetchRWEntry(
+              platform = platform,
+              feedUrl = feedUrl,
+              onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+              onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+      )
     }
   }
 
-  public fun fetchLinkImage(link: String) = flow {
-    val result = feed.invokeFetchImageUrlFromLink(
-        link
-    )
-    emit(result)
+  public suspend fun fetchLinkImage(link: String): String {
+    return scope.async {
+      feed.invokeFetchImageUrlFromLink(link)
+    }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
@@ -111,16 +102,16 @@ class FeedPresenter(private val feed: GetFeedData) {
 
     listener = cb
 
-    fetchMyGravatar()
+    scope.launch {
+      listener?.onMyGravatarData(fetchMyGravatar())
+    }
   }
 
-  private fun fetchMyGravatar() {
-    scope.launch {
+  private suspend fun fetchMyGravatar(): GravatarEntry {
+    return CoroutineScope(Dispatchers.Default).async {
       feed.invokeGetMyGravatar(
-        hash = md5(GRAVATAR_EMAIL),
-        onSuccess = { listener?.onMyGravatarData(it) },
-        onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+              hash = md5(GRAVATAR_EMAIL)
       )
-    }
+    }.await()
   }
 }

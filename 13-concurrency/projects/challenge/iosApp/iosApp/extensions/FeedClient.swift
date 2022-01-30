@@ -35,7 +35,6 @@ import SharedKit
 public class FeedClient {
     
     public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
-    public typealias FeedHandlerImage = (_ url: String) -> Void
     
     public typealias ProfileHandler = (_ profile: GravatarEntry) -> Void
     
@@ -43,7 +42,6 @@ public class FeedClient {
 
     private let feedPresenter = ServiceLocator.init().getFeedPresenter
     private var handler: FeedHandler?
-    private var handlerImage: FeedHandlerImage?
     private var handlerProfile: ProfileHandler?
     
     public static func getContent() -> [RWContent] {
@@ -58,18 +56,6 @@ public class FeedClient {
     public static func fetchFeeds(completion: @escaping FeedHandler) {
         FeedClient.shared.feedPresenter.fetchAllFeeds(cb: FeedClient.shared)
         FeedClient.shared.handler = completion
-    }
-    
-    @MainActor
-    public static func fetchLinkImage(link: String, completion: @escaping FeedHandlerImage) {
-        Task {
-            do {
-                //guard let result = try await FeedClient.shared.feedPresenter.fetchLinkImage(link: link) else { return }
-                //completion(result)
-            } catch {
-                Logger().e(tag: TAG, message: "Unable to fetch article image link")
-            }
-        }
     }
 }
 

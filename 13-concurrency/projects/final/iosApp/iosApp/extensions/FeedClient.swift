@@ -64,8 +64,9 @@ public class FeedClient {
     public static func fetchLinkImage(link: String, completion: @escaping FeedHandlerImage) {
         Task {
             do {
-                //guard let result = try await FeedClient.shared.feedPresenter.fetchLinkImage(link: link) else { return }
-                //completion(result)
+                
+                let result = try await FeedClient.shared.feedPresenter.fetchLinkImage(link: link)
+                completion(result)
             } catch {
                 Logger().e(tag: TAG, message: "Unable to fetch article image link")
             }

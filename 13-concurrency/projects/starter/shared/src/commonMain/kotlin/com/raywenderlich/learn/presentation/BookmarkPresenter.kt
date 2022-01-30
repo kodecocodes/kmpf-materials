@@ -34,11 +34,55 @@
 
 package com.raywenderlich.learn.presentation
 
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.domain.cb.BookmarkData
 import com.raywenderlich.learn.domain.dao.RWEntryDAO
+import com.raywenderlich.learn.platform.Logger
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 private const val TAG = "BookmarkPresenter"
 
 class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
 
-  //TODO: Chapter 13 - Concurrency
+    private var listener: BookmarkData? = null
+
+    public fun getBookmarks(cb: BookmarkData) {
+        Logger.d(TAG, "getBookmarks")
+        listener = cb
+        getBookmarks()
+    }
+
+    private fun getBookmarks() {
+        MainScope().launch {
+            val bookmarks = rwEntryDAO.getAllEntries().filter { it.bookmarked }
+            listener?.onNewBookmarksList(bookmarks)
+        }
+    }
+
+    public fun addAsBookmark(entry: RWEntry, cb: BookmarkData) {
+        Logger.d(TAG, "addAsBookmark")
+        listener = cb
+        addAsBookmark(entry.copy(bookmarked = true))
+    }
+
+    private fun addAsBookmark(entry: RWEntry) {
+        MainScope().launch {
+            rwEntryDAO.insertOrReplace(entry)
+            listener?.onBookmarkStateUpdated(entry, true)
+        }
+    }
+
+    public fun removeFromBookmark(entry: RWEntry, cb: BookmarkData) {
+        Logger.d(TAG, "removeFromBookmark")
+        listener = cb
+        removeFromBookmark(entry.copy(bookmarked = false))
+    }
+
+    private fun removeFromBookmark(entry: RWEntry) {
+        MainScope().launch {
+            rwEntryDAO.remove(entry)
+            listener?.onBookmarkStateUpdated(entry, true)
+        }
+    }
 }
