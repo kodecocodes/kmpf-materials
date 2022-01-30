@@ -38,7 +38,6 @@ import com.raywenderlich.learn.data.GRAVATAR_RESPONSE_FORMAT
 import com.raywenderlich.learn.data.GRAVATAR_URL
 import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.GravatarProfile
-import com.raywenderlich.learn.platform.runTest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.*
 import io.ktor.client.engine.mock.MockEngine

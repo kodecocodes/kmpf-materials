@@ -47,6 +47,22 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "learn"
             packageVersion = "1.0.0"
+
+            val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
+            appResourcesRootDir.set(resources)
+
+            macOS {
+                bundleID = "com.raywenderlich.learn.desktop"
+                iconFile.set(resources.file("macos-icon.icns"))
+            }
+
+            windows {
+                iconFile.set(resources.file("windows-icon.ico"))
+            }
+
+            linux {
+                iconFile.set(resources.file("linux-icon.png"))
+            }
         }
     }
 }

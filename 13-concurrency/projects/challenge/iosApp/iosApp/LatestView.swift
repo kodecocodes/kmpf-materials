@@ -61,7 +61,7 @@ struct LatestView: View {
         }
         .onAppear() {
             Logger().d(tag: TAG, message: "Retrieving all feeds")
-            feedViewModel.fetchFeedsWithPreview()
+            feedViewModel.fetchFeeds()
         }
     }
 }

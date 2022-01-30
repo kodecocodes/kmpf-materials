@@ -42,7 +42,7 @@ import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
-import io.ktor.client.statement.readText
+import io.ktor.client.statement.*
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
@@ -64,7 +64,7 @@ public class GetFeedData {
       val result = FeedAPI.fetchRWEntry(feedUrl)
 
       Logger.d(TAG, "invokeFetchRWEntry | feedUrl=$feedUrl")
-      val xml = Xml.parse(result.readText())
+      val xml = Xml.parse(result.bodyAsText())
 
       val feed = mutableListOf<RWEntry>()
       for (node in xml.allNodeChildren) {

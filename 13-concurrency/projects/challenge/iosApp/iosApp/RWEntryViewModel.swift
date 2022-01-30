@@ -69,37 +69,6 @@ class RWEntryViewModel: ObservableObject {
         }
     }
     
-    @MainActor
-    func fetchFeedsWithPreview() {
-        FeedClient.fetchFeeds { platform, items in
-            Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-            self.items[platform] = items
-            
-            let subsetItems = Array(items[0 ..< Swift.min(self.FETCH_N_IMAGES, items.count)])
-            for item in subsetItems {
-                FeedClient.fetchLinkImage(link: item.link, completion: { url in
-                    var list = self.items[platform.description]
-                    let index = list?.firstIndex(of: item)
-                    
-                    list![index!] = item.doCopy(
-                        id: item.id,
-                        link: item.link,
-                        title: item.title,
-                        summary: item.summary,
-                        updated: item.updated,
-                        imageUrl: url,
-                        platform: item.platform,
-                        bookmarked: item.bookmarked
-                    )
-                    
-                    Logger().d(tag: TAG, message: "\(list![index!].title)Updated to:\(list![index!].imageUrl)")
-                    
-                    self.items[platform.description] = list
-                })
-            }
-        }
-    }
-    
     func fetchAllBookmarks() {
         BookmarkClient.fetchBookmarks { items in
             Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")

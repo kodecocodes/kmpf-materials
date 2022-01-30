@@ -74,9 +74,9 @@ class FeedViewModel : ViewModel(), FeedData {
   }
 
   private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    /*Logger.d(TAG, "fetchLinkImage | link=$link")
+    Logger.d(TAG, "fetchLinkImage | link=$link")
     viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link) ?: return@launch
+      val url = presenter.fetchLinkImage(link)
 
       val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
       val list = _items[platform]?.toMutableList() ?: return@launch
@@ -84,7 +84,7 @@ class FeedViewModel : ViewModel(), FeedData {
 
       list[index] = item.copy(imageUrl = url)
       _items[platform] = list
-    }*/
+    }
   }
 
   // region FeedData
@@ -95,7 +95,7 @@ class FeedViewModel : ViewModel(), FeedData {
       _items[platform] = items.subList(0, FETCH_N_IMAGES)
 
       for (item in _items[platform]!!) {
-        //fetchLinkImage(platform, item.id, item.link)
+        fetchLinkImage(platform, item.id, item.link)
       }
     }
   }

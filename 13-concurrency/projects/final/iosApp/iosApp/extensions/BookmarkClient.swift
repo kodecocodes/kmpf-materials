@@ -42,15 +42,18 @@ public class BookmarkClient {
     private var handler: BookmarkHandler?
     
     public static func fetchBookmarks(completion: @escaping BookmarkHandler) {
+        BookmarkClient.shared.bookmarkPresenter.getBookmarks(cb: BookmarkClient.shared)
         BookmarkClient.shared.handler = completion
     }
-    
+        
     public static func addToBookmarks(entry: RWEntry, completion: @escaping BookmarkHandler) {
         Logger().d(tag: TAG, message: "addToBookmarks | entry=\(entry)")
+        BookmarkClient.shared.bookmarkPresenter.addAsBookmark(entry: entry, cb: BookmarkClient.shared)
     }
-    
+        
     public static func removeFromBookmarks(entry: RWEntry, completion: @escaping BookmarkHandler) {
         Logger().d(tag: TAG, message: "addToBookmarks")
+        BookmarkClient.shared.bookmarkPresenter.removeFromBookmark(entry: entry, cb: BookmarkClient.shared)
     }
 }
 

@@ -49,11 +49,13 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
-                implementation("com.soywiz.korlibs.korio:korio:2.4.6")
+                implementation("com.soywiz.korlibs.korio:korio:2.4.10")
 
-                implementation("io.ktor:ktor-client-core:1.6.5")
-                implementation("io.ktor:ktor-client-serialization:1.6.5")
-                implementation("io.ktor:ktor-client-logging:1.6.5")
+                implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
+                implementation("io.ktor:ktor-client-serialization:2.0.0-beta-1")
+                implementation("io.ktor:ktor-client-logging:2.0.0-beta-1")
+                implementation("io.ktor:ktor-client-content-negotiation:2.0.0-beta-1")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0-beta-1")
             }
         }
         val commonTest by getting {
@@ -63,14 +65,14 @@ kotlin {
 
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
-                implementation("io.ktor:ktor-client-mock:1.6.5")
+                implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
 
-                implementation("io.ktor:ktor-client-android:1.6.5")
+                implementation("io.ktor:ktor-client-android:2.0.0-beta-1")
             }
         }
         val androidTest by getting {
@@ -83,13 +85,13 @@ kotlin {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
 
-                implementation("io.ktor:ktor-client-ios:1.6.5")
-
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt") {
                   version {
                     strictly("1.6.0-native-mt")
                   }
                 }
+
+                implementation("io.ktor:ktor-client-ios:2.0.0-beta-1")
             }
         }
         val iosTest by getting
@@ -97,6 +99,8 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
+
+                implementation("io.ktor:ktor-client-okhttp:2.0.0-beta-1")
             }
         }
     }

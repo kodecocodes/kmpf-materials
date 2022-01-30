@@ -55,10 +55,8 @@ private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
 public class GetFeedData {
 
   public suspend fun invokeFetchRWEntry(
-    platform: PLATFORM,
-    feedUrl: String,
-    //onSuccess: (List<RWEntry>) -> Unit,
-    //onFailure: (Exception) -> Unit
+          platform: PLATFORM,
+          feedUrl: String
   ): MutableList<RWEntry>? {
     try {
       val result = FeedAPI.fetchRWEntry(feedUrl)
@@ -75,56 +73,42 @@ public class GetFeedData {
         }
       }
 
-      /*coroutineScope {
-        onSuccess(feed)
-      }*/
       return feed
     } catch (e: Exception) {
       Logger.e(TAG, "Unable to fetch feed:$feedUrl. Error: $e")
-      /*coroutineScope {
-        onFailure(e)
-      }*/
       return null
     }
   }
 
   public suspend fun invokeFetchImageUrlFromLink(
       link: String
-  ): String? {
+  ): String {
     return try {
 
       val result = FeedAPI.fetchImageUrlFromLink(link)
       parsePage(result.bodyAsText())
 
     } catch (e: Exception) {
-      null
+      ""
     }
   }
 
   public suspend fun invokeGetMyGravatar(
     hash: String,
-    onSuccess: (GravatarEntry) -> Unit,
-    onFailure: (Exception) -> Unit
-  ) {
-    /*try {
+  ): GravatarEntry {
+    return try {
       val result = FeedAPI.fetchMyGravatar(hash)
       Logger.d(TAG, "invokeGetMyGravatar | result=$result")
 
       if (result.entry.isEmpty()) {
-        coroutineScope {
-          onFailure(Exception("No profile found for hash=$hash"))
-        }
+        GravatarEntry()
       } else {
-        coroutineScope {
-          onSuccess(result.entry[0])
-        }
+        result.entry[0]
       }
     } catch (e: Exception) {
       Logger.e(TAG, "Unable to fetch my gravatar. Error: $e")
-      coroutineScope {
-        onFailure(e)
-      }
-    }*/
+      GravatarEntry()
+    }
   }
 }
 

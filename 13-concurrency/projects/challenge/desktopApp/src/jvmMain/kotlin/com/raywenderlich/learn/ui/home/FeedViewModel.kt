@@ -50,8 +50,6 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
-private const val FETCH_N_IMAGES = 5
-
 class FeedViewModel : ViewModel(), FeedData {
 
   private val _items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
@@ -73,30 +71,12 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchMyGravatar(this)
   }
 
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link) ?: return@launch
-
-      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
-      val list = _items[platform]?.toMutableList() ?: return@launch
-      val index = list.indexOf(item)
-
-      list[index] = item.copy(imageUrl = url)
-      _items[platform] = list
-    }
-  }
-
   // region FeedData
 
   override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
-      _items[platform] = items.subList(0, FETCH_N_IMAGES)
-
-      for (item in _items[platform]!!) {
-        fetchLinkImage(platform, item.id, item.link)
-      }
+      _items[platform] = items
     }
   }
 
