@@ -12,6 +12,7 @@ dependencies {
 
     //Compose
     with(Deps.Compose) {
+        implementation(compiler)
         implementation(runtime)
         implementation(runtime_livedata)
         implementation(ui)
@@ -21,7 +22,6 @@ dependencies {
         implementation(material)
         implementation(material_icons)
         implementation(activity)
-        implementation(navigation)
     }
 }
 
@@ -38,5 +38,18 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose_compiler_version
     }
 }
