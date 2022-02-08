@@ -36,55 +36,57 @@ import SharedKit
 let TAG = "RWEntryViewModel"
 
 class RWEntryViewModel: ObservableObject {
-        
-    @Published var items = [String:[RWEntry]]()
-    
-    @Published var bookmarks = [RWEntry]()
-    
-    @Published var profile = GravatarEntry(
-        id: nil,
-        hash: nil,
-        preferredUsername: nil,
-        thumbnailUrl: nil,
-        aboutMe: nil
-    )
-    
-    let FETCH_N_IMAGES = 5
-    
-    func getContent() -> [RWContent] {
-        return FeedClient.getContent()
+  @Published var items: [String: [RWEntry]] = [:]
+
+  @Published var bookmarks: [RWEntry] = []
+
+  @Published var profile: GravatarEntry?
+
+  init() {
+    fetchProfile()
+    fetchFeeds()
+  }
+
+  func getContent() -> [RWContent] {
+    FeedClient.shared.getContent()
+  }
+
+  func fetchProfile() {
+    FeedClient.shared.fetchProfile { profile in
+      Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
+      DispatchQueue.main.async {
+        self.profile = profile
+      }
     }
-    
-    func fetchProfile() {
-        return FeedClient.fetchProfile { profile in
-            Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
-            self.profile = profile
-        }
+  }
+
+  func fetchFeeds() {
+    FeedClient.shared.fetchFeeds { platform, items in
+      Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
+      DispatchQueue.main.async {
+        self.items[platform] = items
+      }
     }
- 
-    func fetchFeeds() {
-        FeedClient.fetchFeeds { platform, items in
-            Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-            self.items[platform] = items
-        }
+  }
+
+  func fetchAllBookmarks() {
+    BookmarkClient.shared.fetchBookmarks { items in
+      Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
+      DispatchQueue.main.async {
+        self.bookmarks = items
+      }
     }
-    
-    func fetchAllBookmarks() {
-        BookmarkClient.fetchBookmarks { items in
-            Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
-            self.bookmarks = items
-        }
+  }
+
+  func addToBookmarks(entry: RWEntry) {
+    BookmarkClient.shared.addToBookmarks(entry) { _ in
+      Logger().d(tag: TAG, message: "addToBookmarks")
     }
-    
-    func addToBookmarks(entry: RWEntry) {
-        BookmarkClient.addToBookmarks(entry: entry, completion: { items in
-            Logger().d(tag: TAG, message: "addToBookmarks")
-        })
+  }
+
+  func removeFromBookmarks(entry: RWEntry) {
+    BookmarkClient.shared.removeFromBookmarks(entry) { _ in
+      Logger().d(tag: TAG, message: "removeFromBookmarks")
     }
-    
-    func removeFromBookmarks(entry: RWEntry) {
-        BookmarkClient.addToBookmarks(entry: entry, completion: { items in
-            Logger().d(tag: TAG, message: "addToBookmarks")
-        })
-    }
+  }
 }

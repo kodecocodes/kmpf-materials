@@ -43,12 +43,10 @@ import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-private const val TAG = "YOUR_GRAVATAR_EMAIL"
+private const val TAG = "FeedPresenter"
 
 private const val RW_CONTENT = "[" +
         "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
@@ -92,9 +90,8 @@ class FeedPresenter(private val feed: GetFeedData) {
       val tasks = mutableListOf<Job>()
       for (entry in entries) {
         tasks.add(scope.launch {
-           entry.imageUrl = fetchLinkImage(entry.link)
-          }
-        )
+          entry.imageUrl = fetchLinkImage(entry.link)
+        })
       }
 
       tasks.joinAll()
@@ -102,7 +99,7 @@ class FeedPresenter(private val feed: GetFeedData) {
     }
   }
 
-  public suspend fun fetchLinkImage(link: String): String {
+  private suspend fun fetchLinkImage(link: String): String {
     return scope.async {
       feed.invokeFetchImageUrlFromLink(link)
     }.await()

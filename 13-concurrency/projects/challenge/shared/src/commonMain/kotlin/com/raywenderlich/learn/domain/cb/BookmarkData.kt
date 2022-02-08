@@ -38,7 +38,5 @@ import com.raywenderlich.learn.data.model.RWEntry
 
 public interface BookmarkData {
 
-  public fun onNewBookmarksList(items: List<RWEntry>)
-
-  public fun onBookmarkStateUpdated(item: RWEntry, added: Boolean)
+  public fun onNewBookmarksList(bookmarks: List<RWEntry>)
 }

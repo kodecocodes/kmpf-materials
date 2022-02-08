@@ -69,7 +69,7 @@ class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
     private fun addAsBookmark(entry: RWEntry) {
         MainScope().launch {
             rwEntryDAO.insertOrReplace(entry)
-            listener?.onBookmarkStateUpdated(entry, true)
+            getBookmarks()
         }
     }
 
@@ -82,7 +82,7 @@ class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
     private fun removeFromBookmark(entry: RWEntry) {
         MainScope().launch {
             rwEntryDAO.remove(entry)
-            listener?.onBookmarkStateUpdated(entry, true)
+            getBookmarks()
         }
     }
 }

@@ -14,7 +14,7 @@ import SwiftUI
 public struct ActivityIndicator: PlatformViewRepresentable {
     @Binding var isAnimating: Bool
     var style: Style
-    
+
     /// Create the indicator with animation binding and style
     /// - Parameters:
     ///   - isAnimating: The binding to control the animation
@@ -23,13 +23,13 @@ public struct ActivityIndicator: PlatformViewRepresentable {
         self._isAnimating = isAnimating
         self.style = style
     }
-    
+
     #if os(macOS)
     public typealias NSViewType = NSProgressIndicator
     #elseif os(iOS) || os(tvOS)
     public typealias UIViewType = UIActivityIndicatorView
     #endif
-    
+
     #if os(iOS) || os(tvOS)
     public func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         let activityStyle: UIActivityIndicatorView.Style
@@ -43,12 +43,12 @@ public struct ActivityIndicator: PlatformViewRepresentable {
         indicator.hidesWhenStopped = true
         return indicator
     }
-    
+
     public func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
         isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
     #endif
-    
+
     #if os(macOS)
     public func makeNSView(context: NSViewRepresentableContext<ActivityIndicator>) -> NSProgressIndicator {
         let controlSize: NSControl.ControlSize
@@ -64,11 +64,11 @@ public struct ActivityIndicator: PlatformViewRepresentable {
         indicator.isDisplayedWhenStopped = false
         return indicator
     }
-    
+
     public func updateNSView(_ nsView: NSProgressIndicator, context: NSViewRepresentableContext<ActivityIndicator>) {
         isAnimating ? nsView.startAnimation(nil) : nsView.stopAnimation(nil)
     }
-    
+
     #endif
 }
 

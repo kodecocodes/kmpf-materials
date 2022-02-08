@@ -51,7 +51,6 @@ private const val TAG = "BookmarkViewModel"
 
 class BookmarkViewModel : ViewModel(), BookmarkData {
 
-  val item = LiveData(RWEntry())
   val items: MutableState<List<RWEntry>> = mutableStateOf(emptyList())
 
   private val presenter by lazy {
@@ -75,21 +74,11 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
 
   // region FeedData
 
-  override fun onNewBookmarksList(newItems: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | items=${newItems.size}")
+  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
+    Logger.d(TAG, "onNewBookmarksList | items=${bookmarks.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items.value = newItems
-      }
-    }
-  }
-
-  override fun onBookmarkStateUpdated(newItem: RWEntry, added: Boolean) {
-    Logger.d(TAG, "onBookmarkStateUpdated | newItem=$newItem | added=$added")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        item.value = newItem
-        getBookmarks()
+        items.value = bookmarks
       }
     }
   }

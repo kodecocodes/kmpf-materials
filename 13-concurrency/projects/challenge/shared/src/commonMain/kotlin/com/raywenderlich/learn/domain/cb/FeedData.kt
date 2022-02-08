@@ -40,7 +40,7 @@ import com.raywenderlich.learn.data.model.RWEntry
 
 public interface FeedData {
 
-  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?)
+  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?)
 
   public fun onMyGravatarData(item: GravatarEntry)
 }

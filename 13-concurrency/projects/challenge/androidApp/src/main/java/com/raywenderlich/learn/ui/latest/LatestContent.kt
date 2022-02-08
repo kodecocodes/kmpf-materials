@@ -78,8 +78,6 @@ import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "LatestContent"
 
-private const val FETCH_N_IMAGES = 5
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun LatestContent(
@@ -104,7 +102,6 @@ fun AddPages(
   onOpenEntry: (String) -> Unit
 ) {
 
-  val keys = items.keys.toMutableList()
 
   LazyColumn(
     modifier = Modifier
@@ -116,14 +113,15 @@ fun AddPages(
       Spacer(modifier = Modifier.height(16.dp))
     }
 
-    items(keys) {
+    items(items.keys.toMutableList(), key = { item -> item.value }) {
 
-      Logger.d(TAG, "platforms found=${keys.size}")
+      val platforms = items.keys
+      Logger.d(TAG, "platforms found=$platforms")
 
-      for (platform in keys) {
+      for (platform in platforms) {
         AddNewPage(
           platform = platform,
-          items = items[platform]?.subList(0, FETCH_N_IMAGES) ?: emptyList(),
+          items = items[platform] ?: emptyList(),
           onOpenEntry = onOpenEntry
         )
       }

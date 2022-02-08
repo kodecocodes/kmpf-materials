@@ -35,84 +35,75 @@ import SharedKit
 import SDWebImageSwiftUI
 
 struct LatestView: View {
-    
-    @Environment(\.openURL) var openURL
-    
-    let TAG = "LatestView"
-    
-    @ObservedObject var feedViewModel = RWEntryViewModel()
-        
-    var body: some View {
-        
-        NavigationView {
-            ZStack{
-                Color("rw-dark")
-                ScrollView(.vertical) {
-                    VStack {
-                        
-                        ForEach(Array(feedViewModel.items.keys), id: \.self) { key in
-                            Section(platform: key, entries:feedViewModel.items[key] ?? [])
-                        }
-                        
-                    }
-                    .navigationBarTitle("learn", displayMode: .inline)
-                }
+  let TAG = "LatestView"
+
+  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+
+  var body: some View {
+    NavigationView {
+      ZStack {
+        Color("rw-dark")
+        ScrollView(.vertical) {
+          VStack {
+            ForEach(Array(feedViewModel.items.keys), id: \.self) { key in
+              Section(platform: key, entries: feedViewModel.items[key] ?? [])
             }
+          }
+          .navigationBarTitle("learn", displayMode: .inline)
         }
-        .onAppear() {
-            Logger().d(tag: TAG, message: "Retrieving all feeds")
-            feedViewModel.fetchFeeds()
-        }
+      }
     }
+  }
 }
 
-let ITEMS_SECTION = 4
 
 struct Section: View {
-    
-    @Environment(\.openURL) var openURL
-    
-    @State var platform: String
-    
-    var entries: [RWEntry]
-    
-    var body: some View {
-        
-        LazyVStack {
-            HStack {
-                Text(platform)
-                    .foregroundColor(.white)
-                    .font(Font.custom("Bitter-Bold", size: 18))
-                    .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                
-                Spacer()
-            }
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity)
-            
-            let subEntries = entries[0...ITEMS_SECTION]
-            
-            TabView {
-                ForEach(subEntries, id: \.id) { item in
-                    VStack{
-                        Button(action: {
-                            openURL(URL(string: "\(item.link)")!)
-                        }, label: {
-                            if (item.imageUrl == "") {
-                              Rectangle().foregroundColor(.gray)
-                              Image("razerware")
-                            }
-                            AnimatedImage(url: URL(string: "\(item.imageUrl)"))
-                                .resizable()
-                                .scaledToFit()
-                                .cornerRadius(8)
-                            
-                        })
-                    }
-                }
-            }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-            .tabViewStyle(PageTabViewStyle())
+  @Environment(\.openURL) var openURL
+
+  @State var platform: String
+
+  var entries: [RWEntry]
+
+  var body: some View {
+    if !entries.isEmpty {
+      LazyVStack {
+        HStack {
+          Text(platform)
+            .foregroundColor(.white)
+            .font(Font.custom("Bitter-Bold", size: 18))
+            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+
+          Spacer()
         }
+        .padding(.leading, 10)
+        .frame(maxWidth: .infinity)
+
+        TabView {
+          ForEach(entries, id: \.id) { item in
+            VStack {
+              Button(action: {
+                guard let url = URL(string: "\(item.link)") else {
+                  return
+                }
+
+                openURL(url)
+              }, label: {
+                if item.imageUrl.isEmpty {
+                  Rectangle().foregroundColor(.gray)
+                  Image("razerware")
+                }
+                AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+                  .resizable()
+                  .scaledToFill()
+                  .cornerRadius(8)
+              })
+            }
+          }
+        }
+
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+        .tabViewStyle(PageTabViewStyle())
+      }
     }
+  }
 }
