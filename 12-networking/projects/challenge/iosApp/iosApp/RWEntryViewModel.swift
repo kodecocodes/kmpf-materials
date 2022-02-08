@@ -41,13 +41,7 @@ class RWEntryViewModel: ObservableObject {
     
     @Published var bookmarks = [RWEntry]()
     
-    @Published var profile = GravatarEntry(
-        id: nil,
-        hash: nil,
-        preferredUsername: nil,
-        thumbnailUrl: nil,
-        aboutMe: nil
-    )
+    @Published var profile: GravatarEntry?
     
     let FETCH_N_IMAGES = 5
     

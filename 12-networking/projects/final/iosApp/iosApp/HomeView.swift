@@ -144,10 +144,10 @@ struct HomeView: View {
             feedViewModel.fetchFeeds()
         }
         .onReceive(feedViewModel.$profile) { item in
-            showToast = true
+            showToast = item?.preferredUsername != nil
         }
         .toast(isPresenting: $showToast){
-            AlertToast(type: .regular, title: "Hello \(String(describing: feedViewModel.profile.preferredUsername))")
+            AlertToast(type: .regular, title: "Hello \(String(feedViewModel.profile?.preferredUsername ?? ""))")
         }
     }
 }

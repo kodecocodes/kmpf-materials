@@ -65,9 +65,9 @@
 		6709908E271640400048A7B5 /* BitterSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BitterSemiBold.ttf; sourceTree = "<group>"; };
 		67099094271646B70048A7B5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6709909C2717ABF80048A7B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		6766F0CC27B2F2BE0028FFA4 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		676EC08E2714EDCC00316DED /* SharedKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedKit.xcframework; path = ../shared/swiftpackage/SharedKit.xcframework; sourceTree = "<group>"; };
 		676EC0922714F58200316DED /* SharedKit-1.0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "SharedKit-1.0.zip"; path = "../shared/swiftpackage/SharedKit-1.0.zip"; sourceTree = "<group>"; };
-		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = iosApp.app; path = "/Users/carlosmota/Projects/GitHub/kmpf-materials/13-concurrency/projects/final/iosApp/build/Debug-iphoneos/iosApp.app"; sourceTree = "<absolute>"; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +128,7 @@
 				7555FF7D242A565900829871 /* iosApp */,
 				BB96D4C125049D15DDF3C5AA /* Pods */,
 				C0F78520098B3479B2AC64EC /* Frameworks */,
+				6766F0CC27B2F2BE0028FFA4 /* iosApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,7 +191,7 @@
 			);
 			name = iosApp;
 			productName = iosApp;
-			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
+			productReference = 6766F0CC27B2F2BE0028FFA4 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

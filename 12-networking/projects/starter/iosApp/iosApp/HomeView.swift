@@ -140,10 +140,14 @@ struct HomeView: View {
         }
         .onAppear() {
             Logger().d(tag: TAG, message: "Retrieving all feeds")
+            feedViewModel.fetchProfile()
             feedViewModel.fetchFeeds()
         }
+        .onReceive(feedViewModel.$profile) { item in
+            showToast = item?.preferredUsername != nil
+        }
         .toast(isPresenting: $showToast){
-            AlertToast(type: .regular, title: "Hello cafonsomota")
+            AlertToast(type: .regular, title: "Hello \(String(feedViewModel.profile?.preferredUsername ?? ""))")
         }
     }
 }
