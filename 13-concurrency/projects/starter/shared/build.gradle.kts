@@ -1,9 +1,10 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("com.android.library")
     kotlin("plugin.serialization")
     kotlin("multiplatform")
     id("com.squareup.sqldelight")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 version = "1.0"
@@ -23,27 +24,23 @@ android {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("SharedKit")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("13") }
-    }
-}
-
 kotlin {
     android()
 
     jvm("desktop")
 
-    ios {
-        binaries {
-            framework {
-                baseName = "SharedKit"
-            }
+    val xcf = XCFramework("SharedKit")
+    listOf(
+            iosX64(),
+            iosArm64(),
+            iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "SharedKit"
+            xcf.add(this)
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -58,6 +55,7 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0-beta-1")
             }
         }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -68,6 +66,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
@@ -75,26 +74,43 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:2.0.0-beta-1")
             }
         }
+
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting {
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt") {
-                  version {
-                    strictly("1.6.0-native-mt")
-                  }
+                    version {
+                        strictly("1.6.0-native-mt")
+                    }
                 }
 
                 implementation("io.ktor:ktor-client-ios:2.0.0-beta-1")
             }
+
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
-        val iosTest by getting
+
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+        }
 
         val desktopMain by getting {
             dependencies {

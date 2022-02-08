@@ -34,9 +34,6 @@
 
 package com.raywenderlich.learn.ui.common
 
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -62,7 +59,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import com.raywenderlich.learn.R
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorAccent25Transparency
@@ -192,23 +188,4 @@ fun AddEntryContent(
       )
     }
   }
-}
-
-@Composable
-fun WebPageScreen(url: String) {
-  AndroidView(factory = {
-    WebView(it).apply {
-      webViewClient = object : WebViewClient() {
-        override fun shouldOverrideUrlLoading(
-          view: WebView?,
-          request: WebResourceRequest?
-        ): Boolean {
-
-          return false
-        }
-      }
-    }
-  }, update = {
-    it.loadUrl(url)
-  })
 }

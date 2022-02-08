@@ -17,18 +17,22 @@
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version "1.0.1"
+    id("com.android.library")
 }
 
 kotlin {
+    android {
+        publishLibraryVariants("release", "debug")
+    }
 
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
+    jvm("desktop") {
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
         }
     }
 
     sourceSets {
-        val jvmMain by getting {
+        val commonMain by getting {
             dependencies {
                 api(compose.material)
                 api(compose.ui)
@@ -36,5 +40,28 @@ kotlin {
                 api(project(":pager"))
             }
         }
+
+        val commonTest by getting
+
+        val androidMain by getting
+
+        val androidTest by getting
+
+        val desktopMain by getting
+
+        val desktopTest by getting
+    }
+}
+
+android {
+    compileSdk = 31
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 31
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }

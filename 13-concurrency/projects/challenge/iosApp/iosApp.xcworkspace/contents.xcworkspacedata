@@ -3,7 +3,7 @@
    version = "1.0">
    <Group
       location = "container:"
-      name = "Debug">
+      name = "Shared">
       <FileRef
          location = "group:../shared/src/commonMain">
       </FileRef>

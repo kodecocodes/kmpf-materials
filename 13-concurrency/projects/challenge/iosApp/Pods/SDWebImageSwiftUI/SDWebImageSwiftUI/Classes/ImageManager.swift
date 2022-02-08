@@ -12,7 +12,7 @@ import SDWebImage
 /// A Image observable object for handle image load process. This drive the Source of Truth for image loading status.
 /// You can use `@ObservedObject` to associate each instance of manager to your View type, which update your view's body from SwiftUI framework when image was loaded.
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public final class ImageManager : ObservableObject {
+public final class ImageManager: ObservableObject {
     /// loaded image, note when progressive loading, this will published multiple times with different partial image
     @Published public var image: PlatformImage?
     /// loaded image data, may be nil if hit from memory cache. This will only published once even on incremental image loading
@@ -27,23 +27,23 @@ public final class ImageManager : ObservableObject {
     @Published public var progress: Double = 0
     /// true means during incremental loading
     @Published public var isIncremental: Bool = false
-    
+
     var manager: SDWebImageManager
-    weak var currentOperation: SDWebImageOperation? = nil
+    weak var currentOperation: SDWebImageOperation?
     var isFirstLoad: Bool = true // false after first call `load()`
-    
+
     var url: URL?
     var options: SDWebImageOptions
-    var context: [SDWebImageContextOption : Any]?
+    var context: [SDWebImageContextOption: Any]?
     var successBlock: ((PlatformImage, Data?, SDImageCacheType) -> Void)?
     var failureBlock: ((Error) -> Void)?
     var progressBlock: ((Int, Int) -> Void)?
-    
+
     /// Create a image manager for loading the specify url, with custom options and context.
     /// - Parameter url: The image url
     /// - Parameter options: The options to use when downloading the image. See `SDWebImageOptions` for the possible values.
     /// - Parameter context: A context contains different options to perform specify changes or processes, see `SDWebImageContextOption`. This hold the extra objects which `options` enum can not hold.
-    public init(url: URL?, options: SDWebImageOptions = [], context: [SDWebImageContextOption : Any]? = nil) {
+    public init(url: URL?, options: SDWebImageOptions = [], context: [SDWebImageContextOption: Any]? = nil) {
         self.url = url
         self.options = options
         self.context = context
@@ -53,7 +53,7 @@ public final class ImageManager : ObservableObject {
             self.manager = .shared
         }
     }
-    
+
     /// Start to load the url operation
     public func load() {
         isFirstLoad = false
@@ -66,7 +66,7 @@ public final class ImageManager : ObservableObject {
                 return
             }
             let progress: Double
-            if (expectedSize > 0) {
+            if expectedSize > 0 {
                 progress = Double(receivedSize) / Double(expectedSize)
             } else {
                 progress = 0
@@ -102,7 +102,7 @@ public final class ImageManager : ObservableObject {
             }
         }
     }
-    
+
     /// Cancel the current url loading
     public func cancel() {
         if let operation = currentOperation {
@@ -111,7 +111,7 @@ public final class ImageManager : ObservableObject {
             isLoading = false
         }
     }
-    
+
 }
 
 // Completion Handler
@@ -123,14 +123,14 @@ extension ImageManager {
     public func setOnFailure(perform action: ((Error) -> Void)? = nil) {
         self.failureBlock = action
     }
-    
+
     /// Provide the action when image load successes.
     /// - Parameters:
     ///   - action: The action to perform. The first arg is the loaded image, the second arg is the loaded image data, the third arg is the cache type loaded from. If `action` is `nil`, the call has no effect.
     public func setOnSuccess(perform action: ((PlatformImage, Data?, SDImageCacheType) -> Void)? = nil) {
         self.successBlock = action
     }
-    
+
     /// Provide the action when image load progress changes.
     /// - Parameters:
     ///   - action: The action to perform. The first arg is the received size, the second arg is the total size, all in bytes. If `action` is `nil`, the call has no effect.

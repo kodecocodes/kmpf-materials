@@ -15,7 +15,7 @@ import SwiftUI
 struct PlatformAppear: PlatformViewRepresentable {
     let appearAction: () -> Void
     let disappearAction: () -> Void
-    
+
     #if os(iOS) || os(tvOS)
     func makeUIView(context: Context) -> some UIView {
         let view = PlatformAppearView()
@@ -23,7 +23,7 @@ struct PlatformAppear: PlatformViewRepresentable {
         view.disappearAction = disappearAction
         return view
     }
-    
+
     func updateUIView(_ uiView: UIViewType, context: Context) {}
     #endif
     #if os(macOS)
@@ -33,7 +33,7 @@ struct PlatformAppear: PlatformViewRepresentable {
         view.disappearAction = disappearAction
         return view
     }
-    
+
     func updateNSView(_ nsView: NSViewType, context: Context) {}
     #endif
 }
@@ -42,7 +42,7 @@ struct PlatformAppear: PlatformViewRepresentable {
 class PlatformAppearView: PlatformView {
     var appearAction: () -> Void = {}
     var disappearAction: () -> Void = {}
-    
+
     #if os(iOS) || os(tvOS)
     override func willMove(toWindow newWindow: UIWindow?) {
         if newWindow != nil {
@@ -52,7 +52,7 @@ class PlatformAppearView: PlatformView {
         }
     }
     #endif
-    
+
     #if os(macOS)
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         if newWindow != nil {

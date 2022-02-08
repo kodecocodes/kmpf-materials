@@ -71,7 +71,7 @@ class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
   private fun addAsBookmark(entry: RWEntry) {
     scope.launch {
       rwEntryDAO.insertOrReplace(entry)
-      listener?.onBookmarkStateUpdated(entry, true)
+      getBookmarks()
     }
   }
 
@@ -84,7 +84,7 @@ class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
   private fun removeFromBookmark(entry: RWEntry) {
     scope.launch {
       rwEntryDAO.remove(entry)
-      listener?.onBookmarkStateUpdated(entry, true)
+      getBookmarks()
     }
   }
 }
