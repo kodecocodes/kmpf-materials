@@ -25,5 +25,3 @@ allprojects {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
-
-project.gradle.startParameter.excludedTaskNames.add("iosX64Test")
