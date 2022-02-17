@@ -65,9 +65,6 @@ kotlin {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
                 implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
-
-                implementation("io.mockk:mockk:1.12.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
             }
         }
 
