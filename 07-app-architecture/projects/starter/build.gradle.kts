@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-val compose_version by extra("1.0.5")
+val compose_version by extra("1.1.0")
 
 buildscript {
     repositories {
@@ -42,9 +42,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.0-beta5")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
-        classpath("com.android.tools.build:gradle:7.0.3")
+        classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath("com.android.tools.build:gradle:7.1.1")
     }
 }
 

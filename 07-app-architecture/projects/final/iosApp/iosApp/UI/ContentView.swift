@@ -38,24 +38,24 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       RemindersView()
-    }
-    .toolbar {
-      ToolbarItem(placement: .bottomBar) {
-        Button {
-          shouldOpenAbout = true
-        } label: {
-          Label("About", systemImage: "info.circle")
-            .labelStyle(.titleAndIcon)
+        .toolbar {
+          ToolbarItem(placement: .bottomBar) {
+            Button {
+              shouldOpenAbout = true
+            } label: {
+              Label("About", systemImage: "info.circle")
+                .labelStyle(.titleAndIcon)
+            }
+            .padding(8)
+            .popover(isPresented: $shouldOpenAbout) {
+              AboutView()
+                .frame(
+                  idealWidth: 350,
+                  idealHeight: 450
+                )
+            }
+          }
         }
-        .padding(8)
-        .popover(isPresented: $shouldOpenAbout) {
-          AboutView()
-            .frame(
-              idealWidth: 350,
-              idealHeight: 450
-            )
-        }
-      }
     }
   }
 }

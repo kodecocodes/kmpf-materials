@@ -42,17 +42,13 @@ plugins {
 kotlin {
     android()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-        else -> ::iosX64
-    }
-
-    iosTarget("ios") {
-        binaries {
-            framework {
-                baseName = "shared"
-            }
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "shared"
         }
     }
 
@@ -68,7 +64,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
             }
         }
         val androidTest by getting {
@@ -77,8 +73,24 @@ kotlin {
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
-        val iosTest by getting
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+        }
         val desktopMain by getting {
             dependsOn(commonMain)
         }
@@ -86,10 +98,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 32
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 32
     }
 }
