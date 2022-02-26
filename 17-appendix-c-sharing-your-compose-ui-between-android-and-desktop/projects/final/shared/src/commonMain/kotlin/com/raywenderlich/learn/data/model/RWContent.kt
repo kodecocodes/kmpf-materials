@@ -43,7 +43,7 @@ enum class PLATFORM(val value: String) {
   ALL("all"),
   ANDROID("android"),
   IOS("ios"),
-  UNITY("unity"),
+  GAMETECH("gametech"),
   FLUTTER("flutter")
 }
 
