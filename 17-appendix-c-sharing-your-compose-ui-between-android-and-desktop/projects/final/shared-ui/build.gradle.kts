@@ -5,8 +5,6 @@ plugins {
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
-version = "1.0"
-
 multiplatformResources {
     multiplatformResourcesPackage = "com.raywenderlich.learn"
 }

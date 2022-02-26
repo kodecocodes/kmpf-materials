@@ -50,7 +50,7 @@ private val fontSizeSmall = 15.sp
 private val fontSizeExtraSmall = 14.sp
 private val fontSizeTiny = 12.sp
 
-private val AssistantFontFamily = FontFamily(
+private val BitterFontFamily = FontFamily(
   Font(R.font.bitter_bold, FontWeight.Bold),
   Font(R.font.bitter_extrabold, FontWeight.ExtraBold),
   Font(R.font.bitter_light, FontWeight.Light),
@@ -62,55 +62,55 @@ private val AssistantFontFamily = FontFamily(
 val Typography = Typography(
   h1 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = fontSizeSmall
   ),
 
   h2 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Normal,
     fontSize = fontSizeExtraSmall
   ),
 
   h3 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = fontSizeTiny
   ),
 
   h4 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = fontSizeMedium
   ),
 
   body1 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Normal,
     fontSize = fontSizeBigSmall
   ),
 
   body2 = TextStyle(
     color = colorAccent,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = fontSizeExtraSmall
   ),
 
   subtitle1 = TextStyle(
     color = colorPrimary,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontSize = fontSizeExtraSmall
   ),
 
   subtitle2 = TextStyle(
     color = colorPrimary,
-    fontFamily = AssistantFontFamily,
+    fontFamily = BitterFontFamily,
     fontSize = fontSizeExtraSmall
   )
 )
