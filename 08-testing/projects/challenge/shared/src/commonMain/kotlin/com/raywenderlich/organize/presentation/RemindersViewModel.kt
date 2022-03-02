@@ -44,6 +44,10 @@ class RemindersViewModel : BaseViewModel() {
     get() = repository.reminders
 
   var onRemindersUpdated: ((List<Reminder>) -> Unit)? = null
+    set(value) {
+      field = value
+      onRemindersUpdated?.invoke(reminders)
+    }
 
   fun createReminder(title: String) {
     val trimmed = title.trim()
