@@ -122,8 +122,6 @@ fun AddImagePreviewEmpty(
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
-    Logger.d(TAG, "Temporary error.")
-
     Surface(
       modifier = modifier,
       color = Color.Transparent

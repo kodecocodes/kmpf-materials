@@ -2,7 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.1"
+    id("org.jetbrains.compose") version "1.1.0"
 }
 
 kotlin {
@@ -26,13 +26,13 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.uiTooling)
 
-                implementation("com.alialbaali.kamel:kamel-image:0.3.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+                implementation("ca.gosyer:accompanist-pager:0.20.1")
+                implementation("ca.gosyer:accompanist-pager-indicators:0.20.1")
 
                 implementation(project(":shared"))
-                implementation(project(":pager"))
-                implementation(project(":pager-indicators"))
+                implementation(project(":kamel-image"))
                 implementation(project(":precompose"))
             }
         }
