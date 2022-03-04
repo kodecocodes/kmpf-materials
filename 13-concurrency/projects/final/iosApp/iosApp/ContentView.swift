@@ -41,19 +41,24 @@ struct ContentView: View {
   @StateObject var feedViewModel = RWEntryViewModel()
 
   init() {
-    let itemAppearance = UITabBarItemAppearance()
-    itemAppearance.normal.iconColor = UIColor(Color.white)
+    let navBarAppearance = UINavigationBarAppearance()
+    navBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
+    navBarAppearance.shadowImage = UIImage()
+    navBarAppearance.shadowColor = .clear
+    navBarAppearance.backgroundImage = UIImage()
+    navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
-    let tabBarAppearance = UITabBarAppearance()
-    tabBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
-    tabBarAppearance.stackedLayoutAppearance = itemAppearance
-    tabBarAppearance.inlineLayoutAppearance = itemAppearance
-    tabBarAppearance.compactInlineLayoutAppearance = itemAppearance
+    if let uiFont = UIFont(name: "Bitter-Bold", size: 18) {
+    navBarAppearance.titleTextAttributes = [
+    .font: uiFont,
+    .foregroundColor: UIColor.white
+    ]}
 
-    UITabBar.appearance().standardAppearance = tabBarAppearance
-		if #available(iOS 15.0, *) {
-			UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-		}
+    UINavigationBar.appearance().barTintColor = UIColor(Color("rw-dark"))
+    UINavigationBar.appearance().isTranslucent = false
+    UINavigationBar.appearance().standardAppearance = navBarAppearance
+    UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+    UINavigationBar.appearance().compactAppearance = navBarAppearance
   }
 
   var body: some View {
@@ -91,26 +96,5 @@ struct ContentView: View {
         .environmentObject(feedViewModel)
     }
     .accentColor(Color("rw-green"))
-    .onAppear {
-      let navBarAppearance = UINavigationBarAppearance()
-      navBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
-      navBarAppearance.shadowImage = UIImage()
-      navBarAppearance.shadowColor = .clear
-      navBarAppearance.backgroundImage = UIImage()
-      navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
-      if let uiFont = UIFont(name: "Bitter-Bold", size: 18) {
-        navBarAppearance.titleTextAttributes = [
-          .font: uiFont,
-          .foregroundColor: UIColor.white
-        ]
-      }
-
-      UINavigationBar.appearance().barTintColor = UIColor(Color("rw-dark"))
-      UINavigationBar.appearance().isTranslucent = false
-      UINavigationBar.appearance().standardAppearance = navBarAppearance
-      UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-      UINavigationBar.appearance().compactAppearance = navBarAppearance
-    }
   }
 }
