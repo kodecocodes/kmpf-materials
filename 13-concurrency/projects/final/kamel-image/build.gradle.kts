@@ -64,25 +64,9 @@ kotlin {
             }
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-                implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
-                implementation("org.jetbrains.compose.ui:ui-test-junit4:1.1.0")
-            }
-        }
-
         val desktopMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:2.0.0-beta-1")
-            }
-        }
-
-        val desktopTest by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-                implementation(kotlin("test-junit"))
             }
         }
 
@@ -91,15 +75,6 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:2.0.0-beta-1")
                 implementation("androidx.appcompat:appcompat:1.4.1")
                 implementation("androidx.core:core-ktx:1.7.0")
-            }
-        }
-
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
-                implementation("androidx.test:core:1.4.0")
-                implementation("androidx.test.ext:junit:1.1.3")
             }
         }
 

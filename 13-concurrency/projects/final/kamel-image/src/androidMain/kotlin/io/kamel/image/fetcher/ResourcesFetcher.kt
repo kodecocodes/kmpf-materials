@@ -22,7 +22,6 @@ internal class ResourcesFetcher(private val context: Context) : Fetcher<Url> {
     override val Url.isSupported: Boolean
         get() = protocol.name == ContentResolver.SCHEME_ANDROID_RESOURCE
 
-    @OptIn(ExperimentalIoApi::class)
     override fun fetch(
         data: Url,
         resourceConfig: ResourceConfig

@@ -26,25 +26,9 @@ kotlin {
             }
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-                implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
-                implementation("org.jetbrains.compose.ui:ui-test-junit4:1.1.0")
-            }
-        }
-
         val jvmMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-            }
-        }
-
-        val jvmTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
             }
         }
     }
