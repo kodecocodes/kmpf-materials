@@ -38,7 +38,7 @@ import com.raywenderlich.organize.Platform
 import kotlin.math.max
 import kotlin.math.min
 
-class AboutViewModel(private val platform: Platform) : BaseViewModel() {
+class AboutViewModel(platform: Platform) : BaseViewModel() {
   val items: List<RowItem> = makeRowItems(platform)
 
   private fun makeRowItems(platform: Platform): List<RowItem> {
