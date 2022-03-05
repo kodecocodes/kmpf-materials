@@ -7,7 +7,7 @@ import com.chromaticnoise.multiplatformswiftpackage.domain.PluginConfiguration.P
 import com.chromaticnoise.multiplatformswiftpackage.domain.TargetName
 import com.chromaticnoise.multiplatformswiftpackage.domain.TargetPlatform
 import groovy.lang.Closure
-import org.gradle.util.internal.ConfigureUtil
+import org.gradle.util.ConfigureUtil
 
 /**
  * DSL to create instances of [TargetPlatform].
@@ -31,6 +31,7 @@ public class TargetPlatformDsl {
         )
     }
 
+    @SuppressWarnings("deprecation")
     public fun iOS(version: Closure<PlatformVersionDsl>) {
         iOS { ConfigureUtil.configure(version, this) }
     }

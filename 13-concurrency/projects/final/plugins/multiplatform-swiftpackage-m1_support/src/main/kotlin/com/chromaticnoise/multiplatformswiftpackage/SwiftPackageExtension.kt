@@ -7,7 +7,7 @@ import com.chromaticnoise.multiplatformswiftpackage.dsl.DistributionModeDSL
 import com.chromaticnoise.multiplatformswiftpackage.dsl.TargetPlatformDsl
 import groovy.lang.Closure
 import org.gradle.api.Project
-import org.gradle.util.internal.ConfigureUtil
+import org.gradle.util.ConfigureUtil
 import java.io.File
 
 public open class SwiftPackageExtension(internal val project: Project) {
@@ -64,6 +64,7 @@ public open class SwiftPackageExtension(internal val project: Project) {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public fun buildConfiguration(configure: Closure<BuildConfigurationDSL>) {
         buildConfiguration { ConfigureUtil.configure(configure, this) }
     }
