@@ -43,7 +43,7 @@ data class RWEntry(
   val title: String = "",
   val summary: String = "",
   val updated: String = "",
-  val imageUrl: String = "",
+  var imageUrl: String = "",
   val platform: PLATFORM = PLATFORM.ALL,
   val bookmarked: Boolean = false
 )

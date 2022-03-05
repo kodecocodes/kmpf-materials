@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,12 +39,10 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWContent
 import com.raywenderlich.learn.domain.GetFeedData
 import com.raywenderlich.learn.domain.cb.FeedData
+import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -54,7 +52,7 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
     "{\"platform\":\"android\", \"url\":\"https://raywenderlich.com/android/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2017/11/android-love-1-1.png\"}," +
     "{\"platform\":\"ios\", \"url\":\"https://raywenderlich.com/ios/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/09/iOS12_LaunchParty-feature.png\"}," +
-    "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/unity/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
+    "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/gametech/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
@@ -63,6 +61,8 @@ private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 class FeedPresenter(private val feed: GetFeedData) {
 
   private val json = Json { ignoreUnknownKeys = true }
+
+  private val scope = CoroutineScope(ioDispatcher)
 
   val content: List<RWContent> by lazy {
     json.decodeFromString(RW_CONTENT)
@@ -80,18 +80,21 @@ class FeedPresenter(private val feed: GetFeedData) {
     }
   }
 
-  @OptIn(DelicateCoroutinesApi::class)
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
-    GlobalScope.apply {
-      MainScope().launch {
-        feed.invokeFetchRWEntry(
-          platform = platform,
-          feedUrl = feedUrl,
-          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
-        )
-      }
+    scope.launch {
+      feed.invokeFetchRWEntry(
+              platform = platform,
+              feedUrl = feedUrl,
+              onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+              onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+      )
     }
+  }
+
+  public suspend fun fetchLinkImage(link: String): String {
+    return scope.async {
+      feed.invokeFetchImageUrlFromLink(link)
+    }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
@@ -99,19 +102,16 @@ class FeedPresenter(private val feed: GetFeedData) {
 
     listener = cb
 
-    fetchMyGravatar()
+    scope.launch {
+      listener?.onMyGravatarData(fetchMyGravatar())
+    }
   }
 
-  @OptIn(DelicateCoroutinesApi::class)
-  private fun fetchMyGravatar() {
-    GlobalScope.apply {
-      MainScope().launch {
-        feed.invokeGetMyGravatar(
-          hash = md5(GRAVATAR_EMAIL),
-          onSuccess = { listener?.onMyGravatarData(it) },
-          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
-        )
-      }
-    }
+  private suspend fun fetchMyGravatar(): GravatarEntry {
+    return CoroutineScope(Dispatchers.Default).async {
+      feed.invokeGetMyGravatar(
+              hash = md5(GRAVATAR_EMAIL)
+      )
+    }.await()
   }
 }
