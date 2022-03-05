@@ -16,5 +16,3 @@ include(":shared")
 include(":kamel-core")
 include(":kamel-image")
 include(":precompose")
-
-includeBuild("plugins/multiplatform-swiftpackage-m1_support")
