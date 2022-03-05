@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,13 +42,13 @@ import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
-import io.ktor.client.statement.readText
+import io.ktor.client.statement.*
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
 
 private const val WEBSITE_PREVIEW_START_DELIMITER =
-  "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
+    "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
 
 private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
 
@@ -64,7 +64,7 @@ public class GetFeedData {
       val result = FeedAPI.fetchRWEntry(feedUrl)
 
       Logger.d(TAG, "invokeFetchRWEntry | feedUrl=$feedUrl")
-      val xml = Xml.parse(result.readText())
+      val xml = Xml.parse(result.bodyAsText())
 
       val feed = mutableListOf<RWEntry>()
       for (node in xml.allNodeChildren) {
@@ -86,29 +86,34 @@ public class GetFeedData {
     }
   }
 
+  public suspend fun invokeFetchImageUrlFromLink(
+      link: String
+  ): String {
+    return try {
+
+      val result = FeedAPI.fetchImageUrlFromLink(link)
+      parsePage(result.bodyAsText())
+
+    } catch (e: Exception) {
+      ""
+    }
+  }
+
   public suspend fun invokeGetMyGravatar(
     hash: String,
-    onSuccess: (GravatarEntry) -> Unit,
-    onFailure: (Exception) -> Unit
-  ) {
-    try {
+  ): GravatarEntry {
+    return try {
       val result = FeedAPI.fetchMyGravatar(hash)
       Logger.d(TAG, "invokeGetMyGravatar | result=$result")
 
       if (result.entry.isEmpty()) {
-        coroutineScope {
-          onFailure(Exception("No profile found for hash=$hash"))
-        }
+        GravatarEntry()
       } else {
-        coroutineScope {
-          onSuccess(result.entry[0])
-        }
+        result.entry[0]
       }
     } catch (e: Exception) {
       Logger.e(TAG, "Unable to fetch my gravatar. Error: $e")
-      coroutineScope {
-        onFailure(e)
-      }
+      GravatarEntry()
     }
   }
 }

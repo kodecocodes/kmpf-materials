@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,5 @@ import com.raywenderlich.learn.data.model.RWEntry
 
 public interface BookmarkData {
 
-  public fun onNewBookmarksList(items: List<RWEntry>)
-
-  public fun onBookmarkStateUpdated(item: RWEntry, added: Boolean)
+  public fun onNewBookmarksList(bookmarks: List<RWEntry>)
 }

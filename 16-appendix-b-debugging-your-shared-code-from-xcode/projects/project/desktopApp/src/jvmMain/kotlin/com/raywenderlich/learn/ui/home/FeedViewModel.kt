@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,11 +44,9 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
+import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -56,7 +54,9 @@ private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
-  val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  private val _items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  val items = _items
+
   val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
 
   private val presenter by lazy {
@@ -73,27 +73,37 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchMyGravatar(this)
   }
 
-  // region FeedData
-
-  override fun onNewDataAvailable(newItems: List<RWEntry>, platform: PLATFORM, e: Exception?) {
-    Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
+  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
+    Logger.d(TAG, "fetchLinkImage | link=$link")
     viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        items[platform] = newItems
-      }
+      val url = presenter.fetchLinkImage(link)
+
+      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
+      val list = _items[platform]?.toMutableList() ?: return@launch
+      val index = list.indexOf(item)
+
+      list[index] = item.copy(imageUrl = url)
+      _items[platform] = list
     }
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
-    Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  // region FeedData
+
+  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
+    Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
+    viewModelScope.launch {
+      _items[platform] = items.subList(0, FETCH_N_IMAGES)
+
+      for (item in _items[platform]!!) {
+        fetchLinkImage(platform, item.id, item.link)
+      }
+    }
   }
 
   override fun onMyGravatarData(item: GravatarEntry) {
     Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        profile.value = item
-      }
+      profile.value = item
     }
   }
 

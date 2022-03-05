@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -33,35 +33,32 @@
 import SharedKit
 
 public class BookmarkClient {
-    
-    public typealias BookmarkHandler = (_ items: [RWEntry]) -> Void
-    
-    private static let shared = BookmarkClient()
+  public typealias BookmarkHandler = (_ items: [RWEntry]) -> Void
 
-    private let bookmarkPresenter = ServiceLocator.init().getBookmarkPresenter
-    private var handler: BookmarkHandler?
-    
-    public static func fetchBookmarks(completion: @escaping BookmarkHandler) {
-        BookmarkClient.shared.handler = completion
-    }
-    
-    public static func addToBookmarks(entry: RWEntry, completion: @escaping BookmarkHandler) {
-        Logger().d(tag: TAG, message: "addToBookmarks | entry=\(entry)")
-    }
-    
-    public static func removeFromBookmarks(entry: RWEntry, completion: @escaping BookmarkHandler) {
-        Logger().d(tag: TAG, message: "addToBookmarks")
-    }
+  public static let shared = BookmarkClient()
+
+  private let bookmarkPresenter = ServiceLocator.init().getBookmarkPresenter
+  private var handler: BookmarkHandler?
+
+  public func fetchBookmarks(completion: @escaping BookmarkHandler) {
+    BookmarkClient.shared.bookmarkPresenter.getBookmarks(cb: BookmarkClient.shared)
+    BookmarkClient.shared.handler = completion
+  }
+
+  public func addToBookmarks(_ entry: RWEntry, completion: @escaping BookmarkHandler) {
+    Logger().d(tag: TAG, message: "addToBookmarks | entry=\(entry)")
+    BookmarkClient.shared.bookmarkPresenter.addAsBookmark(entry: entry, cb: BookmarkClient.shared)
+  }
+
+  public func removeFromBookmarks(_ entry: RWEntry, completion: @escaping BookmarkHandler) {
+    Logger().d(tag: TAG, message: "removeFromBookmarks")
+    BookmarkClient.shared.bookmarkPresenter.removeFromBookmark(entry: entry, cb: BookmarkClient.shared)
+  }
 }
 
 extension BookmarkClient: BookmarkData {
-    
-    public func onNewBookmarksList(items: [RWEntry]) {
-        Logger().d(tag: TAG, message: "onNewBookmarksList: \(items)")
-        self.handler?(items)
-    }
-
-    public func onBookmarkStateUpdated(item: RWEntry, added: Bool) {
-        Logger().d(tag: TAG, message: "onBookmarkStateUpdated")
-    }
+  public func onNewBookmarksList(bookmarks: [RWEntry]) {
+    Logger().d(tag: TAG, message: "onNewBookmarksList: \(bookmarks)")
+    self.handler?(bookmarks)
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,24 +58,28 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
 
   fun getBookmarks() {
     Logger.d(TAG, "getBookmarks")
+    presenter.getBookmarks(this)
   }
 
   fun addAsBookmark(entry: RWEntry) {
     Logger.d(TAG, "addAsBookmark")
+    presenter.addAsBookmark(entry, this)
   }
 
   fun removeFromBookmark(entry: RWEntry) {
     Logger.d(TAG, "removeFromBookmark")
+    presenter.removeFromBookmark(entry, this)
   }
 
   // region FeedData
 
-  override fun onNewBookmarksList(newItems: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | items=${newItems.size}")
-  }
-
-  override fun onBookmarkStateUpdated(item: RWEntry, added: Boolean) {
-    Logger.d(TAG, "onBookmarkStateUpdated | item=$item | added=$added")
+  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
+    Logger.d(TAG, "onNewBookmarksList | items=${bookmarks.size}")
+    viewModelScope.launch {
+      withContext(Dispatchers.Main) {
+        items.value = bookmarks
+      }
+    }
   }
 
   // endregion FeedData

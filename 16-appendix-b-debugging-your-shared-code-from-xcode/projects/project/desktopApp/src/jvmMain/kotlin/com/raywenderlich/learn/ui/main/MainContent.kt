@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,9 +52,6 @@ import com.raywenderlich.learn.ui.theme.BottomNavigationHeight
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
-import com.raywenderlich.learn.ui.home.FeedViewModel
 import kotlinx.coroutines.CoroutineScope
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
