@@ -58,7 +58,7 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
 
