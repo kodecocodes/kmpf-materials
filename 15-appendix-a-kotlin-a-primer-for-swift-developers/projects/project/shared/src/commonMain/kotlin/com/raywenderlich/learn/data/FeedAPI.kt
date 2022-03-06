@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,16 +37,16 @@ package com.raywenderlich.learn.data
 import com.raywenderlich.learn.APP_NAME
 import com.raywenderlich.learn.X_APP_NAME
 import com.raywenderlich.learn.data.model.GravatarProfile
-import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.statement.HttpResponse
-import kotlin.native.concurrent.ThreadLocal
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import kotlin.native.concurrent.ThreadLocal
 
 public const val GRAVATAR_URL = "https://en.gravatar.com/"
 public const val GRAVATAR_RESPONSE_FORMAT = ".json"
@@ -56,10 +56,14 @@ public object FeedAPI {
 
   private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
-  private val client: HttpClient = HttpClient() {
+  private val client: HttpClient = HttpClient {
 
-    install(JsonFeature) {
-      serializer = KotlinxSerializer(nonStrictJson)
+    defaultRequest {
+      header(HttpHeaders.Accept, "text/html")
+    }
+
+    install(ContentNegotiation) {
+      json(nonStrictJson)
     }
 
     install(Logging) {
@@ -75,5 +79,5 @@ public object FeedAPI {
   public suspend fun fetchMyGravatar(hash: String): GravatarProfile =
     client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT") {
       header(X_APP_NAME, APP_NAME)
-    }
+    }.body()
 }

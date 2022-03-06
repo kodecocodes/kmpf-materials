@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -136,10 +136,7 @@ fun AddNewPage(
   items: List<RWEntry>,
   onOpenEntry: (String) -> Unit
 ) {
-  val pagerState = rememberPagerState(
-    pageCount = items.size,
-    initialOffscreenLimit = 2,
-  )
+  val pagerState = rememberPagerState(0)
 
   Column(
     modifier = Modifier.padding(start = 16.dp, end = 16.dp)
@@ -151,6 +148,7 @@ fun AddNewPage(
     )
 
     HorizontalPager(
+      count = items.size,
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
     ) { page ->

@@ -13,6 +13,8 @@ include(":desktopApp")
 
 include(":shared")
 
-include(":pager")
-include(":pager-indicators")
+include(":kamel-core")
+include(":kamel-image")
 include(":precompose")
+
+includeBuild("plugins/multiplatform-swiftpackage-m1_support")

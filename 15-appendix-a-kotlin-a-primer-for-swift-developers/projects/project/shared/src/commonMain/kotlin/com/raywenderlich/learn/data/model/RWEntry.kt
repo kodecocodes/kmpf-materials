@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ data class RWEntry(
   val title: String = "",
   val summary: String = "",
   val updated: String = "",
-  val imageUrl: String = "",
+  var imageUrl: String = "",
   val platform: PLATFORM = PLATFORM.ALL,
   val bookmarked: Boolean = false
 )

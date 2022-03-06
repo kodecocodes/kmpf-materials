@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
 import moe.tlaster.precompose.lifecycle.Lifecycle
 import moe.tlaster.precompose.lifecycle.repeatOnLifecycle
 import moe.tlaster.precompose.ui.LocalLifecycleOwner

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,9 +40,7 @@ import com.raywenderlich.learn.data.model.RWEntry
 
 public interface FeedData {
 
-  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?)
-
-  public fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?)
+  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?)
 
   public fun onMyGravatarData(item: GravatarEntry)
 }

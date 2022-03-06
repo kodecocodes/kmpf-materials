@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -36,90 +36,92 @@ import SharedKit
 let TAG = "RWEntryViewModel"
 
 class RWEntryViewModel: ObservableObject {
-        
-    @Published var items = [String:[RWEntry]]()
-    
-    @Published var bookmarks = [RWEntry]()
-    
-    @Published var profile = GravatarEntry(
-        id: nil,
-        hash: nil,
-        preferredUsername: nil,
-        thumbnailUrl: nil,
-        aboutMe: nil
-    )
-    
-    let FETCH_N_IMAGES = 5
-    
-    func getContent() -> [RWContent] {
-        return FeedClient.getContent()
+  @Published var items: [String: [RWEntry]] = [:]
+
+  @Published var bookmarks: [RWEntry] = []
+
+  @Published var profile: GravatarEntry?
+
+  let fetchNImages = 5
+
+  init() {
+    fetchProfile()
+    fetchFeeds()
+  }
+
+  func getContent() -> [RWContent] {
+    FeedClient.shared.getContent()
+  }
+
+  func fetchProfile() {
+    FeedClient.shared.fetchProfile { profile in
+      Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
+      DispatchQueue.main.async {
+        self.profile = profile
+      }
     }
-    
-    func fetchProfile() {
-        return FeedClient.fetchProfile { profile in
-            Logger().d(tag: TAG, message: "fetchProfile: \(profile)")
-            self.profile = profile
+  }
+
+  func fetchFeeds() {
+    FeedClient.shared.fetchFeeds { platform, items in
+      Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
+      DispatchQueue.main.async {
+        self.items[platform] = items
+      }
+    }
+  }
+
+  @MainActor
+  func fetchFeedsWithPreview() {
+    for platform in self.items.keys {
+      guard let items = self.items[platform] else { continue }
+      let subsetItems = Array(items[0 ..< Swift.min(self.fetchNImages, items.count)])
+      for item in subsetItems {
+        FeedClient.shared.fetchLinkImage(item.link) { url in
+          guard var list = self.items[platform.description] else {
+            return
+          }
+          guard let index = list.firstIndex(of: item) else {
+            return
+          }
+
+          list[index] = item.doCopy(
+            id: item.id,
+            link: item.link,
+            title: item.title,
+            summary: item.summary,
+            updated: item.updated,
+            imageUrl: url,
+            platform: item.platform,
+            bookmarked: item.bookmarked
+          )
+
+          Logger().d(tag: TAG, message: "\(list[index].title)Updated to:\(list[index].imageUrl)")
+
+          self.items[platform.description] = list
         }
+      }
     }
- 
-    func fetchFeeds() {
-        FeedClient.fetchFeeds { platform, items in
-            Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-            self.items[platform] = items
-        }
+  }
+
+  func fetchAllBookmarks() {
+    BookmarkClient.shared.fetchBookmarks { items in
+      Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
+      DispatchQueue.main.async {
+        self.bookmarks = items
+      }
     }
-    
-    func fetchFeedsWithPreview() {
-        FeedClient.fetchFeeds { platform, items in
-            Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-            self.items[platform] = items
-            
-            let subsetItems = Array(items[0 ..< Swift.min(self.FETCH_N_IMAGES, items.count)])
-            for item in subsetItems {
-                FeedClient.fetchLinkImage(platform: item.platform, id: item.id, link: item.link, completion: { id, url, platform in
-                    let item = self.items[platform.description]?.first(where: { $0.id == id })
-                    if (item == nil) {
-                        return
-                    }
-                    
-                    var list = self.items[platform.description]
-                    let index = list?.firstIndex(of: item!)
-                    
-                    list![index!] = item!.doCopy(
-                        id: item!.id,
-                        link: item!.link,
-                        title: item!.title,
-                        summary: item!.summary,
-                        updated: item!.updated,
-                        imageUrl: url,
-                        platform: item!.platform,
-                        bookmarked: item!.bookmarked
-                    )
-                    
-                    Logger().d(tag: TAG, message: "\(list![index!].title)Updated to:\(list![index!].imageUrl)")
-                    
-                    self.items[platform.description] = list
-                })
-            }
-        }
+  }
+
+  func addToBookmarks(entry: RWEntry) {
+    BookmarkClient.shared.addToBookmarks(entry) { _ in
+      Logger().d(tag: TAG, message: "addToBookmarks")
     }
-    
-    func fetchAllBookmarks() {
-        BookmarkClient.fetchBookmarks { items in
-            Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
-            self.bookmarks = items
-        }
+  }
+
+  func removeFromBookmarks(entry: RWEntry) {
+    BookmarkClient.shared.removeFromBookmarks(entry) { _ in
+      Logger().d(tag: TAG, message: "removeFromBookmarks")
     }
-    
-    func addToBookmarks(entry: RWEntry) {
-        BookmarkClient.addToBookmarks(entry: entry, completion: { items in
-            Logger().d(tag: TAG, message: "addToBookmarks")
-        })
-    }
-    
-    func removeFromBookmarks(entry: RWEntry) {
-        BookmarkClient.addToBookmarks(entry: entry, completion: { items in
-            Logger().d(tag: TAG, message: "addToBookmarks")
-        })
-    }
+  }
 }
