@@ -51,7 +51,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.theme.*
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorAccent25Transparency
+import com.raywenderlich.learn.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorPrimary
+import com.raywenderlich.learn.ui.theme.colorSecondary
 import moe.tlaster.precompose.navigation.Navigator
 
 private lateinit var selectedIndex: MutableState<Int>

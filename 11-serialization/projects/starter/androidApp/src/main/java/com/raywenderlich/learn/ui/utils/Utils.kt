@@ -36,9 +36,9 @@ package com.raywenderlich.learn.ui.utils
 
 import android.annotation.SuppressLint
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.datetime.toInstant
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlinx.datetime.toInstant
 
 private const val TAG = "Utils"
 

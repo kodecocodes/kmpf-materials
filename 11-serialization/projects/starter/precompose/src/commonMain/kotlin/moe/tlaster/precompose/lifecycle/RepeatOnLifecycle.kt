@@ -1,7 +1,13 @@
 package moe.tlaster.precompose.lifecycle
 
-import kotlinx.coroutines.*
 import kotlin.coroutines.resume
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 
 suspend fun Lifecycle.repeatOnLifecycle(
   block: suspend CoroutineScope.() -> Unit

@@ -1,7 +1,11 @@
 package moe.tlaster.precompose.navigation
 
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import moe.tlaster.precompose.navigation.route.Route
-import kotlin.test.*
 
 class RouteParserTest {
 

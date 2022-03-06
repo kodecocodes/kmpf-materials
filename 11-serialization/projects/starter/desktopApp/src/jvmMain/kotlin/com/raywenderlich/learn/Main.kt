@@ -49,10 +49,10 @@ import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
 import com.raywenderlich.learn.ui.theme.RWTheme
-import moe.tlaster.precompose.PreComposeWindow
-import moe.tlaster.precompose.ui.viewModel
 import java.awt.Desktop
 import java.net.URI
+import moe.tlaster.precompose.PreComposeWindow
+import moe.tlaster.precompose.ui.viewModel
 
 private lateinit var bookmarkViewModel: BookmarkViewModel
 private lateinit var feedViewModel: FeedViewModel

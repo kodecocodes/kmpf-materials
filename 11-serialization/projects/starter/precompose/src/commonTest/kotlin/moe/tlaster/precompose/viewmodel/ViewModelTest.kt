@@ -1,9 +1,9 @@
 package moe.tlaster.precompose.viewmodel
 
-import moe.tlaster.precompose.standard.Disposable
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import moe.tlaster.precompose.standard.Disposable
 
 class ViewModelTest {
   internal class DisposableImpl : Disposable {

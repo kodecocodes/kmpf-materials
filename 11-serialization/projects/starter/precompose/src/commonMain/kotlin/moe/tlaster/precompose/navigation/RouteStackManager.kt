@@ -3,6 +3,9 @@ package moe.tlaster.precompose.navigation
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.SaveableStateHolder
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 import moe.tlaster.precompose.lifecycle.Lifecycle
 import moe.tlaster.precompose.lifecycle.LifecycleObserver
 import moe.tlaster.precompose.lifecycle.LifecycleOwner
@@ -12,9 +15,6 @@ import moe.tlaster.precompose.navigation.route.SceneRoute
 import moe.tlaster.precompose.ui.BackDispatcher
 import moe.tlaster.precompose.ui.BackHandler
 import moe.tlaster.precompose.viewmodel.ViewModelStore
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 @Stable
 internal class RouteStackManager(

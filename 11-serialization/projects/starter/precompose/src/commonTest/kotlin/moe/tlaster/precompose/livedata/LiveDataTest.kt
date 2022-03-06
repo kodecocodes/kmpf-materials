@@ -1,8 +1,13 @@
 package moe.tlaster.precompose.livedata
 
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 import moe.tlaster.precompose.lifecycle.Lifecycle
 import moe.tlaster.precompose.lifecycle.TestLifecycleOwner
-import kotlin.test.*
 
 class LiveDataTest {
 

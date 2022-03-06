@@ -2,9 +2,9 @@ package moe.tlaster.precompose.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import kotlin.reflect.KClass
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.ViewModelStoreOwner
-import kotlin.reflect.KClass
 
 @Composable
 inline fun <reified T : ViewModel> viewModel(

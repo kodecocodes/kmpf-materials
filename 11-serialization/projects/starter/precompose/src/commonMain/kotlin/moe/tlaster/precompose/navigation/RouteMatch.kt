@@ -1,7 +1,7 @@
 package moe.tlaster.precompose.navigation
 
-import moe.tlaster.precompose.navigation.route.ComposeRoute
 import kotlin.math.min
+import moe.tlaster.precompose.navigation.route.ComposeRoute
 
 internal class RouteMatch {
 

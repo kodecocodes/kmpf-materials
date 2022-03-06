@@ -4,8 +4,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.loadXmlImageVector
 import io.kamel.core.config.ResourceConfig
 import io.kamel.core.decoder.Decoder
-import io.ktor.utils.io.*
-import io.ktor.utils.io.jvm.javaio.*
+import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.jvm.javaio.toInputStream
 import org.xml.sax.InputSource
 
 internal object ImageVectorDecoder : Decoder<ImageVector> {

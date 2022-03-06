@@ -1,7 +1,10 @@
 package io.kamel.core.utils
 
-import io.ktor.client.request.*
-import io.ktor.http.*
+import io.ktor.client.request.HttpRequest
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.header
+import io.ktor.http.CacheControl
+import io.ktor.http.HttpHeaders
 
 /**
  * Configures cache control for [HttpRequest].
