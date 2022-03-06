@@ -74,8 +74,6 @@ public object FeedAPI {
 
   public suspend fun fetchRWEntry(feedUrl: String): HttpResponse = client.get(feedUrl)
 
-  public suspend fun fetchImageUrlFromLink(link: String): HttpResponse = client.get(link)
-
   public suspend fun fetchMyGravatar(hash: String): GravatarProfile =
     client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT") {
       header(X_APP_NAME, APP_NAME)
