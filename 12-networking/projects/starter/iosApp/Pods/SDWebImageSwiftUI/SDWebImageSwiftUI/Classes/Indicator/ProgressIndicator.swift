@@ -15,7 +15,7 @@ public struct ProgressIndicator: PlatformViewRepresentable {
     @Binding var isAnimating: Bool
     @Binding var progress: Double
     var style: Style
-    
+
     /// Create indicator with animation binding, progress binding and the style
     /// - Parameters:
     ///   - isAnimating: The binding to control the animation
@@ -26,13 +26,13 @@ public struct ProgressIndicator: PlatformViewRepresentable {
         self._progress = progress
         self.style = style
     }
-    
+
     #if os(macOS)
     public typealias NSViewType = ProgressIndicatorWrapper
     #elseif os(iOS) || os(tvOS)
     public typealias UIViewType = ProgressIndicatorWrapper
     #endif
-    
+
     #if os(iOS) || os(tvOS)
     public func makeUIView(context: UIViewRepresentableContext<ProgressIndicator>) -> ProgressIndicatorWrapper {
         let progressStyle: UIProgressView.Style
@@ -49,7 +49,7 @@ public struct ProgressIndicator: PlatformViewRepresentable {
         view.progressViewStyle = progressStyle
         return uiView
     }
-    
+
     public func updateUIView(_ uiView: ProgressIndicatorWrapper, context: UIViewRepresentableContext<ProgressIndicator>) {
         let view = uiView.wrapped
         if isAnimating {
@@ -65,7 +65,7 @@ public struct ProgressIndicator: PlatformViewRepresentable {
         }
     }
     #endif
-    
+
     #if os(macOS)
     public func makeNSView(context: NSViewRepresentableContext<ProgressIndicator>) -> ProgressIndicatorWrapper {
         let nsView = ProgressIndicatorWrapper()
@@ -78,7 +78,7 @@ public struct ProgressIndicator: PlatformViewRepresentable {
         view.autoresizingMask = [.maxXMargin, .minXMargin, .maxYMargin, .minYMargin]
         return nsView
     }
-    
+
     public func updateNSView(_ nsView: ProgressIndicatorWrapper, context: NSViewRepresentableContext<ProgressIndicator>) {
         let view = nsView.wrapped
         if isAnimating {
