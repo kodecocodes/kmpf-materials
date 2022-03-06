@@ -34,14 +34,19 @@
 
 package com.raywenderlich.learn.ui.home
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import com.raywenderlich.learn.ServiceLocator
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
 import moe.tlaster.precompose.viewmodel.ViewModel
+import moe.tlaster.precompose.viewmodel.viewModelScope
+import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -49,7 +54,10 @@ private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
-  val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  private val _items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+  val items = _items
+
+  val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
@@ -57,12 +65,16 @@ class FeedViewModel : ViewModel(), FeedData {
 
   // region FeedData
 
-  override fun onNewDataAvailable(newItems: List<RWEntry>, platform: PLATFORM, e: Exception?) {
+  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
+  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  }
+
+  override fun onMyGravatarData(item: GravatarEntry) {
+    Logger.d(TAG, "onMyGravatarData | item=$item")
   }
 
   // endregion FeedData

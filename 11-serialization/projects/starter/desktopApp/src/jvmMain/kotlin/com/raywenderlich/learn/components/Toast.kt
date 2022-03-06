@@ -34,95 +34,83 @@
 
 package com.raywenderlich.learn.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import com.raywenderlich.learn.platform.Logger
-import io.kamel.core.Resource
-import io.kamel.image.KamelImage
-import io.kamel.image.lazyPainterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.raywenderlich.learn.ui.theme.colorAccent
+import com.raywenderlich.learn.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-private const val TAG = "ImagePreview"
+/**
+ * Toast.kt
+ *
+ * Toast message class for Desktop applications. Original from JetBrains compose-jb samples.
+ *
+ * Source: https://github.com/JetBrains/compose-jb
+ */
 
-@Composable
-fun AddImagePreview(
-  url: String,
-  modifier: Modifier
-) {
-
-  if (url.isEmpty()) {
-    Logger.d(TAG, "Empty url")
-    AddImagePreviewEmpty(modifier)
-
-  } else {
-
-    Box {
-
-      when (val resource = lazyPainterResource(url)) {
-        is Resource.Loading -> {
-          Logger.d(TAG, "Loading image from uri=$url")
-          AddImagePreviewEmpty(modifier)
-        }
-        is Resource.Success -> {
-          Logger.d(TAG, "Loading successful image from uri=$url")
-
-          KamelImage(
-            resource = resource,
-            contentScale = ContentScale.Crop,
-            contentDescription = "Image preview",
-            modifier = modifier,
-            crossfade = true
-          )
-        }
-        is Resource.Failure -> {
-          Logger.d(TAG, "Loading failed image from uri=$url. Reason=${resource.exception}")
-
-          AddImagePreviewEmpty(modifier)
-        }
-      }
-    }
-  }
+enum class ToastDuration(val value: Int) {
+  Short(1000), Long(3000)
 }
 
+private var isShown: Boolean = false
+
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
-fun AddImagePreviewEmpty(
-  modifier: Modifier
+fun Toast(
+  text: String,
+  visibility: MutableState<Boolean> = mutableStateOf(false),
+  duration: ToastDuration = ToastDuration.Long
 ) {
+  if (isShown) {
+    return
+  }
 
-  Column(
-    modifier = modifier
-      .fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-
-    Surface(
-      modifier = modifier,
-      color = Color.Transparent
+  if (visibility.value) {
+    isShown = true
+    Box(
+      modifier = Modifier.fillMaxSize().padding(bottom = 70.dp),
+      contentAlignment = Alignment.BottomCenter
     ) {
-
-      val description = "Unable to load image preview"
-
-      Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+      Surface(
+        modifier = Modifier
+          .size(300.dp, 70.dp)
+          .border(2.dp, colorContentSecondary, RoundedCornerShape(4.dp)),
+        color = colorContent,
+        shape = RoundedCornerShape(4.dp)
       ) {
-
-        Image(
-          painter = painterResource("images/razerware.png"),
-          contentScale = ContentScale.Crop,
-          contentDescription = description,
-          modifier = modifier
-        )
+        Box(contentAlignment = Alignment.Center) {
+          Text(
+            text = text,
+            fontSize = 17.sp,
+            color = colorAccent
+          )
+        }
+        DisposableEffect(Unit) {
+          GlobalScope.launch {
+            delay(duration.value.toLong())
+            isShown = false
+            visibility.value = false
+          }
+          onDispose {  }
+        }
       }
     }
   }

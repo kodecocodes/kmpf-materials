@@ -49,7 +49,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateMap
@@ -65,9 +64,7 @@ import com.raywenderlich.learn.ui.theme.colorPrimary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.home.FeedViewModel
 import kotlinx.coroutines.CoroutineScope
-import moe.tlaster.precompose.ui.observeAsState
 
 private const val TAG = "SearchContent"
 
