@@ -33,44 +33,89 @@
 import SwiftUI
 import SharedKit
 
-struct BookmarkView: View {
-  let TAG = "BookmarkView"
+struct RWEntryRow: View {
+  let item: RWEntry
+
+  let addToBookmarks: Bool
+
+  @Environment(\.openURL) var openURL
 
   @State private var showDialog = false
 
   @State private var selectedEntry: RWEntry?
 
-  @Environment(\.openURL) var openURL
-
   @EnvironmentObject private var feedViewModel: RWEntryViewModel
 
   var body: some View {
-    NavigationView {
-      ZStack(alignment: .topLeading) {
-        Color("rw-dark")
-        if feedViewModel.bookmarks.isEmpty {
-          VStack(alignment: .center) {
-            Text("You currently don't have any bookmark.")
+    Button(action: {
+      guard let url = URL(string: "\(item.link)") else {
+        return
+      }
+
+      openURL(url)
+    }, label: {
+      VStack(alignment: .leading) {
+        HStack {
+          AppIcon()
+          VStack(alignment: .leading) {
+            Text("Ray Wenderlich")
               .foregroundColor(.white)
               .font(Font.custom("Bitter-Bold", size: 15))
+            Text(formatStringDate(date: item.updated))
+              .foregroundColor(.white)
+              .font(Font.custom("Bitter-Bold", size: 12))
           }
-          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-          .background(Color("rw-dark"))
-          .navigationBarTitle("learn", displayMode: .inline)
+
+          Spacer()
+
+          Button(action: {
+            selectedEntry = item
+            showDialog = true
+          }, label: {
+            Image("ic_more").foregroundColor(.white)
+          })
+            .padding(.trailing, 1)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        Text(item.title)
+          .lineLimit(2)
+          .foregroundColor(.white)
+          .font(Font.custom("Bitter-Bold", size: 15))
+          .multilineTextAlignment(.leading)
+        Text(item.summary)
+          .lineLimit(2)
+          .foregroundColor(.white)
+          .font(Font.custom("Bitter-Regular", size: 14))
+          .multilineTextAlignment(.leading)
+      }
+      .padding(.horizontal, 16.0)
+    })
+      .confirmationDialog(
+        "",
+        isPresented: $showDialog,
+        presenting: $selectedEntry
+      ) { entry in
+        if addToBookmarks {
+          Button("Add to bookmarks") {
+            if let entry = entry.wrappedValue {
+              feedViewModel.addToBookmarks(entry: entry)
+            }
+          }
         } else {
-          ScrollView(.vertical) {
-            ForEach(feedViewModel.bookmarks, id: \.id) { item in
-              RWEntryRow(item: item, addToBookmarks: false)
-                .environmentObject(feedViewModel)
+          Button("Remove from bookmarks") {
+            if let entry = entry.wrappedValue {
+              feedViewModel.removeFromBookmarks(entry: entry)
             }
           }
         }
+        Button("Share as link") {
+          if let entry = entry.wrappedValue {
+            shareLink(entry: entry)
+          }
+        }
+        Button("Cancel", role: .cancel) {
+          selectedEntry = nil
+        }
       }
-      .navigationBarTitle("learn", displayMode: .inline)
-    }
-    .onAppear {
-      Logger().d(tag: TAG, message: "Retrieving all bookmarks")
-        feedViewModel.fetchAllBookmarks()
-    }
   }
 }

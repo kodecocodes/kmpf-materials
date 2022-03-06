@@ -33,38 +33,53 @@
 import SharedKit
 
 public class FeedClient {
-    
-    public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
-    public typealias FeedHandlerImage = (_ id: String, _ url: String, _ platform: PLATFORM) -> Void
-    
-    private static let shared = FeedClient()
+  private init() { }
 
-    private let feedPresenter = ServiceLocator.init().getFeedPresenter
-    private var handler: FeedHandler?
-    private var handlerImage: FeedHandlerImage?
-    
-    public static func getContent() -> [RWContent] {
-        return FeedClient.shared.feedPresenter.content
-    }
-    
-    public static func fetchFeeds(completion: @escaping FeedHandler) {
-        FeedClient.shared.handler = completion
-    }
-    
-    public static func fetchLinkImage(platform: PLATFORM, id: String, link: String, completion: @escaping FeedHandlerImage) {
-        FeedClient.shared.handlerImage = completion
-    }
+  public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
+  public typealias FeedHandlerImage = (_ id: String, _ url: String, _ platform: PLATFORM) -> Void
+
+  public typealias ProfileHandler = (_ profile: GravatarEntry) -> Void
+
+  public static let shared = FeedClient()
+
+  private let feedPresenter = ServiceLocator.init().getFeedPresenter
+
+  private var handler: FeedHandler?
+  private var handlerImage: FeedHandlerImage?
+  private var handlerProfile: ProfileHandler?
+
+  public func getContent() -> [RWContent] {
+    return feedPresenter.content
+  }
+
+  public func fetchProfile(completion: @escaping ProfileHandler) {
+    feedPresenter.fetchMyGravatar(cb: self)
+    handlerProfile = completion
+  }
+
+  public func fetchFeeds(completion: @escaping FeedHandler) {
+    feedPresenter.fetchAllFeeds(cb: self)
+    handler = completion
+  }
+
+  public func fetchLinkImage(_ platform: PLATFORM, _ id: String, _ link: String, completion: @escaping FeedHandlerImage) {
+    handlerImage = completion
+  }
 }
 
 extension FeedClient: FeedData {
-    
-    public func onNewDataAvailable(items: [RWEntry], platform: PLATFORM, e: KotlinException?) {
-        Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
-        self.handler?(platform.description(), items)
-    }
-    
-    public func onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: KotlinException?) {
-        Logger().d(tag: TAG, message: "onNewImageUrlAvailable")
-        self.handlerImage?(id, url, platform)
-    }
+  public func onNewDataAvailable(items: [RWEntry], platform: PLATFORM, exception: KotlinException?) {
+    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
+    self.handler?(platform.description(), items)
+  }
+
+  public func onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: KotlinException?) {
+    Logger().d(tag: TAG, message: "onNewImageUrlAvailable")
+    self.handlerImage?(id, url, platform)
+  }
+
+  public func onMyGravatarData(item: GravatarEntry) {
+    Logger().d(tag: TAG, message: "onMyGravatarData")
+    self.handlerProfile?(item)
+  }
 }

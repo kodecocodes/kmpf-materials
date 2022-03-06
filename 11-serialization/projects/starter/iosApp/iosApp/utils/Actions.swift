@@ -33,68 +33,13 @@
 import SwiftUI
 import SharedKit
 
-struct ContentView: View {
-  @State private var tabSelection = 1
+func shareLink(entry: RWEntry) {
+  let allScenes = UIApplication.shared.connectedScenes
+  let scene = allScenes.first { $0.activationState == .foregroundActive }
 
-  @State private var searchText = ""
-
-  @StateObject var feedViewModel = RWEntryViewModel()
-
-  init() {
-    let navBarAppearance = UINavigationBarAppearance()
-    navBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
-    navBarAppearance.shadowImage = UIImage()
-    navBarAppearance.shadowColor = .clear
-    navBarAppearance.backgroundImage = UIImage()
-    navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
-    if let uiFont = UIFont(name: "Bitter-Bold", size: 18) {
-    navBarAppearance.titleTextAttributes = [
-    .font: uiFont,
-    .foregroundColor: UIColor.white
-    ]}
-
-    UINavigationBar.appearance().barTintColor = UIColor(Color("rw-dark"))
-    UINavigationBar.appearance().isTranslucent = false
-    UINavigationBar.appearance().standardAppearance = navBarAppearance
-    UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-    UINavigationBar.appearance().compactAppearance = navBarAppearance
-  }
-
-  var body: some View {
-    TabView(selection: $tabSelection) {
-      HomeView()
-        .tabItem {
-          Image("ic_home")
-          Text("Home")
-        }
-        .tag(1)
-        .environmentObject(feedViewModel)
-
-      BookmarkView()
-        .tabItem {
-          Image("ic_bookmark")
-          Text("Bookmark")
-        }
-        .tag(2)
-        .environmentObject(feedViewModel)
-
-      LatestView()
-        .tabItem {
-          Image("ic_latest")
-          Text("Latest")
-        }
-        .tag(3)
-        .environmentObject(feedViewModel)
-
-      SearchView(text: $searchText)
-        .tabItem {
-          Image("ic_search")
-          Text("Search")
-        }
-        .tag(4)
-        .environmentObject(feedViewModel)
-    }
-    .accentColor(Color("rw-green"))
+  if let windowScene = scene as? UIWindowScene {
+    guard let data = URL(string: entry.link) else { return }
+    let avController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+    windowScene.keyWindow?.rootViewController?.present(avController, animated: true, completion: nil)
   }
 }
