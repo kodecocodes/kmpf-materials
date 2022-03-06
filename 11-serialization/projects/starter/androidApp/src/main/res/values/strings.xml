@@ -16,6 +16,8 @@
     <string name="search_hint">Search</string>
 
     <!-- Actions -->
+    <string name="action_hello">Hello %s!</string>
+
     <string name="action_add_bookmarks">Add to bookmarks</string>
     <string name="action_remove_bookmarks">Remove from bookmarks</string>
     <string name="action_share_link">Share as link</string>
