@@ -4,8 +4,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import io.kamel.core.config.ResourceConfig
 import io.kamel.core.decoder.Decoder
-import io.ktor.util.*
-import io.ktor.utils.io.*
+import io.ktor.util.toByteArray
+import io.ktor.utils.io.ByteReadChannel
 import org.jetbrains.skia.Image
 
 /**

@@ -65,13 +65,13 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.components.AddImagePreview
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEntryContent
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.CoroutineScope
 
 private const val TAG = "HomeContent"
@@ -79,93 +79,93 @@ private const val TAG = "HomeContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeContent(
-  selected: MutableState<RWEntry>,
-  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    selected: MutableState<RWEntry>,
+    items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  val size = items.size
-  val platform = remember { mutableStateOf(PLATFORM.ALL) }
+    val size = items.size
+    val platform = remember { mutableStateOf(PLATFORM.ALL) }
 
-  Logger.d(TAG, "Items received | items=${items.size}")
+    Logger.d(TAG, "Items received | items=${items.size}")
 
-  LazyColumn(
-    modifier = Modifier
-      .fillMaxSize()
-      .background(color = colorContent)
-  ) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorContent)
+    ) {
 
-    item {
-      Spacer(modifier = Modifier.height(16.dp))
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        item {
+            AddPlatformHeadings(
+                platform = platform
+            )
+        }
+
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        if (!items.isNullOrEmpty()) {
+            val feed = items[platform.value] ?: emptyList()
+            itemsIndexed(feed) { index, item ->
+                AddEntryContent(
+                    item = item,
+                    selected = selected,
+                    divider = index < size - 1,
+                    coroutineScope = coroutineScope,
+                    bottomSheetScaffoldState = bottomSheetScaffoldState,
+                    onOpenEntry = onOpenEntry
+                )
+            }
+        }
     }
-
-    item {
-      AddPlatformHeadings(
-        platform = platform
-      )
-    }
-
-    item {
-      Spacer(modifier = Modifier.height(16.dp))
-    }
-
-    if (!items.isNullOrEmpty()) {
-      val feed = items[platform.value] ?: emptyList()
-      itemsIndexed(feed) { index, item ->
-        AddEntryContent(
-          item = item,
-          selected = selected,
-          divider = index < size - 1,
-          coroutineScope = coroutineScope,
-          bottomSheetScaffoldState = bottomSheetScaffoldState,
-          onOpenEntry = onOpenEntry
-        )
-      }
-    }
-  }
 }
 
 @Composable
 fun AddPlatformHeadings(
-  platform: MutableState<PLATFORM>
+    platform: MutableState<PLATFORM>
 ) {
 
-  LazyRow(
-    modifier = Modifier.fillMaxWidth()
-  ) {
+    LazyRow(
+        modifier = Modifier.fillMaxWidth()
+    ) {
 
-    items(ServiceLocator.getFeedPresenter.content) {
+        items(ServiceLocator.getFeedPresenter.content) {
 
-      Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
-      Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-      ) {
-        AddImagePreview(
-          url = it.image,
-          modifier = Modifier
-            .size(125.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(color = colorContentSecondary)
-            .clickable {
-              platform.value = it.platform
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                AddImagePreview(
+                    url = it.image,
+                    modifier = Modifier
+                        .size(125.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(color = colorContentSecondary)
+                        .clickable {
+                            platform.value = it.platform
+                        }
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(
+                    text = it.platform.value.capitalize(Locale.current),
+                    style = typography.h1,
+                    color = colorAccent
+                )
             }
-        )
+        }
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-          text = it.platform.value.capitalize(Locale.current),
-          style = typography.h1,
-          color = colorAccent
-        )
-      }
+        item {
+            Spacer(modifier = Modifier.width(16.dp))
+        }
     }
-
-    item {
-      Spacer(modifier = Modifier.width(16.dp))
-    }
-  }
 }

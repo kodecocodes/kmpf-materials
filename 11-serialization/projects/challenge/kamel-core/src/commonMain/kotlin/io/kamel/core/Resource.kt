@@ -1,6 +1,8 @@
 package io.kamel.core
 
-import io.kamel.core.Resource.*
+import io.kamel.core.Resource.Failure
+import io.kamel.core.Resource.Loading
+import io.kamel.core.Resource.Success
 
 /**
  * A class represents an asynchronous resource loading.

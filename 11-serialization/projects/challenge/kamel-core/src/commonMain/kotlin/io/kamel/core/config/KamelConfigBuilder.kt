@@ -103,7 +103,8 @@ public fun KamelConfigBuilder.urlMapper(): Unit = mapper(URLMapper)
 /**
  * Copies all the data from [builder] and uses it as base for [this].
  */
-public fun KamelConfigBuilder.takeFrom(builder: KamelConfigBuilder): KamelConfigBuilder = takeFrom(builder.build())
+public fun KamelConfigBuilder.takeFrom(builder: KamelConfigBuilder): KamelConfigBuilder =
+    takeFrom(builder.build())
 
 /**
  * Copies all the data from [config] and uses it as base for [this].

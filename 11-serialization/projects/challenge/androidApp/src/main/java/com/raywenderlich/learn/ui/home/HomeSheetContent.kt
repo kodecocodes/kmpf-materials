@@ -49,9 +49,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.R
-import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.ui.theme.colorAccent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -60,66 +60,66 @@ private const val TAG = "HomeSheetContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeSheetContent(
-  item: MutableState<RWEntry>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onUpdateBookmark: (RWEntry) -> Unit,
-  onShareAsLink: (RWEntry) -> Unit
+    item: MutableState<RWEntry>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onUpdateBookmark: (RWEntry) -> Unit,
+    onShareAsLink: (RWEntry) -> Unit
 ) {
 
-  Logger.d(TAG, "Selected item=${item.value}")
+    Logger.d(TAG, "Selected item=${item.value}")
 
-  Column(
-    modifier = Modifier.fillMaxWidth()
-  ) {
-
-    Row(
-      modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-          coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
-          }
-
-          onUpdateBookmark(item.value)
-        }
+    Column(
+        modifier = Modifier.fillMaxWidth()
     ) {
 
-      val text = if (item.value.bookmarked) {
-        R.string.action_remove_bookmarks
-      } else {
-        R.string.action_add_bookmarks
-      }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    coroutineScope.launch {
+                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                    }
 
-      Text(
-        text = stringResource(id = text),
-        style = MaterialTheme.typography.h4,
-        color = colorAccent,
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 12.dp)
-      )
-    }
+                    onUpdateBookmark(item.value)
+                }
+        ) {
 
-    Row(
-      modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-          coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
-          }
+            val text = if (item.value.bookmarked) {
+                R.string.action_remove_bookmarks
+            } else {
+                R.string.action_add_bookmarks
+            }
 
-          onShareAsLink(item.value)
+            Text(
+                text = stringResource(id = text),
+                style = MaterialTheme.typography.h4,
+                color = colorAccent,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 12.dp)
+            )
         }
-    ) {
-      Text(
-        text = stringResource(id = R.string.action_share_link),
-        style = MaterialTheme.typography.h4,
-        color = colorAccent,
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp)
-      )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    coroutineScope.launch {
+                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                    }
+
+                    onShareAsLink(item.value)
+                }
+        ) {
+            Text(
+                text = stringResource(id = R.string.action_share_link),
+                style = MaterialTheme.typography.h4,
+                color = colorAccent,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp)
+            )
+        }
     }
-  }
 }

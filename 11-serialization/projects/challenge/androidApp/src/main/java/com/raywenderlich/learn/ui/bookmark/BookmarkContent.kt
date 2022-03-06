@@ -46,11 +46,11 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.common.AddEntryContent
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.CoroutineScope
 
 private const val TAG = "BookmarkContent"
@@ -58,57 +58,57 @@ private const val TAG = "BookmarkContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BookmarkContent(
-  selected: MutableState<RWEntry>,
-  items: State<List<RWEntry>?>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    selected: MutableState<RWEntry>,
+    items: State<List<RWEntry>?>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  Logger.d(TAG, "Items received | items=${items.value?.size}")
+    Logger.d(TAG, "Items received | items=${items.value?.size}")
 
-  if (items.value == null || items.value.isNullOrEmpty()) {
-    AddEmptyScreen(
-      text = stringResource(id = R.string.empty_screen_bookmarks)
-    )
-  } else {
-    AddBookmarks(
-      selected = selected,
-      items = items.value ?: emptyList(),
-      coroutineScope = coroutineScope,
-      bottomSheetScaffoldState = bottomSheetScaffoldState,
-      onOpenEntry = onOpenEntry
-    )
-  }
+    if (items.value == null || items.value.isNullOrEmpty()) {
+        AddEmptyScreen(
+            text = stringResource(id = R.string.empty_screen_bookmarks)
+        )
+    } else {
+        AddBookmarks(
+            selected = selected,
+            items = items.value ?: emptyList(),
+            coroutineScope = coroutineScope,
+            bottomSheetScaffoldState = bottomSheetScaffoldState,
+            onOpenEntry = onOpenEntry
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AddBookmarks(
-  selected: MutableState<RWEntry>,
-  items: List<RWEntry>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    selected: MutableState<RWEntry>,
+    items: List<RWEntry>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  val size = items.size
+    val size = items.size
 
-  LazyColumn(
-    modifier = Modifier
-      .fillMaxSize()
-      .background(color = colorContent)
-  ) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorContent)
+    ) {
 
-    itemsIndexed(items) { index, item ->
-      AddEntryContent(
-        item = item,
-        selected = selected,
-        divider = index < size - 1,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
+        itemsIndexed(items) { index, item ->
+            AddEntryContent(
+                item = item,
+                selected = selected,
+                divider = index < size - 1,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
     }
-  }
 }

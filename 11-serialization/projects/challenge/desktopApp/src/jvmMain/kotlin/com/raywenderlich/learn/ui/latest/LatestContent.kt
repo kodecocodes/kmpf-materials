@@ -63,162 +63,162 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.raywenderlich.learn.components.AddImagePreview
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContent20Transparency
 import com.raywenderlich.learn.ui.theme.colorContent85Transparency
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "LatestContent"
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun LatestContent(
-  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  onOpenEntry: (String) -> Unit
+    items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  if (items.keys.isEmpty()) {
-    AddEmptyScreen("Loading…")
-  } else {
-    AddPages(
-      items = items,
-      onOpenEntry = onOpenEntry
-    )
-  }
+    if (items.keys.isEmpty()) {
+        AddEmptyScreen("Loading…")
+    } else {
+        AddPages(
+            items = items,
+            onOpenEntry = onOpenEntry
+        )
+    }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun AddPages(
-  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  onOpenEntry: (String) -> Unit
+    items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  LazyColumn(
-    modifier = Modifier
-      .fillMaxSize()
-      .background(color = colorContent)
-  ) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorContent)
+    ) {
 
-    item {
-      Spacer(modifier = Modifier.height(16.dp))
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        item {
+
+            val platforms = items.keys
+            Logger.d(TAG, "platforms found=$platforms")
+
+            for (platform in platforms) {
+                AddNewPage(
+                    platform = platform,
+                    items = items[platform] ?: emptyList(),
+                    onOpenEntry = onOpenEntry
+                )
+            }
+        }
+
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
     }
-
-    item {
-
-      val platforms = items.keys
-      Logger.d(TAG, "platforms found=$platforms")
-
-      for (platform in platforms) {
-        AddNewPage(
-          platform = platform,
-          items = items[platform] ?: emptyList(),
-          onOpenEntry = onOpenEntry
-        )
-      }
-    }
-
-    item {
-      Spacer(modifier = Modifier.height(16.dp))
-    }
-  }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun AddNewPage(
-  platform: PLATFORM,
-  items: List<RWEntry>,
-  onOpenEntry: (String) -> Unit
+    platform: PLATFORM,
+    items: List<RWEntry>,
+    onOpenEntry: (String) -> Unit
 ) {
-  val pagerState = rememberPagerState(0)
+    val pagerState = rememberPagerState(0)
 
-  Column(
-    modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-  ) {
-    Text(
-      text = platform.value.capitalize(Locale.current),
-      style = MaterialTheme.typography.h4,
-      color = colorAccent
-    )
+    Column(
+        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+    ) {
+        Text(
+            text = platform.value.capitalize(Locale.current),
+            style = MaterialTheme.typography.h4,
+            color = colorAccent
+        )
 
-    HorizontalPager(
-      count = items.size,
-      state = pagerState,
-      modifier = Modifier.fillMaxWidth(),
-    ) { page ->
+        HorizontalPager(
+            count = items.size,
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth(),
+        ) { page ->
 
-      AddNewPageEntry(
-        entry = items[page],
-        onOpenEntry = onOpenEntry
-      )
+            AddNewPageEntry(
+                entry = items[page],
+                onOpenEntry = onOpenEntry
+            )
+        }
+
+        if (pagerState.pageCount > 1) {
+            HorizontalPagerIndicator(
+                pagerState = pagerState,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(16.dp),
+                activeColor = colorAccent
+            )
+        }
     }
-
-    if (pagerState.pageCount > 1) {
-      HorizontalPagerIndicator(
-        pagerState = pagerState,
-        modifier = Modifier
-          .align(Alignment.CenterHorizontally)
-          .padding(16.dp),
-        activeColor = colorAccent
-      )
-    }
-  }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun AddNewPageEntry(
-  entry: RWEntry,
-  onOpenEntry: (String) -> Unit
+    entry: RWEntry,
+    onOpenEntry: (String) -> Unit
 ) {
-  Card(
-    modifier = Modifier
-      .fillMaxWidth()
-      .aspectRatio(1.0f)
-      .padding(top = 8.dp, bottom = 8.dp)
-      .clickable {
-        onOpenEntry(entry.link)
-      },
-    shape = RoundedCornerShape(16.dp),
-    backgroundColor = colorContent,
-    elevation = 0.dp
-  ) {
-
-    AddImagePreview(
-      url = entry.imageUrl,
-      modifier = Modifier
-        .fillMaxSize()
-        .clip(RoundedCornerShape(16.dp))
-        .background(color = colorContentSecondary)
-    )
-
-    val verticalGradientBrush = Brush.verticalGradient(
-      colors = listOf(
-        colorContent20Transparency,
-        colorContent85Transparency
-      )
-    )
-
-    Column(
-      modifier = Modifier
-        .fillMaxSize()
-        .background(brush = verticalGradientBrush),
-      verticalArrangement = Arrangement.Bottom,
-      horizontalAlignment = Alignment.CenterHorizontally
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(1.0f)
+            .padding(top = 8.dp, bottom = 8.dp)
+            .clickable {
+                onOpenEntry(entry.link)
+            },
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = colorContent,
+        elevation = 0.dp
     ) {
 
-      Text(
-        text = entry.title,
-        modifier = Modifier.padding(16.dp),
-        style = MaterialTheme.typography.h4,
-        color = colorAccent
-      )
+        AddImagePreview(
+            url = entry.imageUrl,
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(16.dp))
+                .background(color = colorContentSecondary)
+        )
+
+        val verticalGradientBrush = Brush.verticalGradient(
+            colors = listOf(
+                colorContent20Transparency,
+                colorContent85Transparency
+            )
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(brush = verticalGradientBrush),
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Text(
+                text = entry.title,
+                modifier = Modifier.padding(16.dp),
+                style = MaterialTheme.typography.h4,
+                color = colorAccent
+            )
+        }
     }
-  }
 }

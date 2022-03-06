@@ -38,9 +38,9 @@ internal fun AnimatedRoute(
         val indexOfOld = manager.indexOf(previousState)
             .takeIf {
                 it >= 0 ||
-                    // Workaround for navOptions
-                    targetState.lifecycle.currentState == Lifecycle.State.Initialized &&
-                    previousState.lifecycle.currentState == Lifecycle.State.Active
+                        // Workaround for navOptions
+                        targetState.lifecycle.currentState == Lifecycle.State.Initialized &&
+                        previousState.lifecycle.currentState == Lifecycle.State.Active
             } ?: Int.MAX_VALUE
         val actualNavTransition = run {
             if (indexOfNew >= indexOfOld) targetState else previousState
@@ -52,7 +52,8 @@ internal fun AnimatedRoute(
         }.toMap().run {
             if (!containsKey(targetState)) {
                 toMutableMap().also {
-                    val type = if (indexOfNew >= indexOfOld) AnimateType.Create else AnimateType.Resume
+                    val type =
+                        if (indexOfNew >= indexOfOld) AnimateType.Create else AnimateType.Resume
                     it[targetState] = type
                 }
             } else {
@@ -68,10 +69,22 @@ internal fun AnimatedRoute(
                 Box(
                     Modifier.graphicsLayer {
                         when (value) {
-                            AnimateType.Create -> actualNavTransition.createTransition.invoke(this, factor)
-                            AnimateType.Destroy -> actualNavTransition.destroyTransition.invoke(this, factor)
-                            AnimateType.Pause -> actualNavTransition.pauseTransition.invoke(this, factor)
-                            AnimateType.Resume -> actualNavTransition.resumeTransition.invoke(this, factor)
+                            AnimateType.Create -> actualNavTransition.createTransition.invoke(
+                                this,
+                                factor
+                            )
+                            AnimateType.Destroy -> actualNavTransition.destroyTransition.invoke(
+                                this,
+                                factor
+                            )
+                            AnimateType.Pause -> actualNavTransition.pauseTransition.invoke(
+                                this,
+                                factor
+                            )
+                            AnimateType.Resume -> actualNavTransition.resumeTransition.invoke(
+                                this,
+                                factor
+                            )
                         }
                     }
                 ) {

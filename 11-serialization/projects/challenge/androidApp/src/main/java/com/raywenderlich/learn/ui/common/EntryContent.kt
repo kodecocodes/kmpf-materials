@@ -60,11 +60,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorAccent25Transparency
 import com.raywenderlich.learn.ui.utils.converterIso8601ToReadableDate
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -73,119 +73,119 @@ private const val TAG = "EntryContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AddEntryContent(
-  item: RWEntry,
-  selected: MutableState<RWEntry>,
-  divider: Boolean = true,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    item: RWEntry,
+    selected: MutableState<RWEntry>,
+    divider: Boolean = true,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  Logger.d(TAG, "item | title=${item.title} | updated=${item.updated}")
+    Logger.d(TAG, "item | title=${item.title} | updated=${item.updated}")
 
 
-  Column(
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-      .clickable {
-        onOpenEntry(item.link)
-      }
-  ) {
-
-    Row(
-      modifier = Modifier.fillMaxWidth(),
-      verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.Start
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+            .clickable {
+                onOpenEntry(item.link)
+            }
     ) {
 
-      Row(
-        modifier = Modifier
-          .fillMaxWidth()
-          .weight(1.0f),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
-      ) {
-
-        val icon = painterResource(id = R.mipmap.ic_launcher)
-        val description = stringResource(R.string.description_feed_icon)
-
-        Image(
-          painter = icon,
-          contentDescription = description,
-          modifier = Modifier.size(40.dp)
-        )
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Column(
-          modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
         ) {
 
-          Text(
-            text = stringResource(id = R.string.app_ray_wenderlich),
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1.0f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+
+                val icon = painterResource(id = R.mipmap.ic_launcher)
+                val description = stringResource(R.string.description_feed_icon)
+
+                Image(
+                    painter = icon,
+                    contentDescription = description,
+                    modifier = Modifier.size(40.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+
+                    Text(
+                        text = stringResource(id = R.string.app_ray_wenderlich),
+                        style = MaterialTheme.typography.h1,
+                        color = colorAccent
+                    )
+
+                    Text(
+                        text = converterIso8601ToReadableDate(item.updated),
+                        style = MaterialTheme.typography.h3,
+                        color = colorAccent
+                    )
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.End
+            ) {
+
+                val icon = painterResource(id = R.drawable.ic_more)
+                val description = stringResource(R.string.description_more)
+
+                Image(
+                    painter = icon,
+                    contentDescription = description,
+                    modifier = Modifier
+                        .size(25.dp)
+                        .clickable {
+                            selected.value = item
+                            coroutineScope.launch {
+                                bottomSheetScaffoldState.bottomSheetState.expand()
+                            }
+                        },
+                    colorFilter = ColorFilter.tint(colorAccent)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = item.title,
             style = MaterialTheme.typography.h1,
             color = colorAccent
-          )
-
-          Text(
-            text = converterIso8601ToReadableDate(item.updated),
-            style = MaterialTheme.typography.h3,
-            color = colorAccent
-          )
-        }
-      }
-
-      Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.End
-      ) {
-
-        val icon = painterResource(id = R.drawable.ic_more)
-        val description = stringResource(R.string.description_more)
-
-        Image(
-          painter = icon,
-          contentDescription = description,
-          modifier = Modifier
-            .size(25.dp)
-            .clickable {
-              selected.value = item
-              coroutineScope.launch {
-                bottomSheetScaffoldState.bottomSheetState.expand()
-              }
-            },
-          colorFilter = ColorFilter.tint(colorAccent)
         )
-      }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Text(
+            text = item.summary,
+            style = MaterialTheme.typography.h2,
+            color = colorAccent,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (divider) {
+            Divider(
+                modifier = Modifier.fillMaxWidth(),
+                color = colorAccent25Transparency,
+                thickness = 1.dp
+            )
+        }
     }
-
-    Spacer(modifier = Modifier.height(8.dp))
-
-    Text(
-      text = item.title,
-      style = MaterialTheme.typography.h1,
-      color = colorAccent
-    )
-
-    Spacer(modifier = Modifier.height(4.dp))
-
-    Text(
-      text = item.summary,
-      style = MaterialTheme.typography.h2,
-      color = colorAccent,
-      maxLines = 2,
-      overflow = TextOverflow.Ellipsis
-    )
-
-    Spacer(modifier = Modifier.height(16.dp))
-
-    if (divider) {
-      Divider(
-        modifier = Modifier.fillMaxWidth(),
-        color = colorAccent25Transparency,
-        thickness = 1.dp
-      )
-    }
-  }
 }

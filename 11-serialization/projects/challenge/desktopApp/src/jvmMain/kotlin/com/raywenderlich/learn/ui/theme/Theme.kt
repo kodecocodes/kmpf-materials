@@ -43,9 +43,9 @@ val BottomNavigationHeight = 56.dp
 @Composable
 fun RWTheme(content: @Composable () -> Unit) {
 
-  MaterialTheme(
-    typography = Typography,
-    shapes = Shapes,
-    content = content
-  )
+    MaterialTheme(
+        typography = Typography,
+        shapes = Shapes,
+        content = content
+    )
 }

@@ -1,7 +1,7 @@
 package io.kamel.core.decoder
 
 import io.kamel.core.config.ResourceConfig
-import io.ktor.utils.io.*
+import io.ktor.utils.io.ByteReadChannel
 
 /**
  * Decodes [ByteReadChannel] to [T].

@@ -39,18 +39,18 @@ import androidx.annotation.StringRes
 import com.raywenderlich.learn.R
 
 sealed class BottomNavigationScreens(
-  val route: String,
-  @StringRes val stringResId: Int,
-  @DrawableRes val drawResId: Int
+    val route: String,
+    @StringRes val stringResId: Int,
+    @DrawableRes val drawResId: Int
 ) {
 
-  object Home : BottomNavigationScreens("Home", R.string.navigation_home, R.drawable.ic_home)
-  object Bookmark :
-    BottomNavigationScreens("Bookmark", R.string.navigation_bookmark, R.drawable.ic_bookmarks)
+    object Home : BottomNavigationScreens("Home", R.string.navigation_home, R.drawable.ic_home)
+    object Bookmark :
+        BottomNavigationScreens("Bookmark", R.string.navigation_bookmark, R.drawable.ic_bookmarks)
 
-  object Latest :
-    BottomNavigationScreens("Latest", R.string.navigation_latest, R.drawable.ic_latest)
+    object Latest :
+        BottomNavigationScreens("Latest", R.string.navigation_latest, R.drawable.ic_latest)
 
-  object Search :
-    BottomNavigationScreens("Search", R.string.navigation_search, R.drawable.ic_search)
+    object Search :
+        BottomNavigationScreens("Search", R.string.navigation_search, R.drawable.ic_search)
 }

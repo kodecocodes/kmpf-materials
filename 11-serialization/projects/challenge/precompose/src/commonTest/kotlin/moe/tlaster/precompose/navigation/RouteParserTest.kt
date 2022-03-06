@@ -14,7 +14,12 @@ class RouteParserTest {
 
         pathKeys("/edit/{id}?") { keys -> assertEquals(listOf("id"), keys) }
 
-        pathKeys("/path/{id}/{start}?/{end}?") { keys -> assertEquals(listOf("id", "start", "end"), keys) }
+        pathKeys("/path/{id}/{start}?/{end}?") { keys ->
+            assertEquals(
+                listOf("id", "start", "end"),
+                keys
+            )
+        }
 
         pathKeys("/*") { keys -> assertEquals(1, keys.size) }
 
@@ -28,7 +33,15 @@ class RouteParserTest {
         pathKeys("/foo/{x}") { keys -> assertEquals(1, keys.size) }
 
         pathKeys("aaa://{lang:[a-z]{2}}") { keys -> assertEquals(listOf("lang"), keys) }
-        pathKeys("bbb://path/{id}/{start}?/{end}?") { keys -> assertEquals(listOf("id", "start", "end"), keys) }
+        pathKeys("bbb://path/{id}/{start}?/{end}?") { keys ->
+            assertEquals(
+                listOf(
+                    "id",
+                    "start",
+                    "end"
+                ), keys
+            )
+        }
     }
 
     @Test

@@ -55,94 +55,94 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "ImagePreview"
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun AddImagePreview(
-  url: String,
-  modifier: Modifier
+    url: String,
+    modifier: Modifier
 ) {
 
-  Logger.d(TAG, "Loading image from uri=$url")
+    Logger.d(TAG, "Loading image from uri=$url")
 
-  if (url.isEmpty()) {
-    Logger.d(TAG, "Empty url")
-    AddImagePreviewEmpty(modifier)
+    if (url.isEmpty()) {
+        Logger.d(TAG, "Empty url")
+        AddImagePreviewEmpty(modifier)
 
-  } else {
+    } else {
 
-    val request = ImageRequest.Builder(LocalContext.current)
-      .data(url)
-      .crossfade(true)
-      .build()
+        val request = ImageRequest.Builder(LocalContext.current)
+            .data(url)
+            .crossfade(true)
+            .build()
 
-    val painter = rememberImagePainter(
-      request = request
-    )
+        val painter = rememberImagePainter(
+            request = request
+        )
 
-    Box {
+        Box {
 
-      Image(
-        painter = painter,
-        contentScale = ContentScale.Crop,
-        contentDescription = stringResource(id = R.string.description_preview),
-        modifier = modifier
-      )
+            Image(
+                painter = painter,
+                contentScale = ContentScale.Crop,
+                contentDescription = stringResource(id = R.string.description_preview),
+                modifier = modifier
+            )
 
-      when (painter.state) {
-        is ImagePainter.State.Loading -> {
-          AddImagePreviewEmpty(modifier)
+            when (painter.state) {
+                is ImagePainter.State.Loading -> {
+                    AddImagePreviewEmpty(modifier)
+                }
+                is ImagePainter.State.Error -> {
+                    AddImagePreviewEmpty(modifier)
+                }
+                else -> {
+                    // Do nothing
+                }
+            }
         }
-        is ImagePainter.State.Error -> {
-          AddImagePreviewEmpty(modifier)
-        }
-        else -> {
-          // Do nothing
-        }
-      }
     }
-  }
 }
 
 @Composable
 fun AddImagePreviewEmpty(
-  modifier: Modifier
+    modifier: Modifier
 ) {
 
-  Column(
-    modifier = modifier
-      .fillMaxSize()
-      .background(colorAccent),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-
-    Surface(
-      modifier = modifier,
-      color = Color.Transparent
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(colorAccent),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-      val icon = painterResource(R.drawable.ic_brand)
-      val description = stringResource(id = R.string.description_preview_error)
+        Surface(
+            modifier = modifier,
+            color = Color.Transparent
+        ) {
 
-      Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-      ) {
+            val icon = painterResource(R.drawable.ic_brand)
+            val description = stringResource(id = R.string.description_preview_error)
 
-        Image(
-          painter = icon,
-          contentScale = ContentScale.Crop,
-          contentDescription = description,
-          modifier = modifier,
-          colorFilter = ColorFilter.tint(color = colorContent)
-        )
-      }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+
+                Image(
+                    painter = icon,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = description,
+                    modifier = modifier,
+                    colorFilter = ColorFilter.tint(color = colorContent)
+                )
+            }
+        }
     }
-  }
 }

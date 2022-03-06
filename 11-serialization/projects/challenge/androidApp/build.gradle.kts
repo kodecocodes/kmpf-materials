@@ -7,7 +7,7 @@ dependencies {
     implementation(project(":shared"))
 
     implementation("com.google.android.material:material:1.5.0")
-    
+
     implementation("com.google.accompanist:accompanist-pager:0.23.1")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.23.1")
 

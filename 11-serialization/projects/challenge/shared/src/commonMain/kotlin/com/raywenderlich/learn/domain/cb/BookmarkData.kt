@@ -38,5 +38,5 @@ import com.raywenderlich.learn.data.model.RWEntry
 
 public interface BookmarkData {
 
-  public fun onNewBookmarksList(bookmarks: List<RWEntry>)
+    public fun onNewBookmarksList(bookmarks: List<RWEntry>)
 }

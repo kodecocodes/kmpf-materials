@@ -8,7 +8,8 @@ private const val LoadFactor = 0.75F
 internal actual class LruCache<K, V> actual constructor(override val maxSize: Int) : Cache<K, V> {
 
     private val cache: MutableMap<K, V> = object : LinkedHashMap<K, V>(maxSize, LoadFactor, true) {
-        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<K, V>?): Boolean = size > maxSize
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<K, V>?): Boolean =
+            size > maxSize
     }
 
     override val size: Int

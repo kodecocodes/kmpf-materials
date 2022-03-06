@@ -55,75 +55,78 @@ private const val TAG = "ImagePreview"
 
 @Composable
 fun AddImagePreview(
-  url: String,
-  modifier: Modifier
+    url: String,
+    modifier: Modifier
 ) {
 
-  if (url.isEmpty()) {
-    Logger.d(TAG, "Empty url")
-    AddImagePreviewEmpty(modifier)
+    if (url.isEmpty()) {
+        Logger.d(TAG, "Empty url")
+        AddImagePreviewEmpty(modifier)
 
-  } else {
+    } else {
 
-    Box {
+        Box {
 
-      when (val resource = lazyPainterResource(url)) {
-        is Resource.Loading -> {
-          Logger.d(TAG, "Loading image from uri=$url")
-          AddImagePreviewEmpty(modifier)
+            when (val resource = lazyPainterResource(url)) {
+                is Resource.Loading -> {
+                    Logger.d(TAG, "Loading image from uri=$url")
+                    AddImagePreviewEmpty(modifier)
+                }
+                is Resource.Success -> {
+                    Logger.d(TAG, "Loading successful image from uri=$url")
+
+                    KamelImage(
+                        resource = resource,
+                        contentScale = ContentScale.Crop,
+                        contentDescription = "Image preview",
+                        modifier = modifier,
+                        crossfade = true
+                    )
+                }
+                is Resource.Failure -> {
+                    Logger.d(
+                        TAG,
+                        "Loading failed image from uri=$url. Reason=${resource.exception}"
+                    )
+
+                    AddImagePreviewEmpty(modifier)
+                }
+            }
         }
-        is Resource.Success -> {
-          Logger.d(TAG, "Loading successful image from uri=$url")
-
-          KamelImage(
-            resource = resource,
-            contentScale = ContentScale.Crop,
-            contentDescription = "Image preview",
-            modifier = modifier,
-            crossfade = true
-          )
-        }
-        is Resource.Failure -> {
-          Logger.d(TAG, "Loading failed image from uri=$url. Reason=${resource.exception}")
-
-          AddImagePreviewEmpty(modifier)
-        }
-      }
     }
-  }
 }
 
 @Composable
 fun AddImagePreviewEmpty(
-  modifier: Modifier
+    modifier: Modifier
 ) {
 
-  Column(
-    modifier = modifier
-      .fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-
-    Surface(
-      modifier = modifier,
-      color = Color.Transparent
+    Column(
+        modifier = modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-      val description = "Unable to load image preview"
+        Surface(
+            modifier = modifier,
+            color = Color.Transparent
+        ) {
 
-      Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-      ) {
+            val description = "Unable to load image preview"
 
-        Image(
-          painter = painterResource("images/razerware.png"),
-          contentScale = ContentScale.Crop,
-          contentDescription = description,
-          modifier = modifier
-        )
-      }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+
+                Image(
+                    painter = painterResource("images/razerware.png"),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = description,
+                    modifier = modifier
+                )
+            }
+        }
     }
-  }
 }

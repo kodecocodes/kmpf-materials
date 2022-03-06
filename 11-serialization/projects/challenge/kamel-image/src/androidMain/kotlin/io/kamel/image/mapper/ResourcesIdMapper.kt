@@ -4,7 +4,9 @@ import android.content.ContentResolver
 import android.content.Context
 import androidx.annotation.DrawableRes
 import io.kamel.core.mapper.Mapper
-import io.ktor.http.*
+import io.ktor.http.URLBuilder
+import io.ktor.http.URLProtocol
+import io.ktor.http.Url
 
 internal class ResourcesIdMapper(private val context: Context) : Mapper<Int, Url> {
 

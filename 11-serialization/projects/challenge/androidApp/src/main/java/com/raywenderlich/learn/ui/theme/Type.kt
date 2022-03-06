@@ -51,66 +51,66 @@ private val fontSizeExtraSmall = 14.sp
 private val fontSizeTiny = 12.sp
 
 private val BitterFontFamily = FontFamily(
-  Font(R.font.bitter_bold, FontWeight.Bold),
-  Font(R.font.bitter_extrabold, FontWeight.ExtraBold),
-  Font(R.font.bitter_light, FontWeight.Light),
-  Font(R.font.bitter_regular),
-  Font(R.font.bitter_semibold, FontWeight.SemiBold),
+    Font(R.font.bitter_bold, FontWeight.Bold),
+    Font(R.font.bitter_extrabold, FontWeight.ExtraBold),
+    Font(R.font.bitter_light, FontWeight.Light),
+    Font(R.font.bitter_regular),
+    Font(R.font.bitter_semibold, FontWeight.SemiBold),
 )
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-  h1 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeSmall
-  ),
+    h1 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeSmall
+    ),
 
-  h2 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Normal,
-    fontSize = fontSizeExtraSmall
-  ),
+    h2 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  h3 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeTiny
-  ),
+    h3 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeTiny
+    ),
 
-  h4 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeMedium
-  ),
+    h4 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeMedium
+    ),
 
-  body1 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Normal,
-    fontSize = fontSizeBigSmall
-  ),
+    body1 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeBigSmall
+    ),
 
-  body2 = TextStyle(
-    color = colorAccent,
-    fontFamily = BitterFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeExtraSmall
-  ),
+    body2 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  subtitle1 = TextStyle(
-    color = colorPrimary,
-    fontFamily = BitterFontFamily,
-    fontSize = fontSizeExtraSmall
-  ),
+    subtitle1 = TextStyle(
+        color = colorPrimary,
+        fontFamily = BitterFontFamily,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  subtitle2 = TextStyle(
-    color = colorPrimary,
-    fontFamily = BitterFontFamily,
-    fontSize = fontSizeExtraSmall
-  )
+    subtitle2 = TextStyle(
+        color = colorPrimary,
+        fontFamily = BitterFontFamily,
+        fontSize = fontSizeExtraSmall
+    )
 )

@@ -47,14 +47,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkContent
 import com.raywenderlich.learn.ui.home.HomeContent
 import com.raywenderlich.learn.ui.latest.LatestContent
 import com.raywenderlich.learn.ui.search.SearchContent
 import com.raywenderlich.learn.ui.theme.BottomNavigationHeight
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
 import kotlinx.coroutines.CoroutineScope
 
 private val DEFAULT_SCREEN = BottomNavigationScreens.Home
@@ -62,78 +62,78 @@ private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainContent(
-  navController: NavHostController,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  selected: MutableState<RWEntry>,
-  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  bookmarks: State<List<RWEntry>?>,
-  onOpenEntry: (String) -> Unit
+    navController: NavHostController,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    selected: MutableState<RWEntry>,
+    feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    bookmarks: State<List<RWEntry>?>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  Column(
-    modifier = Modifier
-      .padding(bottom = BottomNavigationHeight)
-      .background(colorContent)
+    Column(
+        modifier = Modifier
+            .padding(bottom = BottomNavigationHeight)
+            .background(colorContent)
 
-  ) {
-    MainScreenNavigationConfigurations(
-      navController = navController,
-      coroutineScope = coroutineScope,
-      bottomSheetScaffoldState = bottomSheetScaffoldState,
-      selected = selected,
-      feeds = feeds,
-      bookmarks = bookmarks,
-      onOpenEntry = onOpenEntry
-    )
-  }
+    ) {
+        MainScreenNavigationConfigurations(
+            navController = navController,
+            coroutineScope = coroutineScope,
+            bottomSheetScaffoldState = bottomSheetScaffoldState,
+            selected = selected,
+            feeds = feeds,
+            bookmarks = bookmarks,
+            onOpenEntry = onOpenEntry
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenNavigationConfigurations(
-  navController: NavHostController,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  selected: MutableState<RWEntry>,
-  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  bookmarks: State<List<RWEntry>?>,
-  onOpenEntry: (String) -> Unit
+    navController: NavHostController,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    selected: MutableState<RWEntry>,
+    feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    bookmarks: State<List<RWEntry>?>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  NavHost(navController, startDestination = DEFAULT_SCREEN.route) {
-    composable(BottomNavigationScreens.Home.route) {
-      HomeContent(
-        selected = selected,
-        items = feeds,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
+    NavHost(navController, startDestination = DEFAULT_SCREEN.route) {
+        composable(BottomNavigationScreens.Home.route) {
+            HomeContent(
+                selected = selected,
+                items = feeds,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        composable(BottomNavigationScreens.Bookmark.route) {
+            BookmarkContent(
+                selected = selected,
+                items = bookmarks,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        composable(BottomNavigationScreens.Latest.route) {
+            LatestContent(
+                items = feeds,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        composable(BottomNavigationScreens.Search.route) {
+            SearchContent(
+                selected = selected,
+                items = feeds,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
     }
-    composable(BottomNavigationScreens.Bookmark.route) {
-      BookmarkContent(
-        selected = selected,
-        items = bookmarks,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
-    }
-    composable(BottomNavigationScreens.Latest.route) {
-      LatestContent(
-        items = feeds,
-        onOpenEntry = onOpenEntry
-      )
-    }
-    composable(BottomNavigationScreens.Search.route) {
-      SearchContent(
-        selected = selected,
-        items = feeds,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
-    }
-  }
 }

@@ -24,10 +24,10 @@ allprojects {
         project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
             ext.sourceSets.removeAll { sourceSet ->
                 setOf(
-                        "androidAndroidTestRelease",
-                        "androidTestFixtures",
-                        "androidTestFixturesDebug",
-                        "androidTestFixturesRelease",
+                    "androidAndroidTestRelease",
+                    "androidTestFixtures",
+                    "androidTestFixturesDebug",
+                    "androidTestFixturesRelease",
                 ).contains(sourceSet.name)
             }
         }

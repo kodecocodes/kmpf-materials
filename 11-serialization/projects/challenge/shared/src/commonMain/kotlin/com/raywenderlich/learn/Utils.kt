@@ -38,5 +38,5 @@ import com.soywiz.korio.lang.toByteArray
 import com.soywiz.krypto.md5
 
 fun md5(str: String): String {
-  return str.toByteArray().md5().hex
+    return str.toByteArray().md5().hex
 }

@@ -35,11 +35,10 @@
 package com.raywenderlich.learn.ui.utils
 
 import android.annotation.SuppressLint
-import kotlinx.datetime.toInstant
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import com.raywenderlich.learn.platform.Logger
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlinx.datetime.toInstant
 
 private const val TAG = "Utils"
 
@@ -47,12 +46,12 @@ private const val TAG = "Utils"
 private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
 
 fun converterIso8601ToReadableDate(date: String): String {
-  return try {
-    val instant = date.toInstant()
-    val millis = Date(instant.toEpochMilliseconds())
-    return simpleDateFormat.format(millis)
-  } catch (e: Exception) {
-    Logger.w(TAG, "Error while converting dates. Error: $e")
-    "-"
-  }
+    return try {
+        val instant = date.toInstant()
+        val millis = Date(instant.toEpochMilliseconds())
+        return simpleDateFormat.format(millis)
+    } catch (e: Exception) {
+        Logger.w(TAG, "Error while converting dates. Error: $e")
+        "-"
+    }
 }

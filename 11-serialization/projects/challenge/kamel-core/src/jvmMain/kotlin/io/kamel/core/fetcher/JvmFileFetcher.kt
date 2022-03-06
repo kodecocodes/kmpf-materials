@@ -3,11 +3,11 @@ package io.kamel.core.fetcher
 import io.kamel.core.DataSource
 import io.kamel.core.Resource
 import io.kamel.core.config.ResourceConfig
-import io.ktor.util.cio.*
-import io.ktor.utils.io.*
+import io.ktor.util.cio.readChannel
+import io.ktor.utils.io.ByteReadChannel
+import java.io.File
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.io.File
 
 /**
  * Fetcher that fetchers [ByteReadChannel] from a file.

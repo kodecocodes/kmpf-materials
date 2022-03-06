@@ -39,9 +39,9 @@ import com.raywenderlich.learn.platform.appContext
 
 class RWApplication : Application() {
 
-  override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-    appContext = applicationContext
-  }
+        appContext = applicationContext
+    }
 }

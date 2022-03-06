@@ -50,37 +50,37 @@ private const val TAG = "BookmarkViewModel"
 
 class BookmarkViewModel : ViewModel(), BookmarkData {
 
-  val items: MutableState<List<RWEntry>> = mutableStateOf(emptyList())
+    val items: MutableState<List<RWEntry>> = mutableStateOf(emptyList())
 
-  private val presenter by lazy {
-    ServiceLocator.getBookmarkPresenter
-  }
-
-  fun getBookmarks() {
-    Logger.d(TAG, "getBookmarks")
-    presenter.getBookmarks(this)
-  }
-
-  fun addAsBookmark(entry: RWEntry) {
-    Logger.d(TAG, "addAsBookmark")
-    presenter.addAsBookmark(entry, this)
-  }
-
-  fun removeFromBookmark(entry: RWEntry) {
-    Logger.d(TAG, "removeFromBookmark")
-    presenter.removeFromBookmark(entry, this)
-  }
-
-  // region FeedData
-
-  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | items=${bookmarks.size}")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        items.value = bookmarks
-      }
+    private val presenter by lazy {
+        ServiceLocator.getBookmarkPresenter
     }
-  }
 
-  // endregion FeedData
+    fun getBookmarks() {
+        Logger.d(TAG, "getBookmarks")
+        presenter.getBookmarks(this)
+    }
+
+    fun addAsBookmark(entry: RWEntry) {
+        Logger.d(TAG, "addAsBookmark")
+        presenter.addAsBookmark(entry, this)
+    }
+
+    fun removeFromBookmark(entry: RWEntry) {
+        Logger.d(TAG, "removeFromBookmark")
+        presenter.removeFromBookmark(entry, this)
+    }
+
+    // region FeedData
+
+    override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
+        Logger.d(TAG, "onNewBookmarksList | items=${bookmarks.size}")
+        viewModelScope.launch {
+            withContext(Dispatchers.Main) {
+                items.value = bookmarks
+            }
+        }
+    }
+
+    // endregion FeedData
 }

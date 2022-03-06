@@ -49,10 +49,10 @@ import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
 import com.raywenderlich.learn.ui.theme.RWTheme
-import moe.tlaster.precompose.PreComposeWindow
-import moe.tlaster.precompose.ui.viewModel
 import java.awt.Desktop
 import java.net.URI
+import moe.tlaster.precompose.PreComposeWindow
+import moe.tlaster.precompose.ui.viewModel
 
 private lateinit var bookmarkViewModel: BookmarkViewModel
 private lateinit var feedViewModel: FeedViewModel
@@ -63,76 +63,76 @@ private val showToast: MutableState<Boolean> = mutableStateOf(false)
 
 fun main() {
 
-  application {
-    val windowState = rememberWindowState(width = 460.dp, height = 900.dp)
+    application {
+        val windowState = rememberWindowState(width = 460.dp, height = 900.dp)
 
-    PreComposeWindow(
-      onCloseRequest = ::exitApplication,
-      state = windowState,
-      title = "learn"
-    ) {
-      bookmarkViewModel = viewModel {
-        BookmarkViewModel()
-      }
+        PreComposeWindow(
+            onCloseRequest = ::exitApplication,
+            state = windowState,
+            title = "learn"
+        ) {
+            bookmarkViewModel = viewModel {
+                BookmarkViewModel()
+            }
 
-      feedViewModel = viewModel {
-        FeedViewModel()
-      }
+            feedViewModel = viewModel {
+                FeedViewModel()
+            }
 
-      feedViewModel.fetchAllFeeds()
-      feedViewModel.fetchMyGravatar()
-      bookmarkViewModel.getBookmarks()
+            feedViewModel.fetchAllFeeds()
+            feedViewModel.fetchMyGravatar()
+            bookmarkViewModel.getBookmarks()
 
-      val items = feedViewModel.items
-      val profile = feedViewModel.profile
+            val items = feedViewModel.items
+            val profile = feedViewModel.profile
 
-      val name = profile.value.preferredUsername
-      if (!name.isNullOrEmpty()) {
-        showToast.value = true
-      }
+            val name = profile.value.preferredUsername
+            if (!name.isNullOrEmpty()) {
+                showToast.value = true
+            }
 
-      val bookmarks = bookmarkViewModel.items
+            val bookmarks = bookmarkViewModel.items
 
-      Surface(modifier = Modifier.fillMaxSize()) {
+            Surface(modifier = Modifier.fillMaxSize()) {
 
-        RWTheme {
-          MainScreen(
-            feeds = items,
-            bookmarks = bookmarks,
-            onAddToBookmarks = { updateBookmark(it) },
-            onOpenEntry = { openEntry(it) }
-          )
+                RWTheme {
+                    MainScreen(
+                        feeds = items,
+                        bookmarks = bookmarks,
+                        onAddToBookmarks = { updateBookmark(it) },
+                        onOpenEntry = { openEntry(it) }
+                    )
+                }
+
+                Toast("Hello $name", showToast)
+            }
         }
-
-        Toast("Hello $name", showToast)
-      }
     }
-  }
 }
 
 private fun updateBookmark(item: RWEntry) {
-  if (item.bookmarked) {
-    removedFromBookmarks(item)
-  } else {
-    addToBookmarks(item)
-  }
+    if (item.bookmarked) {
+        removedFromBookmarks(item)
+    } else {
+        addToBookmarks(item)
+    }
 }
 
 private fun addToBookmarks(item: RWEntry) {
-  bookmarkViewModel.addAsBookmark(item)
-  bookmarkViewModel.getBookmarks()
+    bookmarkViewModel.addAsBookmark(item)
+    bookmarkViewModel.getBookmarks()
 }
 
 private fun removedFromBookmarks(item: RWEntry) {
-  bookmarkViewModel.removeFromBookmark(item)
-  bookmarkViewModel.getBookmarks()
+    bookmarkViewModel.removeFromBookmark(item)
+    bookmarkViewModel.getBookmarks()
 }
 
 fun openEntry(url: String) {
-  try {
-    val desktop = Desktop.getDesktop()
-    desktop.browse(URI.create(url))
-  } catch(e: Exception) {
-    Logger.e(TAG, "Unable to open url. Reason: ${e.stackTrace}")
-  }
+    try {
+        val desktop = Desktop.getDesktop()
+        desktop.browse(URI.create(url))
+    } catch (e: Exception) {
+        Logger.e(TAG, "Unable to open url. Reason: ${e.stackTrace}")
+    }
 }

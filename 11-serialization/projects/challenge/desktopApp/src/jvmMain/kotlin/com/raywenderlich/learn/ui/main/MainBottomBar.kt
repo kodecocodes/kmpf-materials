@@ -62,73 +62,73 @@ private lateinit var selectedIndex: MutableState<Int>
 
 @Composable
 fun MainBottomBar(
-  navController: Navigator,
-  items: List<BottomNavigationScreens>
+    navController: Navigator,
+    items: List<BottomNavigationScreens>
 ) {
 
-  Column {
-    Row(
-      modifier = Modifier
-        .fillMaxWidth()
-        .height(1.dp)
-        .background(color = colorAccent25Transparency)
-    ) {}
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(color = colorAccent25Transparency)
+        ) {}
 
-    AppBottomNavigation(
-      navController = navController,
-      items = items
-    )
-  }
+        AppBottomNavigation(
+            navController = navController,
+            items = items
+        )
+    }
 }
 
 @Composable
 private fun AppBottomNavigation(
-  navController: Navigator,
-  items: List<BottomNavigationScreens>
+    navController: Navigator,
+    items: List<BottomNavigationScreens>
 ) {
-  BottomNavigation(
-    backgroundColor = colorPrimary,
-    contentColor = colorSecondary
-  ) {
+    BottomNavigation(
+        backgroundColor = colorPrimary,
+        contentColor = colorSecondary
+    ) {
 
-    selectedIndex = remember { mutableStateOf(0) }
+        selectedIndex = remember { mutableStateOf(0) }
 
-    items.forEachIndexed { index, screen ->
+        items.forEachIndexed { index, screen ->
 
-      val isSelected = selectedIndex.value == index
+            val isSelected = selectedIndex.value == index
 
-      val style = if (isSelected) {
-        typography.subtitle1.copy(color = colorPrimary)
-      } else {
-        typography.subtitle2.copy(color = colorAccent)
-      }
+            val style = if (isSelected) {
+                typography.subtitle1.copy(color = colorPrimary)
+            } else {
+                typography.subtitle2.copy(color = colorAccent)
+            }
 
-      BottomNavigationItem(
-        modifier = Modifier
-          .background(color = colorContent),
-        icon = {
-          Icon(
-            painter = painterResource(screen.resource),
-            contentDescription = screen.route
-          )
-        },
-        label = {
-          Text(
-            screen.route,
-            style = style
-          )
-        },
-        selected = isSelected,
-        selectedContentColor = colorPrimary,
-        unselectedContentColor = colorAccent,
-        alwaysShowLabel = true,
-        onClick = {
-          if (!isSelected) {
-            selectedIndex.value = index
-            navController.navigate(screen.route)
-          }
+            BottomNavigationItem(
+                modifier = Modifier
+                    .background(color = colorContent),
+                icon = {
+                    Icon(
+                        painter = painterResource(screen.resource),
+                        contentDescription = screen.route
+                    )
+                },
+                label = {
+                    Text(
+                        screen.route,
+                        style = style
+                    )
+                },
+                selected = isSelected,
+                selectedContentColor = colorPrimary,
+                unselectedContentColor = colorAccent,
+                alwaysShowLabel = true,
+                onClick = {
+                    if (!isSelected) {
+                        selectedIndex.value = index
+                        navController.navigate(screen.route)
+                    }
+                }
+            )
         }
-      )
     }
-  }
 }

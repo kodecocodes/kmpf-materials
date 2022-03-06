@@ -48,18 +48,18 @@ import com.raywenderlich.learn.ui.theme.colorContent
 
 @Composable
 fun AddEmptyScreen(text: String) {
-  Column(
-    modifier = Modifier
-      .fillMaxSize()
-      .background(color = colorContent),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorContent),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-    Text(
-      text = text,
-      style = MaterialTheme.typography.body1,
-      color = colorAccent
-    )
-  }
+        Text(
+            text = text,
+            style = MaterialTheme.typography.body1,
+            color = colorAccent
+        )
+    }
 }

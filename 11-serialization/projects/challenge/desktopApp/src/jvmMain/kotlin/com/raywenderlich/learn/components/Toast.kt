@@ -67,7 +67,7 @@ import kotlinx.coroutines.launch
  */
 
 enum class ToastDuration(val value: Int) {
-  Short(1000), Long(3000)
+    Short(1000), Long(3000)
 }
 
 private var isShown: Boolean = false
@@ -75,43 +75,43 @@ private var isShown: Boolean = false
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun Toast(
-  text: String,
-  visibility: MutableState<Boolean> = mutableStateOf(false),
-  duration: ToastDuration = ToastDuration.Long
+    text: String,
+    visibility: MutableState<Boolean> = mutableStateOf(false),
+    duration: ToastDuration = ToastDuration.Long
 ) {
-  if (isShown) {
-    return
-  }
-
-  if (visibility.value) {
-    isShown = true
-    Box(
-      modifier = Modifier.fillMaxSize().padding(bottom = 70.dp),
-      contentAlignment = Alignment.BottomCenter
-    ) {
-      Surface(
-        modifier = Modifier
-          .size(300.dp, 70.dp)
-          .border(2.dp, colorContentSecondary, RoundedCornerShape(4.dp)),
-        color = colorContent,
-        shape = RoundedCornerShape(4.dp)
-      ) {
-        Box(contentAlignment = Alignment.Center) {
-          Text(
-            text = text,
-            fontSize = 17.sp,
-            color = colorAccent
-          )
-        }
-        DisposableEffect(Unit) {
-          GlobalScope.launch {
-            delay(duration.value.toLong())
-            isShown = false
-            visibility.value = false
-          }
-          onDispose {  }
-        }
-      }
+    if (isShown) {
+        return
     }
-  }
+
+    if (visibility.value) {
+        isShown = true
+        Box(
+            modifier = Modifier.fillMaxSize().padding(bottom = 70.dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Surface(
+                modifier = Modifier
+                    .size(300.dp, 70.dp)
+                    .border(2.dp, colorContentSecondary, RoundedCornerShape(4.dp)),
+                color = colorContent,
+                shape = RoundedCornerShape(4.dp)
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Text(
+                        text = text,
+                        fontSize = 17.sp,
+                        color = colorAccent
+                    )
+                }
+                DisposableEffect(Unit) {
+                    GlobalScope.launch {
+                        delay(duration.value.toLong())
+                        isShown = false
+                        visibility.value = false
+                    }
+                    onDispose { }
+                }
+            }
+        }
+    }
 }

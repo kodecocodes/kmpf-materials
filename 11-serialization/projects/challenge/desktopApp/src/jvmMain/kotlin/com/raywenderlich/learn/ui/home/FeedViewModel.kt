@@ -45,8 +45,6 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
 import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
-import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -54,37 +52,46 @@ private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
-  private val _items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
-  val items = _items
+    private val _items: SnapshotStateMap<PLATFORM, List<RWEntry>> = mutableStateMapOf()
+    val items = _items
 
-  val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
+    val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
 
-  private val presenter by lazy {
-    ServiceLocator.getFeedPresenter
-  }
+    private val presenter by lazy {
+        ServiceLocator.getFeedPresenter
+    }
 
-  fun fetchAllFeeds() {
-    Logger.d(TAG, "fetchAllFeeds")
-    items[PLATFORM.ALL] = presenter.allFeeds
-  }
+    fun fetchAllFeeds() {
+        Logger.d(TAG, "fetchAllFeeds")
+        items[PLATFORM.ALL] = presenter.allFeeds
+    }
 
-  fun fetchMyGravatar() {
-    Logger.d(TAG, "fetchMyGravatar")
-  }
+    fun fetchMyGravatar() {
+        Logger.d(TAG, "fetchMyGravatar")
+    }
 
-  // region FeedData
+    // region FeedData
 
-  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
-    Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
-  }
+    override fun onNewDataAvailable(
+        items: List<RWEntry>,
+        platform: PLATFORM,
+        exception: Exception?
+    ) {
+        Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
+    }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?) {
-    Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
-  }
+    override fun onNewImageUrlAvailable(
+        id: String,
+        url: String,
+        platform: PLATFORM,
+        exception: Exception?
+    ) {
+        Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+    }
 
-  override fun onMyGravatarData(item: GravatarEntry) {
-    Logger.d(TAG, "onMyGravatarData | item=$item")
-  }
+    override fun onMyGravatarData(item: GravatarEntry) {
+        Logger.d(TAG, "onMyGravatarData | item=$item")
+    }
 
-  // endregion FeedData
+    // endregion FeedData
 }

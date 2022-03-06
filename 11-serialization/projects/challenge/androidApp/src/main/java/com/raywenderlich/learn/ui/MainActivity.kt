@@ -43,84 +43,86 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.livedata.observeAsState
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
 import com.raywenderlich.learn.ui.theme.RWTheme
-import com.raywenderlich.learn.data.model.RWEntry
 
 class MainActivity : AppCompatActivity() {
 
-  private val bookmarkViewModel: BookmarkViewModel by viewModels()
-  private val feedViewModel: FeedViewModel by viewModels()
+    private val bookmarkViewModel: BookmarkViewModel by viewModels()
+    private val feedViewModel: FeedViewModel by viewModels()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    feedViewModel.fetchAllFeeds()
-    feedViewModel.fetchMyGravatar()
-    bookmarkViewModel.getBookmarks()
+        feedViewModel.fetchAllFeeds()
+        feedViewModel.fetchMyGravatar()
+        bookmarkViewModel.getBookmarks()
 
-    setContent {
+        setContent {
 
-      val items = feedViewModel.items
-      val profile = feedViewModel.profile.observeAsState()
-      if (!profile.value?.preferredUsername.isNullOrEmpty()) {
-        val name = profile.value!!.preferredUsername
-        Toast.makeText(
-          applicationContext,
-          getString(R.string.action_hello, name),
-          Toast.LENGTH_SHORT).
-        show()
-      }
+            val items = feedViewModel.items
+            val profile = feedViewModel.profile.observeAsState()
+            if (!profile.value?.preferredUsername.isNullOrEmpty()) {
+                val name = profile.value!!.preferredUsername
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.action_hello, name),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
-      val bookmarks = bookmarkViewModel.items.observeAsState()
+            val bookmarks = bookmarkViewModel.items.observeAsState()
 
-      RWTheme {
-        MainScreen(
-          feeds = items,
-          bookmarks = bookmarks,
-          onUpdateBookmark = { onUpdateBookmark(it) },
-          onShareAsLink = { shareAsLink(it) },
-          onOpenEntry = { openEntry(it) }
-        )
-      }
-    }
-  }
-
-  private fun onUpdateBookmark(item: RWEntry) {
-    if (item.bookmarked) {
-      removedFromBookmarks(item)
-    } else {
-      addToBookmarks(item)
-    }
-  }
-
-  private fun addToBookmarks(item: RWEntry) {
-    Toast.makeText(applicationContext, R.string.action_added_bookmarks, Toast.LENGTH_SHORT).show()
-    bookmarkViewModel.addAsBookmark(item)
-    bookmarkViewModel.getBookmarks()
-  }
-
-  private fun removedFromBookmarks(item: RWEntry) {
-    Toast.makeText(applicationContext, R.string.action_removed_bookmarks, Toast.LENGTH_SHORT).show()
-    bookmarkViewModel.removeFromBookmark(item)
-    bookmarkViewModel.getBookmarks()
-  }
-
-  private fun shareAsLink(item: RWEntry) {
-    val sendIntent: Intent = Intent().apply {
-      action = Intent.ACTION_SEND
-      putExtra(Intent.EXTRA_TEXT, getString(R.string.action_share_link_text, item.link))
-      type = "text/plain"
+            RWTheme {
+                MainScreen(
+                    feeds = items,
+                    bookmarks = bookmarks,
+                    onUpdateBookmark = { onUpdateBookmark(it) },
+                    onShareAsLink = { shareAsLink(it) },
+                    onOpenEntry = { openEntry(it) }
+                )
+            }
+        }
     }
 
-    startActivity(Intent.createChooser(sendIntent, null))
-  }
+    private fun onUpdateBookmark(item: RWEntry) {
+        if (item.bookmarked) {
+            removedFromBookmarks(item)
+        } else {
+            addToBookmarks(item)
+        }
+    }
 
-  private fun openEntry(url: String) {
-    val intent = Intent(Intent.ACTION_VIEW)
-    intent.data = Uri.parse(url)
-    startActivity(intent)
-  }
+    private fun addToBookmarks(item: RWEntry) {
+        Toast.makeText(applicationContext, R.string.action_added_bookmarks, Toast.LENGTH_SHORT)
+            .show()
+        bookmarkViewModel.addAsBookmark(item)
+        bookmarkViewModel.getBookmarks()
+    }
+
+    private fun removedFromBookmarks(item: RWEntry) {
+        Toast.makeText(applicationContext, R.string.action_removed_bookmarks, Toast.LENGTH_SHORT)
+            .show()
+        bookmarkViewModel.removeFromBookmark(item)
+        bookmarkViewModel.getBookmarks()
+    }
+
+    private fun shareAsLink(item: RWEntry) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, getString(R.string.action_share_link_text, item.link))
+            type = "text/plain"
+        }
+
+        startActivity(Intent.createChooser(sendIntent, null))
+    }
+
+    private fun openEntry(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }

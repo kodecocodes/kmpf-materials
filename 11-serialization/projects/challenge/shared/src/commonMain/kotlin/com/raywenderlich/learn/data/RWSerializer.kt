@@ -48,23 +48,23 @@ import kotlinx.serialization.encoding.Encoder
 @Serializer(forClass = PLATFORM::class)
 object RWSerializer : KSerializer<PLATFORM> {
 
-  override val descriptor: SerialDescriptor =
-    PrimitiveSerialDescriptor("PLATFORM", PrimitiveKind.STRING)
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("PLATFORM", PrimitiveKind.STRING)
 
-  override fun serialize(encoder: Encoder, value: PLATFORM) {
-    encoder.encodeString(value.value)
-  }
-
-  override fun deserialize(decoder: Decoder): PLATFORM {
-    return try {
-      val key = decoder.decodeString()
-      findByKey(key)
-    } catch (e: IllegalArgumentException) {
-      PLATFORM.ALL
+    override fun serialize(encoder: Encoder, value: PLATFORM) {
+        encoder.encodeString(value.value)
     }
-  }
+
+    override fun deserialize(decoder: Decoder): PLATFORM {
+        return try {
+            val key = decoder.decodeString()
+            findByKey(key)
+        } catch (e: IllegalArgumentException) {
+            PLATFORM.ALL
+        }
+    }
 }
 
 private fun findByKey(key: String, default: PLATFORM = PLATFORM.ALL): PLATFORM {
-  return PLATFORM.values().find { it.value == key } ?: default
+    return PLATFORM.values().find { it.value == key } ?: default
 }

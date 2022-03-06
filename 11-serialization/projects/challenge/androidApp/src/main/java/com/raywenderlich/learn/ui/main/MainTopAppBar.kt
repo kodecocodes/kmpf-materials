@@ -48,15 +48,15 @@ import com.raywenderlich.learn.ui.theme.colorContent
 @Composable
 fun MainTopAppBar() {
 
-  RWTopAppBar(
-    title = {
-      Text(
-        text = stringResource(id = R.string.app_name),
-        style = typography.h4,
-      )
-    },
-    modifier = Modifier.fillMaxWidth(),
-    backgroundColor = colorContent,
-    elevation = 0.dp
-  )
+    RWTopAppBar(
+        title = {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = typography.h4,
+            )
+        },
+        modifier = Modifier.fillMaxWidth(),
+        backgroundColor = colorContent,
+        elevation = 0.dp
+    )
 }

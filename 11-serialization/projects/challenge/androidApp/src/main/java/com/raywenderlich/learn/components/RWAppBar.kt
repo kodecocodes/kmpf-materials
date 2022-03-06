@@ -49,6 +49,7 @@ import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Surface
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
@@ -69,71 +70,71 @@ private val AppBarHeight = 56.dp
 
 @Composable
 fun RWTopAppBar(
-  title: @Composable () -> Unit,
-  modifier: Modifier = Modifier,
-  actions: @Composable RowScope.() -> Unit = {},
-  backgroundColor: Color = MaterialTheme.colors.primarySurface,
-  contentColor: Color = contentColorFor(backgroundColor),
-  elevation: Dp = AppBarDefaults.TopAppBarElevation
+    title: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    actions: @Composable RowScope.() -> Unit = {},
+    backgroundColor: Color = MaterialTheme.colors.primarySurface,
+    contentColor: Color = contentColorFor(backgroundColor),
+    elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
-  AppBar(
-    backgroundColor,
-    contentColor,
-    elevation,
-    AppBarDefaults.ContentPadding,
-    RectangleShape,
-    modifier
-  ) {
-    Row(
-      Modifier.fillMaxSize(),
-      verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.Center
+    AppBar(
+        backgroundColor,
+        contentColor,
+        elevation,
+        AppBarDefaults.ContentPadding,
+        RectangleShape,
+        modifier
     ) {
-      ProvideTextStyle(value = MaterialTheme.typography.h6) {
-        CompositionLocalProvider(
-          LocalContentAlpha provides ContentAlpha.high,
-          content = title
-        )
-      }
-    }
+        Row(
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            ProvideTextStyle(value = MaterialTheme.typography.h6) {
+                CompositionLocalProvider(
+                    LocalContentAlpha provides ContentAlpha.high,
+                    content = title
+                )
+            }
+        }
 
-    CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-      Row(
-        Modifier.fillMaxHeight(),
-        horizontalArrangement = Arrangement.End,
-        verticalAlignment = Alignment.CenterVertically,
-        content = actions
-      )
+        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+            Row(
+                Modifier.fillMaxHeight(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically,
+                content = actions
+            )
+        }
     }
-  }
 }
 
 @Composable
 private fun AppBar(
-  backgroundColor: Color,
-  contentColor: Color,
-  elevation: Dp,
-  contentPadding: PaddingValues,
-  shape: Shape,
-  modifier: Modifier = Modifier,
-  content: @Composable RowScope.() -> Unit
+    backgroundColor: Color,
+    contentColor: Color,
+    elevation: Dp,
+    contentPadding: PaddingValues,
+    shape: Shape,
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit
 ) {
-  Surface(
-    color = backgroundColor,
-    contentColor = contentColor,
-    elevation = elevation,
-    shape = shape,
-    modifier = modifier
-  ) {
-    Row(
-      Modifier
-        .fillMaxWidth()
-        .padding(contentPadding)
-        .height(AppBarHeight),
-      horizontalArrangement = Arrangement.Start,
-      verticalAlignment = Alignment.CenterVertically,
-      content = content
-    )
-  }
+    Surface(
+        color = backgroundColor,
+        contentColor = contentColor,
+        elevation = elevation,
+        shape = shape,
+        modifier = modifier
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(contentPadding)
+                .height(AppBarHeight),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
+            content = content
+        )
+    }
 }
 

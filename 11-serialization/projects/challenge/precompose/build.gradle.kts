@@ -1,5 +1,5 @@
+import java.util.*
 import org.jetbrains.compose.compose
-import java.util.Properties
 
 plugins {
     kotlin("multiplatform")
@@ -117,7 +117,8 @@ publishing {
     }
     repositories {
         maven {
-            val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            val releasesRepoUrl =
+                "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             url = if (version.toString().endsWith("SNAPSHOT")) {
                 uri(snapshotsRepoUrl)
