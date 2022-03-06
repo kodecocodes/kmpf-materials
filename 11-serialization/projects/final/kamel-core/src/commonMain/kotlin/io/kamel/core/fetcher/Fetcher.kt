@@ -3,7 +3,7 @@ package io.kamel.core.fetcher
 import io.kamel.core.DataSource
 import io.kamel.core.Resource
 import io.kamel.core.config.ResourceConfig
-import io.ktor.utils.io.*
+import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.flow.Flow
 
 /**

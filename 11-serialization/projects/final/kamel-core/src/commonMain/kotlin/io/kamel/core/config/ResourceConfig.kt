@@ -1,7 +1,7 @@
 package io.kamel.core.config
 
 import androidx.compose.ui.unit.Density
-import io.ktor.client.request.*
+import io.ktor.client.request.HttpRequestData
 import kotlin.coroutines.CoroutineContext
 
 /**

@@ -5,8 +5,8 @@ import io.kamel.core.Resource
 import io.kamel.core.config.ResourceConfig
 import io.kamel.core.fetcher.Fetcher
 import io.kamel.image.utils.path
-import io.ktor.http.*
-import io.ktor.utils.io.*
+import io.ktor.http.Url
+import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
