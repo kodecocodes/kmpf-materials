@@ -63,6 +63,14 @@ class FeedViewModel : ViewModel(), FeedData {
     ServiceLocator.getFeedPresenter
   }
 
+  fun fetchAllFeeds() {
+    Logger.d(TAG, "fetchAllFeeds")
+  }
+
+  fun fetchMyGravatar() {
+    Logger.d(TAG, "fetchMyGravatar")
+  }
+
   // region FeedData
 
   override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
