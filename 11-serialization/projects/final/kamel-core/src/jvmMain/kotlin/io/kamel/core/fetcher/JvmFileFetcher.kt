@@ -14,17 +14,17 @@ import java.io.File
  */
 internal actual object FileFetcher : Fetcher<File> {
 
-    override val source: DataSource = DataSource.Disk
+  override val source: DataSource = DataSource.Disk
 
-    override val File.isSupported: Boolean
-        get() = exists() && isFile
+  override val File.isSupported: Boolean
+    get() = exists() && isFile
 
-    override fun fetch(
-        data: File,
-        resourceConfig: ResourceConfig
-    ): Flow<Resource<ByteReadChannel>> = flow {
-        val bytes = data.readChannel(coroutineContext = resourceConfig.coroutineContext)
-        emit(Resource.Success(bytes))
-    }
+  override fun fetch(
+    data: File,
+    resourceConfig: ResourceConfig
+  ): Flow<Resource<ByteReadChannel>> = flow {
+    val bytes = data.readChannel(coroutineContext = resourceConfig.coroutineContext)
+    emit(Resource.Success(bytes))
+  }
 
 }

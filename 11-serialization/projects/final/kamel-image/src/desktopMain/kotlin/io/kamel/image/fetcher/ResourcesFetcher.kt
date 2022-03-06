@@ -12,20 +12,20 @@ import kotlinx.coroutines.flow.flow
 
 internal object ResourcesFetcher : Fetcher<Url> {
 
-    override val source: DataSource = DataSource.Disk
+  override val source: DataSource = DataSource.Disk
 
-    override val Url.isSupported: Boolean
-        get() = Thread.currentThread().contextClassLoader?.getResource(path) != null
+  override val Url.isSupported: Boolean
+    get() = Thread.currentThread().contextClassLoader?.getResource(path) != null
 
-    override fun fetch(
-        data: Url,
-        resourceConfig: ResourceConfig
-    ): Flow<Resource<ByteReadChannel>> = flow {
-        val bytes = Thread.currentThread().contextClassLoader
-            ?.getResource(data.path)
-            ?.readBytes()
-            ?.let { ByteReadChannel(it) } ?: error("Unable to find resource $data")
-        emit(Resource.Success(bytes))
-    }
+  override fun fetch(
+    data: Url,
+    resourceConfig: ResourceConfig
+  ): Flow<Resource<ByteReadChannel>> = flow {
+    val bytes = Thread.currentThread().contextClassLoader
+      ?.getResource(data.path)
+      ?.readBytes()
+      ?.let { ByteReadChannel(it) } ?: error("Unable to find resource $data")
+    emit(Resource.Success(bytes))
+  }
 
 }

@@ -13,10 +13,13 @@ private const val Offset = 0
 
 internal actual object ImageBitmapDecoder : Decoder<ImageBitmap> {
 
-    override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): ImageBitmap {
-        val bytes = channel.toByteArray()
-        val bitmap = BitmapFactory.decodeByteArray(bytes, Offset, bytes.size) as Bitmap
-        return bitmap.asImageBitmap()
-    }
+  override suspend fun decode(
+    channel: ByteReadChannel,
+    resourceConfig: ResourceConfig
+  ): ImageBitmap {
+    val bytes = channel.toByteArray()
+    val bitmap = BitmapFactory.decodeByteArray(bytes, Offset, bytes.size) as Bitmap
+    return bitmap.asImageBitmap()
+  }
 
 }

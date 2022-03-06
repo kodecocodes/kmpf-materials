@@ -49,7 +49,7 @@ import kotlinx.serialization.encoding.Encoder
 object RWSerializer : KSerializer<PLATFORM> {
 
   override val descriptor: SerialDescriptor =
-      PrimitiveSerialDescriptor("PLATFORM", PrimitiveKind.STRING)
+    PrimitiveSerialDescriptor("PLATFORM", PrimitiveKind.STRING)
 
   override fun serialize(encoder: Encoder, value: PLATFORM) {
     encoder.encodeString(value.value)

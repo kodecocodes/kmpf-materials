@@ -42,7 +42,12 @@ public interface FeedData {
 
   public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?)
 
-  public fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?)
+  public fun onNewImageUrlAvailable(
+    id: String,
+    url: String,
+    platform: PLATFORM,
+    exception: Exception?
+  )
 
   public fun onMyGravatarData(item: GravatarEntry)
 }

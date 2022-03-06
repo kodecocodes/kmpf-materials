@@ -7,16 +7,16 @@ import io.kamel.core.config.*
 import io.kamel.image.decoder.ImageBitmapDecoder
 
 public val KamelConfig.Companion.Default: KamelConfig
-    get() = KamelConfig {
-        imageBitmapCacheSize = DefaultCacheSize
-        imageVectorCacheSize = DefaultCacheSize
-        imageBitmapDecoder()
-        stringMapper()
-        urlMapper()
-        uriMapper()
-        fileFetcher()
-        httpFetcher()
-    }
+  get() = KamelConfig {
+    imageBitmapCacheSize = DefaultCacheSize
+    imageVectorCacheSize = DefaultCacheSize
+    imageBitmapDecoder()
+    stringMapper()
+    urlMapper()
+    uriMapper()
+    fileFetcher()
+    httpFetcher()
+  }
 
 /**
  * Adds an [ImageBitmap] decoder to the [KamelConfigBuilder].
@@ -26,4 +26,5 @@ public fun KamelConfigBuilder.imageBitmapDecoder(): Unit = decoder(ImageBitmapDe
 /**
  * Static CompositionLocal that provides the default configuration of [KamelConfig].
  */
-public val LocalKamelConfig: ProvidableCompositionLocal<KamelConfig> = staticCompositionLocalOf { KamelConfig.Default }
+public val LocalKamelConfig: ProvidableCompositionLocal<KamelConfig> =
+  staticCompositionLocalOf { KamelConfig.Default }

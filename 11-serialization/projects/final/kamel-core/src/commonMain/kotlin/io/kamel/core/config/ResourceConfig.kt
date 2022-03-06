@@ -10,22 +10,22 @@ import kotlin.coroutines.CoroutineContext
  */
 public interface ResourceConfig {
 
-    /**
-     * Http Request configuration.
-     * @see ResourceConfigBuilder.requestBuilder
-     */
-    public val requestData: HttpRequestData
+  /**
+   * Http Request configuration.
+   * @see ResourceConfigBuilder.requestBuilder
+   */
+  public val requestData: HttpRequestData
 
-    /**
-     * CoroutineContext used while loading the resource.
-     * @see ResourceConfigBuilder.coroutineContext
-     */
-    public val coroutineContext: CoroutineContext
+  /**
+   * CoroutineContext used while loading the resource.
+   * @see ResourceConfigBuilder.coroutineContext
+   */
+  public val coroutineContext: CoroutineContext
 
-    /**
-     * Screen density.
-     * @see ResourceConfigBuilder.density
-     */
-    public val density: Density
+  /**
+   * Screen density.
+   * @see ResourceConfigBuilder.density
+   */
+  public val density: Density
 
 }

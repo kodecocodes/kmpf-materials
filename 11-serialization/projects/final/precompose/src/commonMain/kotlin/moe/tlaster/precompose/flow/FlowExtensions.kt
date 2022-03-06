@@ -16,24 +16,24 @@ import kotlin.coroutines.EmptyCoroutineContext
 @ExperimentalCoroutinesApi
 @Composable
 fun <T : R, R> Flow<T>.collectAsStateWithLifecycle(
-    initial: R,
-    context: CoroutineContext = EmptyCoroutineContext
+  initial: R,
+  context: CoroutineContext = EmptyCoroutineContext
 ): State<R> {
-    val lifecycleOwner = checkNotNull(LocalLifecycleOwner.current)
-    val flow = remember(this, lifecycleOwner) {
-        flowWithLifecycle(lifecycleOwner.lifecycle)
-    }
-    return flow.collectAsState(initial = initial, context = context)
+  val lifecycleOwner = checkNotNull(LocalLifecycleOwner.current)
+  val flow = remember(this, lifecycleOwner) {
+    flowWithLifecycle(lifecycleOwner.lifecycle)
+  }
+  return flow.collectAsState(initial = initial, context = context)
 }
 
 @ExperimentalCoroutinesApi
 fun <T> Flow<T>.flowWithLifecycle(
-    lifecycle: Lifecycle,
+  lifecycle: Lifecycle,
 ): Flow<T> = callbackFlow {
-    lifecycle.repeatOnLifecycle {
-        this@flowWithLifecycle.collect {
-            send(it)
-        }
+  lifecycle.repeatOnLifecycle {
+    this@flowWithLifecycle.collect {
+      send(it)
     }
-    close()
+  }
+  close()
 }

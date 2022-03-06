@@ -22,44 +22,44 @@ import io.ktor.http.*
 
 public class KamelConfigBuilder {
 
-    internal val fetchers: MutableList<Fetcher<Any>> = mutableListOf()
+  internal val fetchers: MutableList<Fetcher<Any>> = mutableListOf()
 
-    internal val decoders: MutableList<Decoder<Any>> = mutableListOf()
+  internal val decoders: MutableList<Decoder<Any>> = mutableListOf()
 
-    internal val mappers: MutableList<Mapper<Any, Any>> = mutableListOf()
+  internal val mappers: MutableList<Mapper<Any, Any>> = mutableListOf()
 
-    public var imageBitmapCacheSize: Int = 0
+  public var imageBitmapCacheSize: Int = 0
 
-    public var imageVectorCacheSize: Int = 0
+  public var imageVectorCacheSize: Int = 0
 
-    public var svgCacheSize: Int = 0
+  public var svgCacheSize: Int = 0
 
-    public fun <T : Any> fetcher(fetcher: Fetcher<T>) {
-        fetchers += fetcher as Fetcher<Any>
-    }
+  public fun <T : Any> fetcher(fetcher: Fetcher<T>) {
+    fetchers += fetcher as Fetcher<Any>
+  }
 
-    public fun <T : Any> decoder(decoder: Decoder<T>) {
-        decoders += decoder as Decoder<Any>
-    }
+  public fun <T : Any> decoder(decoder: Decoder<T>) {
+    decoders += decoder as Decoder<Any>
+  }
 
-    public fun <I : Any, O : Any> mapper(mapper: Mapper<I, O>) {
-        mappers += mapper as Mapper<Any, Any>
-    }
+  public fun <I : Any, O : Any> mapper(mapper: Mapper<I, O>) {
+    mappers += mapper as Mapper<Any, Any>
+  }
 
-    public fun build(): KamelConfig = object : KamelConfig {
+  public fun build(): KamelConfig = object : KamelConfig {
 
-        override val fetchers: List<Fetcher<Any>> = this@KamelConfigBuilder.fetchers
+    override val fetchers: List<Fetcher<Any>> = this@KamelConfigBuilder.fetchers
 
-        override val decoders: List<Decoder<Any>> = this@KamelConfigBuilder.decoders
+    override val decoders: List<Decoder<Any>> = this@KamelConfigBuilder.decoders
 
-        override val mappers: List<Mapper<Any, Any>> = this@KamelConfigBuilder.mappers
+    override val mappers: List<Mapper<Any, Any>> = this@KamelConfigBuilder.mappers
 
-        override val imageBitmapCache: Cache<Any, ImageBitmap> = LruCache(imageBitmapCacheSize)
+    override val imageBitmapCache: Cache<Any, ImageBitmap> = LruCache(imageBitmapCacheSize)
 
-        override val imageVectorCache: Cache<Any, ImageVector> = LruCache(imageVectorCacheSize)
+    override val imageVectorCache: Cache<Any, ImageVector> = LruCache(imageVectorCacheSize)
 
-        override val svgCache: Cache<Any, Painter> = LruCache(svgCacheSize)
-    }
+    override val svgCache: Cache<Any, Painter> = LruCache(svgCacheSize)
+  }
 
 }
 
@@ -68,8 +68,8 @@ public class KamelConfigBuilder {
  * and an optional [block] for configuring this client.
  */
 public fun KamelConfigBuilder.httpFetcher(
-    engine: HttpClientEngine,
-    block: HttpClientConfig<*>.() -> Unit = {}
+  engine: HttpClientEngine,
+  block: HttpClientConfig<*>.() -> Unit = {}
 ): Unit = fetcher(HttpFetcher(HttpClient(engine, block)))
 
 /**
@@ -77,7 +77,7 @@ public fun KamelConfigBuilder.httpFetcher(
  * and an optional [block] for configuring this client.
  */
 public fun KamelConfigBuilder.httpFetcher(
-    block: HttpClientConfig<*>.() -> Unit = {}
+  block: HttpClientConfig<*>.() -> Unit = {}
 ): Unit = fetcher(HttpFetcher(HttpClient(block)))
 
 /**
@@ -103,18 +103,19 @@ public fun KamelConfigBuilder.urlMapper(): Unit = mapper(URLMapper)
 /**
  * Copies all the data from [builder] and uses it as base for [this].
  */
-public fun KamelConfigBuilder.takeFrom(builder: KamelConfigBuilder): KamelConfigBuilder = takeFrom(builder.build())
+public fun KamelConfigBuilder.takeFrom(builder: KamelConfigBuilder): KamelConfigBuilder =
+  takeFrom(builder.build())
 
 /**
  * Copies all the data from [config] and uses it as base for [this].
  */
 public fun KamelConfigBuilder.takeFrom(config: KamelConfig): KamelConfigBuilder {
-    imageBitmapCacheSize = config.imageBitmapCache.maxSize
-    imageVectorCacheSize = config.imageVectorCache.maxSize
-    svgCacheSize = config.svgCache.maxSize
-    config.fetchers.forEach { fetcher(it) }
-    config.decoders.forEach { decoder(it) }
-    config.mappers.forEach { mapper(it) }
+  imageBitmapCacheSize = config.imageBitmapCache.maxSize
+  imageVectorCacheSize = config.imageVectorCache.maxSize
+  svgCacheSize = config.svgCache.maxSize
+  config.fetchers.forEach { fetcher(it) }
+  config.decoders.forEach { decoder(it) }
+  config.mappers.forEach { mapper(it) }
 
-    return this
+  return this
 }

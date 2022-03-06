@@ -9,8 +9,12 @@ import io.ktor.utils.io.jvm.javaio.*
 import org.xml.sax.InputSource
 
 internal object ImageVectorDecoder : Decoder<ImageVector> {
-    override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): ImageVector {
-        val inputSource = InputSource(channel.toInputStream())
-        return loadXmlImageVector(inputSource, resourceConfig.density)
-    }
+
+  override suspend fun decode(
+    channel: ByteReadChannel,
+    resourceConfig: ResourceConfig
+  ): ImageVector {
+    val inputSource = InputSource(channel.toInputStream())
+    return loadXmlImageVector(inputSource, resourceConfig.density)
+  }
 }

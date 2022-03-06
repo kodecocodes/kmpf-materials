@@ -43,29 +43,29 @@ private const val TAG = "BookmarkPresenter"
 
 class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
 
-    private var listener: BookmarkData? = null
+  private var listener: BookmarkData? = null
 
-    public fun getBookmarks(cb: BookmarkData) {
-        Logger.d(TAG, "getBookmarks")
-        listener = cb
-        getBookmarks()
-    }
+  public fun getBookmarks(cb: BookmarkData) {
+    Logger.d(TAG, "getBookmarks")
+    listener = cb
+    getBookmarks()
+  }
 
-    private fun getBookmarks() {}
+  private fun getBookmarks() {}
 
-    public fun addAsBookmark(entry: RWEntry, cb: BookmarkData) {
-        Logger.d(TAG, "addAsBookmark")
-        listener = cb
-        addAsBookmark(entry.copy(bookmarked = true))
-    }
+  public fun addAsBookmark(entry: RWEntry, cb: BookmarkData) {
+    Logger.d(TAG, "addAsBookmark")
+    listener = cb
+    addAsBookmark(entry.copy(bookmarked = true))
+  }
 
-    private fun addAsBookmark(entry: RWEntry) {}
+  private fun addAsBookmark(entry: RWEntry) {}
 
-    public fun removeFromBookmark(entry: RWEntry, cb: BookmarkData) {
-        Logger.d(TAG, "removeFromBookmark")
-        listener = cb
-        removeFromBookmark(entry.copy(bookmarked = false))
-    }
+  public fun removeFromBookmark(entry: RWEntry, cb: BookmarkData) {
+    Logger.d(TAG, "removeFromBookmark")
+    listener = cb
+    removeFromBookmark(entry.copy(bookmarked = false))
+  }
 
-    private fun removeFromBookmark(entry: RWEntry) {}
+  private fun removeFromBookmark(entry: RWEntry) {}
 }
