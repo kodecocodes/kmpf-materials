@@ -32,8 +32,8 @@
  * THE SOFTWARE.
  */
 
-val composeVersion by extra("1.0.5")
-val koinVersion by extra("3.1.4")
+val composeVersion by extra("1.1.1")
+val koinVersion by extra("3.1.5")
 val settingsVersion by extra("0.8.1")
 val sqlDelightVersion by extra("1.5.3")
 
@@ -45,9 +45,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
-        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath("org.jetbrains.compose:compose-gradle-plugin:1.1.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath("com.android.tools.build:gradle:7.1.2")
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
     }
 }

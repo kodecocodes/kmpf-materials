@@ -32,8 +32,6 @@
  * THE SOFTWARE.
  */
 
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -43,17 +41,13 @@ plugins {
 kotlin {
     android()
 
-    val xcf = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
-
-//      Make sure all iOS dependencies support this target
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            xcf.add(this)
         }
     }
 
@@ -63,7 +57,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.insert-koin:koin-core:${rootProject.extra["koinVersion"]}")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
                 implementation("com.russhwolf:multiplatform-settings:${rootProject.extra["settingsVersion"]}")
             }
         }
@@ -123,11 +117,11 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 32
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 32
     }
 }
 
