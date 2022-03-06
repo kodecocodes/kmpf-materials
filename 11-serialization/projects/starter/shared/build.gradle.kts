@@ -102,7 +102,3 @@ kotlin {
         }
     }
 }
-
-kotlin.sourceSets.all {
-    languageSettings.optIn("kotlin.RequiresOptIn")
-}
