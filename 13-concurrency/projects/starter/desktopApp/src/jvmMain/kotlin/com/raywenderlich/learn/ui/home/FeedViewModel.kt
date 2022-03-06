@@ -75,14 +75,14 @@ class FeedViewModel : ViewModel(), FeedData {
 
   // region FeedData
 
-  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?) {
+  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       _items[platform] = items
     }
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
+  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
   }
 
