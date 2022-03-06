@@ -35,10 +35,9 @@
 package com.raywenderlich.learn.ui.utils
 
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.datetime.toInstant
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
+import kotlinx.datetime.toInstant
 
 private const val TAG = "Utils"
 

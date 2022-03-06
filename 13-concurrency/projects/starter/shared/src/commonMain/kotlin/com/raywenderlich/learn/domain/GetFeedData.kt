@@ -42,7 +42,7 @@ import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
-import io.ktor.client.statement.*
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"

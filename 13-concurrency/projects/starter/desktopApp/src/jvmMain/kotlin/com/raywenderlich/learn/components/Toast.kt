@@ -67,6 +67,7 @@ import kotlinx.coroutines.launch
  */
 
 enum class ToastDuration(val value: Int) {
+
   Short(1000), Long(3000)
 }
 
@@ -109,7 +110,7 @@ fun Toast(
             isShown = false
             visibility.value = false
           }
-          onDispose {  }
+          onDispose { }
         }
       }
     }

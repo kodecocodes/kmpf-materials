@@ -63,15 +63,15 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.raywenderlich.learn.components.AddImagePreview
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContent20Transparency
 import com.raywenderlich.learn.ui.theme.colorContent85Transparency
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "LatestContent"
 

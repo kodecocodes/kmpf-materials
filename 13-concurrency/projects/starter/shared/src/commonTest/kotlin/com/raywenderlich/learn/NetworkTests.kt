@@ -40,15 +40,15 @@ import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.GravatarProfile
 import com.raywenderlich.learn.platform.runTest
 import io.ktor.client.HttpClient
-import io.ktor.client.call.*
+import io.ktor.client.call.body
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.plugins.*
-import io.ktor.client.request.*
+import io.ktor.client.plugins.ContentNegotiation
+import io.ktor.client.request.request
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.serialization.kotlinx.json.json
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.serialization.encodeToString
@@ -72,10 +72,6 @@ class NetworkTests {
   private fun getHttpClient(): HttpClient {
     return HttpClient(MockEngine) {
 
-      defaultRequest {
-        header(HttpHeaders.Accept, "text/html")
-      }
-
       install(ContentNegotiation) {
         json(nonStrictJson)
       }
@@ -83,11 +79,9 @@ class NetworkTests {
       engine {
         addHandler { request ->
           if (request.url.toString().contains(GRAVATAR_URL)) {
-            val respond = respond(
+            respond(
               content = Json.encodeToString(profile),
-              headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-            )
-            respond
+              headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString()))
           }
           else {
             error("Unhandled ${request.url}")

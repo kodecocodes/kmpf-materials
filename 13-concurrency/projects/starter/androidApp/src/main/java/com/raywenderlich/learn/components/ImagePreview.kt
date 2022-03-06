@@ -55,9 +55,9 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "ImagePreview"
 
