@@ -3,7 +3,7 @@ import java.util.Properties
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-beta5"
+    id("org.jetbrains.compose") version "1.1.0"
     id("com.android.library")
     id("maven-publish")
     id("signing")
@@ -26,13 +26,13 @@ kotlin {
         }
     }
     dependencies {
-        implementation("io.ktor:ktor-client-android:1.6.4")
+        implementation("io.ktor:ktor-client-android:1.6.5")
     }
     sourceSets {
         val commonMain by getting {
             dependencies {
                 api(compose.foundation)
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
             }
         }
         val commonTest by getting {
@@ -44,7 +44,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01")
+                api("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
                 api("androidx.savedstate:savedstate-ktx:1.1.0")
             }
         }
