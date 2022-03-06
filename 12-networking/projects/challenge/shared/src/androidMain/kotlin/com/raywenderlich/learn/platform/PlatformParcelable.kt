@@ -32,20 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.data.model
+package com.raywenderlich.learn.platform
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-public data class GravatarProfile(
-  val entry: List<GravatarEntry> = emptyList()
-)
-
-@Serializable
-public data class GravatarEntry(
-  val id: String? = null,
-  val hash: String? = null,
-  val preferredUsername: String? = null,
-  val thumbnailUrl: String? = null,
-  val aboutMe: String? = null
-)
+actual typealias Parcelable = android.os.Parcelable
+actual typealias Parcelize = kotlinx.android.parcel.Parcelize

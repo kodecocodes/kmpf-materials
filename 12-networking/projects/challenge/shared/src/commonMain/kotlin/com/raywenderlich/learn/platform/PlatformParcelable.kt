@@ -32,20 +32,22 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.data.model
+package com.raywenderlich.learn.platform
 
-import kotlinx.serialization.Serializable
+//1
+expect interface Parcelable
 
-@Serializable
-public data class GravatarProfile(
-  val entry: List<GravatarEntry> = emptyList()
-)
+//2
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+//3
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.BINARY)
+//4
+expect annotation class Parcelize()
 
-@Serializable
-public data class GravatarEntry(
-  val id: String? = null,
-  val hash: String? = null,
-  val preferredUsername: String? = null,
-  val thumbnailUrl: String? = null,
-  val aboutMe: String? = null
-)
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+@Target(AnnotationTarget.TYPE)
+@Retention(AnnotationRetention.BINARY)
+expect annotation class RawValue()
