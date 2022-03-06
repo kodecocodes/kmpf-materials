@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -58,7 +58,7 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
+private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
 
 class FeedPresenter(private val feed: GetFeedData) {
 
@@ -68,48 +68,38 @@ class FeedPresenter(private val feed: GetFeedData) {
     json.decodeFromString(RW_CONTENT)
   }
 
-  private var listener: FeedData? = null
-
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
 
-    listener = cb
-
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
   @OptIn(DelicateCoroutinesApi::class)
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
     GlobalScope.apply {
       MainScope().launch {
         feed.invokeFetchRWEntry(
           platform = platform,
           feedUrl = feedUrl,
-          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+          onSuccess = { cb.onNewDataAvailable(it, platform, null) },
+          onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
         )
       }
     }
   }
 
+  @OptIn(DelicateCoroutinesApi::class)
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    listener = cb
-
-    fetchMyGravatar()
-  }
-
-  @OptIn(DelicateCoroutinesApi::class)
-  private fun fetchMyGravatar() {
     GlobalScope.apply {
       MainScope().launch {
         feed.invokeGetMyGravatar(
           hash = md5(GRAVATAR_EMAIL),
-          onSuccess = { listener?.onMyGravatarData(it) },
-          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+          onSuccess = { cb.onMyGravatarData(it) },
+          onFailure = { cb.onMyGravatarData(GravatarEntry()) }
         )
       }
     }
