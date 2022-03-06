@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -71,6 +72,7 @@ enum class ToastDuration(val value: Int) {
 
 private var isShown: Boolean = false
 
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun Toast(
   text: String,
