@@ -132,7 +132,7 @@ fun openEntry(url: String) {
   try {
     val desktop = Desktop.getDesktop()
     desktop.browse(URI.create(url))
-  } catch(e: Exception) {
+  } catch (e: Exception) {
     Logger.e(TAG, "Unable to open url. Reason: ${e.stackTrace}")
   }
 }

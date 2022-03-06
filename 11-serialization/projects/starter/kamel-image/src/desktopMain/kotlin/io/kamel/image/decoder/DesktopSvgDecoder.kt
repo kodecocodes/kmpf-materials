@@ -8,10 +8,11 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.jvm.javaio.*
 
 internal object SvgDecoder : Decoder<Painter> {
-    override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): Painter {
-        return loadSvgPainter(
-            channel.toInputStream(),
-            resourceConfig.density
-        )
-    }
+
+  override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): Painter {
+    return loadSvgPainter(
+      channel.toInputStream(),
+      resourceConfig.density
+    )
+  }
 }

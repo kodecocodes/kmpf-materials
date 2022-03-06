@@ -45,8 +45,6 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
 import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
-import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -77,7 +75,12 @@ class FeedViewModel : ViewModel(), FeedData {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?) {
+  override fun onNewImageUrlAvailable(
+    id: String,
+    url: String,
+    platform: PLATFORM,
+    exception: Exception?
+  ) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
   }
 

@@ -8,8 +8,8 @@ import io.ktor.utils.io.*
  */
 public interface Decoder<out T : Any> {
 
-    /**
-     * Decodes [channel] to [T].
-     */
-    public suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): T
+  /**
+   * Decodes [channel] to [T].
+   */
+  public suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): T
 }

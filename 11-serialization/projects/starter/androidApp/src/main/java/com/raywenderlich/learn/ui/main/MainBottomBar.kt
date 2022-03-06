@@ -54,11 +54,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import com.raywenderlich.learn.ui.theme.colorAccent
-import com.raywenderlich.learn.ui.theme.colorAccent25Transparency
-import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.ui.theme.colorPrimary
-import com.raywenderlich.learn.ui.theme.colorSecondary
+import com.raywenderlich.learn.ui.theme.*
 
 private lateinit var selectedIndex: MutableState<Int>
 

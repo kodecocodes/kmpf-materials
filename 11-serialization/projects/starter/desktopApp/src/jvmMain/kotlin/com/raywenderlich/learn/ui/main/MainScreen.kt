@@ -35,24 +35,14 @@
 package com.raywenderlich.learn.ui.main
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.BottomSheetValue
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.material.rememberBottomSheetState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.home.HomeSheetContent
-import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.ui.home.HomeSheetContent
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import moe.tlaster.precompose.navigation.rememberNavigator
 
 private lateinit var selected: MutableState<RWEntry>

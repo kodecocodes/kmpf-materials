@@ -13,9 +13,9 @@ import org.jetbrains.skia.Image
  */
 internal actual object ImageBitmapDecoder : Decoder<ImageBitmap> {
 
-    override suspend fun decode(
-        channel: ByteReadChannel,
-        resourceConfig: ResourceConfig
-    ): ImageBitmap = Image.makeFromEncoded(channel.toByteArray()).toComposeImageBitmap()
+  override suspend fun decode(
+    channel: ByteReadChannel,
+    resourceConfig: ResourceConfig
+  ): ImageBitmap = Image.makeFromEncoded(channel.toByteArray()).toComposeImageBitmap()
 
 }

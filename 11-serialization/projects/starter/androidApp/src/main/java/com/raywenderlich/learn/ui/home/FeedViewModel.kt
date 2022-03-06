@@ -38,14 +38,12 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -77,7 +75,12 @@ class FeedViewModel : ViewModel(), FeedData {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, exception: Exception?) {
+  override fun onNewImageUrlAvailable(
+    id: String,
+    url: String,
+    platform: PLATFORM,
+    exception: Exception?
+  ) {
     Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
   }
 

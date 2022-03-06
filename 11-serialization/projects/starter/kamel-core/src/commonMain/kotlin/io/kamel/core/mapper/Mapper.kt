@@ -8,8 +8,8 @@ package io.kamel.core.mapper
  */
 public fun interface Mapper<I : Any, O : Any> {
 
-    /**
-     * Maps input [I] to output [O].
-     */
-    public fun map(input: I): O
+  /**
+   * Maps input [I] to output [O].
+   */
+  public fun map(input: I): O
 }

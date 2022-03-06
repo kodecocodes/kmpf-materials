@@ -18,26 +18,26 @@ import kotlinx.coroutines.flow.channelFlow
  */
 internal class HttpFetcher(private val client: HttpClient) : Fetcher<Url> {
 
-    override val source: DataSource = DataSource.Network
+  override val source: DataSource = DataSource.Network
 
-    override val Url.isSupported: Boolean
-        get() = protocol.name == "https" || protocol.name == "http"
+  override val Url.isSupported: Boolean
+    get() = protocol.name == "https" || protocol.name == "http"
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun fetch(
-        data: Url,
-        resourceConfig: ResourceConfig
-    ): Flow<Resource<ByteReadChannel>> = channelFlow {
-        val response = client.request {
-            onDownload { bytesSentTotal, contentLength ->
-                val progress = (bytesSentTotal.toFloat() / contentLength).coerceAtMost(1.0F)
-                send(Resource.Loading(progress))
-            }
-            takeFrom(resourceConfig.requestData)
-            url(data)
-        }
-        val bytes = response.body<ByteReadChannel>()
-        send(Resource.Success(bytes))
+  @OptIn(ExperimentalCoroutinesApi::class)
+  override fun fetch(
+    data: Url,
+    resourceConfig: ResourceConfig
+  ): Flow<Resource<ByteReadChannel>> = channelFlow {
+    val response = client.request {
+      onDownload { bytesSentTotal, contentLength ->
+        val progress = (bytesSentTotal.toFloat() / contentLength).coerceAtMost(1.0F)
+        send(Resource.Loading(progress))
+      }
+      takeFrom(resourceConfig.requestData)
+      url(data)
     }
+    val bytes = response.body<ByteReadChannel>()
+    send(Resource.Success(bytes))
+  }
 
 }
