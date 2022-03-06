@@ -96,6 +96,7 @@ class NetworkTests {
     }
   }
 
+  @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
   @Test
   public fun testFetchMyGravatar() = kotlinx.coroutines.test.runTest {
     val client = getHttpClient()

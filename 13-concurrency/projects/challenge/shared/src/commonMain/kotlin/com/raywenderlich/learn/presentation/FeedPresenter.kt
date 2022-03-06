@@ -49,12 +49,12 @@ import kotlinx.serialization.json.Json
 private const val TAG = "FeedPresenter"
 
 private const val RW_CONTENT = "[" +
-        "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
-        "{\"platform\":\"android\", \"url\":\"https://raywenderlich.com/android/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2017/11/android-love-1-1.png\"}," +
-        "{\"platform\":\"ios\", \"url\":\"https://raywenderlich.com/ios/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/09/iOS12_LaunchParty-feature.png\"}," +
-        "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/gametech/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
-        "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
-        "]"
+    "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +
+    "{\"platform\":\"android\", \"url\":\"https://raywenderlich.com/android/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2017/11/android-love-1-1.png\"}," +
+    "{\"platform\":\"ios\", \"url\":\"https://raywenderlich.com/ios/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/09/iOS12_LaunchParty-feature.png\"}," +
+    "{\"platform\":\"unity\", \"url\":\"https://raywenderlich.com/gametech/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2021/03/Unity2D-feature.png\"}," +
+    "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
+    "]"
 
 private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
@@ -110,7 +110,7 @@ class FeedPresenter(private val feed: GetFeedData) {
 
     listener = cb
 
-    CoroutineScope(Dispatchers.Default).launch {
+    scope.launch {
       listener?.onMyGravatarData(fetchMyGravatar())
     }
   }

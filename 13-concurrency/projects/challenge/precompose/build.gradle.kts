@@ -3,7 +3,7 @@ import java.util.Properties
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.1"
+    id("org.jetbrains.compose") version "1.1.0"
     id("com.android.library")
     id("maven-publish")
     id("signing")
@@ -44,7 +44,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+                api("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
                 api("androidx.savedstate:savedstate-ktx:1.1.0")
             }
         }

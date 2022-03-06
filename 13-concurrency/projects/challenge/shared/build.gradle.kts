@@ -44,8 +44,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
                 implementation("com.soywiz.korlibs.korio:korio:2.4.10")
 
@@ -64,7 +64,10 @@ kotlin {
 
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
+
                 implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
             }
         }
 
@@ -87,6 +90,8 @@ kotlin {
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependsOn(commonMain)
+
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
 
@@ -108,6 +113,8 @@ kotlin {
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
         val iosTest by creating {
+            dependsOn(commonTest)
+
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
@@ -121,4 +128,8 @@ kotlin {
             }
         }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.RequiresOptIn")
 }
