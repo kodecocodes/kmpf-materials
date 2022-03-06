@@ -91,11 +91,12 @@ struct Section: View {
                 if item.imageUrl.isEmpty {
                   Rectangle().foregroundColor(.gray)
                   Image("razerware")
+                } else {
+                  AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+                    .resizable()
+                    .scaledToFill()
+                    .cornerRadius(8)
                 }
-                AnimatedImage(url: URL(string: "\(item.imageUrl)"))
-                  .resizable()
-                  .scaledToFill()
-                  .cornerRadius(8)
               })
             }
           }
