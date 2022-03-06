@@ -83,10 +83,10 @@ class FeedPresenter(private val feed: GetFeedData) {
   private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
     scope.launch {
       feed.invokeFetchRWEntry(
-              platform = platform,
-              feedUrl = feedUrl,
-              onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-              onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        platform = platform,
+        feedUrl = feedUrl,
+        onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
+        onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
       )
     }
   }
