@@ -34,10 +34,20 @@
 
 package com.raywenderlich.learn.platform
 
+//1
 expect interface Parcelable
+
+//2
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+//3
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.BINARY)
+//4
+expect annotation class Parcelize()
 
 @OptIn(ExperimentalMultiplatform::class)
 @OptionalExpectation
-@Target(AnnotationTarget.CLASS)
+@Target(AnnotationTarget.TYPE)
 @Retention(AnnotationRetention.BINARY)
-expect annotation class Parcelize()
+expect annotation class RawValue()

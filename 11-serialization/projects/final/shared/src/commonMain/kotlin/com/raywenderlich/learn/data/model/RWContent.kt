@@ -55,4 +55,4 @@ data class RWContent(
   val platform: PLATFORM,
   val url: String,
   val image: String
-): Parcelable
+) : Parcelable

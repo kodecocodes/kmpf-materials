@@ -51,9 +51,9 @@ class SerializationTests {
   @Test
   fun testEncodePlatformAll() {
     val data = RWContent(
-      platform = PLATFORM.ALL,
-      url = "https://www.raywenderlich.com/feed.xml",
-      image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
+        platform = PLATFORM.ALL,
+        url = "https://www.raywenderlich.com/feed.xml",
+        image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
     )
 
     val decoded = Json.encodeToString(RWContent.serializer(), data)
@@ -68,9 +68,9 @@ class SerializationTests {
 
     val decoded = Json.decodeFromString(RWContent.serializer(), data)
     val content = RWContent(
-      platform = PLATFORM.ALL,
-      url = "https://www.raywenderlich.com/feed.xml",
-      image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
+        platform = PLATFORM.ALL,
+        url = "https://www.raywenderlich.com/feed.xml",
+        image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
     )
 
     assertEquals(content, decoded)
