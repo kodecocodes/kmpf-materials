@@ -43,11 +43,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.livedata.observeAsState
 import com.raywenderlich.learn.R
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
 import com.raywenderlich.learn.ui.theme.RWTheme
-import com.raywenderlich.learn.data.model.RWEntry
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(
           applicationContext,
           getString(R.string.action_hello, name),
-          Toast.LENGTH_SHORT).
-        show()
+          Toast.LENGTH_SHORT
+        ).show()
       }
 
       val bookmarks = bookmarkViewModel.items.observeAsState()

@@ -50,10 +50,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.raywenderlich.learn.ui.home.HomeSheetContent
-import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.ui.home.HomeSheetContent
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
 
 private lateinit var selected: MutableState<RWEntry>
 

@@ -4,14 +4,15 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.loadSvgPainter
 import io.kamel.core.config.ResourceConfig
 import io.kamel.core.decoder.Decoder
-import io.ktor.utils.io.*
-import io.ktor.utils.io.jvm.javaio.*
+import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.jvm.javaio.toInputStream
 
 internal object SvgDecoder : Decoder<Painter> {
-    override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): Painter {
-        return loadSvgPainter(
-            channel.toInputStream(),
-            resourceConfig.density
-        )
-    }
+
+  override suspend fun decode(channel: ByteReadChannel, resourceConfig: ResourceConfig): Painter {
+    return loadSvgPainter(
+      channel.toInputStream(),
+      resourceConfig.density
+    )
+  }
 }
