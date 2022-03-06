@@ -88,27 +88,19 @@ public class GetFeedData {
 
   public suspend fun invokeGetMyGravatar(
     hash: String,
-    onSuccess: (GravatarEntry) -> Unit,
-    onFailure: (Exception) -> Unit
-  ) {
-    try {
+  ): GravatarEntry {
+    return try {
       val result = FeedAPI.fetchMyGravatar(hash)
       Logger.d(TAG, "invokeGetMyGravatar | result=$result")
 
       if (result.entry.isEmpty()) {
-        coroutineScope {
-          onFailure(Exception("No profile found for hash=$hash"))
-        }
+        GravatarEntry()
       } else {
-        coroutineScope {
-          onSuccess(result.entry[0])
-        }
+        result.entry[0]
       }
     } catch (e: Exception) {
       Logger.e(TAG, "Unable to fetch my gravatar. Error: $e")
-      coroutineScope {
-        onFailure(e)
-      }
+      GravatarEntry()
     }
   }
 }
