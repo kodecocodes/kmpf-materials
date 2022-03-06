@@ -44,9 +44,11 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
-import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
 
@@ -76,7 +78,7 @@ class FeedViewModel : ViewModel(), FeedData {
   private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
     Logger.d(TAG, "fetchLinkImage | link=$link")
     viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link)
+      val url = presenter.fetchLinkImage(link) ?: return@launch
 
       val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
       val list = _items[platform]?.toMutableList() ?: return@launch
@@ -92,10 +94,12 @@ class FeedViewModel : ViewModel(), FeedData {
   override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
-      _items[platform] = items.subList(0, FETCH_N_IMAGES)
+      withContext(Dispatchers.Main) {
+        _items[platform] = items.subList(0, FETCH_N_IMAGES)
 
-      for (item in _items[platform]!!) {
-        fetchLinkImage(platform, item.id, item.link)
+        for (item in _items[platform]!!) {
+          fetchLinkImage(platform, item.id, item.link)
+        }
       }
     }
   }
@@ -103,7 +107,9 @@ class FeedViewModel : ViewModel(), FeedData {
   override fun onMyGravatarData(item: GravatarEntry) {
     Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
-      profile.value = item
+      withContext(Dispatchers.Main) {
+        profile.value = item
+      }
     }
   }
 

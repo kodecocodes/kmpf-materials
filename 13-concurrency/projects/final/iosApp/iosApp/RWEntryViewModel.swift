@@ -65,9 +65,7 @@ class RWEntryViewModel: ObservableObject {
   func fetchFeeds() {
     FeedClient.shared.fetchFeeds { platform, items in
       Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-      DispatchQueue.main.async {
-        self.items[platform] = items
-      }
+      self.items[platform] = items
     }
   }
 
@@ -107,9 +105,7 @@ class RWEntryViewModel: ObservableObject {
   func fetchAllBookmarks() {
     BookmarkClient.shared.fetchBookmarks { items in
       Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
-      DispatchQueue.main.async {
-        self.bookmarks = items
-      }
+      self.bookmarks = items
     }
   }
 

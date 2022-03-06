@@ -6,20 +6,20 @@ import io.kamel.core.fetcher.Fetcher
 
 internal fun KamelConfig.mapInput(input: Any): Any {
 
-    var output: Any? = null
+  var output: Any? = null
 
-    mappers.findLast {
+  mappers.findLast {
 
-        output = try {
-            it.map(input)
-        } catch (e: Throwable) {
-            null
-        }
-
-        output != null
+    output = try {
+      it.map(input)
+    } catch (e: Throwable) {
+      null
     }
 
-    return output ?: input
+    output != null
+  }
+
+  return output ?: input
 }
 
 internal expect fun <T : Any> KamelConfig.findFetcherFor(data: T): Fetcher<T>

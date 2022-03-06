@@ -32,55 +32,22 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.ui.bookmark
+package com.raywenderlich.learn.platform
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.raywenderlich.learn.ServiceLocator
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.domain.cb.BookmarkData
-import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.utils.SingleLiveEvent
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+//1
+expect interface Parcelable
 
-private const val TAG = "BookmarkViewModel"
+//2
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+//3
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.BINARY)
+//4
+expect annotation class Parcelize()
 
-class BookmarkViewModel : ViewModel(), BookmarkData {
-
-  private val _items = SingleLiveEvent<List<RWEntry>>()
-  val items: SingleLiveEvent<List<RWEntry>> = _items
-
-  private val presenter by lazy {
-    ServiceLocator.getBookmarkPresenter
-  }
-
-  fun getBookmarks() {
-    Logger.d(TAG, "getBookmarks")
-    presenter.getBookmarks(this)
-  }
-
-  fun addAsBookmark(entry: RWEntry) {
-    Logger.d(TAG, "addAsBookmark")
-    presenter.addAsBookmark(entry, this)
-  }
-
-  fun removeFromBookmark(entry: RWEntry) {
-    Logger.d(TAG, "removeFromBookmark")
-    presenter.removeFromBookmark(entry, this)
-  }
-
-  // region FeedData
-
-  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | newItems=${bookmarks.size}")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        _items.value = bookmarks
-      }
-    }
-  }
-
-  // endregion FeedData
-}
+@OptIn(ExperimentalMultiplatform::class)
+@OptionalExpectation
+@Target(AnnotationTarget.TYPE)
+@Retention(AnnotationRetention.BINARY)
+expect annotation class RawValue()
