@@ -5,18 +5,9 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("multiplatform")
     id("com.squareup.sqldelight")
-    id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
 }
 
 version = "1.0"
-
-multiplatformSwiftPackage {
-    xcframeworkName("SharedKit")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("13") }
-    }
-}
 
 sqldelight {
     database("AppDb") {

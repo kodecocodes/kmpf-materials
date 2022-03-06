@@ -48,7 +48,7 @@ import kotlinx.coroutines.coroutineScope
 private const val TAG = "GetFeedData"
 
 private const val WEBSITE_PREVIEW_START_DELIMITER =
-    "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
+  "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
 
 private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
 
