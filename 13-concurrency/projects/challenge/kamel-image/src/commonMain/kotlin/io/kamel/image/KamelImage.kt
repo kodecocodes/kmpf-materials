@@ -23,70 +23,70 @@ import io.kamel.core.Resource
  */
 @Composable
 public fun KamelImage(
-    resource: Resource<Painter>,
-    contentDescription: String?,
-    modifier: Modifier = Modifier,
-    alignment: Alignment = Alignment.Center,
-    contentScale: ContentScale = ContentScale.Fit,
-    alpha: Float = DefaultAlpha,
-    colorFilter: ColorFilter? = null,
-    onLoading: @Composable ((Float) -> Unit)? = null,
-    onFailure: @Composable ((Throwable) -> Unit)? = null,
-    crossfade: Boolean = false,
-    animationSpec: FiniteAnimationSpec<Float> = tween()
+  resource: Resource<Painter>,
+  contentDescription: String?,
+  modifier: Modifier = Modifier,
+  alignment: Alignment = Alignment.Center,
+  contentScale: ContentScale = ContentScale.Fit,
+  alpha: Float = DefaultAlpha,
+  colorFilter: ColorFilter? = null,
+  onLoading: @Composable ((Float) -> Unit)? = null,
+  onFailure: @Composable ((Throwable) -> Unit)? = null,
+  crossfade: Boolean = false,
+  animationSpec: FiniteAnimationSpec<Float> = tween()
 ) {
-    if (crossfade)
-        Crossfade(resource, animationSpec = animationSpec) { animatedResource ->
-            DefaultImage(
-                animatedResource,
-                contentDescription,
-                modifier,
-                alignment,
-                contentScale,
-                alpha,
-                colorFilter,
-                onLoading,
-                onFailure,
-            )
-        }
-    else
-        DefaultImage(
-            resource,
-            contentDescription,
-            modifier,
-            alignment,
-            contentScale,
-            alpha,
-            colorFilter,
-            onLoading,
-            onFailure,
-        )
+  if (crossfade)
+    Crossfade(resource, animationSpec = animationSpec) { animatedResource ->
+      DefaultImage(
+        animatedResource,
+        contentDescription,
+        modifier,
+        alignment,
+        contentScale,
+        alpha,
+        colorFilter,
+        onLoading,
+        onFailure,
+      )
+    }
+  else
+    DefaultImage(
+      resource,
+      contentDescription,
+      modifier,
+      alignment,
+      contentScale,
+      alpha,
+      colorFilter,
+      onLoading,
+      onFailure,
+    )
 }
 
 @Composable
 private fun DefaultImage(
-    resource: Resource<Painter>,
-    contentDescription: String?,
-    modifier: Modifier = Modifier,
-    alignment: Alignment = Alignment.Center,
-    contentScale: ContentScale = ContentScale.Fit,
-    alpha: Float = DefaultAlpha,
-    colorFilter: ColorFilter? = null,
-    onLoading: @Composable ((Float) -> Unit)? = null,
-    onFailure: @Composable ((Throwable) -> Unit)? = null,
+  resource: Resource<Painter>,
+  contentDescription: String?,
+  modifier: Modifier = Modifier,
+  alignment: Alignment = Alignment.Center,
+  contentScale: ContentScale = ContentScale.Fit,
+  alpha: Float = DefaultAlpha,
+  colorFilter: ColorFilter? = null,
+  onLoading: @Composable ((Float) -> Unit)? = null,
+  onFailure: @Composable ((Throwable) -> Unit)? = null,
 ) {
-    when (resource) {
-        is Resource.Loading -> if (onLoading != null) onLoading(resource.progress)
-        is Resource.Success ->
-            Image(
-                resource.value,
-                contentDescription,
-                modifier,
-                alignment,
-                contentScale,
-                alpha,
-                colorFilter
-            )
-        is Resource.Failure -> if (onFailure != null) onFailure(resource.exception)
-    }
+  when (resource) {
+    is Resource.Loading -> if (onLoading != null) onLoading(resource.progress)
+    is Resource.Success ->
+      Image(
+        resource.value,
+        contentDescription,
+        modifier,
+        alignment,
+        contentScale,
+        alpha,
+        colorFilter
+      )
+    is Resource.Failure -> if (onFailure != null) onFailure(resource.exception)
+  }
 }

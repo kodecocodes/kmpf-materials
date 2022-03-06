@@ -42,7 +42,12 @@ import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -58,34 +63,32 @@ private const val RW_CONTENT = "[" +
 
 private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
+private const val FETCH_N_IMAGES = 5
+
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val json = Json { ignoreUnknownKeys = true }
-
   private val scope = CoroutineScope(ioDispatcher)
+
+  private val json = Json { ignoreUnknownKeys = true }
 
   val content: List<RWContent> by lazy {
     json.decodeFromString(RW_CONTENT)
   }
 
-  private var listener: FeedData? = null
-
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
 
-    listener = cb
-
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
     scope.launch {
       val entries = feed.invokeFetchRWEntry(
-              platform = platform,
-              feedUrl = feedUrl,
-      ) ?: return@launch
+        platform = platform,
+        feedUrl = feedUrl,
+      )?.subList(0, FETCH_N_IMAGES) ?: return@launch
 
       val tasks = mutableListOf<Job>()
       for (entry in entries) {
@@ -95,30 +98,30 @@ class FeedPresenter(private val feed: GetFeedData) {
       }
 
       tasks.joinAll()
-      listener?.onNewDataAvailable(entries, platform, null)
+      cb.onNewDataAvailable(entries, platform, null)
     }
   }
 
-  private suspend fun fetchLinkImage(link: String): String {
+  public suspend fun fetchLinkImage(link: String): String {
     return scope.async {
-      feed.invokeFetchImageUrlFromLink(link)
+      feed.invokeFetchImageUrlFromLink(
+        link
+      )
     }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    listener = cb
-
-    scope.launch {
-      listener?.onMyGravatarData(fetchMyGravatar())
+    CoroutineScope(Dispatchers.Default).launch {
+      cb.onMyGravatarData(fetchMyGravatar())
     }
   }
 
   private suspend fun fetchMyGravatar(): GravatarEntry {
     return CoroutineScope(Dispatchers.Default).async {
       feed.invokeGetMyGravatar(
-              hash = md5(GRAVATAR_EMAIL)
+        hash = md5(GRAVATAR_EMAIL)
       )
     }.await()
   }

@@ -72,9 +72,7 @@ class RWEntryViewModel: ObservableObject {
   func fetchAllBookmarks() {
     BookmarkClient.shared.fetchBookmarks { items in
       Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
-      DispatchQueue.main.async {
-        self.bookmarks = items
-      }
+      self.bookmarks = items
     }
   }
 

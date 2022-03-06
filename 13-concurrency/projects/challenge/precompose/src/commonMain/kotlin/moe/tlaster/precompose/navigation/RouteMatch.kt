@@ -1,43 +1,44 @@
 package moe.tlaster.precompose.navigation
 
-import moe.tlaster.precompose.navigation.route.ComposeRoute
 import kotlin.math.min
+import moe.tlaster.precompose.navigation.route.ComposeRoute
 
 internal class RouteMatch {
-    var matches = false
-    var route: ComposeRoute? = null
-    var vars = arrayListOf<String>()
-    var pathMap = linkedMapOf<String, String>()
-    fun key(keys: List<String>) {
-        val size = min(keys.size, vars.size)
-        for (i in 0 until size) {
-            pathMap[keys[i]] = vars[i]
-        }
-        for (i in 0 until size) {
-            vars.removeFirst()
-        }
-    }
 
-    fun truncate(size: Int) {
-        var sizeInt = size
-        while (sizeInt < vars.size) {
-            vars.removeAt(sizeInt++)
-        }
+  var matches = false
+  var route: ComposeRoute? = null
+  var vars = arrayListOf<String>()
+  var pathMap = linkedMapOf<String, String>()
+  fun key(keys: List<String>) {
+    val size = min(keys.size, vars.size)
+    for (i in 0 until size) {
+      pathMap[keys[i]] = vars[i]
     }
+    for (i in 0 until size) {
+      vars.removeFirst()
+    }
+  }
 
-    fun value(value: String) {
-        vars.add(value)
+  fun truncate(size: Int) {
+    var sizeInt = size
+    while (sizeInt < vars.size) {
+      vars.removeAt(sizeInt++)
     }
+  }
 
-    fun pop() {
-        if (vars.isNotEmpty()) {
-            vars.removeLast()
-        }
-    }
+  fun value(value: String) {
+    vars.add(value)
+  }
 
-    fun found(route: ComposeRoute): RouteMatch {
-        this.route = route
-        matches = true
-        return this
+  fun pop() {
+    if (vars.isNotEmpty()) {
+      vars.removeLast()
     }
+  }
+
+  fun found(route: ComposeRoute): RouteMatch {
+    this.route = route
+    matches = true
+    return this
+  }
 }

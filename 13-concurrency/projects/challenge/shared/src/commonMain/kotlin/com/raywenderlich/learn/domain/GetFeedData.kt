@@ -42,7 +42,7 @@ import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
-import io.ktor.client.statement.*
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
@@ -55,8 +55,8 @@ private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
 public class GetFeedData {
 
   public suspend fun invokeFetchRWEntry(
-          platform: PLATFORM,
-          feedUrl: String
+    platform: PLATFORM,
+    feedUrl: String
   ): MutableList<RWEntry>? {
     try {
       val result = FeedAPI.fetchRWEntry(feedUrl)
@@ -81,7 +81,7 @@ public class GetFeedData {
   }
 
   public suspend fun invokeFetchImageUrlFromLink(
-      link: String
+    link: String
   ): String {
     return try {
 
