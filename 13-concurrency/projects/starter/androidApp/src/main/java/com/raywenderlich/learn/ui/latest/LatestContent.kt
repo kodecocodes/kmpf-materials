@@ -102,7 +102,6 @@ fun AddPages(
   onOpenEntry: (String) -> Unit
 ) {
 
-
   LazyColumn(
     modifier = Modifier
       .fillMaxSize()
