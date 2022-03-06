@@ -34,8 +34,11 @@
 
 package com.raywenderlich.learn.data.model
 
+import com.raywenderlich.learn.platform.Parcelable
+import com.raywenderlich.learn.platform.Parcelize
 import kotlinx.serialization.Serializable
 
+@Parcelize
 @Serializable
 data class RWEntry(
   val id: String = "",
@@ -43,7 +46,7 @@ data class RWEntry(
   val title: String = "",
   val summary: String = "",
   val updated: String = "",
-  val imageUrl: String = "",
+  var imageUrl: String = "",
   val platform: PLATFORM = PLATFORM.ALL,
   val bookmarked: Boolean = false
-)
+) : Parcelable

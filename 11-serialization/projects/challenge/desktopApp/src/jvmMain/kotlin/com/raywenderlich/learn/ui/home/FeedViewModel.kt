@@ -65,6 +65,7 @@ class FeedViewModel : ViewModel(), FeedData {
 
   fun fetchAllFeeds() {
     Logger.d(TAG, "fetchAllFeeds")
+    items[PLATFORM.ALL] = presenter.allFeeds
   }
 
   fun fetchMyGravatar() {

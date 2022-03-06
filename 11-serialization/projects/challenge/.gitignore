@@ -20,8 +20,8 @@ out/
 build/
 androidApp/build
 desktopApp/build
-pager/build
-pager-indicators/build
+kamel-core/build
+pager-image/build
 precompose/build
 shared/build
 shared/swiftpackage

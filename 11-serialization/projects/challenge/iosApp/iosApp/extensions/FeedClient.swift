@@ -58,6 +58,7 @@ public class FeedClient {
 
   public func fetchFeeds(completion: @escaping FeedHandler) {
     handler = completion
+    handler?(PLATFORM.all.description(), feedPresenter.allFeeds)
   }
 
   public func fetchLinkImage(_ platform: PLATFORM, _ id: String, _ link: String, completion: @escaping FeedHandlerImage) {

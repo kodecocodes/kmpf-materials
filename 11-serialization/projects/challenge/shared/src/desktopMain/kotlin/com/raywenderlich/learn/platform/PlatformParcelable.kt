@@ -32,49 +32,6 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.domain
+package com.raywenderlich.learn.platform
 
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.soywiz.korio.serialization.xml.Xml
-import com.soywiz.korio.util.substringAfterOrNull
-import com.soywiz.korio.util.substringBeforeOrNull
-
-private const val TAG = "GetFeedData"
-
-private const val WEBSITE_PREVIEW_START_DELIMITER =
-  "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
-
-private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
-
-public class GetFeedData {
-  //TODO: Chapter 12 - Networking
-}
-
-private fun parsePage(content: String): String {
-  val start =
-    content.substringAfterOrNull(WEBSITE_PREVIEW_START_DELIMITER)
-  val end = start?.substringBeforeOrNull(WEBSITE_PREVIEW_END_DELIMITER)
-  return end ?: ""
-}
-
-private fun parseNode(platform: PLATFORM, entry: Xml): RWEntry? {
-  if (entry.name == "entry") {
-    val id = entry.allNodeChildren.firstOrNull { it.name == "id" }
-    val link = entry.allNodeChildren.firstOrNull { it.name == "link" }
-    val title = entry.allNodeChildren.firstOrNull { it.name == "title" }
-    val summary = entry.allNodeChildren.firstOrNull { it.name == "summary" }
-    val updated = entry.allNodeChildren.firstOrNull { it.name == "updated" }
-
-    return RWEntry(
-      id = id?.text ?: "",
-      link = link?.attributesLC?.get("href") ?: "",
-      title = title?.text ?: "",
-      summary = summary?.text ?: "",
-      updated = updated?.text ?: "",
-      platform = platform
-    )
-  } else {
-    return null
-  }
-}
+actual interface Parcelable
