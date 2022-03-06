@@ -33,82 +33,82 @@ import moe.tlaster.precompose.ui.LocalViewModelStoreOwner
  */
 @Composable
 fun NavHost(
-    navigator: Navigator,
-    initialRoute: String,
-    navTransition: NavTransition = remember { NavTransition() },
-    builder: RouteBuilder.() -> Unit,
+  navigator: Navigator,
+  initialRoute: String,
+  navTransition: NavTransition = remember { NavTransition() },
+  builder: RouteBuilder.() -> Unit,
 ) {
-    val stateHolder = rememberSaveableStateHolder()
-    val manager = remember {
-        val graph = RouteBuilder(initialRoute = initialRoute).apply(builder).build()
-        RouteStackManager(stateHolder, graph).apply {
-            navigator.stackManager = this
-        }
+  val stateHolder = rememberSaveableStateHolder()
+  val manager = remember {
+    val graph = RouteBuilder(initialRoute = initialRoute).apply(builder).build()
+    RouteStackManager(stateHolder, graph).apply {
+      navigator.stackManager = this
     }
+  }
 
-    val lifecycleOwner = checkNotNull(LocalLifecycleOwner.current) {
-        "NavHost requires a LifecycleOwner to be provided via LocalLifecycleOwner"
+  val lifecycleOwner = checkNotNull(LocalLifecycleOwner.current) {
+    "NavHost requires a LifecycleOwner to be provided via LocalLifecycleOwner"
+  }
+  val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
+    "NavHost requires a ViewModelStoreOwner to be provided via LocalViewModelStoreOwner"
+  }
+  val backDispatcher = LocalBackDispatcherOwner.current?.backDispatcher
+  DisposableEffect(manager, lifecycleOwner, viewModelStoreOwner, backDispatcher) {
+    manager.lifeCycleOwner = lifecycleOwner
+    manager.setViewModelStore(viewModelStoreOwner.viewModelStore)
+    manager.backDispatcher = backDispatcher
+    onDispose {
+      manager.lifeCycleOwner = null
     }
-    val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
-        "NavHost requires a ViewModelStoreOwner to be provided via LocalViewModelStoreOwner"
-    }
-    val backDispatcher = LocalBackDispatcherOwner.current?.backDispatcher
-    DisposableEffect(manager, lifecycleOwner, viewModelStoreOwner, backDispatcher) {
-        manager.lifeCycleOwner = lifecycleOwner
-        manager.setViewModelStore(viewModelStoreOwner.viewModelStore)
-        manager.backDispatcher = backDispatcher
+  }
+
+  LaunchedEffect(manager, initialRoute) {
+    manager.navigate(initialRoute)
+  }
+  val currentStack = manager.currentStack
+  if (currentStack != null) {
+    AnimatedRoute(
+      currentStack,
+      navTransition = navTransition,
+      manager = manager,
+    ) { routeStack ->
+      LaunchedEffect(routeStack) {
+        routeStack.onActive()
+      }
+      DisposableEffect(routeStack) {
         onDispose {
-            manager.lifeCycleOwner = null
+          routeStack.onInActive()
         }
-    }
-
-    LaunchedEffect(manager, initialRoute) {
-        manager.navigate(initialRoute)
-    }
-    val currentStack = manager.currentStack
-    if (currentStack != null) {
-        AnimatedRoute(
-            currentStack,
-            navTransition = navTransition,
-            manager = manager,
-        ) { routeStack ->
-            LaunchedEffect(routeStack) {
-                routeStack.onActive()
-            }
-            DisposableEffect(routeStack) {
-                onDispose {
-                    routeStack.onInActive()
-                }
-            }
+      }
+      CompositionLocalProvider(
+        LocalLifecycleOwner provides routeStack,
+      ) {
+        stateHolder.SaveableStateProvider(routeStack.id) {
+          CompositionLocalProvider(
+            LocalViewModelStoreOwner provides routeStack.scene
+          ) {
+            routeStack.scene.route.content.invoke(routeStack.scene)
+          }
+          routeStack.dialogStack.forEach { backStackEntry ->
             CompositionLocalProvider(
-                LocalLifecycleOwner provides routeStack,
+              LocalViewModelStoreOwner provides backStackEntry
             ) {
-                stateHolder.SaveableStateProvider(routeStack.id) {
-                    CompositionLocalProvider(
-                        LocalViewModelStoreOwner provides routeStack.scene
-                    ) {
-                        routeStack.scene.route.content.invoke(routeStack.scene)
+              Box(
+                modifier = Modifier
+                  .pointerInput(Unit) {
+                    forEachGesture {
+                      awaitPointerEventScope {
+                        awaitPointerEvent().changes.forEach { it.consumeAllChanges() }
+                      }
                     }
-                    routeStack.dialogStack.forEach { backStackEntry ->
-                        CompositionLocalProvider(
-                            LocalViewModelStoreOwner provides backStackEntry
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .pointerInput(Unit) {
-                                        forEachGesture {
-                                            awaitPointerEventScope {
-                                                awaitPointerEvent().changes.forEach { it.consumeAllChanges() }
-                                            }
-                                        }
-                                    }
-                            ) {
-                                backStackEntry.route.content.invoke(backStackEntry)
-                            }
-                        }
-                    }
-                }
+                  }
+              ) {
+                backStackEntry.route.content.invoke(backStackEntry)
+              }
             }
+          }
         }
+      }
     }
+  }
 }

@@ -11,9 +11,9 @@ import SwiftUI
 
 /// A  type to build the indicator
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public struct Indicator<T> where T : View {
+public struct Indicator<T> where T: View {
     var content: (Binding<Bool>, Binding<Double>) -> T
-    
+
     /// Create a indicator with builder
     /// - Parameter builder: A builder to build indicator
     /// - Parameter isAnimating: A Binding to control the animation. If image is during loading, the value is true, else (like start loading) the value is false.
@@ -26,7 +26,7 @@ public struct Indicator<T> where T : View {
 
 /// A protocol to report indicator progress
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public protocol IndicatorReportable : ObservableObject {
+public protocol IndicatorReportable: ObservableObject {
     /// whether indicator is loading or not
     var isLoading: Bool { get set }
     /// indicator progress, should only be used for indicator binding, value between [0.0, 1.0]
@@ -37,14 +37,14 @@ public protocol IndicatorReportable : ObservableObject {
 /// SwiftUI View Modifier construced by using a internal View type which modify the `body`
 /// It use type system to represent the view hierarchy, and Swift `some View` syntax to hide the type detail for users
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public struct IndicatorViewModifier<T, V> : ViewModifier where T : View, V : IndicatorReportable {
-    
+public struct IndicatorViewModifier<T, V>: ViewModifier where T: View, V: IndicatorReportable {
+
     /// The progress reporter
     @ObservedObject public var reporter: V
-    
+
     /// The indicator
     public var indicator: Indicator<T>
-    
+
     public func body(content: Content) -> some View {
         ZStack {
             content
@@ -64,7 +64,7 @@ extension Indicator where T == ActivityIndicator {
             ActivityIndicator(isAnimating)
         }
     }
-    
+
     /// Activity Indicator with style
     /// - Parameter style: style
     public static func activity(style: ActivityIndicator.Style) -> Indicator {
@@ -82,7 +82,7 @@ extension Indicator where T == ProgressIndicator {
             ProgressIndicator(isAnimating, progress: progress)
         }
     }
-    
+
     /// Progress Indicator with style
     /// - Parameter style: style
     public static func progress(style: ProgressIndicator.Style) -> Indicator {
