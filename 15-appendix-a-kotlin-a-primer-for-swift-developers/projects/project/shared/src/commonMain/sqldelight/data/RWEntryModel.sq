@@ -1,0 +1,21 @@
+CREATE TABLE RWEntryModel (
+    id TEXT NOT NULL PRIMARY KEY,
+    link TEXT NOT NULL,
+    title TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    updated TEXT NOT NULL,
+    bookmarked INTEGER AS Int NOT NULL
+);
+
+insertOrReplaceRWEntry:
+INSERT OR REPLACE INTO RWEntryModel(id, link, title, summary, updated, bookmarked) VALUES (?, ?, ?, ?, ?, ?);
+
+removeRWEntry:
+DELETE FROM RWEntryModel WHERE id = ?;
+
+clearAllRWEntries:
+DELETE FROM RWEntryModel;
+
+selectAllRWEntries:
+SELECT *
+FROM RWEntryModel;

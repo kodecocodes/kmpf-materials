@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="world_clocks">World Clocks</string>
+    <string name="findmeeting">Find Meeting Time</string>
+    <string name="done">Done</string>
+</resources>
