@@ -44,9 +44,7 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
@@ -80,9 +78,7 @@ class FeedViewModel : ViewModel(), FeedData {
   override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        _items[platform] = items
-      }
+      _items[platform] = items
     }
   }
 
@@ -98,9 +94,7 @@ class FeedViewModel : ViewModel(), FeedData {
   override fun onMyGravatarData(item: GravatarEntry) {
     Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        profile.value = item
-      }
+      profile.value = item
     }
   }
 
