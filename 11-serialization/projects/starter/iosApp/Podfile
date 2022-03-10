@@ -1,5 +1,6 @@
 target 'iosApp' do
-  use_modular_headers!
+  use_frameworks!
+  platform :ios, '15.0'
   pod 'SDWebImageSwiftUI'
   pod 'AlertToast'
 end
