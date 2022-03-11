@@ -45,6 +45,9 @@ captures/
 *.iml
 .idea
 
+# iOSApp
+iosApp/Pods
+
 # Keystore files
 *.jks
 

@@ -52,7 +52,7 @@ compose.desktop {
             appResourcesRootDir.set(resources)
 
             macOS {
-                bundleID = "com.raywenderlich.learn.desktop"
+                bundleID = "com.raywenderlich.learn"
                 iconFile.set(resources.file("macos-icon.icns"))
             }
 
