@@ -43,11 +43,11 @@ public lateinit var appContext: Context
 
 public actual class PlatformDatabase {
 
-  public actual fun createDatabase(): AppDb {
-    return AppDb(createDriver())
-  }
+    public actual fun createDatabase(): AppDb {
+        return AppDb(createDriver())
+    }
 
-  private fun createDriver(): SqlDriver {
-    return AndroidSqliteDriver(AppDb.Schema, appContext, "app.db")
-  }
+    private fun createDriver(): SqlDriver {
+        return AndroidSqliteDriver(AppDb.Schema, appContext, "app.db")
+    }
 }

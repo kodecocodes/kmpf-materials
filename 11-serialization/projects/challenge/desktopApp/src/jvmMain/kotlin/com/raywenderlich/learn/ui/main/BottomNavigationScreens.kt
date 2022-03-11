@@ -35,12 +35,12 @@
 package com.raywenderlich.learn.ui.main
 
 sealed class BottomNavigationScreens(
-  val route: String,
-  val resource: String
+    val route: String,
+    val resource: String
 ) {
 
-  object Home : BottomNavigationScreens("Home", "images/ic_bookmarks.png")
-  object Bookmark : BottomNavigationScreens("Bookmark", "images/ic_home.png")
-  object Latest : BottomNavigationScreens("Latest", "images/ic_latest.png")
-  object Search : BottomNavigationScreens("Search", "images/ic_search.png")
+    object Home : BottomNavigationScreens("Home", "images/ic_bookmarks.png")
+    object Bookmark : BottomNavigationScreens("Bookmark", "images/ic_home.png")
+    object Latest : BottomNavigationScreens("Latest", "images/ic_latest.png")
+    object Search : BottomNavigationScreens("Search", "images/ic_search.png")
 }

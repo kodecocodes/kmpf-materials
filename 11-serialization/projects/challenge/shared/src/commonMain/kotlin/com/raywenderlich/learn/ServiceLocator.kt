@@ -44,14 +44,14 @@ import kotlin.native.concurrent.ThreadLocal
 @ThreadLocal
 public object ServiceLocator {
 
-  private val rwEntryDao by lazy {
-    val db = PlatformDatabase().createDatabase()
-    RWEntryDAO(db)
-  }
+    private val rwEntryDao by lazy {
+        val db = PlatformDatabase().createDatabase()
+        RWEntryDAO(db)
+    }
 
-  private val getFeed: GetFeedData = GetFeedData()
+    private val getFeed: GetFeedData = GetFeedData()
 
-  public val getFeedPresenter: FeedPresenter = FeedPresenter(getFeed)
+    public val getFeedPresenter: FeedPresenter = FeedPresenter(getFeed)
 
-  public val getBookmarkPresenter: BookmarkPresenter = BookmarkPresenter(rwEntryDao)
+    public val getBookmarkPresenter: BookmarkPresenter = BookmarkPresenter(rwEntryDao)
 }

@@ -2,7 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-beta5"
+    id("org.jetbrains.compose") version "1.1.0"
 }
 
 kotlin {
@@ -26,13 +26,13 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.uiTooling)
 
-                implementation("com.alialbaali.kamel:kamel-image:0.3.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
+                implementation("ca.gosyer:accompanist-pager:0.20.1")
+                implementation("ca.gosyer:accompanist-pager-indicators:0.20.1")
 
                 implementation(project(":shared"))
-                implementation(project(":pager"))
-                implementation(project(":pager-indicators"))
+                implementation(project(":kamel-image"))
                 implementation(project(":precompose"))
             }
         }
@@ -47,10 +47,26 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "learn"
             packageVersion = "1.0.0"
+
+            val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
+            appResourcesRootDir.set(resources)
+
+            macOS {
+                bundleID = "com.raywenderlich.learn"
+                iconFile.set(resources.file("macos-icon.icns"))
+            }
+
+            windows {
+                iconFile.set(resources.file("windows-icon.ico"))
+            }
+
+            linux {
+                iconFile.set(resources.file("linux-icon.png"))
+            }
         }
     }
 }
 
 kotlin.sourceSets.all {
-    languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+    languageSettings.optIn("kotlin.RequiresOptIn")
 }

@@ -44,17 +44,14 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkContent
 import com.raywenderlich.learn.ui.home.HomeContent
 import com.raywenderlich.learn.ui.latest.LatestContent
 import com.raywenderlich.learn.ui.search.SearchContent
 import com.raywenderlich.learn.ui.theme.BottomNavigationHeight
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
-import com.raywenderlich.learn.ui.home.FeedViewModel
 import kotlinx.coroutines.CoroutineScope
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
@@ -65,78 +62,78 @@ private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainContent(
-  navController: Navigator,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  selected: MutableState<RWEntry>,
-  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  bookmarks: State<List<RWEntry>?>,
-  onOpenEntry: (String) -> Unit
+    navController: Navigator,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    selected: MutableState<RWEntry>,
+    feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    bookmarks: State<List<RWEntry>?>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  Column(
-    modifier = Modifier
-      .padding(bottom = BottomNavigationHeight)
-      .background(colorContent)
+    Column(
+        modifier = Modifier
+            .padding(bottom = BottomNavigationHeight)
+            .background(colorContent)
 
-  ) {
-    MainScreenNavigationConfigurations(
-      navController = navController,
-      coroutineScope = coroutineScope,
-      bottomSheetScaffoldState = bottomSheetScaffoldState,
-      selected = selected,
-      feeds = feeds,
-      bookmarks = bookmarks,
-      onOpenEntry = onOpenEntry
-    )
-  }
+    ) {
+        MainScreenNavigationConfigurations(
+            navController = navController,
+            coroutineScope = coroutineScope,
+            bottomSheetScaffoldState = bottomSheetScaffoldState,
+            selected = selected,
+            feeds = feeds,
+            bookmarks = bookmarks,
+            onOpenEntry = onOpenEntry
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenNavigationConfigurations(
-  navController: Navigator,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  selected: MutableState<RWEntry>,
-  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  bookmarks: State<List<RWEntry>?>,
-  onOpenEntry: (String) -> Unit
+    navController: Navigator,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    selected: MutableState<RWEntry>,
+    feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    bookmarks: State<List<RWEntry>?>,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  NavHost(navController, DEFAULT_SCREEN.route) {
-    scene(BottomNavigationScreens.Home.route) {
-      HomeContent(
-        selected = selected,
-        items = feeds,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
+    NavHost(navController, DEFAULT_SCREEN.route) {
+        scene(BottomNavigationScreens.Home.route) {
+            HomeContent(
+                selected = selected,
+                items = feeds,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        scene(BottomNavigationScreens.Bookmark.route) {
+            BookmarkContent(
+                selected = selected,
+                items = bookmarks,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        scene(BottomNavigationScreens.Latest.route) {
+            LatestContent(
+                items = feeds,
+                onOpenEntry = onOpenEntry
+            )
+        }
+        scene(BottomNavigationScreens.Search.route) {
+            SearchContent(
+                selected = selected,
+                items = feeds,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+        }
     }
-    scene(BottomNavigationScreens.Bookmark.route) {
-      BookmarkContent(
-        selected = selected,
-        items = bookmarks,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
-    }
-    scene(BottomNavigationScreens.Latest.route) {
-      LatestContent(
-        items = feeds,
-        onOpenEntry = onOpenEntry
-      )
-    }
-    scene(BottomNavigationScreens.Search.route) {
-      SearchContent(
-        selected = selected,
-        items = feeds,
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        onOpenEntry = onOpenEntry
-      )
-    }
-  }
 }
