@@ -64,7 +64,7 @@ public open class SwiftPackageExtension(internal val project: Project) {
         }
     }
 
-    @SuppressWarnings("deprecation")
+    @Suppress("DEPRECATION")
     public fun buildConfiguration(configure: Closure<BuildConfigurationDSL>) {
         buildConfiguration { ConfigureUtil.configure(configure, this) }
     }

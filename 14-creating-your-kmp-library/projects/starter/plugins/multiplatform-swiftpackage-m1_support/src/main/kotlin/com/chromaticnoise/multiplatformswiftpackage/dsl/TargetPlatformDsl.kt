@@ -31,7 +31,7 @@ public class TargetPlatformDsl {
         )
     }
 
-    @SuppressWarnings("deprecation")
+    @Suppress("DEPRECATION")
     public fun iOS(version: Closure<PlatformVersionDsl>) {
         iOS { ConfigureUtil.configure(version, this) }
     }
