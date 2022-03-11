@@ -38,5 +38,5 @@ import data.AppDb
 
 public expect class PlatformDatabase() {
 
-  public fun createDatabase(): AppDb
+    public fun createDatabase(): AppDb
 }

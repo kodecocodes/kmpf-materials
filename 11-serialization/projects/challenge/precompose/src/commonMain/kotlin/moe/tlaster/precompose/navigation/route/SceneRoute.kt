@@ -14,10 +14,10 @@ internal class SceneRoute(
 ) : ComposeRoute(route, content) {
     override val pathKeys by lazy {
         (
-            deepLinks.flatMap {
-                RouteParser.pathKeys(pattern = it)
-            } + RouteParser.pathKeys(pattern = route)
-            ).distinct()
+                deepLinks.flatMap {
+                    RouteParser.pathKeys(pattern = it)
+                } + RouteParser.pathKeys(pattern = route)
+                ).distinct()
     }
 }
 

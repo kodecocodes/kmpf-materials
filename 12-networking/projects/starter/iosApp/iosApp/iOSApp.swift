@@ -32,6 +32,7 @@
 
 import SwiftUI
 
+// swiftlint:disable type_name
 @main
 struct iOSApp: App {
 	var body: some Scene {
@@ -40,3 +41,4 @@ struct iOSApp: App {
 		}
 	}
 }
+// swiftlint:enable type_name

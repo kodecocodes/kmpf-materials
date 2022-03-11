@@ -36,9 +36,9 @@ package com.raywenderlich.learn.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.unit.sp
 
 private val fontSizeLarge = 23.sp
@@ -49,67 +49,67 @@ private val fontSizeSmall = 15.sp
 private val fontSizeExtraSmall = 14.sp
 private val fontSizeTiny = 12.sp
 
-private val AssistantFontFamily = FontFamily(
-  Font("font/bitter_bold.ttf", FontWeight.Bold),
-  Font("font/bitter_extrabold.ttf", FontWeight.ExtraBold),
-  Font("font/bitter_light.ttf", FontWeight.Light),
-  Font("font/bitter_regular.ttf", FontWeight.Normal),
-  Font("font/bitter_semibold.ttf", FontWeight.SemiBold),
+private val BitterFontFamily = FontFamily(
+    Font("font/bitter_bold.ttf", FontWeight.Bold),
+    Font("font/bitter_extrabold.ttf", FontWeight.ExtraBold),
+    Font("font/bitter_light.ttf", FontWeight.Light),
+    Font("font/bitter_regular.ttf", FontWeight.Normal),
+    Font("font/bitter_semibold.ttf", FontWeight.SemiBold),
 )
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-  h1 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeSmall
-  ),
+    h1 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeSmall
+    ),
 
-  h2 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Normal,
-    fontSize = fontSizeExtraSmall
-  ),
+    h2 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  h3 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeTiny
-  ),
+    h3 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeTiny
+    ),
 
-  h4 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeMedium
-  ),
+    h4 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeMedium
+    ),
 
-  body1 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Normal,
-    fontSize = fontSizeBigSmall
-  ),
+    body1 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeBigSmall
+    ),
 
-  body2 = TextStyle(
-    color = colorAccent,
-    fontFamily = AssistantFontFamily,
-    fontWeight = FontWeight.Bold,
-    fontSize = fontSizeExtraSmall
-  ),
+    body2 = TextStyle(
+        color = colorAccent,
+        fontFamily = BitterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  subtitle1 = TextStyle(
-    color = colorPrimary,
-    fontFamily = AssistantFontFamily,
-    fontSize = fontSizeExtraSmall
-  ),
+    subtitle1 = TextStyle(
+        color = colorPrimary,
+        fontFamily = BitterFontFamily,
+        fontSize = fontSizeExtraSmall
+    ),
 
-  subtitle2 = TextStyle(
-    color = colorPrimary,
-    fontFamily = AssistantFontFamily,
-    fontSize = fontSizeExtraSmall
-  )
+    subtitle2 = TextStyle(
+        color = colorPrimary,
+        fontFamily = BitterFontFamily,
+        fontSize = fontSizeExtraSmall
+    )
 )

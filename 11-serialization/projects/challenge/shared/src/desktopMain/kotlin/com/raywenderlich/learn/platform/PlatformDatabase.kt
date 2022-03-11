@@ -41,13 +41,13 @@ import data.AppDb
 
 public actual class PlatformDatabase {
 
-  public actual fun createDatabase(): AppDb {
-    return AppDb(createDriver())
-  }
+    public actual fun createDatabase(): AppDb {
+        return AppDb(createDriver())
+    }
 
-  private fun createDriver(): SqlDriver {
-    val driver: SqlDriver = JdbcSqliteDriver(IN_MEMORY)
-    AppDb.Schema.create(driver)
-    return driver
-  }
+    private fun createDriver(): SqlDriver {
+        val driver: SqlDriver = JdbcSqliteDriver(IN_MEMORY)
+        AppDb.Schema.create(driver)
+        return driver
+    }
 }

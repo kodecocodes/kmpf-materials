@@ -6,30 +6,30 @@ plugins {
 dependencies {
     implementation(project(":shared"))
 
-    implementation("com.google.android.material:material:1.4.0")
-    
-    implementation("com.google.accompanist:accompanist-pager:0.19.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.19.0")
+    implementation("com.google.android.material:material:1.5.0")
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("com.google.accompanist:accompanist-pager:0.23.1")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.23.1")
+
+    implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
 
-    implementation("androidx.compose.ui:ui:1.0.5")
-    implementation("androidx.compose.material:material:1.0.5")
-    implementation("androidx.compose.ui:ui-tooling:1.0.5")
-    implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
+    implementation("androidx.compose.ui:ui:1.2.0-alpha04")
+    implementation("androidx.compose.material:material:1.2.0-alpha04")
+    implementation("androidx.compose.ui:ui-tooling:1.2.0-alpha04")
+    implementation("androidx.compose.runtime:runtime-livedata:1.2.0-alpha04")
+    implementation("androidx.navigation:navigation-compose:2.5.0-alpha03")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 
-    implementation("io.coil-kt:coil-compose:1.3.2")
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }
 
 android {
     compileSdk = 31
     defaultConfig {
-        applicationId = "com.raywenderlich.learn.android"
+        applicationId = "com.raywenderlich.learn"
         minSdk = 24
         targetSdk = 31
         versionCode = 1
@@ -55,10 +55,10 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.5"
+        kotlinCompilerExtensionVersion = "1.2.0-alpha01"
     }
 }
 
 kotlin.sourceSets.all {
-    languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+    languageSettings.optIn("kotlin.RequiresOptIn")
 }

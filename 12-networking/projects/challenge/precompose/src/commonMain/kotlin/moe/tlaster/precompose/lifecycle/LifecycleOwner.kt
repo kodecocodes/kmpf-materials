@@ -1,5 +1,6 @@
 package moe.tlaster.precompose.lifecycle
 
 interface LifecycleOwner {
-    val lifecycle: Lifecycle
+
+  val lifecycle: Lifecycle
 }

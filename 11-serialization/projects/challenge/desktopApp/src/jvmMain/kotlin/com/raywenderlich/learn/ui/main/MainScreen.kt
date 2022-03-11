@@ -49,12 +49,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.home.HomeSheetContent
-import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
-import com.raywenderlich.learn.ui.home.FeedViewModel
+import com.raywenderlich.learn.ui.home.HomeSheetContent
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import moe.tlaster.precompose.navigation.rememberNavigator
 
 private lateinit var selected: MutableState<RWEntry>
@@ -62,68 +60,68 @@ private lateinit var selected: MutableState<RWEntry>
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
-  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  bookmarks: State<List<RWEntry>?>,
-  onAddToBookmarks: (RWEntry) -> Unit,
-  onOpenEntry: (String) -> Unit
+    feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    bookmarks: State<List<RWEntry>?>,
+    onAddToBookmarks: (RWEntry) -> Unit,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  val bottomNavigationItems = listOf(
-    BottomNavigationScreens.Home,
-    BottomNavigationScreens.Bookmark,
-    BottomNavigationScreens.Latest,
-    BottomNavigationScreens.Search
-  )
-
-  val navController = rememberNavigator()
-
-  val coroutineScope = rememberCoroutineScope()
-  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-    bottomSheetState = rememberBottomSheetState(
-      initialValue = BottomSheetValue.Collapsed
+    val bottomNavigationItems = listOf(
+        BottomNavigationScreens.Home,
+        BottomNavigationScreens.Bookmark,
+        BottomNavigationScreens.Latest,
+        BottomNavigationScreens.Search
     )
-  )
 
-  selected = remember { mutableStateOf(RWEntry()) }
+    val navController = rememberNavigator()
 
-  BottomSheetScaffold(
-    sheetContent = {
-      HomeSheetContent(
-        coroutineScope = coroutineScope,
-        bottomSheetScaffoldState = bottomSheetScaffoldState,
-        item = selected,
-        onAddToBookmarks = onAddToBookmarks,
-      )
-    },
-    sheetShape = RoundedCornerShape(
-      topStart = 16.dp,
-      topEnd = 16.dp
-    ),
-    sheetBackgroundColor = colorContentSecondary,
-    scaffoldState = bottomSheetScaffoldState, sheetPeekHeight = 0.dp
-  ) {
-
-    Scaffold(
-      topBar = {
-        MainTopAppBar()
-      },
-      bottomBar = {
-        MainBottomBar(
-          navController = navController,
-          items = bottomNavigationItems
+    val coroutineScope = rememberCoroutineScope()
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = rememberBottomSheetState(
+            initialValue = BottomSheetValue.Collapsed
         )
-      },
-      content = {
-        MainContent(
-          navController = navController,
-          coroutineScope = coroutineScope,
-          bottomSheetScaffoldState = bottomSheetScaffoldState,
-          selected = selected,
-          feeds = feeds,
-          bookmarks = bookmarks,
-          onOpenEntry = onOpenEntry
-        )
-      }
     )
-  }
+
+    selected = remember { mutableStateOf(RWEntry()) }
+
+    BottomSheetScaffold(
+        sheetContent = {
+            HomeSheetContent(
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                item = selected,
+                onAddToBookmarks = onAddToBookmarks,
+            )
+        },
+        sheetShape = RoundedCornerShape(
+            topStart = 16.dp,
+            topEnd = 16.dp
+        ),
+        sheetBackgroundColor = colorContentSecondary,
+        scaffoldState = bottomSheetScaffoldState, sheetPeekHeight = 0.dp
+    ) {
+
+        Scaffold(
+            topBar = {
+                MainTopAppBar()
+            },
+            bottomBar = {
+                MainBottomBar(
+                    navController = navController,
+                    items = bottomNavigationItems
+                )
+            },
+            content = {
+                MainContent(
+                    navController = navController,
+                    coroutineScope = coroutineScope,
+                    bottomSheetScaffoldState = bottomSheetScaffoldState,
+                    selected = selected,
+                    feeds = feeds,
+                    bookmarks = bookmarks,
+                    onOpenEntry = onOpenEntry
+                )
+            }
+        )
+    }
 }

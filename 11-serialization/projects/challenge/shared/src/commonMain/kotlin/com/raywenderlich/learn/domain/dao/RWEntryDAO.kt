@@ -39,50 +39,50 @@ import data.AppDb
 
 public class RWEntryDAO(database: AppDb) {
 
-  private val db = database.rWEntryModelQueries
+    private val db = database.rWEntryModelQueries
 
-  public fun insertOrReplace(entries: List<RWEntry>) {
-    for (entry in entries) {
-      insertOrReplace(entry)
-    }
-  }
-
-  public fun insertOrReplace(entry: RWEntry) {
-    db.insertOrReplaceRWEntry(
-      id = entry.id,
-      link = entry.link,
-      title = entry.title,
-      summary = entry.summary,
-      updated = entry.updated,
-      bookmarked = if (entry.bookmarked) 1 else 0
-    )
-  }
-
-  public fun remove(entry: RWEntry) {
-    db.removeRWEntry(
-      id = entry.id
-    )
-  }
-
-  public fun getAllEntries(): List<RWEntry> {
-    val data = db.selectAllRWEntries().executeAsList()
-
-    val entries = mutableListOf<RWEntry>()
-    for (item in data) {
-      entries += RWEntry(
-        id = item.id,
-        link = item.link,
-        title = item.title,
-        summary = item.summary,
-        updated = item.updated,
-        bookmarked = item.bookmarked == 1
-      )
+    public fun insertOrReplace(entries: List<RWEntry>) {
+        for (entry in entries) {
+            insertOrReplace(entry)
+        }
     }
 
-    return entries
-  }
+    public fun insertOrReplace(entry: RWEntry) {
+        db.insertOrReplaceRWEntry(
+            id = entry.id,
+            link = entry.link,
+            title = entry.title,
+            summary = entry.summary,
+            updated = entry.updated,
+            bookmarked = if (entry.bookmarked) 1 else 0
+        )
+    }
 
-  public fun clearAllEntries() {
-    db.clearAllRWEntries()
-  }
+    public fun remove(entry: RWEntry) {
+        db.removeRWEntry(
+            id = entry.id
+        )
+    }
+
+    public fun getAllEntries(): List<RWEntry> {
+        val data = db.selectAllRWEntries().executeAsList()
+
+        val entries = mutableListOf<RWEntry>()
+        for (item in data) {
+            entries += RWEntry(
+                id = item.id,
+                link = item.link,
+                title = item.title,
+                summary = item.summary,
+                updated = item.updated,
+                bookmarked = item.bookmarked == 1
+            )
+        }
+
+        return entries
+    }
+
+    public fun clearAllEntries() {
+        db.clearAllRWEntries()
+    }
 }

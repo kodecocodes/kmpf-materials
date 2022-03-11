@@ -47,84 +47,88 @@ import kotlin.test.assertEquals
 
 class SerializationTests {
 
-  private val serializers = serializersModuleOf(PLATFORM::class, RWSerializer)
+    private val serializers = serializersModuleOf(PLATFORM::class, RWSerializer)
 
-  @Test
-  fun testEncodePlatformAll() {
-    val data = RWContent(
-      platform = PLATFORM.ALL,
-      url = "https://www.raywenderlich.com/feed.xml",
-      image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
-    )
+    @Test
+    fun testEncodePlatformAll() {
+        val data = RWContent(
+            platform = PLATFORM.ALL,
+            url = "https://www.raywenderlich.com/feed.xml",
+            image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
+        )
 
-    val decoded = Json.encodeToString(RWContent.serializer(), data)
+        val decoded = Json.encodeToString(RWContent.serializer(), data)
 
-    val content = "{\"platform\":\"all\",\"url\":\"https://www.raywenderlich.com/feed.xml\",\"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}"
-    assertEquals(content, decoded)
-  }
+        val content =
+            "{\"platform\":\"all\",\"url\":\"https://www.raywenderlich.com/feed.xml\",\"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}"
+        assertEquals(content, decoded)
+    }
 
-  @Test
-  fun testDecodePlatformAll() {
-    val data = "{\"platform\":\"all\",\"url\":\"https://www.raywenderlich.com/feed.xml\",\"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}"
+    @Test
+    fun testDecodePlatformAll() {
+        val data =
+            "{\"platform\":\"all\",\"url\":\"https://www.raywenderlich.com/feed.xml\",\"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}"
 
-    val decoded = Json.decodeFromString(RWContent.serializer(), data)
-    val content = RWContent(
-      platform = PLATFORM.ALL,
-      url = "https://www.raywenderlich.com/feed.xml",
-      image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
-    )
+        val decoded = Json.decodeFromString(RWContent.serializer(), data)
+        val content = RWContent(
+            platform = PLATFORM.ALL,
+            url = "https://www.raywenderlich.com/feed.xml",
+            image = "https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png"
+        )
 
-    assertEquals(content, decoded)
-  }
+        assertEquals(content, decoded)
+    }
 
-  @Test
-  fun testEncodeCustomPlatformAll() {
-    val data = PLATFORM.ALL
+    @Test
+    fun testEncodeCustomPlatformAll() {
+        val data = PLATFORM.ALL
 
-    val encoded = Json.encodeToString(serializers.serializer(), data)
-    val expectedString = "\"all\""
-    assertEquals(expectedString, encoded)
-  }
+        val encoded = Json.encodeToString(serializers.serializer(), data)
+        val expectedString = "\"all\""
+        assertEquals(expectedString, encoded)
+    }
 
-  @Test
-  fun testDecodeCustomPlatformAll() {
-    val data = PLATFORM.ALL
+    @Test
+    fun testDecodeCustomPlatformAll() {
+        val data = PLATFORM.ALL
 
-    val decoded = Json.decodeFromString<PLATFORM>(data.value)
-    assertEquals(decoded, data)
-  }
+        val decoded = Json.decodeFromString<PLATFORM>(data.value)
+        assertEquals(decoded, data)
+    }
 
-  @Test
-  fun testEncodePlatformEntry() {
-    val data = RWEntry(
-      platform = PLATFORM.ALL,
-      id = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-      link = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-      summary = "Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.",
-      title = "Building a Camera App With SwiftUI and Combine [FREE]",
-      updated = "2021-11-10T13:59:59Z"
-    )
+    @Test
+    fun testEncodePlatformEntry() {
+        val data = RWEntry(
+            platform = PLATFORM.ALL,
+            id = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
+            link = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
+            summary = "Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.",
+            title = "Building a Camera App With SwiftUI and Combine [FREE]",
+            updated = "2021-11-10T13:59:59Z"
+        )
 
-    val decoded = Json.encodeToString(RWEntry.serializer(), data)
+        val decoded = Json.encodeToString(RWEntry.serializer(), data)
 
-    val content = "{\"id\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"link\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"title\":\"Building a Camera App With SwiftUI and Combine [FREE]\",\"summary\":\"Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.\",\"updated\":\"2021-11-10T13:59:59Z\"}"
-    assertEquals(content, decoded)
-  }
+        val content =
+            "{\"id\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"link\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"title\":\"Building a Camera App With SwiftUI and Combine [FREE]\",\"summary\":\"Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.\",\"updated\":\"2021-11-10T13:59:59Z\"}"
+        assertEquals(content, decoded)
+    }
 
-  @Test
-  fun testDecodePlatformEntry() {
-    val data = "{\"id\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"link\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"title\":\"Building a Camera App With SwiftUI and Combine [FREE]\",\"summary\":\"Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.\",\"updated\":\"2021-11-10T13:59:59Z\"}"
+    @Test
+    fun testDecodePlatformEntry() {
+        val data =
+            "{\"id\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"link\":\"https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine\",\"title\":\"Building a Camera App With SwiftUI and Combine [FREE]\",\"summary\":\"Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.\",\"updated\":\"2021-11-10T13:59:59Z\"}"
 
-    val decoded = Json.decodeFromString(RWEntry.serializer(), data)
-    val content = RWEntry(
-      platform = PLATFORM.ALL,
-      id = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-      link = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-      summary = "Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.",
-      title = "Building a Camera App With SwiftUI and Combine [FREE]",
-      updated = "2021-11-10T13:59:59Z"
-    )
+        val decoded = Json.decodeFromString(RWEntry.serializer(), data)
+        val content = RWEntry(
+            platform = PLATFORM.ALL,
+            id = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
+            link = "https://www.raywenderlich.com/26244793-building-a-camera-app-with-swiftui-and-combine",
+            summary = "Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.",
+            title = "Building a Camera App With SwiftUI and Combine [FREE]",
+            updated = "2021-11-10T13:59:59Z"
+        )
 
-    assertEquals(content, decoded)
-  }
+        assertEquals(content, decoded)
+    }
 }

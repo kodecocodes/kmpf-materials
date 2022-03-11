@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,8 +41,6 @@ import com.raywenderlich.learn.domain.GetFeedData
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
@@ -68,50 +66,34 @@ class FeedPresenter(private val feed: GetFeedData) {
     json.decodeFromString(RW_CONTENT)
   }
 
-  private var listener: FeedData? = null
-
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
 
-    listener = cb
-
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
-  @OptIn(DelicateCoroutinesApi::class)
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
-    GlobalScope.apply {
-      MainScope().launch {
-        feed.invokeFetchRWEntry(
-          platform = platform,
-          feedUrl = feedUrl,
-          onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-          onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
-        )
-      }
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
+    MainScope().launch {
+      feed.invokeFetchRWEntry(
+        platform = platform,
+        feedUrl = feedUrl,
+        onSuccess = { cb.onNewDataAvailable(it, platform, null) },
+        onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
+      )
     }
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    listener = cb
-
-    fetchMyGravatar()
-  }
-
-  @OptIn(DelicateCoroutinesApi::class)
-  private fun fetchMyGravatar() {
-    GlobalScope.apply {
-      MainScope().launch {
-        feed.invokeGetMyGravatar(
-          hash = md5(GRAVATAR_EMAIL),
-          onSuccess = { listener?.onMyGravatarData(it) },
-          onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
-        )
-      }
+    MainScope().launch {
+      feed.invokeGetMyGravatar(
+        hash = md5(GRAVATAR_EMAIL),
+        onSuccess = { cb.onMyGravatarData(it) },
+        onFailure = { cb.onMyGravatarData(GravatarEntry()) }
+      )
     }
   }
 }

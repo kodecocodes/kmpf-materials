@@ -35,8 +35,6 @@
 package com.raywenderlich.learn.ui.main
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -46,10 +44,10 @@ import com.raywenderlich.learn.ui.theme.colorContent
 @Composable
 fun MainTopAppBar() {
 
-  RWTopAppBar(
-    title = {},
-    modifier = Modifier.fillMaxWidth(),
-    backgroundColor = colorContent,
-    elevation = 0.dp
-  )
+    RWTopAppBar(
+        title = {},
+        modifier = Modifier.fillMaxWidth(),
+        backgroundColor = colorContent,
+        elevation = 0.dp
+    )
 }

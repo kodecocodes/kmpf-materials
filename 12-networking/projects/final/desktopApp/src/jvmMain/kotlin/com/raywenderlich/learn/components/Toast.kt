@@ -48,13 +48,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,13 +66,14 @@ import kotlinx.coroutines.launch
  * Source: https://github.com/JetBrains/compose-jb
  */
 
-
 enum class ToastDuration(val value: Int) {
+
   Short(1000), Long(3000)
 }
 
 private var isShown: Boolean = false
 
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun Toast(
   text: String,
@@ -110,7 +110,7 @@ fun Toast(
             isShown = false
             visibility.value = false
           }
-          onDispose {  }
+          onDispose { }
         }
       }
     }

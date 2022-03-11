@@ -1,11 +1,11 @@
 package moe.tlaster.precompose.viewmodel
 
+import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import moe.tlaster.precompose.standard.Disposable
-import kotlin.coroutines.CoroutineContext
 
 private const val JOB_KEY = "moe.tlaster.precompose.viewmodel.ViewModelCoroutineScope.JOB_KEY"
 
@@ -17,21 +17,22 @@ private const val JOB_KEY = "moe.tlaster.precompose.viewmodel.ViewModelCoroutine
  * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate]
  */
 val ViewModel.viewModelScope: CoroutineScope
-    get() {
-        val scope: CoroutineScope? = getTag(JOB_KEY)
-        if (scope != null) {
-            return scope
-        }
-        return setTagIfAbsent(
-            JOB_KEY,
-            CloseableCoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
-        )
+  get() {
+    val scope: CoroutineScope? = getTag(JOB_KEY)
+    if (scope != null) {
+      return scope
     }
+    return setTagIfAbsent(
+      JOB_KEY,
+      CloseableCoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    )
+  }
 
 internal class CloseableCoroutineScope(context: CoroutineContext) : Disposable, CoroutineScope {
-    override val coroutineContext: CoroutineContext = context
 
-    override fun dispose() {
-        coroutineContext.cancel()
-    }
+  override val coroutineContext: CoroutineContext = context
+
+  override fun dispose() {
+    coroutineContext.cancel()
+  }
 }

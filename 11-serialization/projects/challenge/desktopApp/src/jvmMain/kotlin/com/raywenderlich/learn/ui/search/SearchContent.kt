@@ -49,7 +49,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateMap
@@ -58,123 +57,121 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEntryContent
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorPrimary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.home.FeedViewModel
 import kotlinx.coroutines.CoroutineScope
-import moe.tlaster.precompose.ui.observeAsState
 
 private const val TAG = "SearchContent"
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchContent(
-  selected: MutableState<RWEntry>,
-  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    selected: MutableState<RWEntry>,
+    items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
-  Surface(
-    modifier = Modifier.fillMaxSize(),
-    color = colorContent
-  ) {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = colorContent
+    ) {
 
-    val search = remember { mutableStateOf("") }
+        val search = remember { mutableStateOf("") }
 
-    val keys = items.keys
+        val keys = items.keys
 
-    val results = mutableListOf<RWEntry>()
-    for (key in keys) {
-      if (key == PLATFORM.ALL) {
-        continue
-      }
+        val results = mutableListOf<RWEntry>()
+        for (key in keys) {
+            if (key == PLATFORM.ALL) {
+                continue
+            }
 
-      Logger.d(TAG, "key=$key")
+            Logger.d(TAG, "key=$key")
 
-      val list = items[key]!!.toMutableList()
+            val list = items[key]!!.toMutableList()
 
-      Logger.d(TAG, "list=$list")
-      results += list.filter {
-        (it.title.lowercase().contains(search.value.lowercase())) ||
-            (it.summary.lowercase().contains(search.value.lowercase()))
-      }
+            Logger.d(TAG, "list=$list")
+            results += list.filter {
+                (it.title.lowercase().contains(search.value.lowercase())) ||
+                        (it.summary.lowercase().contains(search.value.lowercase()))
+            }
+        }
+
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+
+            content = {
+
+                item {
+                    AddSearchField(search)
+                }
+
+                items(results) {
+
+                    AddEntryContent(
+                        item = it,
+                        selected = selected,
+                        coroutineScope = coroutineScope,
+                        bottomSheetScaffoldState = bottomSheetScaffoldState,
+                        onOpenEntry = onOpenEntry
+                    )
+                }
+            }
+        )
     }
-
-    LazyColumn(
-      modifier = Modifier.fillMaxWidth(),
-
-      content = {
-
-        item {
-          AddSearchField(search)
-        }
-
-        items(results) {
-
-          AddEntryContent(
-            item = it,
-            selected = selected,
-            coroutineScope = coroutineScope,
-            bottomSheetScaffoldState = bottomSheetScaffoldState,
-            onOpenEntry = onOpenEntry
-          )
-        }
-      }
-    )
-  }
 }
 
 @Composable
 fun AddSearchField(search: MutableState<String>) {
 
-  val focused = remember { mutableStateOf(false) }
+    val focused = remember { mutableStateOf(false) }
 
-  val contentColor = if (focused.value) {
-    colorPrimary
-  } else {
-    colorAccent
-  }
+    val contentColor = if (focused.value) {
+        colorPrimary
+    } else {
+        colorAccent
+    }
 
-  OutlinedTextField(
-    value = search.value,
-    onValueChange = { value ->
-      search.value = value
-    },
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(16.dp)
-      .onFocusChanged {
-        focused.value = it.isFocused
-      },
-    placeholder = {
-      Text(
-        text = "Search",
-        style = typography.body1,
-        color = colorAccent
-      )
-    },
-    leadingIcon = {
-      val icon = painterResource("images/ic_search.png")
-      val description = "Search for a specific article"
+    OutlinedTextField(
+        value = search.value,
+        onValueChange = { value ->
+            search.value = value
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .onFocusChanged {
+                focused.value = it.isFocused
+            },
+        placeholder = {
+            Text(
+                text = "Search",
+                style = typography.body1,
+                color = colorAccent
+            )
+        },
+        leadingIcon = {
+            val icon = painterResource("images/ic_search.png")
+            val description = "Search for a specific article"
 
-      Image(
-        painter = icon,
-        contentDescription = description,
-        colorFilter = ColorFilter.tint(color = contentColor)
-      )
-    },
-    colors = TextFieldDefaults.outlinedTextFieldColors(
-      focusedBorderColor = colorPrimary,
-      unfocusedBorderColor = colorAccent,
-      leadingIconColor = colorAccent,
-      cursorColor = colorAccent
+            Image(
+                painter = icon,
+                contentDescription = description,
+                colorFilter = ColorFilter.tint(color = contentColor)
+            )
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = colorPrimary,
+            unfocusedBorderColor = colorAccent,
+            leadingIconColor = colorAccent,
+            cursorColor = colorAccent
+        )
     )
-  )
 }

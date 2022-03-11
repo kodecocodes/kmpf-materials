@@ -47,9 +47,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.ui.theme.colorAccent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -58,44 +58,44 @@ private const val TAG = "HomeSheetContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeSheetContent(
-  item: MutableState<RWEntry>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onAddToBookmarks: (RWEntry) -> Unit,
+    item: MutableState<RWEntry>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onAddToBookmarks: (RWEntry) -> Unit,
 ) {
 
-  Logger.d(TAG, "Selected item=${item.value}")
+    Logger.d(TAG, "Selected item=${item.value}")
 
-  Column(
-    modifier = Modifier.fillMaxWidth()
-  ) {
-
-    Row(
-      modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-          coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
-          }
-
-          onAddToBookmarks(item.value)
-        }
+    Column(
+        modifier = Modifier.fillMaxWidth()
     ) {
 
-      val text = if (item.value.bookmarked) {
-        "Remove from bookmarks"
-      } else {
-        "Add to bookmarks"
-      }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    coroutineScope.launch {
+                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                    }
 
-      Text(
-        text = text,
-        style = MaterialTheme.typography.h4,
-        color = colorAccent,
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 12.dp)
-      )
+                    onAddToBookmarks(item.value)
+                }
+        ) {
+
+            val text = if (item.value.bookmarked) {
+                "Remove from bookmarks"
+            } else {
+                "Add to bookmarks"
+            }
+
+            Text(
+                text = text,
+                style = MaterialTheme.typography.h4,
+                color = colorAccent,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 12.dp)
+            )
+        }
     }
-  }
 }
