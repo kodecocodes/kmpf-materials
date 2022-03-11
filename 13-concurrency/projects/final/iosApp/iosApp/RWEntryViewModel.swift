@@ -65,7 +65,9 @@ class RWEntryViewModel: ObservableObject {
   func fetchFeeds() {
     FeedClient.shared.fetchFeeds { platform, items in
       Logger().d(tag: TAG, message: "fetchFeeds: \(items.count) items | platform: \(platform)")
-      self.items[platform] = items
+      DispatchQueue.main.async {
+        self.items[platform] = items
+      }
     }
   }
 
