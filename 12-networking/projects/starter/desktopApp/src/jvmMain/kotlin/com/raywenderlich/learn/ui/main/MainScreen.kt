@@ -49,12 +49,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.home.HomeSheetContent
-import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
-import com.raywenderlich.learn.ui.home.FeedViewModel
+import com.raywenderlich.learn.ui.home.HomeSheetContent
+import com.raywenderlich.learn.ui.theme.colorContentSecondary
 import moe.tlaster.precompose.navigation.rememberNavigator
 
 private lateinit var selected: MutableState<RWEntry>
