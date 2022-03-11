@@ -47,14 +47,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkContent
 import com.raywenderlich.learn.ui.home.HomeContent
 import com.raywenderlich.learn.ui.latest.LatestContent
 import com.raywenderlich.learn.ui.search.SearchContent
 import com.raywenderlich.learn.ui.theme.BottomNavigationHeight
 import com.raywenderlich.learn.ui.theme.colorContent
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
 import kotlinx.coroutines.CoroutineScope
 
 private val DEFAULT_SCREEN = BottomNavigationScreens.Home
@@ -101,7 +101,7 @@ private fun MainScreenNavigationConfigurations(
   onOpenEntry: (String) -> Unit
 ) {
 
-  NavHost(navController, DEFAULT_SCREEN.route) {
+  NavHost(navController, startDestination = DEFAULT_SCREEN.route) {
     composable(BottomNavigationScreens.Home.route) {
       HomeContent(
         selected = selected,

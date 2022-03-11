@@ -34,17 +34,16 @@
 
 package com.raywenderlich.learn.ui.utils
 
-import kotlinx.datetime.toInstant
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import android.annotation.SuppressLint
 import com.raywenderlich.learn.platform.Logger
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlinx.datetime.toInstant
 
 private const val TAG = "Utils"
 
+@SuppressLint("ConstantLocale")
 private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-
-const val SHOW_N_IMAGES = 5
 
 fun converterIso8601ToReadableDate(date: String): String {
   return try {

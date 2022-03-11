@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		51023FCCC3B940D6497F6D29 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D42ADC72E81E194057DD5 /* libPods-iosApp.a */; };
 		6709905B2714FA5D0048A7B5 /* BookmarkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */; };
 		6709905D2714FAA00048A7B5 /* FeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709905C2714FAA00048A7B5 /* FeedClient.swift */; };
 		670990612714FDEA0048A7B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670990602714FDEA0048A7B5 /* Assets.xcassets */; };
@@ -24,28 +25,15 @@
 		67099093271640400048A7B5 /* BitterSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6709908E271640400048A7B5 /* BitterSemiBold.ttf */; };
 		67099095271646B70048A7B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67099094271646B70048A7B5 /* LaunchScreen.storyboard */; };
 		6709909D2717ABF80048A7B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709909C2717ABF80048A7B5 /* Utils.swift */; };
-		676EC0932714F59D00316DED /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; };
-		676EC0942714F59D00316DED /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 676EC08E2714EDCC00316DED /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67A1CBAB27ADFD27005629A1 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A1CBAA27ADFD27005629A1 /* Actions.swift */; };
+		67A1CBB827B19B7D005629A1 /* RWEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A1CBB727B19B7D005629A1 /* RWEntryRow.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		676EC0952714F59D00316DED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				676EC0942714F59D00316DED /* SharedKit.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A7253495B503C53289755E1 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		245D42ADC72E81E194057DD5 /* libPods-iosApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		247688B1D254ABA6DFD3FE76 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
@@ -63,9 +51,11 @@
 		6709908E271640400048A7B5 /* BitterSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BitterSemiBold.ttf; sourceTree = "<group>"; };
 		67099094271646B70048A7B5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6709909C2717ABF80048A7B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		6743772C278B3EFB00E81629 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6743772E278B461500E81629 /* SharedAction.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedAction.xcframework; path = "../shared-action/sharedaction/SharedAction.xcframework"; sourceTree = "<group>"; };
 		676EC08E2714EDCC00316DED /* SharedKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedKit.xcframework; path = ../shared/swiftpackage/SharedKit.xcframework; sourceTree = "<group>"; };
+		676EC0922714F58200316DED /* SharedKit-1.0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "SharedKit-1.0.zip"; path = "../shared/swiftpackage/SharedKit-1.0.zip"; sourceTree = "<group>"; };
+		67776631279C9014004D8D6F /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67A1CBAA27ADFD27005629A1 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		67A1CBB727B19B7D005629A1 /* RWEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWEntryRow.swift; sourceTree = "<group>"; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				676EC0932714F59D00316DED /* SharedKit.xcframework in Frameworks */,
+				51023FCCC3B940D6497F6D29 /* libPods-iosApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				670990712715B5B00048A7B5 /* AppIcon.swift */,
+				67A1CBB727B19B7D005629A1 /* RWEntryRow.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -115,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				6709909C2717ABF80048A7B5 /* Utils.swift */,
+				67A1CBAA27ADFD27005629A1 /* Actions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -125,7 +117,7 @@
 				7555FF7D242A565900829871 /* iosApp */,
 				BB96D4C125049D15DDF3C5AA /* Pods */,
 				C0F78520098B3479B2AC64EC /* Frameworks */,
-				6743772C278B3EFB00E81629 /* iosApp.app */,
+				67776631279C9014004D8D6F /* iosApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,8 +154,9 @@
 		C0F78520098B3479B2AC64EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6743772E278B461500E81629 /* SharedAction.xcframework */,
+				676EC0922714F58200316DED /* SharedKit-1.0.zip */,
 				676EC08E2714EDCC00316DED /* SharedKit.xcframework */,
+				245D42ADC72E81E194057DD5 /* libPods-iosApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,20 +169,19 @@
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
 				1E863223B50CDB80E8A2A7A8 /* [CP] Check Pods Manifest.lock */,
+				67A1CBB627B1867F005629A1 /* SwiftLint */,
+				679C69E227B1B3EC00A8AFA9 /* Run Script */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				CACF3F8D9D78A3F656C6B24D /* Frameworks */,
-				676EC0952714F59D00316DED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iosApp;
-			packageProductDependencies = (
-			);
 			productName = iosApp;
-			productReference = 6743772C278B3EFB00E81629 /* iosApp.app */;
+			productReference = 67776631279C9014004D8D6F /* iosApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -216,9 +208,6 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
-			packageReferences = (
-				67437731278D12F200E81629 /* XCRemoteSwiftPackageReference "shared-action" */,
-			);
 			productRefGroup = 7555FF72242A565900829871;
 			projectDirPath = "";
 			projectRoot = "";
@@ -268,6 +257,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		679C69E227B1B3EC00A8AFA9 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		67A1CBB627B1867F005629A1 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -282,8 +307,10 @@
 				6709906B271506510048A7B5 /* RWEntryViewModel.swift in Sources */,
 				670990692715023E0048A7B5 /* SearchView.swift in Sources */,
 				67099063271501C00048A7B5 /* HomeView.swift in Sources */,
+				67A1CBB827B19B7D005629A1 /* RWEntryRow.swift in Sources */,
 				6709909D2717ABF80048A7B5 /* Utils.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				67A1CBAB27ADFD27005629A1 /* Actions.swift in Sources */,
 				67099067271502210048A7B5 /* LatestView.swift in Sources */,
 				670990722715B5B00048A7B5 /* AppIcon.swift in Sources */,
 			);
@@ -415,12 +442,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_PREVIEWS = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AlertToast\"",
+					"-l\"SDWebImage\"",
+					"-l\"SDWebImageSwiftUI\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-weak_framework",
+					"\"Combine\"",
+					"-weak_framework",
+					"\"SwiftUI\"",
+					"$(inherited)",
+					"-framework",
+					SharedKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -434,12 +479,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_PREVIEWS = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)\n";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AlertToast\"",
+					"-l\"SDWebImage\"",
+					"-l\"SDWebImageSwiftUI\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-weak_framework",
+					"\"Combine\"",
+					"-weak_framework",
+					"\"SwiftUI\"",
+					"$(inherited)",
+					"-framework",
+					SharedKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
