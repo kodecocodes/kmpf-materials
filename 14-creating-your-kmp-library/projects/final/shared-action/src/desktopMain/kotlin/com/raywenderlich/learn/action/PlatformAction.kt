@@ -39,12 +39,12 @@ import java.net.URI
 
 public actual object Action {
 
-    public actual fun openLink(url: String) {
-        try {
-            val desktop = Desktop.getDesktop()
-            desktop.browse(URI.create(url))
-        } catch (e: Exception) {
-            println("Unable to open url. Reason: ${e.stackTrace}")
-        }
+  public actual fun openLink(url: String) {
+    try {
+      val desktop = Desktop.getDesktop()
+      desktop.browse(URI.create(url))
+    } catch(e: Exception) {
+      println("Unable to open url. Reason: ${e.stackTrace}")
     }
+  }
 }

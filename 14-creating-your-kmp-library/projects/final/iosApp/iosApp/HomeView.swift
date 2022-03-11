@@ -30,121 +30,63 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import AlertToast
 import SwiftUI
 import SharedKit
-import SharedAction
 import SDWebImageSwiftUI
 
 struct HomeView: View {
-    
-    let TAG = "HomeView"
-    
-    @State private var showActionSheet = false
-    
-    @State private var filter = PLATFORM.all.description()
-    
-    @ObservedObject var feedViewModel = RWEntryViewModel()
-    
-    var body: some View {
-        
-        let content = feedViewModel.getContent()
-        
-        let rows = [GridItem(.fixed(150))]
-        
-        NavigationView {
-            ZStack(alignment: .topLeading) {
-                Color("rw-dark")
-                ScrollView(.vertical) {
-                    VStack {
-                        ScrollView(.horizontal) {
-                            LazyHGrid(rows: rows, alignment: .top) {
-                                ForEach(content, id: \.self) { item in
-                                    Button(action: {
-                                        self.filter = item.platform.description()
-                                    }, label: {
-                                        AnimatedImage(url: URL(string: "\(item.image)"))
-                                            .resizable()
-                                            .scaledToFit()
-                                            .cornerRadius(8)
-                                    })
-                                }
-                            }
-                            
-                            Spacer()
-                        }
-                        
-                        let items = feedViewModel.items[filter] ?? []
-                        
-                        ForEach(items, id: \.id) { item in
-                            Button(action: {
-                                Action().openLink(url: "\(item.link)")
-                            }) {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        AppIcon()
-                                        VStack(alignment: .leading) {
-                                            Text("Ray Wenderlich")
-                                                .foregroundColor(.white)
-                                                .font(Font.custom("Bitter-Bold", size: 15))
-                                            Text(formatStringDate(date: item.updated))
-                                                .foregroundColor(.white)
-                                                .font(Font.custom("Bitter-Bold", size: 12))
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        Button(action: {
-                                            showActionSheet = true
-                                        }) {
-                                            Image("ic_more")
-                                                .foregroundColor(.white)
-                                        }
-                                        .padding(.trailing, 1)
-                                        
-                                        .actionSheet(isPresented: $showActionSheet) {
-                                            ActionSheet(title: Text(""),
-                                                        message: Text("Select an option"),
-                                                        buttons: [
-                                                            .cancel(),
-                                                            .default(
-                                                                Text("Add to bookmarks"),
-                                                                action: { feedViewModel.addToBookmarks(entry: item) }
-                                                            ),
-                                                            .default(
-                                                                Text("Share as link"),
-                                                                action: {
-                                                                    guard let data = URL(string: item.link) else { return }
-                                                                    let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-                                                                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-                                                                }
-                                                            )
-                                                        ]
-                                            )
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(item.title)
-                                        .lineLimit(2)
-                                        .foregroundColor(.white)
-                                        .font(Font.custom("Bitter-Bold", size: 15))
-                                        .multilineTextAlignment(.leading)
-                                    Text(item.summary)
-                                        .lineLimit(2)
-                                        .foregroundColor(.white)
-                                        .font(Font.custom("Bitter-Regular", size: 14))
-                                        .multilineTextAlignment(.leading)
-                                }
-                                .padding(.horizontal, 16.0)
-                            }
-                        }
-                    }
+  let TAG = "HomeView"
+
+  @State private var filter = PLATFORM.all.description()
+
+  @State private var showToast = false
+
+  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+
+  var body: some View {
+    let content = feedViewModel.getContent()
+
+    let rows = [GridItem(.fixed(150))]
+
+    NavigationView {
+      ZStack(alignment: .topLeading) {
+        Color("rw-dark")
+        ScrollView(.vertical) {
+          VStack {
+            ScrollView(.horizontal) {
+              LazyHGrid(rows: rows, alignment: .top) {
+                ForEach(content, id: \.self) { item in
+                  Button(action: {
+                    self.filter = item.platform.description()
+                  }, label: {
+                    AnimatedImage(url: URL(string: "\(item.image)"))
+                      .resizable()
+                      .scaledToFit()
+                      .cornerRadius(8)
+                  })
                 }
-                .navigationBarTitle("learn", displayMode: .inline)
+              }
+
+              Spacer()
             }
+
+            let items = feedViewModel.items[filter] ?? []
+
+            ForEach(items, id: \.id) { item in
+              RWEntryRow(item: item, addToBookmarks: true)
+                .environmentObject(feedViewModel)
+            }
+          }
         }
-        .onAppear() {
-            Logger().d(tag: TAG, message: "Retrieving all feeds")
-            feedViewModel.fetchFeeds()
-        }
+        .navigationBarTitle("learn", displayMode: .inline)
+      }
+      .onReceive(feedViewModel.$profile) { item in
+        showToast = item?.preferredUsername != nil
+      }
+      .toast(isPresenting: $showToast) {
+        AlertToast(type: .regular, title: "Hello \(String(feedViewModel.profile?.preferredUsername ?? ""))")
+      }
     }
+  }
 }

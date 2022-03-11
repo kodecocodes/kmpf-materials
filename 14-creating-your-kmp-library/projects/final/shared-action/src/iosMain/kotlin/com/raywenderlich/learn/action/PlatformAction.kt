@@ -39,14 +39,14 @@ import platform.UIKit.UIApplication
 
 public actual object Action {
 
-    public actual fun openLink(url: String) {
-        val application = UIApplication.sharedApplication
-        val nsurl = NSURL(string = url)
-        if (!application.canOpenURL(nsurl)) {
-            println("Unable to open url: $url")
-            return
-        }
-
-        application.openURL(nsurl)
+  public actual fun openLink(url: String) {
+    val application = UIApplication.sharedApplication
+    val nsurl = NSURL(string = url)
+    if (!application.canOpenURL(nsurl)) {
+      println("Unable to open url: $url")
+      return
     }
+
+    application.openURL(nsurl)
+  }
 }

@@ -42,13 +42,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.livedata.observeAsState
 import com.raywenderlich.learn.R
-import com.raywenderlich.learn.action.activityContext
 import com.raywenderlich.learn.action.Action.openLink
+import com.raywenderlich.learn.action.activityContext
+import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.ui.bookmark.BookmarkViewModel
 import com.raywenderlich.learn.ui.home.FeedViewModel
 import com.raywenderlich.learn.ui.main.MainScreen
 import com.raywenderlich.learn.ui.theme.RWTheme
-import com.raywenderlich.learn.data.model.RWEntry
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,12 +58,23 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    feedViewModel.fetchAllFeeds()
+    feedViewModel.fetchMyGravatar()
+    bookmarkViewModel.getBookmarks()
+
     setContent {
 
-      feedViewModel.fetchAllFeeds()
-      bookmarkViewModel.getBookmarks()
-
       val items = feedViewModel.items
+      val profile = feedViewModel.profile.observeAsState()
+      if (!profile.value?.preferredUsername.isNullOrEmpty()) {
+        val name = profile.value!!.preferredUsername
+        Toast.makeText(
+          applicationContext,
+          getString(R.string.action_hello, name),
+          Toast.LENGTH_SHORT
+        ).show()
+      }
+
       val bookmarks = bookmarkViewModel.items.observeAsState()
 
       RWTheme {

@@ -36,5 +36,5 @@ package com.raywenderlich.learn.action
 
 public expect object Action {
 
-    public fun openLink(url: String)
+  public fun openLink(url: String)
 }

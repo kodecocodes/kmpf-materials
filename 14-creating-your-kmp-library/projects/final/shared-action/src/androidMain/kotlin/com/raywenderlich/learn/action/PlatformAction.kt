@@ -42,9 +42,9 @@ public lateinit var activityContext: Context
 
 public actual object Action {
 
-    public actual fun openLink(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        activityContext.startActivity(intent)
-    }
+  public actual fun openLink(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(url)
+    activityContext.startActivity(intent)
+  }
 }
