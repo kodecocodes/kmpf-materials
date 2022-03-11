@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		51023FCCC3B940D6497F6D29 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D42ADC72E81E194057DD5 /* libPods-iosApp.a */; };
 		6709905B2714FA5D0048A7B5 /* BookmarkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */; };
 		6709905D2714FAA00048A7B5 /* FeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709905C2714FAA00048A7B5 /* FeedClient.swift */; };
 		670990612714FDEA0048A7B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670990602714FDEA0048A7B5 /* Assets.xcassets */; };
@@ -28,12 +27,12 @@
 		67A1CBAB27ADFD27005629A1 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A1CBAA27ADFD27005629A1 /* Actions.swift */; };
 		67A1CBB827B19B7D005629A1 /* RWEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A1CBB727B19B7D005629A1 /* RWEntryRow.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		F9EFAEBF72506FCC9BA95EF0 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD01569B3BC6D336E152A3F7 /* libPods-iosApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A7253495B503C53289755E1 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
-		245D42ADC72E81E194057DD5 /* libPods-iosApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		247688B1D254ABA6DFD3FE76 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		67A1CBB727B19B7D005629A1 /* RWEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWEntryRow.swift; sourceTree = "<group>"; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD01569B3BC6D336E152A3F7 /* libPods-iosApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51023FCCC3B940D6497F6D29 /* libPods-iosApp.a in Frameworks */,
+				F9EFAEBF72506FCC9BA95EF0 /* libPods-iosApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +156,7 @@
 			children = (
 				676EC0922714F58200316DED /* SharedKit-1.0.zip */,
 				676EC08E2714EDCC00316DED /* SharedKit.xcframework */,
-				245D42ADC72E81E194057DD5 /* libPods-iosApp.a */,
+				DD01569B3BC6D336E152A3F7 /* libPods-iosApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
