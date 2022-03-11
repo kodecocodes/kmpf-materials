@@ -7,7 +7,6 @@ import com.chromaticnoise.multiplatformswiftpackage.domain.PluginConfiguration.P
 import com.chromaticnoise.multiplatformswiftpackage.domain.TargetName
 import com.chromaticnoise.multiplatformswiftpackage.domain.TargetPlatform
 import groovy.lang.Closure
-import org.gradle.util.ConfigureUtil
 
 /**
  * DSL to create instances of [TargetPlatform].
@@ -33,7 +32,7 @@ public class TargetPlatformDsl {
 
     @Suppress("DEPRECATION")
     public fun iOS(version: Closure<PlatformVersionDsl>) {
-        iOS { ConfigureUtil.configure(version, this) }
+        iOS { org.gradle.util.ConfigureUtil.configure(version, this) }
     }
 
     /**
@@ -54,8 +53,9 @@ public class TargetPlatformDsl {
         )
     }
 
+    @Suppress("DEPRECATION")
     public fun watchOS(version: Closure<PlatformVersionDsl>) {
-        watchOS { ConfigureUtil.configure(version, this) }
+        watchOS { org.gradle.util.ConfigureUtil.configure(version, this) }
     }
 
     /**
@@ -74,8 +74,9 @@ public class TargetPlatformDsl {
         )
     }
 
+    @Suppress("DEPRECATION")
     public fun tvOS(version: Closure<PlatformVersionDsl>) {
-        tvOS { ConfigureUtil.configure(version, this) }
+        tvOS { org.gradle.util.ConfigureUtil.configure(version, this) }
     }
 
     /**
@@ -93,8 +94,9 @@ public class TargetPlatformDsl {
         )
     }
 
+    @Suppress("DEPRECATION")
     public fun macOS(version: Closure<PlatformVersionDsl>) {
-        macOS { ConfigureUtil.configure(version, this) }
+        macOS { org.gradle.util.ConfigureUtil.configure(version, this) }
     }
 
     /**
@@ -108,8 +110,9 @@ public class TargetPlatformDsl {
         targetsInternal(names.asList().toTargetNames(), version)
     }
 
+    @Suppress("DEPRECATION")
     public fun targets(names: Collection<String>, version: Closure<PlatformVersionDsl>) {
-        targetsInternal(names.toTargetNames()) { ConfigureUtil.configure(version, this) }
+        targetsInternal(names.toTargetNames()) { org.gradle.util.ConfigureUtil.configure(version, this) }
     }
 
     private fun targetsInternal(names: Collection<Either<PluginConfigurationError, TargetName>>, configure: PlatformVersionDsl.() -> Unit) {
