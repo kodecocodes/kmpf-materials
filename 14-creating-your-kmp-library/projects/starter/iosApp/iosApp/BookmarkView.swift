@@ -40,8 +40,6 @@ struct BookmarkView: View {
 
   @State private var selectedEntry: RWEntry?
 
-  @Environment(\.openURL) var openURL
-
   @EnvironmentObject private var feedViewModel: RWEntryViewModel
 
   var body: some View {
