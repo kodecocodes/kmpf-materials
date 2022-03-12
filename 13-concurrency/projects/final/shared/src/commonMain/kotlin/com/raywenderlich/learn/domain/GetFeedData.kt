@@ -42,13 +42,13 @@ import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
-import io.ktor.client.statement.*
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
 
 private const val WEBSITE_PREVIEW_START_DELIMITER =
-    "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
+  "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
 
 private const val WEBSITE_PREVIEW_END_DELIMITER = "\" />"
 
@@ -87,7 +87,7 @@ public class GetFeedData {
   }
 
   public suspend fun invokeFetchImageUrlFromLink(
-      link: String
+    link: String
   ): String {
     return try {
 

@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -66,25 +66,21 @@ class FeedPresenter(private val feed: GetFeedData) {
     json.decodeFromString(RW_CONTENT)
   }
 
-  private var listener: FeedData? = null
-
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
 
-    listener = cb
-
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
     MainScope().launch {
       feed.invokeFetchRWEntry(
         platform = platform,
         feedUrl = feedUrl,
-        onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-        onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        onSuccess = { cb.onNewDataAvailable(it, platform, null) },
+        onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
       )
     }
   }
@@ -92,17 +88,11 @@ class FeedPresenter(private val feed: GetFeedData) {
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    listener = cb
-
-    fetchMyGravatar()
-  }
-
-  private fun fetchMyGravatar() {
     MainScope().launch {
       feed.invokeGetMyGravatar(
         hash = md5(GRAVATAR_EMAIL),
-        onSuccess = { listener?.onMyGravatarData(it) },
-        onFailure = { listener?.onMyGravatarData(GravatarEntry()) }
+        onSuccess = { cb.onMyGravatarData(it) },
+        onFailure = { cb.onMyGravatarData(GravatarEntry()) }
       )
     }
   }

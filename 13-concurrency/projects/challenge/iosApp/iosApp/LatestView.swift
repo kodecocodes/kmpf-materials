@@ -56,6 +56,7 @@ struct LatestView: View {
   }
 }
 
+let itemsSection = 4
 
 struct Section: View {
   @Environment(\.openURL) var openURL
@@ -65,7 +66,10 @@ struct Section: View {
   var entries: [RWEntry]
 
   var body: some View {
-    if !entries.isEmpty {
+    let max = entries.count < itemsSection ? entries.count : itemsSection
+    let subEntries = max == 0 ? [] : entries[0...max]
+
+    if !subEntries.isEmpty {
       LazyVStack {
         HStack {
           Text(platform)
@@ -79,7 +83,7 @@ struct Section: View {
         .frame(maxWidth: .infinity)
 
         TabView {
-          ForEach(entries, id: \.id) { item in
+          ForEach(subEntries, id: \.id) { item in
             VStack {
               Button(action: {
                 guard let url = URL(string: "\(item.link)") else {
@@ -91,11 +95,12 @@ struct Section: View {
                 if item.imageUrl.isEmpty {
                   Rectangle().foregroundColor(.gray)
                   Image("razerware")
+                } else {
+                  AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+                    .resizable()
+                    .scaledToFill()
+                    .cornerRadius(8)
                 }
-                AnimatedImage(url: URL(string: "\(item.imageUrl)"))
-                  .resizable()
-                  .scaledToFill()
-                  .cornerRadius(8)
               })
             }
           }

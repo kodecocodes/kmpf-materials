@@ -42,7 +42,10 @@ import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -60,57 +63,53 @@ private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val json = Json { ignoreUnknownKeys = true }
-
   private val scope = CoroutineScope(ioDispatcher)
+
+  private val json = Json { ignoreUnknownKeys = true }
 
   val content: List<RWContent> by lazy {
     json.decodeFromString(RW_CONTENT)
   }
 
-  private var listener: FeedData? = null
-
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
 
-    listener = cb
-
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
     scope.launch {
       feed.invokeFetchRWEntry(
-              platform = platform,
-              feedUrl = feedUrl,
-              onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-              onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        platform = platform,
+        feedUrl = feedUrl,
+        onSuccess = { cb.onNewDataAvailable(it, platform, null) },
+        onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
       )
     }
   }
 
   public suspend fun fetchLinkImage(link: String): String {
     return scope.async {
-      feed.invokeFetchImageUrlFromLink(link)
+      feed.invokeFetchImageUrlFromLink(
+        link
+      )
     }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    listener = cb
-
-    scope.launch {
-      listener?.onMyGravatarData(fetchMyGravatar())
+    CoroutineScope(Dispatchers.Default).launch {
+      cb.onMyGravatarData(fetchMyGravatar())
     }
   }
 
   private suspend fun fetchMyGravatar(): GravatarEntry {
     return CoroutineScope(Dispatchers.Default).async {
       feed.invokeGetMyGravatar(
-              hash = md5(GRAVATAR_EMAIL)
+        hash = md5(GRAVATAR_EMAIL)
       )
     }.await()
   }
