@@ -87,9 +87,9 @@ fun HomeSheetContent(
     ) {
 
       val text = if (item.value.bookmarked) {
-          getString(MR.strings.action_remove_bookmarks)
+        getString(MR.strings.action_remove_bookmarks)
       } else {
-          getString(MR.strings.action_add_bookmarks)
+        getString(MR.strings.action_add_bookmarks)
       }
 
       Text(

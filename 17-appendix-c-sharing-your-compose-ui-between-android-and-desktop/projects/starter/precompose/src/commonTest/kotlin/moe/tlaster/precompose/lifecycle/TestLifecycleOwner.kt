@@ -1,7 +1,8 @@
 package moe.tlaster.precompose.lifecycle
 
 class TestLifecycleOwner : LifecycleOwner {
-    override val lifecycle by lazy {
-        LifecycleRegistry()
-    }
+
+  override val lifecycle by lazy {
+    LifecycleRegistry()
+  }
 }

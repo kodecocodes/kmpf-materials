@@ -35,10 +35,7 @@
 package com.raywenderlich.learn.domain.dao
 
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 import data.AppDb
-
-private const val TAG = "RWEntryDAO"
 
 public class RWEntryDAO(database: AppDb) {
 
@@ -59,21 +56,16 @@ public class RWEntryDAO(database: AppDb) {
       updated = entry.updated,
       bookmarked = if (entry.bookmarked) 1 else 0
     )
-
-    Logger.d(TAG, "insertOrReplace | number of elements=${getAllEntries().size}")
   }
 
   public fun remove(entry: RWEntry) {
     db.removeRWEntry(
       id = entry.id
     )
-
-    Logger.d(TAG, "remove | number of elements=${getAllEntries().size}")
   }
 
   public fun getAllEntries(): List<RWEntry> {
     val data = db.selectAllRWEntries().executeAsList()
-    Logger.d(TAG, "Retrieving all entries | data=${data.size}")
 
     val entries = mutableListOf<RWEntry>()
     for (item in data) {

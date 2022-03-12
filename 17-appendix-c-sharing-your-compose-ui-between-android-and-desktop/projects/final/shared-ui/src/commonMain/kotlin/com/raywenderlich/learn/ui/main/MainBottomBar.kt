@@ -97,9 +97,9 @@ private fun AppBottomNavigation(
       val isSelected = selectedIndex.value == index
 
       val style = if (isSelected) {
-        typography.subtitle1.copy(color = colorPrimary, fontFamily = Fonts.BitterFontFamily())
+        typography.subtitle1.copy(color = colorPrimary)
       } else {
-        typography.subtitle2.copy(color = colorAccent, fontFamily = Fonts.BitterFontFamily())
+        typography.subtitle2.copy(color = colorAccent)
       }
 
       BottomNavigationItem(
@@ -110,9 +110,10 @@ private fun AppBottomNavigation(
         },
         label = {
           Text(
-            text = screen.title,
-            style = style
-          )
+            screen.title,
+            style = style,
+            fontFamily = Fonts.BitterFontFamily()
+            )
         },
         selected = isSelected,
         selectedContentColor = colorPrimary,

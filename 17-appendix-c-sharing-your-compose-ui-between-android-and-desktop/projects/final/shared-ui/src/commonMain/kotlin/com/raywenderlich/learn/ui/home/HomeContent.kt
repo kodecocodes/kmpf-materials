@@ -35,6 +35,7 @@
 package com.raywenderlich.learn.ui.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -79,11 +80,11 @@ private const val TAG = "HomeContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeContent(
-        selected: MutableState<RWEntry>,
-        items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        coroutineScope: CoroutineScope,
-        bottomSheetScaffoldState: BottomSheetScaffoldState,
-        onOpenEntry: (String) -> Unit
+  selected: MutableState<RWEntry>,
+  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  coroutineScope: CoroutineScope,
+  bottomSheetScaffoldState: BottomSheetScaffoldState,
+  onOpenEntry: (String) -> Unit
 ) {
 
   val size = items.size
@@ -102,7 +103,9 @@ fun HomeContent(
     }
 
     item {
-      AddPlatformHeadings()
+      AddPlatformHeadings(
+        platform = platform
+      )
     }
 
     item {
@@ -113,12 +116,12 @@ fun HomeContent(
       val feed = items[platform.value] ?: emptyList()
       itemsIndexed(feed) { index, item ->
         AddEntryContent(
-                item = item,
-                selected = selected,
-                divider = index < size - 1,
-                coroutineScope = coroutineScope,
-                bottomSheetScaffoldState = bottomSheetScaffoldState,
-                onOpenEntry = onOpenEntry
+          item = item,
+          selected = selected,
+          divider = index < size - 1,
+          coroutineScope = coroutineScope,
+          bottomSheetScaffoldState = bottomSheetScaffoldState,
+          onOpenEntry = onOpenEntry
         )
       }
     }
@@ -126,7 +129,9 @@ fun HomeContent(
 }
 
 @Composable
-fun AddPlatformHeadings() {
+fun AddPlatformHeadings(
+  platform: MutableState<PLATFORM>
+) {
 
   LazyRow(
     modifier = Modifier.fillMaxWidth()
@@ -145,6 +150,9 @@ fun AddPlatformHeadings() {
             .size(125.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(color = colorContentSecondary)
+            .clickable {
+              platform.value = it.platform
+            }
         )
 
         Spacer(modifier = Modifier.height(8.dp))

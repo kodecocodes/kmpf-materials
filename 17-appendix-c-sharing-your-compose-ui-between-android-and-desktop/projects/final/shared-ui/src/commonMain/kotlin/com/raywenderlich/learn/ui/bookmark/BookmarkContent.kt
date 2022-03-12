@@ -42,7 +42,7 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import com.raywenderlich.learn.MR
 import com.raywenderlich.learn.data.model.RWEntry
@@ -58,23 +58,23 @@ private const val TAG = "BookmarkContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BookmarkContent(
-        selected: MutableState<RWEntry>,
-        items: SnapshotStateList<RWEntry>,
-        coroutineScope: CoroutineScope,
-        bottomSheetScaffoldState: BottomSheetScaffoldState,
-        onOpenEntry: (String) -> Unit
+  selected: MutableState<RWEntry>,
+  items: State<List<RWEntry>?>,
+  coroutineScope: CoroutineScope,
+  bottomSheetScaffoldState: BottomSheetScaffoldState,
+  onOpenEntry: (String) -> Unit
 ) {
 
-  Logger.d(TAG, "Items received | items=${items.size}")
+  Logger.d(TAG, "Items received | items=${items.value?.size}")
 
-  if (items.isNullOrEmpty()) {
+  if (items.value == null || items.value.isNullOrEmpty()) {
     AddEmptyScreen(
       text = getString(MR.strings.empty_screen_bookmarks)
     )
   } else {
     AddBookmarks(
       selected = selected,
-      items = items,
+      items = items.value ?: emptyList(),
       coroutineScope = coroutineScope,
       bottomSheetScaffoldState = bottomSheetScaffoldState,
       onOpenEntry = onOpenEntry
@@ -86,7 +86,7 @@ fun BookmarkContent(
 @Composable
 fun AddBookmarks(
   selected: MutableState<RWEntry>,
-  items: SnapshotStateList<RWEntry>,
+  items: List<RWEntry>,
   coroutineScope: CoroutineScope,
   bottomSheetScaffoldState: BottomSheetScaffoldState,
   onOpenEntry: (String) -> Unit

@@ -63,15 +63,15 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.raywenderlich.learn.components.AddImagePreview
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContent20Transparency
 import com.raywenderlich.learn.ui.theme.colorContent85Transparency
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
 
 private const val TAG = "LatestContent"
 
@@ -136,10 +136,7 @@ fun AddNewPage(
   items: List<RWEntry>,
   onOpenEntry: (String) -> Unit
 ) {
-  val pagerState = rememberPagerState(
-    pageCount = items.size,
-    initialOffscreenLimit = 2,
-  )
+  val pagerState = rememberPagerState(0)
 
   Column(
     modifier = Modifier.padding(start = 16.dp, end = 16.dp)
@@ -151,6 +148,7 @@ fun AddNewPage(
     )
 
     HorizontalPager(
+      count = items.size,
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
     ) { page ->

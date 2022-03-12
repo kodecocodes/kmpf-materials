@@ -5,30 +5,32 @@ import moe.tlaster.precompose.viewmodel.ViewModelStore
 import moe.tlaster.precompose.viewmodel.getViewModel
 
 internal class NavControllerViewModel : ViewModel() {
-    private val viewModelStores = hashMapOf<Long, ViewModelStore>()
 
-    fun clear(id: Long) {
-        viewModelStores.remove(id)?.clear()
-    }
+  private val viewModelStores = hashMapOf<Long, ViewModelStore>()
 
-    operator fun get(id: Long): ViewModelStore {
-        return viewModelStores.getOrPut(id) {
-            ViewModelStore()
-        }
-    }
+  fun clear(id: Long) {
+    viewModelStores.remove(id)?.clear()
+  }
 
-    override fun onCleared() {
-        viewModelStores.forEach {
-            it.value.clear()
-        }
-        viewModelStores.clear()
+  operator fun get(id: Long): ViewModelStore {
+    return viewModelStores.getOrPut(id) {
+      ViewModelStore()
     }
+  }
 
-    companion object {
-        fun create(viewModelStore: ViewModelStore): NavControllerViewModel {
-            return viewModelStore.getViewModel {
-                NavControllerViewModel()
-            }
-        }
+  override fun onCleared() {
+    viewModelStores.forEach {
+      it.value.clear()
     }
+    viewModelStores.clear()
+  }
+
+  companion object {
+
+    fun create(viewModelStore: ViewModelStore): NavControllerViewModel {
+      return viewModelStore.getViewModel {
+        NavControllerViewModel()
+      }
+    }
+  }
 }

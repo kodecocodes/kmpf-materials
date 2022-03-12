@@ -62,10 +62,10 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEntryContent
 import com.raywenderlich.learn.ui.theme.Fonts
-import com.raywenderlich.learn.ui.theme.icSearch
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorPrimary
+import com.raywenderlich.learn.ui.theme.icSearch
 import com.raywenderlich.learn.ui.utils.getString
 import kotlinx.coroutines.CoroutineScope
 
@@ -74,11 +74,11 @@ private const val TAG = "SearchContent"
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchContent(
-        selected: MutableState<RWEntry>,
-        items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        coroutineScope: CoroutineScope,
-        bottomSheetScaffoldState: BottomSheetScaffoldState,
-        onOpenEntry: (String) -> Unit
+  selected: MutableState<RWEntry>,
+  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  coroutineScope: CoroutineScope,
+  bottomSheetScaffoldState: BottomSheetScaffoldState,
+  onOpenEntry: (String) -> Unit
 ) {
 
   Surface(
@@ -103,7 +103,7 @@ fun SearchContent(
       Logger.d(TAG, "list=$list")
       results += list.filter {
         (it.title.lowercase().contains(search.value.lowercase())) ||
-                (it.summary.lowercase().contains(search.value.lowercase()))
+            (it.summary.lowercase().contains(search.value.lowercase()))
       }
     }
 

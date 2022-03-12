@@ -49,9 +49,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import com.raywenderlich.learn.MR
 import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.theme.icBrand
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
+import com.raywenderlich.learn.ui.theme.icBrand
 import com.raywenderlich.learn.ui.utils.getString
 import io.kamel.core.Resource
 import io.kamel.image.KamelImage
@@ -72,9 +72,7 @@ fun AddImagePreview(
     AddImagePreviewEmpty(modifier)
 
   } else {
-
     Box {
-
       when (val resource = lazyPainterResource(url)) {
         is Resource.Loading -> {
           Logger.d(TAG, "Loading image from uri=$url")
@@ -113,8 +111,6 @@ fun AddImagePreviewEmpty(
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
-
-    Logger.d(TAG, "Temporary error.")
 
     Surface(
       modifier = modifier,

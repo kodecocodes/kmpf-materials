@@ -40,37 +40,37 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 
 object Fonts {
-    @Composable
-    fun BitterFontFamily() = FontFamily(
-            Font(
-                    "BitterFontFamily",
-                    "bitter_bold",
-                    FontWeight.Bold,
-                    FontStyle.Normal
-            ),
-            Font(
-                    "BitterFontFamily",
-                    "bitter_extrabold",
-                    FontWeight.ExtraBold,
-                    FontStyle.Normal
-            ),
-            Font(
-                    "BitterFontFamily",
-                    "bitter_light",
-                    FontWeight.Light,
-                    FontStyle.Normal
-            ),
-            Font(
-                    "BitterFontFamily",
-                    "bitter_regular",
-                    FontWeight.Normal,
-                    FontStyle.Normal
-            ),
-            Font(
-                    "BitterFontFamily",
-                    "bitter_semibold",
-                    FontWeight.SemiBold,
-                    FontStyle.Normal
-            )
+  @Composable
+  fun BitterFontFamily() = FontFamily(
+    Font(
+      "BitterFontFamily",
+      "bitter_bold",
+      FontWeight.Bold,
+      FontStyle.Normal
+    ),
+    Font(
+      "BitterFontFamily",
+      "bitter_extrabold",
+      FontWeight.ExtraBold,
+      FontStyle.Normal
+    ),
+    Font(
+      "BitterFontFamily",
+      "bitter_light",
+      FontWeight.Light,
+      FontStyle.Normal
+    ),
+    Font(
+      "BitterFontFamily",
+      "bitter_regular",
+      FontWeight.Normal,
+      FontStyle.Normal
+    ),
+    Font(
+      "BitterFontFamily",
+      "bitter_semibold",
+      FontWeight.SemiBold,
+      FontStyle.Normal
     )
+  )
 }

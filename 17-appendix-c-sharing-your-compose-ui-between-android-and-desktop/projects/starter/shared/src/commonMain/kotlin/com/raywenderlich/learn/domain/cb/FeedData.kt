@@ -34,12 +34,13 @@
 
 package com.raywenderlich.learn.domain.cb
 
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 
 public interface FeedData {
 
-  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?)
+  public fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?)
 
-  public fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?)
+  public fun onMyGravatarData(item: GravatarEntry)
 }
