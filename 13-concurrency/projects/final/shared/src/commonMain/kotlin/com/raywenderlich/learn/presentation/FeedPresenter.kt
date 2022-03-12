@@ -44,7 +44,6 @@ import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
