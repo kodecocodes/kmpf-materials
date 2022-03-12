@@ -34,146 +34,87 @@ import SwiftUI
 import SharedKit
 
 struct SearchView: View {
-    
-    @Binding var text: String
-    
-    @State private var isEditing = false
-    
-    @State private var showActionSheet = false
-    
-    @ObservedObject var feedViewModel = RWEntryViewModel()
-    
-    var filteredItems: [RWEntry] {
-        if (self.text.isEmpty) {
-            return feedViewModel.items[PLATFORM.all.description()] ?? []
-        } else {
-            let all = feedViewModel.items[PLATFORM.all.description()] ?? []
-            return all.filter { $0.title.contains(text) || $0.summary.contains(text) }
-        }
+  @Binding var text: String
+
+  @State private var isEditing = false
+
+  @State private var showDialog = false
+
+  @State private var selectedEntry: RWEntry?
+
+  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+
+  var filteredItems: [RWEntry] {
+    if self.text.isEmpty {
+      return feedViewModel.items[PLATFORM.all.description()] ?? []
+    } else {
+      let all = feedViewModel.items[PLATFORM.all.description()] ?? []
+      return all.filter { $0.title.contains(text) || $0.summary.contains(text) }
     }
-    
-    var body: some View {
-        
-        NavigationView {
-            ZStack(alignment: .topLeading) {
-                Color("rw-dark")
-                ScrollView(.vertical) {
-                    
-                    
-                    VStack {
-                        HStack {
-                            
-                            TextField("Search...", text: $text)
-                                .padding(8)
-                                .padding(.horizontal, 25)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(8)
-                                .overlay(
-                                    HStack {
-                                        Image(systemName: "magnifyingglass")
-                                            .foregroundColor(.gray)
-                                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                            .padding(.leading, 8)
-                                        
-                                        if isEditing {
-                                            Button(action: {
-                                                self.text = ""
-                                                
-                                            }) {
-                                                Image(systemName: "multiply.circle.fill")
-                                                    .foregroundColor(.gray)
-                                                    .padding(.trailing, 8)
-                                            }
-                                        }
-                                    }
-                                )
-                                .padding(.horizontal, 10)
-                                .onTapGesture {
-                                    self.isEditing = true
-                                }
-                            
-                            if isEditing {
-                                Button(action: {
-                                    self.isEditing = false
-                                    self.text = ""
-                                    
-                                    // Dismiss the keyboard
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }) {
-                                    Text("Cancel")
-                                }
-                                .padding(.trailing, 10)
-                                .transition(.move(edge: .trailing))
-                                .animation(.default)
-                            }
-                        }
-                        .padding(.vertical, 8.0)
-                        
-                        ForEach(filteredItems, id: \.id) { item in
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    AppIcon()
-                                    VStack(alignment: .leading) {
-                                        Text("Ray Wenderlich")
-                                            .foregroundColor(.white)
-                                            .font(Font.custom("Bitter-Bold", size: 15))
-                                        Text(formatStringDate(date: item.updated))
-                                            .foregroundColor(.white)
-                                            .font(Font.custom("Bitter-Bold", size: 12))
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {
-                                        showActionSheet = true
-                                    }) {
-                                        Image("ic_more").foregroundColor(.white)
-                                    }
-                                    .padding(.trailing, 1)
-                                    
-                                    .actionSheet(isPresented: $showActionSheet) {
-                                        ActionSheet(title: Text(""),
-                                                    message: Text("Select an option"),
-                                                    buttons: [
-                                                        .cancel(),
-                                                        .default(
-                                                            Text("Add to bookmarks"),
-                                                            action: { feedViewModel.addToBookmarks(entry: item) }
-                                                        ),
-                                                        .default(
-                                                            Text("Share as link"),
-                                                            action: {
-                                                                guard let data = URL(string: item.link) else { return }
-                                                                let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-                                                                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-                                                            }
-                                                        )
-                                                    ]
-                                        )
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                Text(item.title)
-                                    .lineLimit(2)
-                                    .foregroundColor(.white)
-                                    .font(Font.custom("Bitter-Bold", size: 15))
-                                Text(item.summary)
-                                    .lineLimit(2)
-                                    .foregroundColor(.white)
-                                    .font(Font.custom("Bitter-Regular", size: 14))
-                            }
-                            .padding(.horizontal, 16.0)
-                        }
+  }
+
+  var body: some View {
+    NavigationView {
+      ZStack(alignment: .topLeading) {
+        Color("rw-dark")
+        ScrollView(.vertical) {
+          VStack {
+            HStack {
+              TextField("Search...", text: $text)
+                .padding(8)
+                .padding(.horizontal, 25)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .overlay(
+                  HStack {
+                    Image(systemName: "magnifyingglass")
+                      .foregroundColor(.gray)
+                      .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                      .padding(.leading, 8)
+
+                    if isEditing {
+                      Button(action: {
+                        self.text = ""
+                      }, label: {
+                        Image(systemName: "multiply.circle.fill")
+                          .foregroundColor(.gray)
+                          .padding(.trailing, 8)
+                      })
                     }
+                  }
+                )
+                .padding(.horizontal, 10)
+                .onTapGesture {
+                  self.isEditing = true
                 }
-                .navigationBarTitle("learn", displayMode: .inline)
+
+              if isEditing {
+                Button(action: {
+                  self.isEditing = false
+                  self.text = ""
+
+                  UIApplication.shared.sendAction(
+                    #selector(UIResponder.resignFirstResponder),
+                    to: nil,
+                    from: nil,
+                    for: nil)
+                }, label: {
+                  Text("Cancel")
+                })
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+              }
             }
+            .padding(.vertical, 8.0)
+
+            ForEach(filteredItems, id: \.id) { item in
+              RWEntryRow(item: item, addToBookmarks: true)
+                .environmentObject(feedViewModel)
+            }
+          }
         }
-        .onAppear() {
-            Logger().d(tag: TAG, message: "Retrieving all feeds")
-            feedViewModel.fetchFeeds()
-        }
+      }
+      .navigationBarTitle("learn", displayMode: .inline)
     }
+  }
 }
-
-
