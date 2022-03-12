@@ -34,19 +34,19 @@
 
 package com.raywenderlich.learn.presentation
 
-import com.raywenderlich.learn.PresenterCoroutineScope
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.BookmarkData
 import com.raywenderlich.learn.domain.dao.RWEntryDAO
+import com.raywenderlich.learn.domain.ioDispatcher
 import com.raywenderlich.learn.platform.Logger
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 private const val TAG = "BookmarkPresenter"
 
 class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
 
-  private val scope = PresenterCoroutineScope(Dispatchers.Default)
+  private val scope = CoroutineScope(ioDispatcher)
   private var listener: BookmarkData? = null
 
   public fun getBookmarks(cb: BookmarkData) {
@@ -65,26 +65,26 @@ class BookmarkPresenter(private val rwEntryDAO: RWEntryDAO) {
   public fun addAsBookmark(entry: RWEntry, cb: BookmarkData) {
     Logger.d(TAG, "addAsBookmark")
     listener = cb
-    addAsBookmark(entry)
+    addAsBookmark(entry.copy(bookmarked = true))
   }
 
   private fun addAsBookmark(entry: RWEntry) {
     scope.launch {
       rwEntryDAO.insertOrReplace(entry)
-      listener?.onBookmarkStateUpdated(entry, true)
+      getBookmarks()
     }
   }
 
   public fun removeFromBookmark(entry: RWEntry, cb: BookmarkData) {
     Logger.d(TAG, "removeFromBookmark")
     listener = cb
-    removeFromBookmark(entry)
+    removeFromBookmark(entry.copy(bookmarked = false))
   }
 
   private fun removeFromBookmark(entry: RWEntry) {
     scope.launch {
       rwEntryDAO.remove(entry)
-      listener?.onBookmarkStateUpdated(entry, true)
+      getBookmarks()
     }
   }
 }

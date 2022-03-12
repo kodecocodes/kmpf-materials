@@ -47,7 +47,6 @@ import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Surface
 import androidx.compose.material.contentColorFor
@@ -61,7 +60,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.learn.ui.theme.Fonts
 
 private val AppBarHeight = 56.dp
 
@@ -91,7 +89,7 @@ fun RWTopAppBar(
       verticalAlignment = Alignment.CenterVertically,
       horizontalArrangement = Arrangement.Center
     ) {
-      ProvideTextStyle(value = typography.h6.copy(fontFamily = Fonts.BitterFontFamily())) {
+      ProvideTextStyle(value = MaterialTheme.typography.h6) {
         CompositionLocalProvider(
           LocalContentAlpha provides ContentAlpha.high,
           content = title

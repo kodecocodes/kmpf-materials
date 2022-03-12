@@ -45,6 +45,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -78,10 +79,11 @@ import com.raywenderlich.learn.ui.utils.getString
 
 private const val TAG = "LatestContent"
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun LatestContent(
-        items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        onOpenEntry: (String) -> Unit
+  items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  onOpenEntry: (String) -> Unit
 ) {
 
   if (items.keys.isNullOrEmpty()) {
@@ -94,6 +96,7 @@ fun LatestContent(
   }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun AddPages(
   items: SnapshotStateMap<PLATFORM, List<RWEntry>>,
@@ -110,7 +113,7 @@ fun AddPages(
       Spacer(modifier = Modifier.height(16.dp))
     }
 
-    item {
+    items(items.keys.toMutableList(), key = { item -> item.value }) {
 
       val platforms = items.keys
       Logger.d(TAG, "platforms found=$platforms")
@@ -138,7 +141,7 @@ fun AddNewPage(
   onOpenEntry: (String) -> Unit
 ) {
   val pagerState = rememberPagerState(
-    pageCount = items.size
+    initialPage = 0
   )
 
   Column(
@@ -146,14 +149,15 @@ fun AddNewPage(
   ) {
     Text(
       text = platform.value.capitalize(Locale.current),
-      style = MaterialTheme.typography.h4,
       fontFamily = Fonts.BitterFontFamily(),
+      style = MaterialTheme.typography.h4,
       color = colorAccent
     )
 
     HorizontalPager(
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
+      count = items.size
     ) { page ->
 
       AddNewPageEntry(

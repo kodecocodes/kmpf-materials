@@ -42,7 +42,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 actual fun Font(name: String, res: String, weight: FontWeight, style: FontStyle): Font {
-    val context = LocalContext.current
-    val id = context.resources.getIdentifier(res, "font", context.packageName)
-    return Font(id, weight, style)
+  val context = LocalContext.current
+  val id = context.resources.getIdentifier(res, "font", context.packageName)
+  return Font(id, weight, style)
 }

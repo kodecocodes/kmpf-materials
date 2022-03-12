@@ -39,5 +39,5 @@ import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 
 actual fun getString(resId: StringResource): String {
-    return StringDesc.Resource(resId).localized()
+  return StringDesc.Resource(resId).localized()
 }

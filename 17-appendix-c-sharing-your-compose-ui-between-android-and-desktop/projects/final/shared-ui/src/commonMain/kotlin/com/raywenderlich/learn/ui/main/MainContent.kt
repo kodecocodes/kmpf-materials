@@ -41,7 +41,7 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.State
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import com.raywenderlich.learn.data.model.PLATFORM
@@ -62,13 +62,13 @@ private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainContent(
-        navController: Navigator,
-        coroutineScope: CoroutineScope,
-        bottomSheetScaffoldState: BottomSheetScaffoldState,
-        selected: MutableState<RWEntry>,
-        feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        bookmarks: SnapshotStateList<RWEntry>,
-        onOpenEntry: (String) -> Unit
+  navController: Navigator,
+  coroutineScope: CoroutineScope,
+  bottomSheetScaffoldState: BottomSheetScaffoldState,
+  selected: MutableState<RWEntry>,
+  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  bookmarks: State<List<RWEntry>?>,
+  onOpenEntry: (String) -> Unit
 ) {
 
   Column(
@@ -78,13 +78,13 @@ fun MainContent(
 
   ) {
     MainScreenNavigationConfigurations(
-            navController = navController,
-            coroutineScope = coroutineScope,
-            bottomSheetScaffoldState = bottomSheetScaffoldState,
-            selected = selected,
-            feeds = feeds,
-            bookmarks = bookmarks,
-            onOpenEntry = onOpenEntry
+      navController = navController,
+      coroutineScope = coroutineScope,
+      bottomSheetScaffoldState = bottomSheetScaffoldState,
+      selected = selected,
+      feeds = feeds,
+      bookmarks = bookmarks,
+      onOpenEntry = onOpenEntry
     )
   }
 }
@@ -92,16 +92,16 @@ fun MainContent(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenNavigationConfigurations(
-        navController: Navigator,
-        coroutineScope: CoroutineScope,
-        bottomSheetScaffoldState: BottomSheetScaffoldState,
-        selected: MutableState<RWEntry>,
-        feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        bookmarks: SnapshotStateList<RWEntry>,
-        onOpenEntry: (String) -> Unit
+  navController: Navigator,
+  coroutineScope: CoroutineScope,
+  bottomSheetScaffoldState: BottomSheetScaffoldState,
+  selected: MutableState<RWEntry>,
+  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  bookmarks: State<List<RWEntry>?>,
+  onOpenEntry: (String) -> Unit
 ) {
 
-  NavHost(navController, DEFAULT_SCREEN.route) {
+  NavHost(navController, initialRoute = DEFAULT_SCREEN.route) {
     scene(BottomNavigationScreens.Home.route) {
       HomeContent(
         selected = selected,

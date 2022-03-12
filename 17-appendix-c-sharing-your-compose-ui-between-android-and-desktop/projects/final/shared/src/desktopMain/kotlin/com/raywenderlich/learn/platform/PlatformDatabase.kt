@@ -36,6 +36,7 @@ package com.raywenderlich.learn.platform
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver.Companion.IN_MEMORY
 import data.AppDb
 
 public actual class PlatformDatabase {
@@ -45,7 +46,7 @@ public actual class PlatformDatabase {
   }
 
   private fun createDriver(): SqlDriver {
-    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+    val driver: SqlDriver = JdbcSqliteDriver(IN_MEMORY)
     AppDb.Schema.create(driver)
     return driver
   }

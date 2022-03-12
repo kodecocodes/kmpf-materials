@@ -54,8 +54,8 @@ fun MainTopAppBar() {
       Text(
         text = getString(MR.strings.app_name),
         style = typography.h4,
-        fontFamily = Fonts.BitterFontFamily(),
-      )
+        fontFamily = Fonts.BitterFontFamily()
+        )
     },
     modifier = Modifier.fillMaxWidth(),
     backgroundColor = colorContent,

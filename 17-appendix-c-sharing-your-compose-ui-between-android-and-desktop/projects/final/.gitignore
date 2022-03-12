@@ -20,12 +20,13 @@ out/
 build/
 androidApp/build
 desktopApp/build
-pager/build
-pager-indicators/build
+kamel-core/build
+kamel-image/build
 precompose/build
 shared/build
 shared/swiftpackage
-shared-ui/build
+shared-action/build
+shared-action/sharedaction
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -45,6 +46,10 @@ captures/
 # Intellij
 *.iml
 .idea
+
+# iOSApp
+iosApp/Pods
+iosApp/Podfile.lock
 
 # Keystore files
 *.jks

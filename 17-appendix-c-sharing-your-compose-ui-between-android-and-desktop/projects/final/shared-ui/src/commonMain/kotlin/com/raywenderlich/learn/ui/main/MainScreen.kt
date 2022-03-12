@@ -43,10 +43,10 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.data.model.PLATFORM
@@ -60,70 +60,70 @@ private lateinit var selected: MutableState<RWEntry>
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
-        feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
-        bookmarks: SnapshotStateList<RWEntry>,
-        onUpdateBookmark: (RWEntry) -> Unit,
-        onShareAsLink: (RWEntry) -> Unit,
-        onOpenEntry: (String) -> Unit
+  feeds: SnapshotStateMap<PLATFORM, List<RWEntry>>,
+  bookmarks: State<List<RWEntry>?>,
+  onUpdateBookmark: (RWEntry) -> Unit,
+  onShareAsLink: (RWEntry) -> Unit,
+  onOpenEntry: (String) -> Unit
 ) {
 
   val bottomNavigationItems = listOf(
-          BottomNavigationScreens.Home,
-          BottomNavigationScreens.Bookmark,
-          BottomNavigationScreens.Latest,
-          BottomNavigationScreens.Search
+    BottomNavigationScreens.Home,
+    BottomNavigationScreens.Bookmark,
+    BottomNavigationScreens.Latest,
+    BottomNavigationScreens.Search
   )
 
   val navController = rememberNavigator()
 
   val coroutineScope = rememberCoroutineScope()
   val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-          bottomSheetState = rememberBottomSheetState(
-                  initialValue = BottomSheetValue.Collapsed
-          )
+    bottomSheetState = rememberBottomSheetState(
+      initialValue = BottomSheetValue.Collapsed
+    )
   )
 
   selected = remember { mutableStateOf(RWEntry()) }
 
   BottomSheetScaffold(
-          sheetContent = {
-            HomeSheetContent(
-                    coroutineScope = coroutineScope,
-                    bottomSheetScaffoldState = bottomSheetScaffoldState,
-                    item = selected,
-                    onUpdateBookmark = onUpdateBookmark,
-                    onShareAsLink = onShareAsLink
-            )
-          },
-          sheetShape = RoundedCornerShape(
-                  topStart = 16.dp,
-                  topEnd = 16.dp
-          ),
-          sheetBackgroundColor = colorContentSecondary,
-          scaffoldState = bottomSheetScaffoldState, sheetPeekHeight = 0.dp
+    sheetContent = {
+      HomeSheetContent(
+        coroutineScope = coroutineScope,
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
+        item = selected,
+        onUpdateBookmark = onUpdateBookmark,
+        onShareAsLink = onShareAsLink
+      )
+    },
+    sheetShape = RoundedCornerShape(
+      topStart = 16.dp,
+      topEnd = 16.dp
+    ),
+    sheetBackgroundColor = colorContentSecondary,
+    scaffoldState = bottomSheetScaffoldState, sheetPeekHeight = 0.dp
   ) {
 
     Scaffold(
-            topBar = {
-              MainTopAppBar()
-            },
-            bottomBar = {
-              MainBottomBar(
-                      navController = navController,
-                      items = bottomNavigationItems
-              )
-            },
-            content = {
-              MainContent(
-                      navController = navController,
-                      coroutineScope = coroutineScope,
-                      bottomSheetScaffoldState = bottomSheetScaffoldState,
-                      selected = selected,
-                      feeds = feeds,
-                      bookmarks = bookmarks,
-                      onOpenEntry = onOpenEntry
-              )
-            }
+      topBar = {
+        MainTopAppBar()
+      },
+      bottomBar = {
+        MainBottomBar(
+          navController = navController,
+          items = bottomNavigationItems
+        )
+      },
+      content = {
+        MainContent(
+          navController = navController,
+          coroutineScope = coroutineScope,
+          bottomSheetScaffoldState = bottomSheetScaffoldState,
+          selected = selected,
+          feeds = feeds,
+          bookmarks = bookmarks,
+          onOpenEntry = onOpenEntry
+        )
+      }
     )
   }
 }
