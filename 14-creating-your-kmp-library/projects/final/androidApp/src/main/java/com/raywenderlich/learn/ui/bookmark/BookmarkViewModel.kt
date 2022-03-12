@@ -37,10 +37,10 @@ package com.raywenderlich.learn.ui.bookmark
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
-import com.raywenderlich.learn.ui.utils.SingleLiveEvent
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.BookmarkData
 import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.ui.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,9 +48,6 @@ import kotlinx.coroutines.withContext
 private const val TAG = "BookmarkViewModel"
 
 class BookmarkViewModel : ViewModel(), BookmarkData {
-
-  private val _item = SingleLiveEvent<RWEntry>()
-  val item: SingleLiveEvent<RWEntry> = _item
 
   private val _items = SingleLiveEvent<List<RWEntry>>()
   val items: SingleLiveEvent<List<RWEntry>> = _items
@@ -76,21 +73,11 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
 
   // region FeedData
 
-  override fun onNewBookmarksList(newItems: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | newItems=${newItems.size}")
+  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
+    Logger.d(TAG, "onNewBookmarksList | newItems=${bookmarks.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        _items.value = newItems
-      }
-    }
-  }
-
-  override fun onBookmarkStateUpdated(newItem: RWEntry, added: Boolean) {
-    Logger.d(TAG, "onBookmarkStateUpdated | newItem=$newItem | added=$added")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        item.value = newItem
-        getBookmarks()
+        _items.value = bookmarks
       }
     }
   }

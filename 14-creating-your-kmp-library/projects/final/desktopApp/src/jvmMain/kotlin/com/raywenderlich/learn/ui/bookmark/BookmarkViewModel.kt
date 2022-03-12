@@ -35,7 +35,6 @@
 package com.raywenderlich.learn.ui.bookmark
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.data.model.RWEntry
@@ -44,8 +43,6 @@ import com.raywenderlich.learn.platform.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import moe.tlaster.precompose.lifecycle.Lifecycle
-import moe.tlaster.precompose.livedata.LiveData
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
@@ -53,7 +50,6 @@ private const val TAG = "BookmarkViewModel"
 
 class BookmarkViewModel : ViewModel(), BookmarkData {
 
-  val item = LiveData(RWEntry())
   val items: MutableState<List<RWEntry>> = mutableStateOf(emptyList())
 
   private val presenter by lazy {
@@ -77,21 +73,11 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
 
   // region FeedData
 
-  override fun onNewBookmarksList(newItems: List<RWEntry>) {
-    Logger.d(TAG, "onNewBookmarksList | items=${newItems.size}")
+  override fun onNewBookmarksList(bookmarks: List<RWEntry>) {
+    Logger.d(TAG, "onNewBookmarksList | items=${bookmarks.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        items.value = newItems
-      }
-    }
-  }
-
-  override fun onBookmarkStateUpdated(newItem: RWEntry, added: Boolean) {
-    Logger.d(TAG, "onBookmarkStateUpdated | newItem=$newItem | added=$added")
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        item.value = newItem
-        getBookmarks()
+        items.value = bookmarks
       }
     }
   }

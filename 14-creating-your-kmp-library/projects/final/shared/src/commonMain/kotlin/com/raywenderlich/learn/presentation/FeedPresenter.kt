@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,13 +34,17 @@
 
 package com.raywenderlich.learn.presentation
 
-import com.raywenderlich.learn.PresenterCoroutineScope
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWContent
 import com.raywenderlich.learn.domain.GetFeedData
 import com.raywenderlich.learn.domain.cb.FeedData
-import com.raywenderlich.learn.domain.defaultDispatcher
+import com.raywenderlich.learn.domain.ioDispatcher
+import com.raywenderlich.learn.md5
 import com.raywenderlich.learn.platform.Logger
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -55,10 +59,11 @@ private const val RW_CONTENT = "[" +
     "{\"platform\":\"flutter\", \"url\":\"https://raywenderlich.com/flutter/feed\", \"image\":\"https://koenig-media.raywenderlich.com/uploads/2018/11/OpenCall-Android-Flutter-Book-feature.png\"}" +
     "]"
 
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
+
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val scope = PresenterCoroutineScope(defaultDispatcher)
-  private var listener: FeedData? = null
+  private val scope = CoroutineScope(ioDispatcher)
 
   private val json = Json { ignoreUnknownKeys = true }
 
@@ -68,56 +73,44 @@ class FeedPresenter(private val feed: GetFeedData) {
 
   public fun fetchAllFeeds(cb: FeedData) {
     Logger.d(TAG, "fetchAllFeeds")
-    listener = cb
 
     for (feed in content) {
-      fetchFeed(feed.platform, feed.url)
+      fetchFeed(feed.platform, feed.url, cb)
     }
   }
 
-  public fun fetchFeed(platform: PLATFORM, cb: FeedData) {
-    Logger.d(TAG, "fetchFeed | platform=$platform")
-    listener = cb
-
-    val item = content.firstOrNull { it.platform == platform }
-    if (item == null) {
-      val exception = Exception("Platform: $platform doesn't have an associated feed url")
-      cb.onNewDataAvailable(emptyList(), platform, exception)
-    } else {
-      fetchFeed(platform, item.url)
-    }
-  }
-
-  public fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
-    Logger.d(TAG, "fetchFeed")
-    listener = cb
-    fetchFeed(platform, feedUrl)
-  }
-
-  private fun fetchFeed(platform: PLATFORM, feedUrl: String) {
+  private fun fetchFeed(platform: PLATFORM, feedUrl: String, cb: FeedData) {
     scope.launch {
       feed.invokeFetchRWEntry(
         platform = platform,
         feedUrl = feedUrl,
-        onSuccess = { listener?.onNewDataAvailable(it, platform, null) },
-        onFailure = { listener?.onNewDataAvailable(emptyList(), platform, it) }
+        onSuccess = { cb.onNewDataAvailable(it, platform, null) },
+        onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
       )
     }
   }
 
-  public fun fetchLinkImage(platform: PLATFORM, id: String, link: String, cb: FeedData) {
-    Logger.d(TAG, "fetchLinkImage")
-    listener = cb
-    fetchLinkImage(platform, id, link)
-  }
-
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    scope.launch {
+  public suspend fun fetchLinkImage(link: String): String {
+    return scope.async {
       feed.invokeFetchImageUrlFromLink(
-        link,
-        onSuccess = { listener?.onNewImageUrlAvailable(id, it, platform, null) },
-        onFailure = { listener?.onNewImageUrlAvailable(id, "", platform, it) }
+        link
       )
+    }.await()
+  }
+
+  public fun fetchMyGravatar(cb: FeedData) {
+    Logger.d(TAG, "fetchMyGravatar")
+
+    CoroutineScope(Dispatchers.Default).launch {
+      cb.onMyGravatarData(fetchMyGravatar())
     }
+  }
+
+  private suspend fun fetchMyGravatar(): GravatarEntry {
+    return CoroutineScope(Dispatchers.Default).async {
+      feed.invokeGetMyGravatar(
+        hash = md5(GRAVATAR_EMAIL)
+      )
+    }.await()
   }
 }

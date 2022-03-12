@@ -44,8 +44,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -66,16 +66,15 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.raywenderlich.learn.R
 import com.raywenderlich.learn.components.AddImagePreview
+import com.raywenderlich.learn.data.model.PLATFORM
+import com.raywenderlich.learn.data.model.RWEntry
+import com.raywenderlich.learn.platform.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent
 import com.raywenderlich.learn.ui.theme.colorContent20Transparency
 import com.raywenderlich.learn.ui.theme.colorContent85Transparency
 import com.raywenderlich.learn.ui.theme.colorContentSecondary
-import com.raywenderlich.learn.data.model.PLATFORM
-import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.utils.SHOW_N_IMAGES
 
 private const val TAG = "LatestContent"
 
@@ -121,7 +120,7 @@ fun AddPages(
       for (platform in platforms) {
         AddNewPage(
           platform = platform,
-          items = items[platform]?.subList(0, SHOW_N_IMAGES) ?: emptyList(),
+          items = items[platform] ?: emptyList(),
           onOpenEntry = onOpenEntry
         )
       }
@@ -140,7 +139,9 @@ fun AddNewPage(
   items: List<RWEntry>,
   onOpenEntry: (String) -> Unit
 ) {
-  val pagerState = rememberPagerState()
+  val pagerState = rememberPagerState(
+    initialPage = 0
+  )
 
   Column(
     modifier = Modifier.padding(start = 16.dp, end = 16.dp)
@@ -152,9 +153,9 @@ fun AddNewPage(
     )
 
     HorizontalPager(
-      count = items.size,
       state = pagerState,
       modifier = Modifier.fillMaxWidth(),
+      count = items.size
     ) { page ->
 
       AddNewPageEntry(

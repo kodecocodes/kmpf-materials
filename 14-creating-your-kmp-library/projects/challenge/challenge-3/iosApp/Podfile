@@ -1,4 +1,0 @@
-target 'iosApp' do
-  use_modular_headers!
-  pod 'SDWebImageSwiftUI'
-end

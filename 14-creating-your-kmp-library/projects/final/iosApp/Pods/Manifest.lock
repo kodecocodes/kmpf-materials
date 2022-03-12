@@ -1,4 +1,5 @@
 PODS:
+  - AlertToast (1.3.7)
   - SDWebImage (5.12.0):
     - SDWebImage/Core (= 5.12.0)
   - SDWebImage/Core (5.12.0)
@@ -6,17 +7,20 @@ PODS:
     - SDWebImage (~> 5.10)
 
 DEPENDENCIES:
+  - AlertToast
   - SDWebImageSwiftUI
 
 SPEC REPOS:
   trunk:
+    - AlertToast
     - SDWebImage
     - SDWebImageSwiftUI
 
 SPEC CHECKSUMS:
+  AlertToast: 8c9d5efb2df6ea728b32b62bce99d876ec3e5393
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
 
-PODFILE CHECKSUM: 63ce69810e772eabff9d5a621dd588ce678cbf7d
+PODFILE CHECKSUM: 8d408aa0b7ffd3dd325f277dd72870b57ccbe59a
 
 COCOAPODS: 1.10.1

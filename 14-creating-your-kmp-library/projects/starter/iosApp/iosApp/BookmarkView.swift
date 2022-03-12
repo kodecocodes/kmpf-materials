@@ -34,101 +34,41 @@ import SwiftUI
 import SharedKit
 
 struct BookmarkView: View {
-    
-    let TAG = "BookmarkView"
-    
-    @Environment(\.openURL) var openURL
-    
-    @State private var showActionSheet = false
-    
-    @ObservedObject var bookmarkViewModel = RWEntryViewModel()
-    
-    var body: some View {
-        
-        NavigationView {
-            ZStack(alignment: .topLeading) {
-                Color("rw-dark")
-                if(bookmarkViewModel.bookmarks.isEmpty) {
-                    VStack(alignment: .center) {
-                        Text("You currently don't have any bookmark.")
-                            .foregroundColor(.white)
-                            .font(Font.custom("Bitter-Bold", size: 15))
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                    .background(Color("rw-dark"))
-                    .navigationBarTitle("learn", displayMode: .inline)
-                    
-                } else {
-                    ScrollView(.vertical) {
-                        ForEach(bookmarkViewModel.bookmarks, id: \.id) { item in
-                            Button(action: {
-                                openURL(URL(string: "\(item.link)")!)
-                            }) {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        AppIcon()
-                                        VStack(alignment: .leading) {
-                                            Text("Ray Wenderlich")
-                                                .foregroundColor(.white)
-                                                .font(Font.custom("Bitter-Bold", size: 15))
-                                            Text(formatStringDate(date: item.updated))
-                                                .foregroundColor(.white)
-                                                .font(Font.custom("Bitter-Bold", size: 12))
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        Button(action: {
-                                            showActionSheet = true
-                                        }) {
-                                            Image("ic_more").foregroundColor(.white)
-                                        }
-                                        .padding(.trailing, 1)
-                                        
-                                        .actionSheet(isPresented: $showActionSheet) {
-                                            ActionSheet(title: Text(""),
-                                                        message: Text("Select an option"),
-                                                        buttons: [
-                                                            .cancel(),
-                                                            .default(
-                                                                Text("Remove from bookmarks"),
-                                                                action: { bookmarkViewModel.removeFromBookmarks(entry: item) }
-                                                            ),
-                                                            .default(
-                                                                Text("Share as link"),
-                                                                action: {
-                                                                    guard let data = URL(string: item.link) else { return }
-                                                                    let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-                                                                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-                                                                }
-                                                            )
-                                                        ]
-                                            )
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(item.title)
-                                        .lineLimit(2)
-                                        .foregroundColor(.white)
-                                        .font(Font.custom("Bitter-Bold", size: 15))
-                                        .multilineTextAlignment(.leading)
-                                    Text(item.summary)
-                                        .lineLimit(2)
-                                        .foregroundColor(.white)
-                                        .font(Font.custom("Bitter-Regular", size: 14))
-                                        .multilineTextAlignment(.leading)
-                                }
-                                .padding(.horizontal, 16.0)
-                            }
-                        }
-                    }
-                    .navigationBarTitle("learn", displayMode: .inline)
-                }
+  let TAG = "BookmarkView"
+
+  @State private var showDialog = false
+
+  @State private var selectedEntry: RWEntry?
+
+  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+
+  var body: some View {
+    NavigationView {
+      ZStack(alignment: .topLeading) {
+        Color("rw-dark")
+        if feedViewModel.bookmarks.isEmpty {
+          VStack(alignment: .center) {
+            Text("You currently don't have any bookmark.")
+              .foregroundColor(.white)
+              .font(Font.custom("Bitter-Bold", size: 15))
+          }
+          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+          .background(Color("rw-dark"))
+          .navigationBarTitle("learn", displayMode: .inline)
+        } else {
+          ScrollView(.vertical) {
+            ForEach(feedViewModel.bookmarks, id: \.id) { item in
+              RWEntryRow(item: item, addToBookmarks: false)
+                .environmentObject(feedViewModel)
             }
+          }
         }
-        .onAppear() {
-            Logger().d(tag: TAG, message: "Retrieving all bookmarks")
-            bookmarkViewModel.fetchAllBookmarks()
-        }
+      }
+      .navigationBarTitle("learn", displayMode: .inline)
     }
+    .onAppear {
+      Logger().d(tag: TAG, message: "Retrieving all bookmarks")
+      feedViewModel.fetchAllBookmarks()
+    }
+  }
 }

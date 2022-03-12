@@ -36,24 +36,30 @@ package com.raywenderlich.learn.ui.home
 
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
-import com.raywenderlich.learn.ui.utils.SHOW_N_IMAGES
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val TAG = "FeedViewModel"
 
+private const val FETCH_N_IMAGES = 5
+
 class FeedViewModel : ViewModel(), FeedData {
 
   private val _items = mutableStateMapOf<PLATFORM, List<RWEntry>>()
   val items: SnapshotStateMap<PLATFORM, List<RWEntry>> = _items
+
+  private val _profile = MutableLiveData(GravatarEntry())
+  val profile: MutableLiveData<GravatarEntry> = _profile
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
@@ -64,46 +70,45 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchAllFeeds(this)
   }
 
+  fun fetchMyGravatar() {
+    Logger.d(TAG, "fetchMyGravatar")
+    presenter.fetchMyGravatar(this)
+  }
+
   private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
     Logger.d(TAG, "fetchLinkImage | link=$link")
-    presenter.fetchLinkImage(platform, id, link, this)
+    viewModelScope.launch {
+      val url = presenter.fetchLinkImage(link)
+
+      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
+      val list = _items[platform]?.toMutableList() ?: return@launch
+      val index = list.indexOf(item)
+
+      list[index] = item.copy(imageUrl = url)
+      _items[platform] = list
+    }
   }
 
   // region FeedData
 
-  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, e: Exception?) {
+  override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-        _items[platform] = items
+        _items[platform] = items.subList(0, FETCH_N_IMAGES)
 
-        val maxItems = if ((_items[platform]?.size ?: 0) < SHOW_N_IMAGES) {
-          _items[platform]?.size ?: 0
-        } else {
-          SHOW_N_IMAGES
-        }
-
-        for (index in 0 until maxItems) {
-          val item = _items[platform]!![index]
+        for (item in _items[platform]!!) {
           fetchLinkImage(platform, item.id, item.link)
         }
       }
     }
   }
 
-  override fun onNewImageUrlAvailable(id: String, url: String, platform: PLATFORM, e: Exception?) {
-    Logger.d(TAG, "onNewImageUrlAvailable | platform=$platform | id=$id | url=$url")
+  override fun onMyGravatarData(item: GravatarEntry) {
+    Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
       withContext(Dispatchers.Main) {
-
-        Logger.d(TAG, "items=${_items.keys}")
-
-        val item = _items[platform]?.firstOrNull { it.id == id } ?: return@withContext
-        val list = _items[platform]?.toMutableList() ?: return@withContext
-        val index = list.indexOf(item)
-
-        list[index] = item.copy(imageUrl = url)
-        _items[platform] = list
+        _profile.value = item
       }
     }
   }

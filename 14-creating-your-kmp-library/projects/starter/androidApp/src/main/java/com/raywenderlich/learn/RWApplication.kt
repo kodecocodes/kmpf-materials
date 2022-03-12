@@ -36,11 +36,9 @@ package com.raywenderlich.learn
 
 import android.app.Application
 import com.raywenderlich.learn.platform.appContext
-import kotlinx.serialization.ExperimentalSerializationApi
 
 class RWApplication : Application() {
 
-  @OptIn(ExperimentalSerializationApi::class)
   override fun onCreate() {
     super.onCreate()
 
