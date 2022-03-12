@@ -1,6 +1,7 @@
 package moe.tlaster.precompose.viewmodel
 
 import moe.tlaster.precompose.standard.Disposable
+import kotlin.jvm.Volatile
 
 abstract class ViewModel {
     @Volatile

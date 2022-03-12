@@ -34,8 +34,6 @@ import SwiftUI
 import SharedKit
 
 struct SearchView: View {
-  @Environment(\.openURL) var openURL
-
   @Binding var text: String
 
   @State private var isEditing = false

@@ -40,8 +40,6 @@ struct BookmarkView: View {
 
   @State private var selectedEntry: RWEntry?
 
-  @Environment(\.openURL) var openURL
-
   @EnvironmentObject private var feedViewModel: RWEntryViewModel
 
   var body: some View {
@@ -70,7 +68,7 @@ struct BookmarkView: View {
     }
     .onAppear {
       Logger().d(tag: TAG, message: "Retrieving all bookmarks")
-        feedViewModel.fetchAllBookmarks()
+      feedViewModel.fetchAllBookmarks()
     }
   }
 }
