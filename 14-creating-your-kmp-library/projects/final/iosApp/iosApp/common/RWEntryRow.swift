@@ -39,8 +39,6 @@ struct RWEntryRow: View {
 
   let addToBookmarks: Bool
 
-  @Environment(\.openURL) var openURL
-
   @State private var showDialog = false
 
   @State private var selectedEntry: RWEntry?
