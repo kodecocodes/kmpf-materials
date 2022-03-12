@@ -68,7 +68,7 @@ struct BookmarkView: View {
     }
     .onAppear {
       Logger().d(tag: TAG, message: "Retrieving all bookmarks")
-        feedViewModel.fetchAllBookmarks()
+      feedViewModel.fetchAllBookmarks()
     }
   }
 }
