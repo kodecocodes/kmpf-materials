@@ -1,5 +1,6 @@
 package moe.tlaster.precompose.viewmodel
 
 interface ViewModelStoreOwner {
-    val viewModelStore: ViewModelStore
+
+  val viewModelStore: ViewModelStore
 }
