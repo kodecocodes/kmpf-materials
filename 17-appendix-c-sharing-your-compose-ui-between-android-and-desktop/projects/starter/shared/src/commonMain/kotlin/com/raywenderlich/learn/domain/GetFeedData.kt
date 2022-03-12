@@ -34,14 +34,15 @@
 
 package com.raywenderlich.learn.domain
 
-import io.ktor.client.statement.readText
 import com.raywenderlich.learn.data.FeedAPI
+import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.platform.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
@@ -63,7 +64,7 @@ public class GetFeedData {
       val result = FeedAPI.fetchRWEntry(feedUrl)
 
       Logger.d(TAG, "invokeFetchRWEntry | feedUrl=$feedUrl")
-      val xml = Xml.parse(result.readText())
+      val xml = Xml.parse(result.bodyAsText())
 
       val feed = mutableListOf<RWEntry>()
       for (node in xml.allNodeChildren) {
@@ -86,26 +87,36 @@ public class GetFeedData {
   }
 
   public suspend fun invokeFetchImageUrlFromLink(
-    link: String,
-    onSuccess: (String) -> Unit,
-    onFailure: (Exception) -> Unit
-  ) {
-    try {
+    link: String
+  ): String {
+    return try {
 
       val result = FeedAPI.fetchImageUrlFromLink(link)
-      val url = parsePage(result.readText())
+      parsePage(result.bodyAsText())
 
-      coroutineScope {
-        onSuccess(url)
+    } catch (e: Exception) {
+      ""
+    }
+  }
+
+  public suspend fun invokeGetMyGravatar(
+    hash: String,
+  ): GravatarEntry {
+    return try {
+      val result = FeedAPI.fetchMyGravatar(hash)
+      Logger.d(TAG, "invokeGetMyGravatar | result=$result")
+
+      if (result.entry.isEmpty()) {
+        GravatarEntry()
+      } else {
+        result.entry[0]
       }
     } catch (e: Exception) {
-      coroutineScope {
-        onFailure(e)
-      }
+      Logger.e(TAG, "Unable to fetch my gravatar. Error: $e")
+      GravatarEntry()
     }
   }
 }
-
 
 private fun parsePage(content: String): String {
   val start =

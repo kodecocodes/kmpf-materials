@@ -17,46 +17,47 @@ import moe.tlaster.precompose.viewmodel.ViewModelStoreOwner
 
 @Composable
 fun PreComposeWindow(
-    title: String = "JetpackDesktopWindow",
-    state: WindowState,
-    onCloseRequest: (() -> Unit),
-    content: @Composable () -> Unit = { }
+  title: String = "JetpackDesktopWindow",
+  state: WindowState,
+  onCloseRequest: (() -> Unit),
+  content: @Composable () -> Unit = { }
 ) {
-    Window(
-        onCloseRequest = onCloseRequest,
-        state = state,
-        title = title
-    ) {
-        ProvideDesktopCompositionLocals {
-            content.invoke()
-        }
+  Window(
+    onCloseRequest = onCloseRequest,
+    state = state,
+    title = title
+  ) {
+    ProvideDesktopCompositionLocals {
+      content.invoke()
     }
+  }
 }
 
 @Composable
 private fun ProvideDesktopCompositionLocals(
-    content: @Composable () -> Unit,
+  content: @Composable () -> Unit,
 ) {
-    val holder = remember {
-        PreComposeWindowHolder()
-    }
-    CompositionLocalProvider(
-        LocalLifecycleOwner provides holder,
-        LocalViewModelStoreOwner provides holder,
-        LocalBackDispatcherOwner provides holder,
-    ) {
-        content.invoke()
-    }
+  val holder = remember {
+    PreComposeWindowHolder()
+  }
+  CompositionLocalProvider(
+    LocalLifecycleOwner provides holder,
+    LocalViewModelStoreOwner provides holder,
+    LocalBackDispatcherOwner provides holder,
+  ) {
+    content.invoke()
+  }
 }
 
 private class PreComposeWindowHolder : LifecycleOwner, ViewModelStoreOwner, BackDispatcherOwner {
-    override val lifecycle by lazy {
-        LifecycleRegistry()
-    }
-    override val viewModelStore by lazy {
-        ViewModelStore()
-    }
-    override val backDispatcher by lazy {
-        BackDispatcher()
-    }
+
+  override val lifecycle by lazy {
+    LifecycleRegistry()
+  }
+  override val viewModelStore by lazy {
+    ViewModelStore()
+  }
+  override val backDispatcher by lazy {
+    BackDispatcher()
+  }
 }

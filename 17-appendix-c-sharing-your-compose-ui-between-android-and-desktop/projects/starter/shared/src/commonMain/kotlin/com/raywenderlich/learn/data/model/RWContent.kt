@@ -35,6 +35,8 @@
 package com.raywenderlich.learn.data.model
 
 import com.raywenderlich.learn.data.RWSerializer
+import com.raywenderlich.learn.platform.Parcelable
+import com.raywenderlich.learn.platform.Parcelize
 import kotlinx.serialization.Serializable
 
 @Serializable(with = RWSerializer::class)
@@ -43,13 +45,14 @@ enum class PLATFORM(val value: String) {
   ALL("all"),
   ANDROID("android"),
   IOS("ios"),
-  GAMETECH("gametech"),
+  UNITY("unity"),
   FLUTTER("flutter")
 }
 
+@Parcelize
 @Serializable
 data class RWContent(
   val platform: PLATFORM,
   val url: String,
   val image: String
-)
+) : Parcelable
