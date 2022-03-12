@@ -12,6 +12,8 @@ include(":androidApp")
 include(":desktopApp")
 
 include(":shared")
+include(":shared-action")
+include(":shared-logger")
 
 include(":kamel-core")
 include(":kamel-image")

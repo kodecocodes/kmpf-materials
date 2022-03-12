@@ -43,7 +43,7 @@ import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

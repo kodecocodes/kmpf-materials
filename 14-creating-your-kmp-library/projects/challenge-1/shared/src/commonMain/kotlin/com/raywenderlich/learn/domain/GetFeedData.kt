@@ -38,7 +38,7 @@ import com.raywenderlich.learn.data.FeedAPI
 import com.raywenderlich.learn.data.model.GravatarEntry
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import com.soywiz.korio.serialization.xml.Xml
 import com.soywiz.korio.util.substringAfterOrNull
 import com.soywiz.korio.util.substringBeforeOrNull

@@ -34,7 +34,7 @@
 
 package com.raywenderlich.learn.data
 
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 
 private const val TAG = "HttpClientLogger"
 

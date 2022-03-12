@@ -68,7 +68,7 @@ import com.raywenderlich.learn.R
 import com.raywenderlich.learn.components.AddImagePreview
 import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import com.raywenderlich.learn.ui.common.AddEmptyScreen
 import com.raywenderlich.learn.ui.theme.colorAccent
 import com.raywenderlich.learn.ui.theme.colorContent

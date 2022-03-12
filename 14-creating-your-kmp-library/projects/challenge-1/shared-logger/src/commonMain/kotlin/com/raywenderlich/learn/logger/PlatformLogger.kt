@@ -32,21 +32,30 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.platform
+package com.raywenderlich.learn.logger
 
-import android.util.Log
+internal expect class PlatformLogger() {
 
-internal actual class PlatformLogger {
+  fun debug(tag: String, message: String)
 
-  actual fun debug(tag: String, message: String) {
-    Log.d(tag, message)
+  fun warn(tag: String, message: String)
+
+  fun error(tag: String, message: String)
+}
+
+public object Logger {
+
+  private val logger = PlatformLogger()
+
+  public fun d(tag: String, message: String) {
+    logger.debug(tag, message)
   }
 
-  actual fun warn(tag: String, message: String) {
-    Log.w(tag, message)
+  public fun w(tag: String, message: String) {
+    logger.warn(tag, message)
   }
 
-  actual fun error(tag: String, message: String) {
-    Log.e(tag, message)
+  public fun e(tag: String, message: String) {
+    logger.error(tag, message)
   }
 }

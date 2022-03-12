@@ -34,7 +34,7 @@
 
 package com.raywenderlich.learn.ui.utils
 
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlinx.datetime.toInstant

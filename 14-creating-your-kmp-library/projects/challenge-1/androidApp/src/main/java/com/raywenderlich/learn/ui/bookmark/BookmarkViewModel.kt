@@ -39,7 +39,7 @@ import androidx.lifecycle.viewModelScope
 import com.raywenderlich.learn.ServiceLocator
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.BookmarkData
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import com.raywenderlich.learn.ui.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

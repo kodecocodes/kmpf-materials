@@ -31,9 +31,9 @@ kotlin {
         implementation("ca.gosyer:accompanist-pager:0.20.1")
         implementation("ca.gosyer:accompanist-pager-indicators:0.20.1")
 
-        implementation("com.raywenderlich.shared:shared-action:1.0")
-
         implementation(project(":shared"))
+        implementation(project(":shared-action"))
+        implementation(project(":shared-logger"))
         implementation(project(":kamel-image"))
         implementation(project(":precompose"))
       }

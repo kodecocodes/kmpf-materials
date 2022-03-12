@@ -50,7 +50,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.learn.R
 import com.raywenderlich.learn.data.model.RWEntry
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import com.raywenderlich.learn.ui.theme.colorAccent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

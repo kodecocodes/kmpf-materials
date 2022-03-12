@@ -32,21 +32,19 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.platform
-
-import platform.Foundation.NSLog
+package com.raywenderlich.learn.logger
 
 internal actual class PlatformLogger {
 
   actual fun debug(tag: String, message: String) {
-    NSLog("$tag | $message")
+    println("$tag | $message")
   }
 
   actual fun warn(tag: String, message: String) {
-    NSLog("$tag | $message")
+    println("$tag | $message")
   }
 
   actual fun error(tag: String, message: String) {
-    NSLog("$tag | $message")
+    println("$tag | $message")
   }
 }

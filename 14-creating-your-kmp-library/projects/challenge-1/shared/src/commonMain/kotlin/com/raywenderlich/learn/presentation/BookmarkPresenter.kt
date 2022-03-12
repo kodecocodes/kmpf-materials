@@ -38,7 +38,7 @@ import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.BookmarkData
 import com.raywenderlich.learn.domain.dao.RWEntryDAO
 import com.raywenderlich.learn.domain.ioDispatcher
-import com.raywenderlich.learn.platform.Logger
+import com.raywenderlich.learn.logger.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

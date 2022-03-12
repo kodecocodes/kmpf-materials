@@ -32,19 +32,21 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.learn.platform
+package com.raywenderlich.learn.logger
+
+import android.util.Log
 
 internal actual class PlatformLogger {
 
   actual fun debug(tag: String, message: String) {
-    println("$tag | $message")
+    Log.d(tag, message)
   }
 
   actual fun warn(tag: String, message: String) {
-    println("$tag | $message")
+    Log.w(tag, message)
   }
 
   actual fun error(tag: String, message: String) {
-    println("$tag | $message")
+    Log.e(tag, message)
   }
 }

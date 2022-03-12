@@ -5,7 +5,8 @@ plugins {
 
 dependencies {
   implementation(project(":shared"))
-  implementation("com.raywenderlich.shared:shared-action:1.0")
+  implementation(project(":shared-action"))
+  implementation(project(":shared-logger"))
 
   implementation("com.google.android.material:material:1.5.0")
 
