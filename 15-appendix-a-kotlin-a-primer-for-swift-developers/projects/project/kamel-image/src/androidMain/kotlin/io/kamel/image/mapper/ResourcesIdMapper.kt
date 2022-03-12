@@ -4,15 +4,17 @@ import android.content.ContentResolver
 import android.content.Context
 import androidx.annotation.DrawableRes
 import io.kamel.core.mapper.Mapper
-import io.ktor.http.*
+import io.ktor.http.URLBuilder
+import io.ktor.http.URLProtocol
+import io.ktor.http.Url
 
 internal class ResourcesIdMapper(private val context: Context) : Mapper<Int, Url> {
 
-    override fun map(@DrawableRes input: Int): Url {
-        val packageName = context.packageName
-        val protocol = URLProtocol(name = ContentResolver.SCHEME_ANDROID_RESOURCE, defaultPort = -1)
+  override fun map(@DrawableRes input: Int): Url {
+    val packageName = context.packageName
+    val protocol = URLProtocol(name = ContentResolver.SCHEME_ANDROID_RESOURCE, defaultPort = -1)
 
-        return URLBuilder(protocol = protocol, host = packageName, fragment = input.toString())
-            .build()
-    }
+    return URLBuilder(protocol = protocol, host = packageName, fragment = input.toString())
+      .build()
+  }
 }

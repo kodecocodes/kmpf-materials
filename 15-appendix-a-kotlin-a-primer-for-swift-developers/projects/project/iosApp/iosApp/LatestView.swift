@@ -32,6 +32,7 @@
 
 import SwiftUI
 import SharedKit
+import SharedAction
 import SDWebImageSwiftUI
 
 struct LatestView: View {
@@ -63,8 +64,6 @@ struct LatestView: View {
 let itemsSection = 4
 
 struct Section: View {
-  @Environment(\.openURL) var openURL
-
   @State var platform: String
 
   var entries: [RWEntry]
@@ -90,20 +89,17 @@ struct Section: View {
           ForEach(subEntries, id: \.id) { item in
             VStack {
               Button(action: {
-                guard let url = URL(string: "\(item.link)") else {
-                  return
-                }
-
-                openURL(url)
+                Action().openLink(url: "\(item.link)")
               }, label: {
                 if item.imageUrl.isEmpty {
                   Rectangle().foregroundColor(.gray)
                   Image("razerware")
+                } else {
+                  AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+                    .resizable()
+                    .scaledToFill()
+                    .cornerRadius(8)
                 }
-                AnimatedImage(url: URL(string: "\(item.imageUrl)"))
-                  .resizable()
-                  .scaledToFill()
-                  .cornerRadius(8)
               })
             }
           }

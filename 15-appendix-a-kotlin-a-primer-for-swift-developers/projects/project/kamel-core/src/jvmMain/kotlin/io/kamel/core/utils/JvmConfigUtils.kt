@@ -12,39 +12,39 @@ import kotlin.reflect.typeOf
 
 internal actual fun <T : Any> KamelConfig.findFetcherFor(data: T): Fetcher<T> {
 
-    val type = data::class.createType()
+  val type = data::class.createType()
 
-    val fetcher = fetchers.findLast { fetcher ->
+  val fetcher = fetchers.findLast { fetcher ->
 
-        val fetcherType = fetcher::class.supertypes
-            .firstOrNull()
-            ?.arguments
-            ?.firstOrNull()
-            ?.type ?: error("Unable to find type for $fetcher")
+    val fetcherType = fetcher::class.supertypes
+      .firstOrNull()
+      ?.arguments
+      ?.firstOrNull()
+      ?.type ?: error("Unable to find type for $fetcher")
 
-        val isSameType = fetcherType.isSupertypeOf(type) || fetcherType.isSubtypeOf(type)
+    val isSameType = fetcherType.isSupertypeOf(type) || fetcherType.isSubtypeOf(type)
 
-        isSameType && with(fetcher) { data.isSupported }
-    }
+    isSameType && with(fetcher) { data.isSupported }
+  }
 
-    checkNotNull(fetcher) { "Unable to find a fetcher for $type" }
+  checkNotNull(fetcher) { "Unable to find a fetcher for $type" }
 
-    return fetcher as Fetcher<T>
+  return fetcher as Fetcher<T>
 }
 
 @OptIn(ExperimentalStdlibApi::class)
 internal actual inline fun <reified T : Any> KamelConfig.findDecoderFor(): Decoder<T> {
 
-    val type = typeOf<Decoder<T>>()
+  val type = typeOf<Decoder<T>>()
 
-    val decoder = decoders.findLast { decoder ->
+  val decoder = decoders.findLast { decoder ->
 
-        val decoderType = decoder::class.createType()
+    val decoderType = decoder::class.createType()
 
-        decoderType.isSupertypeOf(type) || decoderType.isSubtypeOf(type)
-    }
+    decoderType.isSupertypeOf(type) || decoderType.isSubtypeOf(type)
+  }
 
-    checkNotNull(decoder) { "Unable to find a decoder for $type" }
+  checkNotNull(decoder) { "Unable to find a decoder for $type" }
 
-    return decoder as Decoder<T>
+  return decoder as Decoder<T>
 }

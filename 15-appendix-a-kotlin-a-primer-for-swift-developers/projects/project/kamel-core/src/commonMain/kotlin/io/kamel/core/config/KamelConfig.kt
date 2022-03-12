@@ -19,26 +19,26 @@ public const val DefaultImageBitmapCacheSize: Int = DefaultCacheSize
  */
 public interface KamelConfig {
 
-    public val fetchers: List<Fetcher<Any>>
+  public val fetchers: List<Fetcher<Any>>
 
-    public val decoders: List<Decoder<Any>>
+  public val decoders: List<Decoder<Any>>
 
-    public val mappers: List<Mapper<Any, Any>>
+  public val mappers: List<Mapper<Any, Any>>
 
-    /**
-     * Number of entries to cache. Default is 100.
-     */
-    public val imageBitmapCache: Cache<Any, ImageBitmap>
+  /**
+   * Number of entries to cache. Default is 100.
+   */
+  public val imageBitmapCache: Cache<Any, ImageBitmap>
 
-    public val imageVectorCache: Cache<Any, ImageVector>
+  public val imageVectorCache: Cache<Any, ImageVector>
 
-    public val svgCache: Cache<Any, Painter>
+  public val svgCache: Cache<Any, Painter>
 
-    public companion object
+  public companion object
 }
 
 /**
  * Configures [KamelConfig] using [KamelConfigBuilder].
  */
 public inline fun KamelConfig(block: KamelConfigBuilder.() -> Unit): KamelConfig =
-    KamelConfigBuilder().apply(block).build()
+  KamelConfigBuilder().apply(block).build()
