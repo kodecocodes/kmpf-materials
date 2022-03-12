@@ -8,9 +8,11 @@ import io.kamel.image.mapper.ResourcesIdMapper
 /**
  * Adds Android resources fetcher to the [KamelConfigBuilder].
  */
-public fun KamelConfigBuilder.resourcesIdMapper(context: Context): Unit = mapper(ResourcesIdMapper(context))
+public fun KamelConfigBuilder.resourcesIdMapper(context: Context): Unit =
+  mapper(ResourcesIdMapper(context))
 
 /**
  * Adds Android resources id mapper to the [KamelConfigBuilder].
  */
-public fun KamelConfigBuilder.resourcesFetcher(context: Context): Unit = fetcher(ResourcesFetcher(context))
+public fun KamelConfigBuilder.resourcesFetcher(context: Context): Unit =
+  fetcher(ResourcesFetcher(context))

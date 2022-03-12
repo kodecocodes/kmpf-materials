@@ -5,8 +5,8 @@ import moe.tlaster.precompose.navigation.BackStackEntry
 import moe.tlaster.precompose.navigation.RouteBuilder
 
 internal class DialogRoute(
-    route: String,
-    content: @Composable (BackStackEntry) -> Unit
+  route: String,
+  content: @Composable (BackStackEntry) -> Unit
 ) : ComposeRoute(route, content)
 
 /**
@@ -15,13 +15,13 @@ internal class DialogRoute(
  * @param content composable for the destination
  */
 fun RouteBuilder.dialog(
-    route: String,
-    content: @Composable (BackStackEntry) -> Unit,
+  route: String,
+  content: @Composable (BackStackEntry) -> Unit,
 ) {
-    addRoute(
-        DialogRoute(
-            route = route,
-            content = content
-        )
+  addRoute(
+    DialogRoute(
+      route = route,
+      content = content
     )
+  )
 }

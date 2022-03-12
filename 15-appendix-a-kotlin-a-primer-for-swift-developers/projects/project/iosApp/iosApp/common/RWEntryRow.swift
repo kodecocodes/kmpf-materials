@@ -32,13 +32,12 @@
 
 import SwiftUI
 import SharedKit
+import SharedAction
 
 struct RWEntryRow: View {
   let item: RWEntry
 
   let addToBookmarks: Bool
-
-  @Environment(\.openURL) var openURL
 
   @State private var showDialog = false
 
@@ -48,11 +47,7 @@ struct RWEntryRow: View {
 
   var body: some View {
     Button(action: {
-      guard let url = URL(string: "\(item.link)") else {
-        return
-      }
-
-      openURL(url)
+      Action().openLink(url: "\(item.link)")
     }, label: {
       VStack(alignment: .leading) {
         HStack {

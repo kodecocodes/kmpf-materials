@@ -41,6 +41,20 @@ struct ContentView: View {
   @StateObject var feedViewModel = RWEntryViewModel()
 
   init() {
+    let itemAppearance = UITabBarItemAppearance()
+    itemAppearance.normal.iconColor = UIColor(Color.white)
+
+    let tabBarAppearance = UITabBarAppearance()
+    tabBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
+    tabBarAppearance.stackedLayoutAppearance = itemAppearance
+    tabBarAppearance.inlineLayoutAppearance = itemAppearance
+    tabBarAppearance.compactInlineLayoutAppearance = itemAppearance
+
+    UITabBar.appearance().standardAppearance = tabBarAppearance
+    if #available(iOS 15.0, *) {
+      UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+
     let navBarAppearance = UINavigationBarAppearance()
     navBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
     navBarAppearance.shadowImage = UIImage()
