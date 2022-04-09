@@ -1,11 +1,7 @@
 package com.raywenderlich.findtime.android.ui
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Language
@@ -15,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.findtime.android.theme.AppTheme
@@ -44,7 +41,7 @@ val bottomNavigationItems = listOf(
 )
 
 @Composable
-fun MainView(actionBarFun: topBarFun = { emptyComposable() }) {
+fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
     val showAddDialog = remember { mutableStateOf(false) }
     val currentTimezoneStrings = remember { SnapshotStateList<String>() }
     val selectedIndex = remember { mutableStateOf(0) }
@@ -70,13 +67,20 @@ fun MainView(actionBarFun: topBarFun = { emptyComposable() }) {
                 }
             },
             bottomBar = {
-                BottomNavigation {
-                    bottomNavigationItems.forEachIndexed { i, bottomNavigationItem ->
+                BottomNavigation(
+                    backgroundColor = MaterialTheme.colors.primary
+                ) {
+                    bottomNavigationItems.forEachIndexed { i, bottomNavigationitem ->
                         BottomNavigationItem(
+                            selectedContentColor = Color.White,
+                            unselectedContentColor = Color.Black,
+                            label = {
+                                Text(bottomNavigationitem.route, style = MaterialTheme.typography.h4)
+                            },
                             icon = {
                                 Icon(
-                                    bottomNavigationItem.icon,
-                                    contentDescription = bottomNavigationItem.iconContentDescription
+                                    bottomNavigationitem.icon,
+                                    contentDescription = bottomNavigationitem.iconContentDescription
                                 )
                             },
                             selected = selectedIndex.value == i,

@@ -8,5 +8,5 @@ typealias composeFun =  @Composable () -> Unit
 typealias topBarFun =  @Composable (Int) -> Unit
 
 @Composable
-fun emptyComposable() {
+fun EmptyComposable() {
 }

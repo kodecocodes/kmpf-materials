@@ -31,7 +31,7 @@ fun TimeZoneScreen(
             .fillMaxSize()
     ) {
         var time by remember { mutableStateOf(timezoneHelper.currentTime()) }
-        LaunchedEffect(0) {
+        LaunchedEffect(Unit) {
             while (true) {
                 time = timezoneHelper.currentTime()
                 delay(timeMillis) // Every minute
