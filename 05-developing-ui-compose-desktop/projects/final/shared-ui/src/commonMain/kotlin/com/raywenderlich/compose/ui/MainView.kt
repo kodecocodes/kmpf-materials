@@ -41,7 +41,7 @@ val bottomNavigationItems = listOf(
 )
 
 @Composable
-fun MainView(actionBarFun: topBarFun = { emptyComposable() }) {
+fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
     val showAddDialog = remember { mutableStateOf(false) }
     val currentTimezoneStrings = remember { SnapshotStateList<String>() }
     val selectedIndex = remember { mutableStateOf(0) }
