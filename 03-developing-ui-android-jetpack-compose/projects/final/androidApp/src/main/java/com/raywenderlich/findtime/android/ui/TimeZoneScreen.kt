@@ -22,12 +22,14 @@ const val timeMillis = 1000 * 60L // 1 second
 
 @Composable
 fun TimeZoneScreen(
-    currentTimezoneStrings: SnapshotStateList<String>
+    currentTimezoneStrings: SnapshotStateList<String>,
+    padding: PaddingValues
 ) {
     val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
     val listState = rememberLazyListState()
     Column(
         modifier = Modifier
+            .padding(padding)
             .fillMaxSize()
     ) {
         var time by remember { mutableStateOf(timezoneHelper.currentTime()) }

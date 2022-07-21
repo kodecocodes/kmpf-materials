@@ -31,7 +31,8 @@ import com.raywenderlich.findtime.TimeZoneHelperImpl
 
 @Composable
 fun FindMeetingScreen(
-    timezoneStrings: List<String>
+    timezoneStrings: List<String>,
+    padding: PaddingValues
 ) {
     val listState = rememberLazyListState()
     // 8am
@@ -44,7 +45,7 @@ fun FindMeetingScreen(
     }
     val selectedTimeZones = remember {
         val selected = SnapshotStateMap<Int, Boolean>()
-        for (i in 0..timezoneStrings.size-1) selected[i] = true
+        for (i in timezoneStrings.indices) selected[i] = true
         selected
     }
     val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
@@ -61,6 +62,7 @@ fun FindMeetingScreen(
     }
     Column(
         modifier = Modifier
+            .padding(padding)
             .fillMaxSize()
     ) {
         Spacer(modifier = Modifier.size(16.dp))
