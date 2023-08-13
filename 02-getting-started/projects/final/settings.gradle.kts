@@ -6,6 +6,13 @@ pluginManagement {
     }
 }
 
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 rootProject.name = "Find_Time"
 include(":androidApp")
 include(":shared")
