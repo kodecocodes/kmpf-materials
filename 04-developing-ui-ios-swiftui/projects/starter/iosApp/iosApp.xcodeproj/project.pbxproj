@@ -7,30 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A54A9582759C32E002F939D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A9572759C32E002F939D /* Utils.swift */; };
-		0A54A9602759DBA1002F939D /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54A95F2759DBA1002F939D /* ListModifier.swift */; };
-		0AD2FE722740CEED0040328A /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE6E2740CEED0040328A /* CardModifier.swift */; };
-		0AD2FE732740CEED0040328A /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */; };
-		0AD2FE742740CEED0040328A /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE702740CEED0040328A /* PresentationSettings.swift */; };
-		0AD2FE752740CEED0040328A /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE712740CEED0040328A /* Searchbar.swift */; };
-		0AD2FE8127417DA30040328A /* TimezoneItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8027417DA30040328A /* TimezoneItems.swift */; };
-		0AD2FE8727437D4D0040328A /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8627437D4D0040328A /* TimeCard.swift */; };
-		0AD2FE8B2743805F0040328A /* NumberTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */; };
-		0AD2FE8F27498F850040328A /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2FE8E27498F850040328A /* shared.framework */; };
-		0AD2FE9027498F850040328A /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2FE8E27498F850040328A /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
+		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		0A5210972A8A40CA009C5E0D /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */; };
+		0A5210982A8A40CA009C5E0D /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */; };
+		0A5210992A8A40CA009C5E0D /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210902A8A40CA009C5E0D /* Searchbar.swift */; };
+		0A52109A2A8A40CA009C5E0D /* TimezoneItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */; };
+		0A52109B2A8A40CA009C5E0D /* NumberTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */; };
+		0A52109C2A8A40CA009C5E0D /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210932A8A40CA009C5E0D /* CardModifier.swift */; };
+		0A52109D2A8A40CA009C5E0D /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210942A8A40CA009C5E0D /* TimeCard.swift */; };
+		0A52109E2A8A40CA009C5E0D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210952A8A40CA009C5E0D /* Utils.swift */; };
+		0A52109F2A8A40CA009C5E0D /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210962A8A40CA009C5E0D /* ListModifier.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
-		B7746DCA3C8780E8C7F02FE5 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C237CC8874963ECB2ACEC037 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0AD2FE9127498F850040328A /* Embed Frameworks */ = {
+		7555FFB4242A642300829871 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0AD2FE9027498F850040328A /* shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,54 +36,40 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A54A9572759C32E002F939D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		0A54A95F2759DBA1002F939D /* ListModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
-		0AD2FE6E2740CEED0040328A /* CardModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
-		0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
-		0AD2FE702740CEED0040328A /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
-		0AD2FE712740CEED0040328A /* Searchbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
-		0AD2FE8027417DA30040328A /* TimezoneItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneItems.swift; sourceTree = "<group>"; };
-		0AD2FE8627437D4D0040328A /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
-		0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTimeCard.swift; sourceTree = "<group>"; };
-		0AD2FE8E27498F850040328A /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = ../shared/build/cocoapods/framework/shared.framework; sourceTree = "<group>"; };
+		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
+		0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
+		0A5210902A8A40CA009C5E0D /* Searchbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
+		0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneItems.swift; sourceTree = "<group>"; };
+		0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTimeCard.swift; sourceTree = "<group>"; };
+		0A5210932A8A40CA009C5E0D /* CardModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		0A5210942A8A40CA009C5E0D /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
+		0A5210952A8A40CA009C5E0D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0A5210962A8A40CA009C5E0D /* ListModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
-		2A836B2512C090B9B647A6F0 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AA54FD36A48C51FF21CE79E /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C237CC8874963ECB2ACEC037 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A434FBF74B607D955DCD6B24 /* Frameworks */ = {
+		7555FF78242A565900829871 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7746DCA3C8780E8C7F02FE5 /* Pods_iosApp.framework in Frameworks */,
-				0AD2FE8F27498F850040328A /* shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1BBC974773D003973A8B2C68 /* Pods */ = {
+		058557D7273AAEEB004C7B11 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				9AA54FD36A48C51FF21CE79E /* Pods-iosApp.debug.xcconfig */,
-				2A836B2512C090B9B647A6F0 /* Pods-iosApp.release.xcconfig */,
+				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		38CD2E4FC0EEB1161AEFD9E4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0AD2FE8E27498F850040328A /* shared.framework */,
-				C237CC8874963ECB2ACEC037 /* Pods_iosApp.framework */,
-			);
-			name = Frameworks;
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -93,8 +77,7 @@
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
-				1BBC974773D003973A8B2C68 /* Pods */,
-				38CD2E4FC0EEB1161AEFD9E4 /* Frameworks */,
+				7555FFB0242A642200829871 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,20 +92,29 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				0AD2FE6E2740CEED0040328A /* CardModifier.swift */,
+				0A5210932A8A40CA009C5E0D /* CardModifier.swift */,
+				0A5210962A8A40CA009C5E0D /* ListModifier.swift */,
+				0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */,
+				0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */,
+				0A5210902A8A40CA009C5E0D /* Searchbar.swift */,
+				0A5210942A8A40CA009C5E0D /* TimeCard.swift */,
+				0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */,
+				0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */,
+				0A5210952A8A40CA009C5E0D /* Utils.swift */,
+				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
-				0A54A95F2759DBA1002F939D /* ListModifier.swift */,
-				0AD2FE8A2743805F0040328A /* NumberTimeCard.swift */,
-				0AD2FE702740CEED0040328A /* PresentationSettings.swift */,
-				0AD2FE712740CEED0040328A /* Searchbar.swift */,
-				0AD2FE8627437D4D0040328A /* TimeCard.swift */,
-				0AD2FE6F2740CEED0040328A /* TimezoneDialog.swift */,
-				0AD2FE8027417DA30040328A /* TimezoneItems.swift */,
-				0A54A9572759C32E002F939D /* Utils.swift */,
+				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		7555FFB0242A642200829871 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,11 +124,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
-				30EF39F24167CEF0635C8A25 /* [CP] Check Pods Manifest.lock */,
+				7555FFB5242A651A00829871 /* ShellScript */,
 				7555FF77242A565900829871 /* Sources */,
+				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
-				A434FBF74B607D955DCD6B24 /* Frameworks */,
-				0AD2FE9127498F850040328A /* Embed Frameworks */,
+				7555FFB4242A642300829871 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,13 +177,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		30EF39F24167CEF0635C8A25 /* [CP] Check Pods Manifest.lock */ = {
+		7555FFB5242A651A00829871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -199,19 +193,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iosApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -220,17 +209,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD2FE8127417DA30040328A /* TimezoneItems.swift in Sources */,
-				0AD2FE742740CEED0040328A /* PresentationSettings.swift in Sources */,
-				0AD2FE8727437D4D0040328A /* TimeCard.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				0A5210972A8A40CA009C5E0D /* TimezoneDialog.swift in Sources */,
+				0A52109D2A8A40CA009C5E0D /* TimeCard.swift in Sources */,
+				0A5210992A8A40CA009C5E0D /* Searchbar.swift in Sources */,
+				0A52109B2A8A40CA009C5E0D /* NumberTimeCard.swift in Sources */,
+				0A52109E2A8A40CA009C5E0D /* Utils.swift in Sources */,
+				0A52109F2A8A40CA009C5E0D /* ListModifier.swift in Sources */,
+				0A52109A2A8A40CA009C5E0D /* TimezoneItems.swift in Sources */,
+				0A5210982A8A40CA009C5E0D /* PresentationSettings.swift in Sources */,
+				0A52109C2A8A40CA009C5E0D /* CardModifier.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				0A54A9582759C32E002F939D /* Utils.swift in Sources */,
-				0A54A9602759DBA1002F939D /* ListModifier.swift in Sources */,
-				0AD2FE8B2743805F0040328A /* NumberTimeCard.swift in Sources */,
-				0AD2FE732740CEED0040328A /* TimezoneDialog.swift in Sources */,
-				0AD2FE722740CEED0040328A /* CardModifier.swift in Sources */,
-				0AD2FE752740CEED0040328A /* Searchbar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,17 +344,26 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AA54FD36A48C51FF21CE79E /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.findtime;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					shared,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,17 +372,26 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A836B2512C090B9B647A6F0 /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.findtime;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					shared,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
