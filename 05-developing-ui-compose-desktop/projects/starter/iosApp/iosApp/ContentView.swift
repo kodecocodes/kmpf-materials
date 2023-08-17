@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 import SwiftUI
 import shared
 
@@ -37,24 +36,22 @@ struct ContentView: View {
     @StateObject private var timezoneItems = TimezoneItems()
     var body: some View {
         TabView {
-            TimezoneView()
+              TimezoneView()
                 .tabItem {
-                    Label("Time Zones", systemImage: "network")
+                  Label("Time Zones", systemImage: "network")
                 }
-            FindMeeting()
+              FindMeeting()
                 .tabItem {
-                    Label("Find Meeting", systemImage: "clock")
+                  Label("Find Meeting", systemImage: "clock")
                 }
-        }
-        .accentColor(Color.white)
-        .environmentObject(timezoneItems)
-    }
-    
+            }
+            .accentColor(Color.white)
+            .environmentObject(timezoneItems)
+	}
 }
 
-
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+	static var previews: some View {
+		ContentView()
+	}
 }
