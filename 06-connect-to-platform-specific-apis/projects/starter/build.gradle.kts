@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,30 +32,20 @@
  * THE SOFTWARE.
  */
 
-val compose_version by extra("1.1.0")
+plugins {
+  val agpVersion = "8.1.0"
+  val kotlinVersion = "1.9.0"
+  val jetbrainsComposeVersion = "1.5.0-rc01"
 
-buildscript {
-    repositories {
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("com.android.tools.build:gradle:7.1.1")
-    }
-}
+  id("com.android.application").version(agpVersion).apply(false)
+  id("com.android.library").version(agpVersion).apply(false)
+  id("org.jetbrains.compose").version(jetbrainsComposeVersion).apply(false)
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    }
+  kotlin("android").version(kotlinVersion).apply(false)
+  kotlin("multiplatform").version(kotlinVersion).apply(false)
+  kotlin("jvm").version(kotlinVersion).apply(false)
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+  delete(rootProject.buildDir)
 }

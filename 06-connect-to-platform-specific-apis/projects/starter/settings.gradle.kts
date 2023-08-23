@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,15 +32,24 @@
  * THE SOFTWARE.
  */
 
+rootProject.name = "Organize"
+
+include(":shared")
+include(":androidApp")
+include(":desktopApp")
+
 pluginManagement {
     repositories {
-        google()
         gradlePluginPortal()
-        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        google()
     }
 }
 
-rootProject.name = "Organize"
-include(":androidApp")
-include(":desktopApp")
-include(":shared")
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+}

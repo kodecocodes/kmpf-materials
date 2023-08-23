@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,15 +38,15 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.organize.Platform
+import com.yourcompany.organize.Platform
 
 @Composable
 fun AboutView() {
@@ -105,13 +105,13 @@ private fun RowView(
     ) {
       Text(
         text = title,
-        style = MaterialTheme.typography.caption,
+        style = MaterialTheme.typography.bodySmall,
         color = Color.Gray,
         modifier = Modifier.weight(1f)
       )
       Text(
         text = subtitle,
-        style = MaterialTheme.typography.body1,
+        style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(8.dp)
       )
     }
