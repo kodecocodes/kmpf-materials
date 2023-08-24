@@ -10,11 +10,8 @@ pluginManagement {
 rootProject.name = "learn"
 include(":androidApp")
 include(":desktopApp")
+include(":iosAppCompose")
 
 include(":shared")
 include(":shared-ui")
 include(":shared-action")
-
-include(":kamel-core")
-include(":kamel-image")
-include(":precompose")

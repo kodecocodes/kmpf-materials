@@ -20,9 +20,6 @@ out/
 build/
 androidApp/build
 desktopApp/build
-kamel-core/build
-kamel-image/build
-precompose/build
 shared/build
 shared/swiftpackage
 shared-action/build

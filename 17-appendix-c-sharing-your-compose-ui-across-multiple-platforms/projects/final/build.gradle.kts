@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-
 buildscript {
   repositories {
     gradlePluginPortal()
@@ -7,11 +5,10 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-    classpath("org.jetbrains.kotlin:kotlin-serialization:1.6.10")
-    classpath("com.android.tools.build:gradle:7.1.2")
-    classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
-    classpath("dev.icerock.moko:resources-generator:0.18.0")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+    classpath("org.jetbrains.kotlin:kotlin-serialization:1.9.0")
+    classpath("com.android.tools.build:gradle:8.1.0")
+    classpath("dev.icerock.moko:resources-generator:0.23.0")
   }
 }
 
@@ -25,19 +22,6 @@ allprojects {
       credentials(PasswordCredentials::class)
       authentication {
         create<BasicAuthentication>("basic")
-      }
-    }
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
-  }
-  afterEvaluate {
-    project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
-      ext.sourceSets.removeAll { sourceSet ->
-        setOf(
-          "androidAndroidTestRelease",
-          "androidTestFixtures",
-          "androidTestFixturesDebug",
-          "androidTestFixturesRelease",
-        ).contains(sourceSet.name)
       }
     }
   }

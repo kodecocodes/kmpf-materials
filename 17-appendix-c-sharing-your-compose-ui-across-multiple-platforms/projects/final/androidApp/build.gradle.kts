@@ -8,40 +8,44 @@ dependencies {
   implementation(project(":shared-ui"))
   implementation(project(":shared-action"))
 
-  implementation("com.google.android.material:material:1.5.0")
+  implementation("com.google.android.material:material:1.9.0")
 }
 
 android {
-  compileSdk = 31
+  compileSdkPreview = "UpsideDownCake"
+
   defaultConfig {
-    applicationId = "com.raywenderlich.learn"
+    applicationId = "com.kodeco.learn"
     minSdk = 24
-    targetSdk = 31
-    versionCode = 1
-    versionName = "1.0"
+    targetSdk = 33
+    versionCode = 2
+    versionName = "2.0"
   }
+
   buildTypes {
     getByName("release") {
       isMinifyEnabled = false
     }
   }
+
   buildFeatures {
-    viewBinding = true
     compose = true
   }
 
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = "17"
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion = "1.2.0-alpha01"
+    kotlinCompilerExtensionVersion = "1.5.1"
   }
+
+  namespace = "com.kodeco.learn"
 }
 
 kotlin.sourceSets.all {

@@ -1,28 +1,37 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
   id("com.android.library")
   id("kotlin-parcelize")
+  id("app.cash.sqldelight") version "2.0.0"
+
   kotlin("plugin.serialization")
   kotlin("multiplatform")
-  id("com.squareup.sqldelight")
 }
 
-version = "1.0"
+version = "2.0"
 
 sqldelight {
-  database("AppDb") {
-    packageName = "data"
+  databases {
+    create("AppDb") {
+      packageName.set("data")
+    }
   }
 }
 
 android {
-  compileSdk = 31
+  compileSdkPreview = "UpsideDownCake"
+
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
   defaultConfig {
     minSdk = 24
-    targetSdk = 31
   }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  namespace = "com.kodeco.learn.shared"
 }
 
 kotlin {
@@ -30,31 +39,30 @@ kotlin {
 
   jvm("desktop")
 
-  val xcf = XCFramework("SharedKit")
   listOf(
-    iosX64(),
-    iosArm64(),
-    iosSimulatorArm64()
+          iosX64(),
+          iosArm64(),
+          iosSimulatorArm64()
   ).forEach {
     it.binaries.framework {
       baseName = "SharedKit"
-      xcf.add(this)
     }
   }
 
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
-        implementation("com.soywiz.korlibs.korio:korio:2.4.10")
+        implementation("com.squareup.okio:okio:3.5.0")
+        implementation("com.soywiz.korlibs.korio:korio:4.0.9")
 
-        implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-serialization:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-content-negotiation:2.0.0-beta-1")
-        implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-logging:2.0.0-beta-1")
+        implementation("io.ktor:ktor-client-core:2.3.3")
+        implementation("io.ktor:ktor-client-serialization:2.3.3")
+        implementation("io.ktor:ktor-client-content-negotiation:2.3.3")
+        implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.3")
+        implementation("io.ktor:ktor-client-logging:2.3.3")
       }
     }
 
@@ -65,22 +73,21 @@ kotlin {
 
         implementation(kotlin("test-junit"))
         implementation("junit:junit:4.13.2")
-        implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
+        implementation("io.ktor:ktor-client-mock:2.3.3")
       }
     }
 
     val androidMain by getting {
       dependencies {
-        implementation("com.squareup.sqldelight:android-driver:1.5.3")
+        implementation("app.cash.sqldelight:android-driver:2.0.0")
 
-        implementation("io.ktor:ktor-client-android:2.0.0-beta-1")
+        implementation("io.ktor:ktor-client-android:2.3.3")
       }
     }
 
-    val androidTest by getting {
+    val desktopMain by getting {
       dependencies {
-        implementation(kotlin("test-junit"))
-        implementation("junit:junit:4.13.2")
+        implementation("app.cash.sqldelight:sqlite-driver:2.0.0")
       }
     }
 
@@ -91,37 +98,14 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        implementation("com.squareup.sqldelight:native-driver:1.5.3")
+        implementation("app.cash.sqldelight:native-driver:2.0.0")
 
-        implementation("io.ktor:ktor-client-ios:2.0.0-beta-1")
-
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt") {
-          version {
-            strictly("1.6.0-native-mt")
-          }
-        }
+        implementation("io.ktor:ktor-client-ios:2.3.1")
       }
 
       iosX64Main.dependsOn(this)
       iosArm64Main.dependsOn(this)
       iosSimulatorArm64Main.dependsOn(this)
-    }
-
-    val iosX64Test by getting
-    val iosArm64Test by getting
-    val iosSimulatorArm64Test by getting
-    val iosTest by creating {
-      dependsOn(commonTest)
-
-      iosX64Test.dependsOn(this)
-      iosArm64Test.dependsOn(this)
-      iosSimulatorArm64Test.dependsOn(this)
-    }
-
-    val desktopMain by getting {
-      dependencies {
-        implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
-      }
     }
   }
 }

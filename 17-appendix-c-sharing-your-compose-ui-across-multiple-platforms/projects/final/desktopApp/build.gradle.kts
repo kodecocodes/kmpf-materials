@@ -2,7 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
   kotlin("multiplatform")
-  id("org.jetbrains.compose") version "1.1.0"
+  id("org.jetbrains.compose") version "1.5.0-beta02"
 }
 
 kotlin {
@@ -27,7 +27,7 @@ kotlin {
 
 compose.desktop {
   application {
-    mainClass = "com.raywenderlich.learn.MainKt"
+    mainClass = "com.kodeco.learn.MainKt"
 
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
@@ -38,7 +38,7 @@ compose.desktop {
       appResourcesRootDir.set(resources)
 
       macOS {
-        bundleID = "com.raywenderlich.learn"
+        bundleID = "com.kodeco.learn"
         iconFile.set(resources.file("macos-icon.icns"))
       }
 
