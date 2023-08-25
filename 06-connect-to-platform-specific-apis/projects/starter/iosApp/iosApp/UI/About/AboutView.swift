@@ -37,7 +37,7 @@ struct AboutView: View {
   private var dismiss
 
   var body: some View {
-    NavigationView {
+    NavigationStack {
       Text("Hello World!")
         .navigationTitle("About Device")
         .toolbar {

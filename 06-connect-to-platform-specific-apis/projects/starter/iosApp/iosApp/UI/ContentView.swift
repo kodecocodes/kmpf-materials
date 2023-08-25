@@ -36,23 +36,18 @@ struct ContentView: View {
   @State private var shouldOpenAbout = false
 
   var body: some View {
-    NavigationView {
+    NavigationStack {
       RemindersView()
         .toolbar {
-          ToolbarItem(placement: .bottomBar) {
+          ToolbarItem {
             Button {
               shouldOpenAbout = true
             } label: {
               Label("About", systemImage: "info.circle")
                 .labelStyle(.titleAndIcon)
             }
-            .padding(8)
             .popover(isPresented: $shouldOpenAbout) {
               AboutView()
-                .frame(
-                  idealWidth: 350,
-                  idealHeight: 450
-                )
             }
           }
         }
