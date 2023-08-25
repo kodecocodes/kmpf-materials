@@ -1,10 +1,9 @@
 plugins {
-  id("com.android.library")
-  id("kotlin-parcelize")
-  id("app.cash.sqldelight") version "2.0.0"
-
-  kotlin("plugin.serialization")
-  kotlin("multiplatform")
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.kotlin.parcelize)
+  alias(libs.plugins.jetbrains.kotlin.serialization)
+  alias(libs.plugins.cash.sqldelight)
 }
 
 version = "2.0"
@@ -18,12 +17,12 @@ sqldelight {
 }
 
 android {
-  compileSdkPreview = "UpsideDownCake"
+  compileSdkPreview = libs.versions.android.sdk.compile.get()
 
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
   defaultConfig {
-    minSdk = 24
+    minSdk = libs.versions.android.sdk.min.get().toInt()
   }
 
   compileOptions {
@@ -52,17 +51,17 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+        implementation(libs.kotlinx.datetime)
+        implementation(libs.kotlinx.serialization.json)
 
-        implementation("com.squareup.okio:okio:3.5.0")
-        implementation("com.soywiz.korlibs.korio:korio:4.0.9")
+        implementation(libs.okio)
+        implementation(libs.korio)
 
-        implementation("io.ktor:ktor-client-core:2.3.3")
-        implementation("io.ktor:ktor-client-serialization:2.3.3")
-        implementation("io.ktor:ktor-client-content-negotiation:2.3.3")
-        implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.3")
-        implementation("io.ktor:ktor-client-logging:2.3.3")
+        implementation(libs.ktor.client.core)
+        implementation(libs.ktor.client.serialization)
+        implementation(libs.ktor.client.content.negotiation)
+        implementation(libs.ktor.serialization.kotlinx.json)
+        implementation(libs.ktor.client.logging)
       }
     }
 
@@ -72,22 +71,22 @@ kotlin {
         implementation(kotlin("test-annotations-common"))
 
         implementation(kotlin("test-junit"))
-        implementation("junit:junit:4.13.2")
-        implementation("io.ktor:ktor-client-mock:2.3.3")
+        implementation(libs.junit)
+        implementation(libs.ktor.client.mock)
       }
     }
 
     val androidMain by getting {
       dependencies {
-        implementation("app.cash.sqldelight:android-driver:2.0.0")
+        implementation(libs.cash.sqldelight.android)
 
-        implementation("io.ktor:ktor-client-android:2.3.3")
+        implementation(libs.ktor.client.android)
       }
     }
 
     val desktopMain by getting {
       dependencies {
-        implementation("app.cash.sqldelight:sqlite-driver:2.0.0")
+        implementation(libs.cash.sqldelight.jvm)
       }
     }
 
@@ -98,9 +97,9 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        implementation("app.cash.sqldelight:native-driver:2.0.0")
+        implementation(libs.cash.sqldelight.native)
 
-        implementation("io.ktor:ktor-client-ios:2.3.1")
+        implementation(libs.ktor.client.ios)
       }
 
       iosX64Main.dependsOn(this)

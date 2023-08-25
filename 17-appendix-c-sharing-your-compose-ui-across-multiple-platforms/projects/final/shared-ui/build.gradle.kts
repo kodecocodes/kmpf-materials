@@ -41,10 +41,10 @@ import org.jetbrains.kotlin.konan.file.File as KonanFile
 
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose") version "1.5.0-beta02"
-  id("com.android.library")
-  id("dev.icerock.mobile.multiplatform-resources")
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.moko.multiplatform.resources)
 }
 
 multiplatformResources {
@@ -88,15 +88,15 @@ kotlin {
 
         api(project(":shared"))
 
-        api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+        api(libs.kotlinx.datetime)
 
-        api("io.github.qdsfdhvh:image-loader:1.6.4")
+        api(libs.image.loader)
 
-        api("moe.tlaster:precompose:1.5.0-beta01")
-        api("moe.tlaster:precompose-viewmodel:1.5.0-beta01")
+        api(libs.precompose)
+        api(libs.precompose.viewmodel)
 
-        api("dev.icerock.moko:resources:0.23.0")
-        api("dev.icerock.moko:resources-compose:0.23.0")
+        api(libs.moko.resources)
+        api(libs.moko.resources.compose)
       }
     }
 
@@ -127,7 +127,7 @@ kotlin {
 }
 
 android {
-  compileSdkPreview = "UpsideDownCake"
+  compileSdkPreview = libs.versions.android.sdk.compile.get()
 
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   // https://github.com/icerockdev/moko-resources/issues/510
@@ -135,7 +135,7 @@ android {
   sourceSets["main"].res.srcDirs("src/androidMain/res", "src/commonMain/resources")
 
   defaultConfig {
-    minSdk = 21
+    minSdk = libs.versions.android.sdk.min.get().toInt()
   }
 
   compileOptions {

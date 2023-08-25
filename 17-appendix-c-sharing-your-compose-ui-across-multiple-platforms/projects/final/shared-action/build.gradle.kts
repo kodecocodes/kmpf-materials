@@ -1,10 +1,10 @@
 plugins {
-  kotlin("multiplatform")
-  id("com.android.library")
-  id("maven-publish")
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.maven.publish)
 }
 
-version = "1.0"
+version = "2.0"
 group = "com.kodeco.shared"
 
 publishing {
@@ -36,12 +36,12 @@ kotlin {
 }
 
 android {
-  compileSdkPreview = "UpsideDownCake"
+  compileSdkPreview = libs.versions.android.sdk.compile.get()
 
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
   defaultConfig {
-    minSdk = 21
+    minSdk = libs.versions.android.sdk.min.get().toInt()
   }
 
   compileOptions {

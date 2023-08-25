@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose") version "1.5.0-beta02"
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
@@ -32,7 +32,7 @@ compose.desktop {
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "learn"
-      packageVersion = "1.0.0"
+      packageVersion = "2.0.0"
 
       val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
       appResourcesRootDir.set(resources)

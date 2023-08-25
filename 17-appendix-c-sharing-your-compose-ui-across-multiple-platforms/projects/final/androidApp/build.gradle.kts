@@ -8,16 +8,16 @@ dependencies {
   implementation(project(":shared-ui"))
   implementation(project(":shared-action"))
 
-  implementation("com.google.android.material:material:1.9.0")
+  implementation(libs.android.material)
 }
 
 android {
-  compileSdkPreview = "UpsideDownCake"
+  compileSdkPreview = libs.versions.android.sdk.compile.get()
 
   defaultConfig {
     applicationId = "com.kodeco.learn"
-    minSdk = 24
-    targetSdk = 33
+    minSdk = libs.versions.android.sdk.min.get().toInt()
+    targetSdk = libs.versions.android.sdk.target.get().toInt()
     versionCode = 2
     versionName = "2.0"
   }
@@ -42,7 +42,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.1"
+    kotlinCompilerExtensionVersion = libs.versions.android.compose.compiler.get()
   }
 
   namespace = "com.kodeco.learn"
