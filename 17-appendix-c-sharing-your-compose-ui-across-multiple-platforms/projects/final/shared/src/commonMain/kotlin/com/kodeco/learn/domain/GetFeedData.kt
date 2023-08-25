@@ -41,15 +41,26 @@ import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.platform.Logger
 import io.ktor.client.statement.bodyAsText
 import korlibs.io.serialization.xml.Xml
+import korlibs.io.util.substringAfterOrNull
+import korlibs.io.util.substringBeforeOrNull
 import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "GetFeedData"
+
+private const val WEBSITE_PREVIEW_ARTICLE_START_DELIMITER = "<div class=\"triad-top-right\">\n        <img src=\""
+
+private const val WEBSITE_PREVIEW_ARTICLE_END_DELIMITER = "\" />"
+
+private const val WEBSITE_PREVIEW_BOOK_START_DELIMITER =
+  "<img alt=\"\" class=\"c-tutorial-item__art-image--primary\" loading=\"lazy\" src=\""
+
+private const val WEBSITE_PREVIEW_BOOK_END_DELIMITER = "\" />"
 
 public class GetFeedData {
 
   public suspend fun invokeFetchKodecoEntry(
     platform: PLATFORM,
-    platformImageUrl: String,
+    imageUrl: String,
     feedUrl: String,
     onSuccess: (List<KodecoEntry>) -> Unit,
     onFailure: (Exception) -> Unit
@@ -62,7 +73,7 @@ public class GetFeedData {
 
       val feed = mutableListOf<KodecoEntry>()
       for (node in xml.allNodeChildren) {
-        val parsed = parseNode(platform, platformImageUrl, node)
+        val parsed = parseNode(platform, imageUrl, node)
 
         if (parsed != null) {
           feed += parsed
@@ -77,6 +88,19 @@ public class GetFeedData {
       coroutineScope {
         onFailure(e)
       }
+    }
+  }
+
+  public suspend fun invokeFetchImageUrlFromLink(
+    link: String
+  ): String {
+    return try {
+
+      val result = FeedAPI.fetchImageUrlFromLink(link)
+      parsePage(link, result.bodyAsText())
+
+    } catch (e: Exception) {
+      ""
     }
   }
 
@@ -99,7 +123,21 @@ public class GetFeedData {
   }
 }
 
-private fun parseNode(platform: PLATFORM, platformImageUrl: String, entry: Xml): KodecoEntry? {
+private fun parsePage(url: String, content: String): String {
+  val start = if (url.contains("books", true)) {
+    content.substringAfterOrNull(WEBSITE_PREVIEW_BOOK_START_DELIMITER)
+  } else {
+    content.substringAfterOrNull(WEBSITE_PREVIEW_ARTICLE_START_DELIMITER)
+  }
+  val end = if (url.contains("books", true)) {
+    start?.substringBeforeOrNull(WEBSITE_PREVIEW_BOOK_END_DELIMITER)
+ } else {
+    start?.substringBeforeOrNull(WEBSITE_PREVIEW_ARTICLE_END_DELIMITER)
+  }
+  return end ?: ""
+}
+
+private fun parseNode(platform: PLATFORM, imageUrl: String, entry: Xml): KodecoEntry? {
   if (entry.name == "entry") {
     val id = entry.allNodeChildren.firstOrNull { it.name == "id" }
     val link = entry.allNodeChildren.firstOrNull { it.name == "link" }
@@ -114,7 +152,7 @@ private fun parseNode(platform: PLATFORM, platformImageUrl: String, entry: Xml):
       summary = summary?.text ?: "",
       updated = updated?.text ?: "",
       platform = platform,
-      platformImageUrl = platformImageUrl
+      imageUrl = imageUrl
     )
   } else {
     return null

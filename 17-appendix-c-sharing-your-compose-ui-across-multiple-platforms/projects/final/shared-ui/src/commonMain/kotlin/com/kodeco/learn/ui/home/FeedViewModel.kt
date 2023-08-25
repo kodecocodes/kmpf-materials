@@ -75,6 +75,20 @@ class FeedViewModel : ViewModel(), FeedData {
     presenter.fetchMyGravatar(this)
   }
 
+  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
+    Logger.d(TAG, "fetchLinkImage | link=$link")
+    viewModelScope.launch {
+      val url = presenter.fetchLinkImage(link)
+
+      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
+      val list = _items[platform]?.toMutableList() ?: return@launch
+      val index = list.indexOf(item)
+
+      list[index] = item.copy(imageUrl = url)
+      _items[platform] = list
+    }
+  }
+
   // region FeedData
 
   override fun onNewDataAvailable(items: List<KodecoEntry>, platform: PLATFORM, exception: Exception?) {
@@ -85,6 +99,10 @@ class FeedViewModel : ViewModel(), FeedData {
           items.subList(0, FETCH_N_IMAGES)
         } else{
           items
+        }
+
+        for (item in _items[platform]!!) {
+          fetchLinkImage(platform, item.id, item.link)
         }
       }
     }

@@ -51,6 +51,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateMap
@@ -103,18 +104,15 @@ fun AddPages(
       Spacer(modifier = Modifier.height(16.dp))
     }
 
-    items(items.keys.toMutableList(), key = { item -> item.value }) {
+    items(items.keys.toMutableList().sortedBy { it.name }) { platform ->
 
-      val platforms = items.keys
-      Logger.d(TAG, "platforms found=$platforms")
+      Logger.d(TAG, "Adding platform=$platform")
 
-      for (platform in platforms) {
-        AddNewPage(
-          platform = platform,
-          items = items[platform] ?: emptyList(),
-          onOpenEntry = onOpenEntry
-        )
-      }
+      AddNewPage(
+        platform = platform,
+        items = items[platform] ?: emptyList(),
+        onOpenEntry = onOpenEntry
+      )
     }
 
     item {
@@ -158,7 +156,8 @@ fun AddNewPage(
         pageCount = items.size,
         modifier = Modifier
           .align(Alignment.CenterHorizontally)
-          .padding(16.dp)
+          .padding(16.dp),
+        activeColor = MaterialTheme.colorScheme.secondaryContainer
       )
     }
   }
@@ -181,7 +180,7 @@ fun AddNewPageEntry(
   ) {
 
     AddImagePreview(
-      url = "",
+      url = entry.imageUrl,
       modifier = Modifier
         .fillMaxSize()
         .clip(RoundedCornerShape(16.dp))

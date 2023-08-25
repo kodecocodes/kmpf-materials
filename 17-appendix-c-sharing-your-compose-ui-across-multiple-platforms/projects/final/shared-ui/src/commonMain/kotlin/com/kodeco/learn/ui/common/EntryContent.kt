@@ -110,7 +110,7 @@ fun AddEntryContent(
       ) {
 
         AddImagePreview(
-          url = item.platformImageUrl,
+          url = item.imageUrl,
           modifier = Modifier
             .size(40.dp)
             .clip(RoundedCornerShape(8.dp))

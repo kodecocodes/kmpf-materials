@@ -5,12 +5,12 @@ CREATE TABLE KodecoEntryModel (
     summary TEXT NOT NULL,
     updated TEXT NOT NULL,
     platform INTEGER NOT NULL,
-    platformImageUrl TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
     bookmarked INTEGER NOT NULL
 );
 
 insertOrReplaceKodecoEntry:
-INSERT OR REPLACE INTO KodecoEntryModel(id, link, title, summary, updated, platform, platformImageUrl, bookmarked) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO KodecoEntryModel(id, link, title, summary, updated, platform, imageUrl, bookmarked) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 removeKodecoEntry:
 DELETE FROM KodecoEntryModel WHERE id = ?;

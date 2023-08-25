@@ -56,7 +56,7 @@ public class KodecoEntryDAO(database: AppDb) {
       summary = entry.summary,
       updated = entry.updated,
       platform = PLATFORM.values().indexOf(entry.platform).toLong(),
-      platformImageUrl = entry.platformImageUrl,
+      imageUrl = entry.imageUrl,
       bookmarked = if (entry.bookmarked) 1 else 0
     )
   }
@@ -79,7 +79,7 @@ public class KodecoEntryDAO(database: AppDb) {
         summary = item.summary,
         updated = item.updated,
         platform = PLATFORM.values()[item.platform.toInt()],
-        platformImageUrl = item.platformImageUrl,
+        imageUrl = item.imageUrl,
         bookmarked = item.bookmarked == 1L
       )
     }

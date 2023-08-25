@@ -48,6 +48,6 @@ data class KodecoEntry(
   val summary: String = "",
   val updated: String = "",
   val platform: PLATFORM = PLATFORM.ALL,
-  val platformImageUrl: String = "",
+  val imageUrl: String = "",
   val bookmarked: Boolean = false
 ) : Parcelable

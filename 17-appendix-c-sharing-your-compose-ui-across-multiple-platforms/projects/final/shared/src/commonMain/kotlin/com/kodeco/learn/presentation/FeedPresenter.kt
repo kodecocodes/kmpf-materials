@@ -83,19 +83,27 @@ class FeedPresenter(private val feed: GetFeedData) {
 
   private fun fetchFeed(
     platform: PLATFORM,
-    platformImageUrl: String,
+    imageUrl: String,
     feedUrl: String,
     cb: FeedData
   ) {
     scope.launch {
       feed.invokeFetchKodecoEntry(
         platform = platform,
-        platformImageUrl = platformImageUrl,
+        imageUrl = imageUrl,
         feedUrl = feedUrl,
         onSuccess = { cb.onNewDataAvailable(it, platform, null) },
         onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
       )
     }
+  }
+
+  public suspend fun fetchLinkImage(link: String): String {
+    return scope.async {
+      feed.invokeFetchImageUrlFromLink(
+        link
+      )
+    }.await()
   }
 
   public fun fetchMyGravatar(cb: FeedData) {
