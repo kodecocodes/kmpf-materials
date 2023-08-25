@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.jetbrains.kotlin.multiplatform)
   alias(libs.plugins.jetbrains.kotlin.parcelize)
   alias(libs.plugins.jetbrains.kotlin.serialization)
   alias(libs.plugins.cash.sqldelight)
+  alias(libs.plugins.multiplatform.swift)
 }
 
 version = "2.0"
@@ -13,6 +16,14 @@ sqldelight {
     create("AppDb") {
       packageName.set("data")
     }
+  }
+}
+
+multiplatformSwiftPackage {
+  xcframeworkName("SharedKit")
+  swiftToolsVersion("5.3")
+  targetPlatforms {
+    iOS { v("13") }
   }
 }
 
@@ -34,9 +45,12 @@ android {
 }
 
 kotlin {
+  //Currently not possible to update due to SQLDelight
   android()
 
   jvm("desktop")
+
+  val xcf = XCFramework("SharedKit")
 
   listOf(
           iosX64(),
@@ -45,6 +59,7 @@ kotlin {
   ).forEach {
     it.binaries.framework {
       baseName = "SharedKit"
+      xcf.add(this)
     }
   }
 

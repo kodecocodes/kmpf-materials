@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cEX-lY-yjA">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tCS-3p-ovE">
+            <objects>
+                <viewController id="cEX-lY-yjA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AN9-C7-7yP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kodecodevcon-bg" translatesAutoresizingMaskIntoConstraints="NO" id="oah-MR-ZHy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kodeco-logo" translatesAutoresizingMaskIntoConstraints="NO" id="fba-Kh-tr2">
+                                <rect key="frame" x="20" y="261" width="374" height="374"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fba-Kh-tr2" secondAttribute="height" multiplier="1:1" id="b9h-Cf-hvS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hth-2F-5nC"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fba-Kh-tr2" firstAttribute="centerX" secondItem="AN9-C7-7yP" secondAttribute="centerX" id="2my-wb-QWx"/>
+                            <constraint firstItem="fba-Kh-tr2" firstAttribute="centerY" secondItem="AN9-C7-7yP" secondAttribute="centerY" id="5o5-u1-MVv"/>
+                            <constraint firstItem="fba-Kh-tr2" firstAttribute="width" secondItem="fba-Kh-tr2" secondAttribute="height" multiplier="1:1" id="Aah-OH-DJI"/>
+                            <constraint firstItem="hth-2F-5nC" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fba-Kh-tr2" secondAttribute="bottom" constant="20" id="M3T-Ge-bqm"/>
+                            <constraint firstAttribute="trailing" secondItem="oah-MR-ZHy" secondAttribute="trailing" id="S4q-ix-5ZZ"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fba-Kh-tr2" secondAttribute="trailing" constant="20" id="ZSZ-ZD-c9e"/>
+                            <constraint firstItem="fba-Kh-tr2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hth-2F-5nC" secondAttribute="top" constant="20" id="bgU-Ta-j9x"/>
+                            <constraint firstItem="fba-Kh-tr2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AN9-C7-7yP" secondAttribute="leading" constant="20" id="hFu-Dt-jmS"/>
+                            <constraint firstItem="oah-MR-ZHy" firstAttribute="leading" secondItem="AN9-C7-7yP" secondAttribute="leading" id="nmd-vJ-ris"/>
+                            <constraint firstItem="oah-MR-ZHy" firstAttribute="top" secondItem="AN9-C7-7yP" secondAttribute="top" id="v0t-jf-vYi"/>
+                            <constraint firstAttribute="bottom" secondItem="oah-MR-ZHy" secondAttribute="bottom" id="yME-FR-MwS"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xQp-zS-YRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="kodeco-logo" width="512" height="512"/>
+        <image name="kodecodevcon-bg" width="1104" height="1104"/>
+    </resources>
+</document>

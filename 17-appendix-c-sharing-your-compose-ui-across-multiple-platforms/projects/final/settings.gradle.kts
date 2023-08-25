@@ -15,3 +15,5 @@ include(":iosAppCompose")
 include(":shared")
 include(":shared-ui")
 include(":shared-action")
+
+includeBuild("plugins/multiplatform-swiftpackage-m1_support")

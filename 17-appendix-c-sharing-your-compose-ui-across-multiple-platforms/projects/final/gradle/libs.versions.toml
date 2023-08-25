@@ -19,6 +19,7 @@ ktor-client-serialization = "2.3.3"
 ktor-client-core = "2.3.3"
 maven-publish = "0.25.3"
 moko-resources = "0.23.0"
+multiplatform-swift-package = "2.0.4"
 okio = "3.5.0"
 precompose-viewmodel = "1.5.0-beta01"
 precompose = "1.5.0-beta01"
@@ -59,3 +60,4 @@ jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serializati
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 moko-multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
+multiplatform-swift = { id = "com.chromaticnoise.multiplatform-swiftpackage-m1-support", version.ref = "multiplatform-swift-package" }
