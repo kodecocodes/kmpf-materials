@@ -35,5 +35,5 @@
 package com.yourcompany.organize
 
 expect class Platform() {
-    val platform: String
+  val platform: String
 }

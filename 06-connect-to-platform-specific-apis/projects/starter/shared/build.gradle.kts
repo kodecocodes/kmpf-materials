@@ -33,90 +33,108 @@
  */
 
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.compose")
+  kotlin("multiplatform")
+  id("com.android.library")
+  id("org.jetbrains.compose")
 }
 
 kotlin {
-    androidTarget()
+  androidTarget()
 
-    jvm("desktop")
+  jvm("desktop")
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
-        }
+  listOf(
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64()
+  ).forEach {
+    it.binaries.framework {
+      baseName = "Shared"
+    }
+  }
+
+  sourceSets {
+    val commonMain by getting {
+      dependencies {
+        implementation(compose.runtime)
+      }
+    }
+    val commonTest by getting {
+      dependencies {
+        implementation(kotlin("test"))
+      }
     }
 
-    sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(compose.runtime)
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-
-        val androidMain by getting {
-            dependsOn(commonMain)
-        }
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation(libs.junit)
-            }
-        }
-
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-        }
-
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
-
-        val desktopMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(compose.desktop.common)
-            }
-        }
+    val androidMain by getting {
+      dependsOn(commonMain)
+      dependencies {
+        implementation(libs.androidx.annotation)
+      }
     }
+    val androidUnitTest by getting {
+      dependencies {
+        implementation(kotlin("test-junit"))
+        implementation(libs.junit)
+      }
+    }
+
+    val iosX64Main by getting
+    val iosArm64Main by getting
+    val iosSimulatorArm64Main by getting
+    val iosMain by creating {
+      dependsOn(commonMain)
+      iosX64Main.dependsOn(this)
+      iosArm64Main.dependsOn(this)
+      iosSimulatorArm64Main.dependsOn(this)
+    }
+
+    val iosX64Test by getting
+    val iosArm64Test by getting
+    val iosSimulatorArm64Test by getting
+    val iosTest by creating {
+      dependsOn(commonTest)
+      iosX64Test.dependsOn(this)
+      iosArm64Test.dependsOn(this)
+      iosSimulatorArm64Test.dependsOn(this)
+    }
+
+    val desktopMain by getting {
+      dependsOn(commonMain)
+      dependencies {
+        implementation(compose.desktop.common)
+      }
+    }
+  }
 }
 
 android {
-    compileSdk = 34
-    namespace = "com.yourcompany.organize"
+  compileSdk = 34
+  namespace = "com.yourcompany.organize"
 
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
+  sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+  sourceSets["main"].res.srcDirs("src/androidMain/res")
 
-    defaultConfig {
-        minSdk = 27
+  defaultConfig {
+    minSdk = 27
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+}
+
+val iOSTasks = listOf(
+  "compileKotlinIosX64",
+  "compileKotlinIosArm64",
+  "compileKotlinIosSimulatorArm64"
+)
+
+iOSTasks.forEach {
+  tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>(it).configure {
+    compilerOptions.freeCompilerArgs.apply {
+      add("-opt-in=kotlin.experimental.ExperimentalNativeApi")
+      add("-opt-in=kotlinx.cinterop.ExperimentalForeignApi")
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+  }
 }

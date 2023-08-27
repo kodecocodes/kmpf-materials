@@ -35,7 +35,11 @@
 package ui.about
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
@@ -83,12 +87,14 @@ private fun makeItems(): List<Pair<String, String>> {
 
   // UNCOMMENT AFTER CREATING THE PLATFORM CLASS
 
-//  platform.screen?.let {
-//    val max = max(it.width, it.height)
-//    val min = min(it.width, it.height)
-//
-//    items.add(Pair("Display", "${max}×${min} @${it.density}x"))
-//  }
+  //  val max = max(platform.screen.width, platform.screen.height)
+  //  val min = min(platform.screen.width, platform.screen.height)
+  //
+  //  var displayInfo = "${max}×${min}"
+  //  platform.screen.density?.let {
+  //    displayInfo += " ${it}x"
+  //  }
+  //  items.add(Pair("Display", displayInfo))
 
   return items
 }

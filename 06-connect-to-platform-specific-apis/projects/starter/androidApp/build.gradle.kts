@@ -33,58 +33,58 @@
  */
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+  id("com.android.application")
+  kotlin("android")
 }
 
 android {
-    namespace = "com.yourcompany.organize.android"
-    compileSdk = 34
+  namespace = "com.yourcompany.organize.android"
+  compileSdk = 34
 
-    defaultConfig {
-        applicationId = "com.yourcompany.organize.android"
-        minSdk = 27
-        targetSdk = 34
-        versionCode = 2
-        versionName = "2.0"
-    }
+  defaultConfig {
+    applicationId = "com.yourcompany.organize.android"
+    minSdk = 27
+    targetSdk = 34
+    versionCode = 2
+    versionName = "2.0"
+  }
 
-    buildFeatures {
-        compose = true
-    }
+  buildFeatures {
+    compose = true
+  }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+  composeOptions {
+    kotlinCompilerExtensionVersion = "1.5.1"
+  }
 
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+  packaging {
+    resources {
+      excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
+  }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = false
     }
+  }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
 }
 
 dependencies {
-    implementation(project(":shared"))
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.material)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.core.splashscreen)
+  implementation(project(":shared"))
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.material)
+  implementation(libs.androidx.compose.ui)
+  implementation(libs.androidx.compose.ui.tooling)
+  implementation(libs.androidx.compose.ui.tooling.preview)
+  implementation(libs.androidx.compose.foundation)
+  implementation(libs.androidx.compose.material)
+  implementation(libs.androidx.activity.compose)
+  implementation(libs.androidx.navigation.compose)
+  implementation(libs.androidx.core.splashscreen)
 }
