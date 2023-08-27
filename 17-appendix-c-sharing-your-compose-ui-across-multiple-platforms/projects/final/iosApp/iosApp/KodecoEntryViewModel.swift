@@ -107,7 +107,9 @@ class KodecoEntryViewModel: ObservableObject {
   func fetchAllBookmarks() {
     BookmarkClient.shared.fetchBookmarks { items in
       Logger().d(tag: TAG, message: "fetchAllBookmarks: \(items.count) items")
-      self.bookmarks = items
+      DispatchQueue.main.async {
+        self.bookmarks = items
+      }
     }
   }
 

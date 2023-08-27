@@ -66,7 +66,7 @@ struct HomeView: View {
                       .cornerRadius(8)
                   })
                 }
-              }
+              }.scenePadding()
 
               Spacer()
             }
