@@ -54,6 +54,14 @@ kotlin {
   }
 
   sourceSets {
+
+    all {
+      languageSettings.apply {
+        optIn("kotlinx.cinterop.ExperimentalForeignApi")
+        optIn("kotlin.experimental.ExperimentalNativeApi")
+      }
+    }
+
     val commonMain by getting {
       dependencies {
         implementation(compose.runtime)
@@ -121,20 +129,5 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
-  }
-}
-
-val iOSTasks = listOf(
-  "compileKotlinIosX64",
-  "compileKotlinIosArm64",
-  "compileKotlinIosSimulatorArm64"
-)
-
-iOSTasks.forEach {
-  tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>(it).configure {
-    compilerOptions.freeCompilerArgs.apply {
-      add("-opt-in=kotlin.experimental.ExperimentalNativeApi")
-      add("-opt-in=kotlinx.cinterop.ExperimentalForeignApi")
-    }
   }
 }
