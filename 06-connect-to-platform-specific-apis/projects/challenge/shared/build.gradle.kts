@@ -31,7 +31,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
   kotlin("multiplatform")
@@ -125,17 +124,9 @@ android {
   }
 }
 
-val iOSTasks = listOf(
-  "compileKotlinIosX64",
-  "compileKotlinIosArm64",
-  "compileKotlinIosSimulatorArm64"
-)
-
-iOSTasks.forEach {
-  tasks.named<KotlinCompilationTask<*>>(it).configure {
-    compilerOptions.freeCompilerArgs.apply {
-      add("-opt-in=kotlin.experimental.ExperimentalNativeApi")
-      add("-opt-in=kotlinx.cinterop.ExperimentalForeignApi")
-    }
-  }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile>().configureEach {
+  compilerOptions.freeCompilerArgs.addAll(
+    "-opt-in=kotlinx.cinterop.ExperimentalForeignApi",
+    "-opt-in=kotlin.experimental.ExperimentalNativeApi"
+  )
 }

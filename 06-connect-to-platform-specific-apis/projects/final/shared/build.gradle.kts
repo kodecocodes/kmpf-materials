@@ -31,7 +31,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
   kotlin("multiplatform")
@@ -55,14 +54,6 @@ kotlin {
   }
 
   sourceSets {
-
-    all {
-      languageSettings.apply {
-        optIn("kotlinx.cinterop.ExperimentalForeignApi")
-        optIn("kotlin.experimental.ExperimentalNativeApi")
-      }
-    }
-
     val commonMain by getting {
       dependencies {
         implementation(compose.runtime)
@@ -131,4 +122,11 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile>().configureEach {
+  compilerOptions.freeCompilerArgs.addAll(
+    "-opt-in=kotlinx.cinterop.ExperimentalForeignApi",
+    "-opt-in=kotlin.experimental.ExperimentalNativeApi"
+  )
 }
