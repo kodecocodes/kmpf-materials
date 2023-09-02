@@ -45,7 +45,6 @@ import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.cb.FeedData
 import com.kodeco.learn.platform.Logger
 import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
 
 private const val TAG = "FeedViewModel"
 

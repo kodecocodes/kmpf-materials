@@ -37,7 +37,8 @@ package com.kodeco.learn.utils
 import com.kodeco.learn.platform.Logger
 import kotlinx.datetime.toInstant
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 private const val TAG = "Utils"
 
