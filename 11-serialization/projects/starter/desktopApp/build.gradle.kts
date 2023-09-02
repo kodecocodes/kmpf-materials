@@ -1,39 +1,38 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose") version "1.1.0"
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
 
   jvm {
     compilations.all {
-      kotlinOptions.jvmTarget = "11"
+      kotlinOptions.jvmTarget = "17"
     }
   }
 
   sourceSets {
-    val jvmMain by getting {
+    getByName("jvmMain") {
       dependencies {
+        implementation(project(":shared"))
+
         implementation(compose.desktop.currentOs)
 
         implementation(compose.foundation)
         implementation(compose.runtime)
         implementation(compose.foundation)
         implementation(compose.material)
-        implementation(compose.materialIconsExtended)
+        implementation(compose.material3)
         implementation(compose.ui)
-        implementation(compose.uiTooling)
 
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+        implementation(libs.kotlinx.datetime)
 
-        implementation("ca.gosyer:accompanist-pager:0.20.1")
-        implementation("ca.gosyer:accompanist-pager-indicators:0.20.1")
+        implementation(libs.image.loader)
 
-        implementation(project(":shared"))
-        implementation(project(":kamel-image"))
-        implementation(project(":precompose"))
+        implementation(libs.precompose)
+        implementation(libs.precompose.viewmodel)
       }
     }
   }
@@ -41,18 +40,18 @@ kotlin {
 
 compose.desktop {
   application {
-    mainClass = "com.raywenderlich.learn.MainKt"
+    mainClass = "com.kodeco.learn.MainKt"
 
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "learn"
-      packageVersion = "1.0.0"
+      packageVersion = "2.0.0"
 
       val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
       appResourcesRootDir.set(resources)
 
       macOS {
-        bundleID = "com.raywenderlich.learn"
+        bundleID = "com.kodeco.learn"
         iconFile.set(resources.file("macos-icon.icns"))
       }
 

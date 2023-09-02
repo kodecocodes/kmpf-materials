@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ struct HomeView: View {
 
   @State private var showToast = false
 
-  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+  @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
   var body: some View {
     let content = feedViewModel.getContent()
@@ -51,7 +51,7 @@ struct HomeView: View {
 
     NavigationView {
       ZStack(alignment: .topLeading) {
-        Color("rw-dark")
+        Color("black-night")
         ScrollView(.vertical) {
           VStack {
             ScrollView(.horizontal) {
@@ -66,7 +66,7 @@ struct HomeView: View {
                       .cornerRadius(8)
                   })
                 }
-              }
+              }.scenePadding()
 
               Spacer()
             }
@@ -74,12 +74,13 @@ struct HomeView: View {
             let items = feedViewModel.items[filter] ?? []
 
             ForEach(items, id: \.id) { item in
-              RWEntryRow(item: item, addToBookmarks: true)
+              KodecoEntryRow(item: item, addToBookmarks: true)
                 .environmentObject(feedViewModel)
             }
           }
         }
         .navigationBarTitle("learn", displayMode: .inline)
+        .navigationBarItems(trailing: Image("ic_person"))
       }
       .onReceive(feedViewModel.$profile) { item in
         showToast = item?.preferredUsername != nil

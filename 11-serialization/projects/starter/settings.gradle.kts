@@ -12,7 +12,3 @@ include(":androidApp")
 include(":desktopApp")
 
 include(":shared")
-
-include(":kamel-core")
-include(":kamel-image")
-include(":precompose")
