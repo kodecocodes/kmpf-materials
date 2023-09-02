@@ -1,3 +1,5 @@
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -58,6 +60,8 @@ kotlin {
   }
 
   sourceSets {
+    targetHierarchy.default()
+
     getByName("commonMain") {
       dependencies {
         implementation(libs.kotlinx.datetime)
@@ -86,19 +90,10 @@ kotlin {
       }
     }
 
-    getByName("iosX64Main")
-    getByName("iosArm64Main")
-    getByName("iosSimulatorArm64Main")
-    create("iosMain") {
-      dependsOn(getByName("commonMain"))
-
+    getByName("iosMain") {
       dependencies {
         implementation(libs.cash.sqldelight.native)
       }
-
-      getByName("iosX64Main").dependsOn(this)
-      getByName("iosArm64Main").dependsOn(this)
-      getByName("iosSimulatorArm64Main").dependsOn(this)
     }
   }
 }
