@@ -57,20 +57,14 @@ kotlin {
   jvm("desktop")
 
   listOf(
-          iosX64("uikitX64"),
-          iosArm64("uikitArm64"),
-  ).forEach {
-    it.binaries {
-      executable {
-        entryPoint = "main"
-        freeCompilerArgs += listOf(
-                "-linker-option", "-framework", "-linker-option", "Metal",
-                "-linker-option", "-framework", "-linker-option", "CoreText",
-                "-linker-option", "-framework", "-linker-option", "CoreGraphics"
-        )
-        // TODO: the current compose binary surprises LLVM, so disable checks for now.
-        freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-      }
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64()
+  ).forEach { iosTarget ->
+    iosTarget.binaries.framework {
+      baseName = "shared"
+      isStatic = true
+      linkerOpts.add("-lsqlite3")
     }
   }
 
@@ -109,19 +103,24 @@ kotlin {
       resources.srcDirs("build/generated/moko/desktopMain/src")
     }
 
-    val uikitX64Main by getting {
+    val iosX64Main by getting {
       // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/uikitX64Main/src")
+      resources.srcDirs("build/generated/moko/iosX64Main/src")
     }
-    val uikitArm64Main by getting{
+    val iosArm64Main by getting{
       // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/uikitArm64Main/src")
+      resources.srcDirs("build/generated/moko/iosArm64Main/src")
     }
-    val uikitMain by creating {
+    val iosSimulatorArm64Main by getting{
+      // https://github.com/icerockdev/moko-resources/issues/510
+      resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+    }
+    val iosMain by creating {
       dependsOn(commonMain)
 
-      uikitX64Main.dependsOn(this)
-      uikitArm64Main.dependsOn(this)
+      iosX64Main.dependsOn(this)
+      iosArm64Main.dependsOn(this)
+      iosSimulatorArm64Main.dependsOn(this)
     }
   }
 }
