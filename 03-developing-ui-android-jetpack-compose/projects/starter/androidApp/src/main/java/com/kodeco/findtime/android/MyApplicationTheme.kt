@@ -35,10 +35,29 @@ fun MyApplicationTheme(
     }
     val typography = Typography(
         bodySmall = TextStyle(
-            fontFamily = FontFamily.Default,
+            fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
-        )
+            fontSize = 16.sp,
+            color = Color.White
+        ),
+        headlineSmall = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            color = Color.White
+        ),
+        labelLarge = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Normal,
+            fontSize = 20.sp,
+            color = Color.White
+        ),
+        labelSmall = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Normal,
+            fontSize = 11.sp,
+            color = Color.White
+        ),
     )
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),
