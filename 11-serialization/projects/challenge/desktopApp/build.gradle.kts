@@ -1,72 +1,67 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.1.0"
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
 
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
+  jvm {
+    compilations.all {
+      kotlinOptions.jvmTarget = "17"
     }
+  }
 
-    sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
+  sourceSets {
+    getByName("jvmMain") {
+      dependencies {
+        implementation(project(":shared"))
 
-                implementation(compose.foundation)
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.ui)
-                implementation(compose.uiTooling)
+        implementation(compose.desktop.currentOs)
 
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+        implementation(compose.foundation)
+        implementation(compose.runtime)
+        implementation(compose.foundation)
+        implementation(compose.material)
+        implementation(compose.material3)
+        implementation(compose.ui)
 
-                implementation("ca.gosyer:accompanist-pager:0.20.1")
-                implementation("ca.gosyer:accompanist-pager-indicators:0.20.1")
+        implementation(libs.kotlinx.datetime)
 
-                implementation(project(":shared"))
-                implementation(project(":kamel-image"))
-                implementation(project(":precompose"))
-            }
-        }
+        implementation(libs.image.loader)
+
+        implementation(libs.precompose)
+        implementation(libs.precompose.viewmodel)
+      }
     }
+  }
 }
 
 compose.desktop {
-    application {
-        mainClass = "com.raywenderlich.learn.MainKt"
+  application {
+    mainClass = "com.kodeco.learn.MainKt"
 
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "learn"
-            packageVersion = "1.0.0"
+    nativeDistributions {
+      targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+      packageName = "learn"
+      packageVersion = "2.0.0"
 
-            val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
-            appResourcesRootDir.set(resources)
+      val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
+      appResourcesRootDir.set(resources)
 
-            macOS {
-                bundleID = "com.raywenderlich.learn"
-                iconFile.set(resources.file("macos-icon.icns"))
-            }
+      macOS {
+        bundleID = "com.kodeco.learn"
+        iconFile.set(resources.file("macos-icon.icns"))
+      }
 
-            windows {
-                iconFile.set(resources.file("windows-icon.ico"))
-            }
+      windows {
+        iconFile.set(resources.file("windows-icon.ico"))
+      }
 
-            linux {
-                iconFile.set(resources.file("linux-icon.png"))
-            }
-        }
+      linux {
+        iconFile.set(resources.file("linux-icon.png"))
+      }
     }
-}
-
-kotlin.sourceSets.all {
-    languageSettings.optIn("kotlin.RequiresOptIn")
+  }
 }

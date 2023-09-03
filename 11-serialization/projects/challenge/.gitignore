@@ -21,7 +21,7 @@ build/
 androidApp/build
 desktopApp/build
 kamel-core/build
-pager-image/build
+kamel-image/build
 precompose/build
 shared/build
 shared/swiftpackage

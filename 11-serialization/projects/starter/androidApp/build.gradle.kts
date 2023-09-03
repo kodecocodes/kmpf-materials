@@ -92,7 +92,3 @@ android {
 
   namespace = "com.kodeco.learn"
 }
-
-kotlin.sourceSets.all {
-  languageSettings.optIn("kotlin.RequiresOptIn")
-}
