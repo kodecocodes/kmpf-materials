@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ struct ContentView: View {
 
   @State private var searchText = ""
 
-  @StateObject var feedViewModel = RWEntryViewModel()
+  @StateObject var feedViewModel = KodecoEntryViewModel()
 
   init() {
     let itemAppearance = UITabBarItemAppearance()
     itemAppearance.normal.iconColor = UIColor(Color.white)
 
     let tabBarAppearance = UITabBarAppearance()
-    tabBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
+    tabBarAppearance.backgroundColor = UIColor(Color("black-night"))
     tabBarAppearance.stackedLayoutAppearance = itemAppearance
     tabBarAppearance.inlineLayoutAppearance = itemAppearance
     tabBarAppearance.compactInlineLayoutAppearance = itemAppearance
@@ -56,19 +56,19 @@ struct ContentView: View {
     }
 
     let navBarAppearance = UINavigationBarAppearance()
-    navBarAppearance.backgroundColor = UIColor(Color("rw-dark"))
+    navBarAppearance.backgroundColor = UIColor(Color("black-night"))
     navBarAppearance.shadowImage = UIImage()
     navBarAppearance.shadowColor = .clear
     navBarAppearance.backgroundImage = UIImage()
     navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
-    if let uiFont = UIFont(name: "Bitter-Bold", size: 18) {
+    if let uiFont = UIFont(name: "OpenSans-Bold", size: 18) {
     navBarAppearance.titleTextAttributes = [
     .font: uiFont,
     .foregroundColor: UIColor.white
     ]}
 
-    UINavigationBar.appearance().barTintColor = UIColor(Color("rw-dark"))
+    UINavigationBar.appearance().barTintColor = UIColor(Color("black-night"))
     UINavigationBar.appearance().isTranslucent = false
     UINavigationBar.appearance().standardAppearance = navBarAppearance
     UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
@@ -109,6 +109,6 @@ struct ContentView: View {
         .tag(4)
         .environmentObject(feedViewModel)
     }
-    .accentColor(Color("rw-green"))
+    .accentColor(Color("orange-glow"))
   }
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.raywenderlich.learn"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-      android:name=".RWApplication"
+      android:name=".KodecoApplication"
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
-      android:theme="@style/Theme.RW"
+      android:theme="@style/Theme.Kodeco"
       android:usesCleartextTraffic="true">
     <activity
         android:name=".ui.MainActivity"
@@ -20,6 +21,4 @@
       </intent-filter>
     </activity>
   </application>
-
-  <uses-permission android:name="android.permission.INTERNET" />
 </manifest> 
