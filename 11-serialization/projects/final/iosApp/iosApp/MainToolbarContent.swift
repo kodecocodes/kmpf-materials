@@ -31,46 +31,28 @@
 /// THE SOFTWARE.
 
 import SwiftUI
-import SharedKit
+import SDWebImageSwiftUI
 
-struct BookmarkView: View {
-  let TAG = "BookmarkView"
-
-  @State private var showDialog = false
-
-  @State private var selectedEntry: KodecoEntry?
-
+struct MainToolbarContent: ToolbarContent {
   @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
-  var body: some View {
-    NavigationView {
-      ZStack(alignment: .topLeading) {
-        Color("black-night")
-        if feedViewModel.bookmarks.isEmpty {
-          VStack(alignment: .center) {
-            Text("You currently don't have any bookmark.")
-              .foregroundColor(.white)
-              .font(Font.custom("OpenSans-Bold", size: 15))
-          }
-          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-          .background(Color("black-night"))
+  var body: some ToolbarContent {
+    ToolbarItem(placement: .primaryAction) {
+      Button(action: {
+        // Do nothing
+      }, label: {
+        if let avatarUrl = feedViewModel.profile?.thumbnailUrl {
+          AnimatedImage(url: URL(string: avatarUrl))
+            .resizable()
+            .frame(width: 30, height: 30)
+            .scaledToFill()
+            .clipShape(Circle())
         } else {
-          ScrollView(.vertical) {
-            ForEach(feedViewModel.bookmarks, id: \.id) { item in
-              KodecoEntryRow(item: item, addToBookmarks: false)
-                .environmentObject(feedViewModel)
-            }
-          }
+          Image("ic_person")
+            .resizable()
+            .frame(width: 30, height: 30)
         }
-      }
-      .navigationTitle("learn")
-      .toolbar {
-        MainToolbarContent()
-      }
-    }
-    .onAppear {
-      Logger().d(tag: TAG, message: "Retrieving all bookmarks")
-      feedViewModel.fetchAllBookmarks()
+      })
     }
   }
 }

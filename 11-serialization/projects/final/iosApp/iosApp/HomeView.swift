@@ -30,7 +30,6 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import AlertToast
 import SwiftUI
 import SharedKit
 import SDWebImageSwiftUI
@@ -39,8 +38,6 @@ struct HomeView: View {
   let TAG = "HomeView"
 
   @State private var filter = PLATFORM.all.description()
-
-  @State private var showToast = false
 
   @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
@@ -79,14 +76,10 @@ struct HomeView: View {
             }
           }
         }
-        .navigationBarTitle("learn", displayMode: .inline)
-        .navigationBarItems(trailing: Image("ic_person"))
-      }
-      .onReceive(feedViewModel.$profile) { item in
-        showToast = item?.preferredUsername != nil
-      }
-      .toast(isPresenting: $showToast) {
-        AlertToast(type: .regular, title: "Hello \(String(feedViewModel.profile?.preferredUsername ?? ""))")
+        .navigationTitle("learn")
+        .toolbar {
+          MainToolbarContent()
+        }
       }
     }
   }

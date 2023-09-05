@@ -51,6 +51,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.ui.home.HomeSheetContent
@@ -60,6 +61,7 @@ private lateinit var selected: MutableState<KodecoEntry>
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
+    profile: GravatarEntry?,
     feeds: SnapshotStateMap<PLATFORM, List<KodecoEntry>>,
     bookmarks: State<List<KodecoEntry>?>,
     onUpdateBookmark: (KodecoEntry) -> Unit,
@@ -101,7 +103,9 @@ fun MainScreen(
 
     Scaffold(
         topBar = {
-          MainTopAppBar()
+          MainTopAppBar(
+              profile = profile
+          )
         },
         bottomBar = {
           MainBottomBar(

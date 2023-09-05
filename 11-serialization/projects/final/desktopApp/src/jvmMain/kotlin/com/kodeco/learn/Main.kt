@@ -58,8 +58,6 @@ private lateinit var feedViewModel: FeedViewModel
 
 private const val TAG = "main"
 
-private val showToast: MutableState<Boolean> = mutableStateOf(false)
-
 fun main() {
 
   application {
@@ -84,18 +82,13 @@ fun main() {
 
       val items = feedViewModel.items
       val profile = feedViewModel.profile
-
-      val name = profile.value.preferredUsername
-      if (!name.isNullOrEmpty()) {
-        showToast.value = true
-      }
-
       val bookmarks = bookmarkViewModel.items
 
       Surface(modifier = Modifier.fillMaxSize()) {
 
         KodecoTheme {
           MainScreen(
+            profile = profile.value,
             feeds = items,
             bookmarks = bookmarks,
             onUpdateBookmark = { updateBookmark(it) },

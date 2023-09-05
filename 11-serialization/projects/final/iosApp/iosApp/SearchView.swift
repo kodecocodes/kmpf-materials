@@ -114,8 +114,10 @@ struct SearchView: View {
           }
         }
       }
-      .navigationBarTitle("learn", displayMode: .inline)
-      .navigationBarItems(trailing: Image("ic_person"))
+      .navigationTitle("learn")
+      .toolbar {
+        MainToolbarContent()
+      }
     }
   }
 }

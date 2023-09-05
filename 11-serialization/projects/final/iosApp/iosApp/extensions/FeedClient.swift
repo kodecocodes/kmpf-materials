@@ -67,7 +67,7 @@ public class FeedClient {
 
 extension FeedClient: FeedData {
   public func onNewDataAvailable(items: [KodecoEntry], platform: PLATFORM, exception: KotlinException?) {
-    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
+    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items.count)")
     self.handler?(platform.description(), items)
   }
 

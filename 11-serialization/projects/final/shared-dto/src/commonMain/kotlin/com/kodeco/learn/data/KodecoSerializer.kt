@@ -62,5 +62,5 @@ object KodecoSerializer : KSerializer<PLATFORM> {
 }
 
 private fun findByKey(key: String, default: PLATFORM = PLATFORM.ALL): PLATFORM {
-  return PLATFORM.values().find { it.value == key } ?: default
+  return PLATFORM.values().find { it.value.lowercase() == key.lowercase() } ?: default
 }
