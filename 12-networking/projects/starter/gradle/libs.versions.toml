@@ -12,7 +12,6 @@ image-loader = "1.6.4"
 korio = "4.0.9"
 kotlin = "1.9.0"
 kotlinx-datetime = "0.4.0"
-kotlinx-serialization-json = "1.6.0"
 jetbrains-compose = "1.5.0"
 okio = "3.5.0"
 precompose = "1.5.0"
@@ -37,7 +36,6 @@ cash-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version
 image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
 korio = { module = "com.soywiz.korlibs.korio:korio", version.ref = "korio" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
@@ -49,5 +47,3 @@ cash-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -5,8 +5,6 @@ plugins {
   alias(libs.plugins.android.library) apply false
   alias(libs.plugins.jetbrains.kotlin) apply false
   alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
-  alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
-  alias(libs.plugins.jetbrains.kotlin.serialization) apply false
 }
 
 allprojects {

@@ -12,4 +12,3 @@ include(":androidApp")
 include(":desktopApp")
 
 include(":shared")
-include(":shared-dto")

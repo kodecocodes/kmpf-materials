@@ -36,7 +36,6 @@ package com.kodeco.learn.presentation
 
 import com.kodeco.learn.data.model.KodecoContent
 import com.kodeco.learn.domain.GetFeedData
-import kotlinx.serialization.json.Json
 
 private const val TAG = "FeedPresenter"
 
@@ -52,9 +51,7 @@ private const val KODECO_CONTENT = "[" +
 
 class FeedPresenter(private val feed: GetFeedData) {
 
-  private val json = Json { ignoreUnknownKeys = true }
-
   val content: List<KodecoContent> by lazy {
-    json.decodeFromString(KODECO_CONTENT)
+    emptyList()
   }
 }

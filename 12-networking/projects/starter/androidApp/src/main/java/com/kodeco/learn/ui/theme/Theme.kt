@@ -46,27 +46,27 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-  primary = darkTextPrimary,
-  surface = darkBackground,
-  onSurfaceVariant = darkTextPrimary,
-  background = darkBackground,
-  secondaryContainer = darkSecondaryContainer,
-  onSecondaryContainer = darkBackground
+    primary = darkTextPrimary,
+    surface = darkBackground,
+    onSurfaceVariant = darkTextPrimary,
+    background = darkBackground,
+    secondaryContainer = darkSecondaryContainer,
+    onSecondaryContainer = darkBackground
 )
 
 private val LightColorScheme = lightColorScheme(
-  primary = lightTextPrimary,
-  surface = lightBackground,
-  onSurfaceVariant = lightTextPrimary,
-  background = lightBackground,
-  secondaryContainer = lightSecondaryContainer,
-  onSecondaryContainer = lightBackground
+    primary = lightTextPrimary,
+    surface = lightBackground,
+    onSurfaceVariant = lightTextPrimary,
+    background = lightBackground,
+    secondaryContainer = lightSecondaryContainer,
+    onSecondaryContainer = lightBackground
 )
 
 @Composable
 fun KodecoTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable () -> Unit
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
 ) {
   val colorScheme = when {
     darkTheme -> DarkColorScheme
@@ -83,8 +83,8 @@ fun KodecoTheme(
   }
 
   MaterialTheme(
-    colorScheme = colorScheme,
-    typography = Typography,
-    content = content
+      colorScheme = colorScheme,
+      typography = Typography,
+      content = content
   )
 }

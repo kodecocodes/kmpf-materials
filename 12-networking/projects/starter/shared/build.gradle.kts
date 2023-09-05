@@ -5,8 +5,6 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.jetbrains.kotlin.multiplatform)
-  alias(libs.plugins.jetbrains.kotlin.parcelize)
-  alias(libs.plugins.jetbrains.kotlin.serialization)
   alias(libs.plugins.cash.sqldelight)
 }
 
@@ -54,8 +52,6 @@ kotlin {
       baseName = "SharedKit"
       xcf.add(this)
 
-      export(project(":shared-dto"))
-
       // FIXME: https://youtrack.jetbrains.com/issue/KT-60230/Native-unknown-options-iossimulatorversionmin-sdkversion-with-Xcode-15-beta-3
       if (System.getenv("XCODE_VERSION_MAJOR") == "1500") {
         linkerOpts += "-ld64"
@@ -68,10 +64,7 @@ kotlin {
 
     getByName("commonMain") {
       dependencies {
-        api(project(":shared-dto"))
-
         implementation(libs.kotlinx.datetime)
-        implementation(libs.kotlinx.serialization.json)
 
         implementation(libs.okio)
         implementation(libs.korio)
@@ -103,8 +96,4 @@ kotlin {
       }
     }
   }
-}
-
-kotlin.sourceSets.all {
-  languageSettings.optIn("kotlin.RequiresOptIn")
 }
