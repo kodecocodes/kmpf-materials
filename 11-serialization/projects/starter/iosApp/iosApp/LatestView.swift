@@ -45,12 +45,14 @@ struct LatestView: View {
         Color("black-night")
         ScrollView(.vertical) {
           VStack {
-            ForEach(Array(feedViewModel.items.keys), id: \.self) { key in
+            ForEach(Array(feedViewModel.items.keys.sorted()), id: \.self) { key in
               Section(platform: key, entries: feedViewModel.items[key] ?? [])
             }
           }
-          .navigationBarTitle("learn", displayMode: .inline)
-          .navigationBarItems(trailing: Image("ic_person"))
+          .navigationTitle("learn")
+          .toolbar {
+            MainToolbarContent()
+          }
         }
       }
     }
