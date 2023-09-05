@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aba13756-b4da-4f5d-ad06-f0e88782daac" name="Changes" comment="Use targetHierarchy for build configuration">
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/main/MainScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/main/MainScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/main/MainTopAppBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/kodeco/learn/ui/main/MainTopAppBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/kodeco/learn/data/model/GravatarContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/kodeco/learn/data/model/GravatarContent.kt" afterDir="false" />
-    </list>
+    <list default="true" id="b8e4e460-11e6-45ca-8963-1c32ed758255" name="Changes" comment="Chapter 11 final project UI tweaks" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,40 +18,33 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R5CR20EGC9D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/carlosmota/.android/avd/Automotive_1024p_landscape_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="learn" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="editions/1.0" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-macos-aarch64-1.9.0">
+    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
     <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosX64" FILE="$PROJECT_DIR$/shared/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
-    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared-dto:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":shared-dto:linkDebugTestIosX64" FILE="$PROJECT_DIR$/shared-dto/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -63,30 +53,35 @@
         <envs />
       </variant>
     </executable>
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared-dto:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":shared-dto:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/shared-dto/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared-dto:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":shared-dto:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/shared-dto/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
   </component>
-  <component name="ProjectId" id="2Ur0v8dnpu64CNRzWaN3FDAJKH3" />
+  <component name="ProjectId" id="2UxKZkThwaqP9XaE3ZfsA8ax9bl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "12-networking",
-    "last_opened_file_path": "/Users/carlosmota/Projects/kodecocodes/kmpf-materials/11-serialization/projects/final/desktopApp/src/jvmMain/resources/images",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;ScreenshotViewer.SavePath&quot;: &quot;/Users/carlosmota/Desktop&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;11-serialization&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/carlosmota/Projects/kodecocodes/playground/kmpf-materials/11-serialization/projects/final&quot;,
+    &quot;vcs.patch.path&quot;: &quot;/Users/carlosmota/Desktop&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/desktopApp/src/jvmMain/resources/images" />
-    </key>
-  </component>
+}</component>
   <component name="RunManager" selected="Android App.androidApp">
     <configuration name="androidApp" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="learn.androidApp.main" />
@@ -154,7 +149,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="9E763BE4-9E90-45FD-BADA-B6D6EC0FC91A" XCODE_PROJECT="$PROJECT_DIR$/iosApp/iosApp.xcworkspace" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
+    <configuration name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="9E763BE4-9E90-45FD-BADA-B6D6EC0FC91A" XCODE_PROJECT="$PROJECT_DIR$/iosApp/iosApp.xcodeproj" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
       <method v="2">
         <option name="com.jetbrains.kmm.ios.BuildIOSAppTask" enabled="true" />
       </method>
@@ -163,40 +158,34 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="aba13756-b4da-4f5d-ad06-f0e88782daac" name="Changes" comment="" />
-      <created>1693682619878</created>
+      <changelist id="b8e4e460-11e6-45ca-8963-1c32ed758255" name="Changes" comment="" />
+      <created>1693875849620</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1693682619878</updated>
+      <updated>1693875849620</updated>
     </task>
-    <task id="LOCAL-00001" summary="Rebranded project from RayWenderlich to Kodeco&#10;Use version catalog&#10;Updated all project libraries to latest versions as well as its dependencies:&#10;  - Kotlin 1.9.0&#10;  - Compose Multiplatform 1.5.0&#10;Removed (now) unnecessary libs:&#10;  - Kamel was replaced with Seiko image-loader&#10;  - precompose can now be fetched directly from official repo">
-      <created>1693697073678</created>
+    <task id="LOCAL-00001" summary="chapter11">
+      <created>1693877038834</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1693697073678</updated>
+      <updated>1693877038834</updated>
     </task>
-    <task id="LOCAL-00002" summary="Optimize imports">
-      <created>1693697109930</created>
+    <task id="LOCAL-00002" summary="Chapter 11 final project UI tweaks">
+      <created>1693877063659</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1693697109930</updated>
+      <updated>1693877063659</updated>
     </task>
-    <task id="LOCAL-00003" summary="Use targetHierarchy for build configuration">
-      <created>1693697747732</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1693697747732</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rebranded project from RayWenderlich to Kodeco&#10;Use version catalog&#10;Updated all project libraries to latest versions as well as its dependencies:&#10;  - Kotlin 1.9.0&#10;  - Compose Multiplatform 1.5.0&#10;Removed (now) unnecessary libs:&#10;  - Kamel was replaced with Seiko image-loader&#10;  - precompose can now be fetched directly from official repo" />
-    <MESSAGE value="Optimize imports" />
-    <MESSAGE value="Use targetHierarchy for build configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Use targetHierarchy for build configuration" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="chapter11" />
+    <MESSAGE value="Chapter 11 final project UI tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chapter 11 final project UI tweaks" />
   </component>
 </project>
