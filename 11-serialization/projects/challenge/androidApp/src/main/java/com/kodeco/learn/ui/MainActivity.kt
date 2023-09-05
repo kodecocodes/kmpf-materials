@@ -65,19 +65,11 @@ class MainActivity : ComponentActivity() {
 
       val items = feedViewModel.items
       val profile = feedViewModel.profile.observeAsState()
-      if (!profile.value?.preferredUsername.isNullOrEmpty()) {
-        val name = profile.value!!.preferredUsername
-        Toast.makeText(
-          applicationContext,
-          getString(R.string.action_hello, name),
-          Toast.LENGTH_SHORT
-        ).show()
-      }
-
       val bookmarks = bookmarkViewModel.items.observeAsState()
 
       KodecoTheme {
         MainScreen(
+          profile = profile.value,
           feeds = items,
           bookmarks = bookmarks,
           onUpdateBookmark = { onUpdateBookmark(it) },
