@@ -1,5 +1,6 @@
 package com.kodeco.findtime.android.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -47,111 +49,118 @@ fun AddTimeZoneDialog(
 ) = Dialog(
     onDismissRequest = onDismiss
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(8.dp))
-            .padding(16.dp)
+    Surface(
+        border = BorderStroke(width = 1.dp, color = Color.Black),
+        shape = RoundedCornerShape(8.dp),
+        shadowElevation = 8.dp,
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        val timeZoneStrings by remember {
-            mutableStateOf(
-                timezoneHelper.getTimeZoneStrings().toList()
-            )
-        }
-        val selectedStates = remember { SnapshotStateMap<Int, Boolean>() }
-        val listState = rememberLazyListState()
-        val searchValue = remember { mutableStateOf("") }
-        val coroutineScope = rememberCoroutineScope()
-        val focusRequester = remember { FocusRequester() }
-        OutlinedTextField(
-            singleLine = true,
-            value = searchValue.value,
-            modifier = Modifier
-                .focusRequester(focusRequester)
-                .fillMaxWidth(),
-            onValueChange = {
-                searchValue.value = it
-                if (searchValue.value.isEmpty()) {
-                    return@OutlinedTextField
-                }
-                val index = searchZones(searchValue.value, timeZoneStrings = timeZoneStrings)
-                if (index != -1) {
-                    coroutineScope.launch {
-                        listState.animateScrollToItem(index)
-                    }
-                }
-            },
-            trailingIcon = {
-                IconButton(onClick = {
-                    searchValue.value = ""
-                }) {
-                    Icon(
-                        Icons.Filled.Cancel,
-                        tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "Cancel",
-                    )
-                }
-            }
-        )
-        DisposableEffect(Unit) {
-            focusRequester.requestFocus()
-            onDispose { }
-        }
-        Spacer(modifier = Modifier.size(16.dp))
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp),
-            contentPadding = PaddingValues(16.dp),
-            state = listState,
-
-            ) {
-            itemsIndexed(timeZoneStrings) { i, timezone ->
-                Surface(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth(),
-                        color = if (isSelected(selectedStates,i))
-                            MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
+                .background(MaterialTheme.colorScheme.background)
+                .padding(16.dp)
+        ) {
+            val timeZoneStrings by remember {
+                mutableStateOf(
+                    timezoneHelper.getTimeZoneStrings().toList()
+                )
+            }
+            val selectedStates = remember { SnapshotStateMap<Int, Boolean>() }
+            val listState = rememberLazyListState()
+            val searchValue = remember { mutableStateOf("") }
+            val coroutineScope = rememberCoroutineScope()
+            val focusRequester = remember { FocusRequester() }
+            OutlinedTextField(
+                singleLine = true,
+                value = searchValue.value,
+                modifier = Modifier
+                    .focusRequester(focusRequester)
+                    .fillMaxWidth(),
+                onValueChange = {
+                    searchValue.value = it
+                    if (searchValue.value.isEmpty()) {
+                        return@OutlinedTextField
+                    }
+                    val index = searchZones(searchValue.value, timeZoneStrings = timeZoneStrings)
+                    if (index != -1) {
+                        coroutineScope.launch {
+                            listState.animateScrollToItem(index)
+                        }
+                    }
+                },
+                trailingIcon = {
+                    IconButton(onClick = {
+                        searchValue.value = ""
+                    }) {
+                        Icon(
+                            Icons.Filled.Cancel,
+                            tint = MaterialTheme.colorScheme.secondary,
+                            contentDescription = "Cancel",
+                        )
+                    }
+                }
+            )
+            DisposableEffect(Unit) {
+                focusRequester.requestFocus()
+                onDispose { }
+            }
+            Spacer(modifier = Modifier.size(16.dp))
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                contentPadding = PaddingValues(16.dp),
+                state = listState,
 
                 ) {
-                    Row(
+                itemsIndexed(timeZoneStrings) { i, timezone ->
+                    Surface(
                         modifier = Modifier
-                            .toggleable(
-                                value = isSelected(selectedStates, i),
-                                onValueChange = {
-                                    selectedStates[i] = it
-                                })
+                            .padding(8.dp)
                             .fillMaxWidth(),
+                        color = if (isSelected(selectedStates, i))
+                            MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
+
                     ) {
-                        Text(timezone)
+                        Row(
+                            modifier = Modifier
+                                .toggleable(
+                                    value = isSelected(selectedStates, i),
+                                    onValueChange = {
+                                        selectedStates[i] = it
+                                    })
+                                .fillMaxWidth(),
+                        ) {
+                            Text(timezone)
+                        }
                     }
                 }
             }
-        }
-        Spacer(modifier = Modifier.size(16.dp))
-        Row(
-            modifier = Modifier.align(Alignment.End),
-        ) {
-            Button(
-                onClick = {
-                    onDismiss()
-                }
-            ) {
-                Text(text = stringResource(id = R.string.cancel))
-            }
             Spacer(modifier = Modifier.size(16.dp))
-            Button(
-                onClick = {
-                    onAdd(
-                        getTimezones(
-                            selectedStates = selectedStates,
-                            timeZoneStrings = timeZoneStrings
-                        )
-                    )
-                }
+            Row(
+                modifier = Modifier.align(Alignment.End),
             ) {
-                Text(text = stringResource(id = R.string.add))
+                Button(
+                    onClick = {
+                        onDismiss()
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.cancel))
+                }
+                Spacer(modifier = Modifier.size(16.dp))
+                Button(
+                    onClick = {
+                        onAdd(
+                            getTimezones(
+                                selectedStates = selectedStates,
+                                timeZoneStrings = timeZoneStrings
+                            )
+                        )
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.add))
+                }
             }
         }
     }

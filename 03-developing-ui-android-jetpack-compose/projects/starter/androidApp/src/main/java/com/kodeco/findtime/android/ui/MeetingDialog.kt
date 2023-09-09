@@ -1,5 +1,6 @@
 package com.kodeco.findtime.android.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -32,54 +34,61 @@ fun MeetingDialog(
 ) = Dialog(
     onDismissRequest = onDismiss
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(8.dp))
-            .padding(16.dp)
+    Surface(
+        border = BorderStroke(width = 1.dp, color = Color.Black),
+        shape = RoundedCornerShape(8.dp),
+        shadowElevation = 8.dp,
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        val listState = rememberLazyListState()
-        Text(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally),
-            text = "Meeting Times",
-            style = MaterialTheme.typography.bodyLarge
-        )
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp),
-            contentPadding = PaddingValues(16.dp),
-            state = listState,
+                .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(8.dp))
+                .padding(16.dp)
+        ) {
+            val listState = rememberLazyListState()
+            Text(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                text = "Meeting Times",
+                style = MaterialTheme.typography.bodyLarge
+            )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                contentPadding = PaddingValues(16.dp),
+                state = listState,
 
-            ) {
-            items(hours) { hour ->
-                Surface(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth(),
+                ) {
+                items(hours) { hour ->
+                    Surface(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth(),
                         color = MaterialTheme.colorScheme.background
 
                     ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                    ) {
-                        Text(hour.toString())
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                        ) {
+                            Text(hour.toString())
+                        }
                     }
                 }
             }
-        }
-        Spacer(modifier = Modifier.size(16.dp))
-        Button(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally),
-            onClick = {
-                onDismiss()
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                onClick = {
+                    onDismiss()
+                }
+            ) {
+                Text(text = stringResource(id = R.string.done))
             }
-        ) {
-            Text(text = stringResource(id = R.string.done))
-        }
 
+        }
     }
 }
