@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		3006E9CA26DC0169002F656A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3006E9C926DC0169002F656A /* Assets.xcassets */; };
-		3006E9CE26DC01FB002F656A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3006E9CD26DC01FB002F656A /* LaunchScreen.storyboard */; };
-		30079580273710EC0050CDE6 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3007957F273710EC0050CDE6 /* RemindersView.swift */; };
-		30079583273711650050CDE6 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30079582273711650050CDE6 /* AboutView.swift */; };
-		300795852737117A0050CDE6 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300795842737117A0050CDE6 /* AboutListView.swift */; };
-		306069BC2741AA4500E439A0 /* RemindersViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306069BB2741AA4500E439A0 /* RemindersViewModelWrapper.swift */; };
-		306069BE27426F6300E439A0 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306069BD27426F6300E439A0 /* ReminderItem.swift */; };
-		306069C02742709F00E439A0 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306069BF2742709F00E439A0 /* NewReminderTextField.swift */; };
-		30A7E8FF27819DBB0089FB9C /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A7E8FE27819DBB0089FB9C /* Koin.swift */; };
-		30B16C772760A6EB0020077D /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B16C762760A6EB0020077D /* iosAppUITests.swift */; };
+		301A789A2A96023200D37A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A78992A96023200D37A08 /* LaunchScreen.storyboard */; };
+		301A78A02A96030500D37A08 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A789F2A96030500D37A08 /* AboutView.swift */; };
+		301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A78A12A96030E00D37A08 /* RemindersView.swift */; };
+		30454C252AA922C400B13429 /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30454C242AA922C400B13429 /* iosAppUITests.swift */; };
+		3059CE792AADFB1E00E05B50 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059CE782AADFB1E00E05B50 /* Koin.swift */; };
+		3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3088EB642A9B77B4002D249F /* AboutListView.swift */; };
+		30ECB4992AA0B78B00878A44 /* RemindersViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */; };
+		30ECB49B2AA0C32E00878A44 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */; };
+		30ECB49D2AA0C3C300878A44 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		30B16C7A2760A6EB0020077D /* PBXContainerItemProxy */ = {
+		30454C282AA922C400B13429 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7555FF73242A565900829871 /* Project object */;
 			proxyType = 1;
@@ -45,25 +45,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
-		3006E9C926DC0169002F656A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3006E9CD26DC01FB002F656A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3007957F273710EC0050CDE6 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
-		30079582273711650050CDE6 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		300795842737117A0050CDE6 /* AboutListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
-		306069BB2741AA4500E439A0 /* RemindersViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModelWrapper.swift; sourceTree = "<group>"; };
-		306069BD27426F6300E439A0 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
-		306069BF2742709F00E439A0 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
-		30A7E8FE27819DBB0089FB9C /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
-		30B16C742760A6EB0020077D /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		30B16C762760A6EB0020077D /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
+		301A78992A96023200D37A08 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		301A789F2A96030500D37A08 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		301A78A12A96030E00D37A08 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
+		30454C222AA922C400B13429 /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30454C242AA922C400B13429 /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
+		3059CE782AADFB1E00E05B50 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
+		3088EB642A9B77B4002D249F /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
+		30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModelWrapper.swift; sourceTree = "<group>"; };
+		30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
+		30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30B16C712760A6EB0020077D /* Frameworks */ = {
+		30454C1F2AA922C400B13429 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,51 +80,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3006E9B926DBFF64002F656A /* UI */ = {
+		301A789B2A96025C00D37A08 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				7555FF82242A565900829871 /* ContentView.swift */,
-				30079581273711550050CDE6 /* About */,
-				3007957E273710DB0050CDE6 /* Reminders */,
+				301A789D2A96028900D37A08 /* About */,
+				301A789E2A96029000D37A08 /* Reminders */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		3006E9C426DC012F002F656A /* Supporting Files */ = {
+		301A789C2A96026100D37A08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3006E9CD26DC01FB002F656A /* LaunchScreen.storyboard */,
+				301A78992A96023200D37A08 /* LaunchScreen.storyboard */,
+				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				3006E9C926DC0169002F656A /* Assets.xcassets */,
-				30A7E8FE27819DBB0089FB9C /* Koin.swift */,
+				3059CE782AADFB1E00E05B50 /* Koin.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3007957E273710DB0050CDE6 /* Reminders */ = {
+		301A789D2A96028900D37A08 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				3007957F273710EC0050CDE6 /* RemindersView.swift */,
-				306069BB2741AA4500E439A0 /* RemindersViewModelWrapper.swift */,
-				306069BD27426F6300E439A0 /* ReminderItem.swift */,
-				306069BF2742709F00E439A0 /* NewReminderTextField.swift */,
-			);
-			path = Reminders;
-			sourceTree = "<group>";
-		};
-		30079581273711550050CDE6 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				30079582273711650050CDE6 /* AboutView.swift */,
-				300795842737117A0050CDE6 /* AboutListView.swift */,
+				301A789F2A96030500D37A08 /* AboutView.swift */,
+				3088EB642A9B77B4002D249F /* AboutListView.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
 		};
-		30B16C752760A6EB0020077D /* iosAppUITests */ = {
+		301A789E2A96029000D37A08 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
-				30B16C762760A6EB0020077D /* iosAppUITests.swift */,
+				301A78A12A96030E00D37A08 /* RemindersView.swift */,
+				30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */,
+				30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */,
+				30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */,
+			);
+			path = Reminders;
+			sourceTree = "<group>";
+		};
+		30454C232AA922C400B13429 /* iosAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30454C242AA922C400B13429 /* iosAppUITests.swift */,
 			);
 			path = iosAppUITests;
 			sourceTree = "<group>";
@@ -133,20 +133,17 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
-				30B16C752760A6EB0020077D /* iosAppUITests */,
+				30454C232AA922C400B13429 /* iosAppUITests */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
 			);
-			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 2;
-			usesTabs = 0;
 		};
 		7555FF7C242A565900829871 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* iosApp.app */,
-				30B16C742760A6EB0020077D /* iosAppUITests.xctest */,
+				30454C222AA922C400B13429 /* iosAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
-				3006E9B926DBFF64002F656A /* UI */,
-				3006E9C426DC012F002F656A /* Supporting Files */,
+				301A789B2A96025C00D37A08 /* UI */,
+				301A789C2A96026100D37A08 /* Supporting Files */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -171,29 +168,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30B16C732760A6EB0020077D /* iosAppUITests */ = {
+		30454C212AA922C400B13429 /* iosAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30B16C7E2760A6EB0020077D /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
+			buildConfigurationList = 30454C2C2AA922C400B13429 /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
 			buildPhases = (
-				30B16C702760A6EB0020077D /* Sources */,
-				30B16C712760A6EB0020077D /* Frameworks */,
-				30B16C722760A6EB0020077D /* Resources */,
+				30454C1E2AA922C400B13429 /* Sources */,
+				30454C1F2AA922C400B13429 /* Frameworks */,
+				30454C202AA922C400B13429 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				30B16C7B2760A6EB0020077D /* PBXTargetDependency */,
+				30454C292AA922C400B13429 /* PBXTargetDependency */,
 			);
 			name = iosAppUITests;
 			productName = iosAppUITests;
-			productReference = 30B16C742760A6EB0020077D /* iosAppUITests.xctest */;
+			productReference = 30454C222AA922C400B13429 /* iosAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		7555FF7A242A565900829871 /* iosApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
-				308D13B926DC0B9600FA1364 /* SwiftLint */,
+				301A78A32A96035600D37A08 /* SwiftLint */,
 				7555FFB5242A651A00829871 /* ShellScript */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF78242A565900829871 /* Frameworks */,
@@ -215,12 +212,13 @@
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1130;
-				ORGANIZATIONNAME = "Ray Wenderlich";
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
-					30B16C732760A6EB0020077D = {
-						CreatedOnToolsVersion = 13.1;
+					30454C212AA922C400B13429 = {
+						CreatedOnToolsVersion = 15.0;
 						TestTargetID = 7555FF7A242A565900829871;
 					};
 					7555FF7A242A565900829871 = {
@@ -229,7 +227,7 @@
 				};
 			};
 			buildConfigurationList = 7555FF76242A565900829871 /* Build configuration list for PBXProject "iosApp" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -242,13 +240,13 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* iosApp */,
-				30B16C732760A6EB0020077D /* iosAppUITests */,
+				30454C212AA922C400B13429 /* iosAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30B16C722760A6EB0020077D /* Resources */ = {
+		30454C202AA922C400B13429 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,17 +257,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3006E9CA26DC0169002F656A /* Assets.xcassets in Resources */,
-				3006E9CE26DC01FB002F656A /* LaunchScreen.storyboard in Resources */,
+				301A789A2A96023200D37A08 /* LaunchScreen.storyboard in Resources */,
+				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		308D13B926DC0B9600FA1364 /* SwiftLint */ = {
+		301A78A32A96035600D37A08 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -281,7 +279,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
 		};
@@ -297,6 +295,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/sharedFramework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -305,11 +304,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30B16C702760A6EB0020077D /* Sources */ = {
+		30454C1E2AA922C400B13429 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30B16C772760A6EB0020077D /* iosAppUITests.swift in Sources */,
+				30454C252AA922C400B13429 /* iosAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,45 +316,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30A7E8FF27819DBB0089FB9C /* Koin.swift in Sources */,
-				306069BC2741AA4500E439A0 /* RemindersViewModelWrapper.swift in Sources */,
-				30079583273711650050CDE6 /* AboutView.swift in Sources */,
+				3059CE792AADFB1E00E05B50 /* Koin.swift in Sources */,
+				30ECB4992AA0B78B00878A44 /* RemindersViewModelWrapper.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				301A78A02A96030500D37A08 /* AboutView.swift in Sources */,
+				301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */,
+				3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */,
+				30ECB49B2AA0C32E00878A44 /* ReminderItem.swift in Sources */,
+				30ECB49D2AA0C3C300878A44 /* NewReminderTextField.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				300795852737117A0050CDE6 /* AboutListView.swift in Sources */,
-				306069BE27426F6300E439A0 /* ReminderItem.swift in Sources */,
-				306069C02742709F00E439A0 /* NewReminderTextField.swift in Sources */,
-				30079580273710EC0050CDE6 /* RemindersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		30B16C7B2760A6EB0020077D /* PBXTargetDependency */ = {
+		30454C292AA922C400B13429 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7555FF7A242A565900829871 /* iosApp */;
-			targetProxy = 30B16C7A2760A6EB0020077D /* PBXContainerItemProxy */;
+			targetProxy = 30454C282AA922C400B13429 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		30B16C7C2760A6EB0020077D /* Debug */ = {
+		30454C2A2AA922C400B13429 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.iosAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize.iosAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,20 +361,18 @@
 			};
 			name = Debug;
 		};
-		30B16C7D2760A6EB0020077D /* Release */ = {
+		30454C2B2AA922C400B13429 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.iosAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize.iosAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -389,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -436,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -450,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -491,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -505,22 +503,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Supporting Files/Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
+				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Organize;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.organize;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -531,22 +533,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Supporting Files/Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
+				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Organize;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.organize;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -556,11 +562,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30B16C7E2760A6EB0020077D /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
+		30454C2C2AA922C400B13429 /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30B16C7C2760A6EB0020077D /* Debug */,
-				30B16C7D2760A6EB0020077D /* Release */,
+				30454C2A2AA922C400B13429 /* Debug */,
+				30454C2B2AA922C400B13429 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
