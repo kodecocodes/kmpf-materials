@@ -13,7 +13,6 @@ kotlin {
         }
     }
 
-    // 2
     ios()
     iosSimulatorArm64()
 
