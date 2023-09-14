@@ -85,6 +85,12 @@ kotlin {
       }
     }
 
+    getByName("androidUnitTest") {
+      dependencies {
+        implementation(kotlin("test-junit"))
+      }
+    }
+
     getByName("androidMain") {
       dependencies {
         implementation(libs.cash.sqldelight.android)

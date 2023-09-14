@@ -79,15 +79,16 @@ class SerializationTests {
     val data = PLATFORM.ALL
 
     val encoded = Json.encodeToString(serializers.serializer(), data)
-    val expectedString = "\"all\""
+    val expectedString = "\"${data.value.lowercase()}\""
     assertEquals(expectedString, encoded)
   }
 
   @Test
   fun testDecodeCustomPlatformAll() {
     val data = PLATFORM.ALL
+    val jsonString = "\"${data.value}\""
 
-    val decoded = Json.decodeFromString<PLATFORM>(data.value)
+    val decoded = Json.decodeFromString<PLATFORM>(jsonString)
     assertEquals(decoded, data)
   }
 
