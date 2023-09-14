@@ -85,8 +85,9 @@ class SerializationTests {
   @Test
   fun testDecodeCustomPlatformAll() {
     val data = PLATFORM.ALL
+    val jsonString = "\"${data.value}\""
 
-    val decoded = Json.decodeFromString<PLATFORM>(data.value)
+    val decoded = Json.decodeFromString<PLATFORM>(jsonString)
     assertEquals(decoded, data)
   }
 }
