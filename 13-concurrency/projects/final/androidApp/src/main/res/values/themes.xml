@@ -1,11 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Base application theme. -->
-  <style name="Theme.RW" parent="Theme.MaterialComponents.Light.NoActionBar">
-    <item name="colorPrimary">@color/colorContent</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/colorContent</item>
-    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
-    <item name="android:navigationBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+  <style name="Theme.Kodeco" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorBlackNight</item>
+    <item name="colorAccent">@color/colorBlackNight</item>
+    <item name="android:windowBackground">@color/colorBlackNight</item>
+    <item name="android:statusBarColor" >?attr/colorPrimary</item>
+    <item name="android:navigationBarColor" >?attr/colorPrimary</item>
     <item name="android:windowLightStatusBar">false</item>
     <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
   </style>
