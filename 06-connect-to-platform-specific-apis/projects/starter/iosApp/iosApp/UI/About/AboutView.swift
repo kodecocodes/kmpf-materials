@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -33,10 +33,11 @@
 import SwiftUI
 
 struct AboutView: View {
-  @Environment(\.dismiss) private var dismiss
+  @Environment(\.dismiss)
+  private var dismiss
 
   var body: some View {
-    NavigationView {
+    NavigationStack {
       Text("Hello World!")
         .navigationTitle("About Device")
         .toolbar {

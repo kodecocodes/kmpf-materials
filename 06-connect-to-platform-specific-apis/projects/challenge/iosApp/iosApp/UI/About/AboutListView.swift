@@ -1,15 +1,15 @@
-/// Copyright (c) 2022 Razeware LLC
-/// 
+/// Copyright (c) 2023 Kodeco LLC
+///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-/// 
+///
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-/// 
+///
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-/// 
+///
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -30,8 +30,8 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import Shared
 import SwiftUI
-import shared
 
 struct AboutListView: View {
   private struct RowItem: Hashable {
@@ -41,7 +41,6 @@ struct AboutListView: View {
 
   private let items: [RowItem] = {
     let platform = Platform()
-    platform.logSystemInfo()
 
     var result: [RowItem] = [
       .init(
@@ -58,18 +57,23 @@ struct AboutListView: View {
       )
     ]
 
-    if let screen = platform.screen {
-      let width = min(screen.width, screen.height)
-      let height = max(screen.width, screen.height)
+    let width = min(platform.screen.width, platform.screen.height)
+    let height = max(platform.screen.width, platform.screen.height)
 
-      result.append(
-        .init(
-          title: "Display",
-          subtitle: "\(width)×\(height) @\(screen.density)x"
-        )
-      )
+    var displayValue = "\(width)×\(height)"
+
+    if let density = platform.screen.density {
+      displayValue += " @\(density)x"
     }
 
+    result.append(
+      .init(
+        title: "Display",
+        subtitle: displayValue
+      )
+    )
+
+    //4
     return result
   }()
 
@@ -79,13 +83,16 @@ struct AboutListView: View {
         VStack(alignment: .leading) {
           Text(item.title)
             .font(.footnote)
-            .foregroundColor(.secondary)
+            .foregroundStyle(.secondary)
           Text(item.subtitle)
             .font(.body)
-            .foregroundColor(.primary)
+            .foregroundStyle(.primary)
         }
         .padding(.vertical, 4)
       }
+    }
+    .onAppear {
+      Platform().logSystemInfo()
     }
   }
 }
