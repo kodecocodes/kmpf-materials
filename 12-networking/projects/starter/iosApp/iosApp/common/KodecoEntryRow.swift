@@ -32,6 +32,7 @@
 
 import SwiftUI
 import SharedKit
+import SDWebImageSwiftUI
 
 struct KodecoEntryRow: View {
   let item: KodecoEntry
@@ -56,7 +57,18 @@ struct KodecoEntryRow: View {
     }, label: {
       VStack(alignment: .leading) {
         HStack {
-          AppIcon()
+          if item.imageUrl.isEmpty {
+            Rectangle().foregroundColor(.gray)
+            Image("kodeco")
+              .resizable()
+              .frame(width: 50, height: 50)
+          } else {
+            AnimatedImage(url: URL(string: "\(item.imageUrl)"))
+              .resizable()
+              .frame(width: 50, height: 50)
+              .cornerRadius(8)
+          }
+
           VStack(alignment: .leading) {
             Text("Kodeco")
               .foregroundColor(.white)

@@ -114,7 +114,7 @@ struct SearchView: View {
           }
         }
       }
-      .navigationTitle("learn")
+      .navigationBarTitle("learn", displayMode: .inline)
       .toolbar {
         MainToolbarContent()
       }
