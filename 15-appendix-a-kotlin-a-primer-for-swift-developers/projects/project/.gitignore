@@ -25,8 +25,6 @@ kamel-image/build
 precompose/build
 shared/build
 shared/swiftpackage
-shared-action/build
-shared-action/sharedaction
 
 # Local configuration file (sdk path, etc)
 local.properties
