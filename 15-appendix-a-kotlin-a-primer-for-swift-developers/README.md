@@ -19,7 +19,7 @@ Not required.
 <td>
     
 ```kotlin
-package com.raywenderlich.learn
+package com.kodeco.learn
 ```
 
 </td>
@@ -37,7 +37,7 @@ import SharedKit
 <td>
     
 ```kotlin
-import com.raywenderlich.learn.YourClass
+import com.kodeco.learn.YourClass
 ```
 
 </td>
@@ -78,14 +78,14 @@ import com.raywenderlich.learn.YourClass
 <td> 
 
 ```swift
-let author: String = "Ray Wenderlich"
+let author: String = "Kodeco"
 ```
 
 </td>
 <td>
     
 ```kotlin
-val author: String = "Ray Wenderlich"
+val author: String = "Kodeco"
 ```
 
 </td>
@@ -96,14 +96,14 @@ val author: String = "Ray Wenderlich"
 <td> 
 
 ```swift
-var author: String = "Ray Wenderlich"
+var author: String = "Kodeco"
 ```
 
 </td>
 <td>
     
 ```kotlin
-var author: String = "Ray Wenderlich"
+var author: String = "Kodeco"
 ```
 
 </td>
@@ -223,14 +223,14 @@ Logger.d(TAG, "The author is $author”)
 <td> 
 
 ```swift
-let author = "Ray Wenderlich"
+let author = "Kodeco"
 ```
 
 </td>
 <td>
     
 ```kotlin
-val author = "Ray Wenderlich"
+val author = "Kodeco"
 ```
 
 </td>
@@ -281,7 +281,7 @@ yourVariable as String
 
 ```swift
 extension String {
-  var toRW: String { "Ray Wenderlich" }
+  var toKodeco: String { "Kodeco" }
 }
 ```
 
@@ -289,8 +289,8 @@ extension String {
 <td>
     
 ```kotlin
-fun String.toRW(): String {
-  return "Ray Wenderlich"
+fun String.toKodeco(): String {
+  return "Kodeco"
 }
 ```
 
@@ -686,7 +686,7 @@ class YourClassName(private val arg: YourArgumentType)
 <td> 
 
 ```swift
-struct RWBook { 
+struct KodecoBook { 
   let platform: PLATFORM
   let url: String
   let image: String
@@ -697,7 +697,7 @@ struct RWBook {
 <td>
     
 ```kotlin
-data class RWBook(
+data class KodecoBook(
   val platform: PLATFORM,
   val url: String,
   val image: String
@@ -751,7 +751,7 @@ sealed class BottomNavigationScreens(
 <td> 
 
 ```swift
-class RWBook(
+class KodecoBook(
   let platform: PLATFORM = PLATFORM.ALL,
   let url: String,
   let image: String = ""
@@ -762,7 +762,7 @@ class RWBook(
 <td>
     
 ```kotlin
-data class RWBook(
+data class KodecoBook(
   val platform: PLATFORM = PLATFORM.ALL,
   val url: String,
   val image: String = ""
@@ -818,7 +818,7 @@ YourSingletonName.yourFunctionName()
 
 ```swift
 protocol YourInterfaceName {
-  func onDataReceived(items: RWBooks[])
+  func onDataReceived(items: KodecoBooks[])
 }
 ```
 
@@ -828,7 +828,7 @@ protocol YourInterfaceName {
 ```kotlin
 public interface YourInterfaceName {
 
-  public fun onDataReceived(items: List<RWBook>)
+  public fun onDataReceived(items: List<KodecoBook>)
 }
 ```
 
@@ -840,7 +840,7 @@ public interface YourInterfaceName {
 <td> 
 
 ```swift
-public func getBookInfo(book: RWBook) {
+public func getBookInfo(book: KodecoBook) {
 
   //Do something
 }
@@ -850,7 +850,7 @@ public func getBookInfo(book: RWBook) {
 <td>
     
 ```kotlin
-public fun getBookInfo(book: RWBook) {
+public fun getBookInfo(book: KodecoBook) {
 
   //Do something
 }
