@@ -1,15 +1,19 @@
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-  id("com.android.library")
-  id("kotlin-parcelize")
-  kotlin("plugin.serialization")
-  kotlin("multiplatform")
-  id("com.squareup.sqldelight")
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.google.ksp)
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.kotlin.parcelize)
+  alias(libs.plugins.jetbrains.kotlin.serialization)
+  alias(libs.plugins.cash.sqldelight)
+  alias(libs.plugins.kmp.nativeCoroutines)
   id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
 }
 
-version = "1.0"
+version = "2.0"
 
 multiplatformSwiftPackage {
   xcframeworkName("SharedKit")
@@ -20,116 +24,107 @@ multiplatformSwiftPackage {
 }
 
 sqldelight {
-  database("AppDb") {
-    packageName = "data"
+  databases {
+    create("AppDb") {
+      packageName.set("data")
+    }
   }
 }
 
 android {
-  compileSdk = 31
+  compileSdk = libs.versions.android.sdk.compile.get().toInt()
+
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
   defaultConfig {
-    minSdk = 24
-    targetSdk = 31
+    minSdk = libs.versions.android.sdk.min.get().toInt()
   }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  namespace = "com.kodeco.learn.shared"
 }
 
 kotlin {
+  // FIXME: Currently not possible to update due to SQLDelight forcing android()
   android()
 
   jvm("desktop")
 
   val xcf = XCFramework("SharedKit")
+
   listOf(
-    iosX64(),
-    iosArm64(),
-    iosSimulatorArm64()
+      iosX64(),
+      iosArm64(),
+      iosSimulatorArm64()
   ).forEach {
     it.binaries.framework {
       baseName = "SharedKit"
       xcf.add(this)
+
+      export(project(":shared-dto"))
+
+      // FIXME: https://youtrack.jetbrains.com/issue/KT-60230/Native-unknown-options-iossimulatorversionmin-sdkversion-with-Xcode-15-beta-3
+      if (System.getenv("XCODE_VERSION_MAJOR") == "1500") {
+        linkerOpts += "-ld64"
+      }
     }
   }
 
   sourceSets {
-    val commonMain by getting {
+    targetHierarchy.default()
+
+    getByName("commonMain") {
       dependencies {
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+        api(project(":shared-dto"))
 
-        implementation("com.soywiz.korlibs.korio:korio:2.4.10")
+        implementation(libs.kotlinx.datetime)
+        implementation(libs.kotlinx.serialization.json)
 
-        implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-serialization:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-content-negotiation:2.0.0-beta-1")
-        implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0-beta-1")
-        implementation("io.ktor:ktor-client-logging:2.0.0-beta-1")
+        implementation(libs.ktor.client.core)
+        implementation(libs.ktor.client.serialization)
+        implementation(libs.ktor.client.content.negotiation)
+        implementation(libs.ktor.client.logging)
+        implementation(libs.ktor.serialization.kotlinx.json)
+
+        implementation(libs.okio)
+        implementation(libs.korio)
       }
     }
 
-    val commonTest by getting {
+    getByName("commonTest") {
       dependencies {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
 
         implementation(kotlin("test-junit"))
-        implementation("junit:junit:4.13.2")
-        implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
+        implementation(libs.junit)
+        implementation(libs.ktor.client.mock)
       }
     }
 
-    val androidMain by getting {
+    getByName("androidMain") {
       dependencies {
-        implementation("com.squareup.sqldelight:android-driver:1.5.3")
+        implementation(libs.cash.sqldelight.android)
 
-        implementation("io.ktor:ktor-client-android:2.0.0-beta-1")
+        implementation(libs.ktor.client.android)
       }
     }
 
-    val androidTest by getting {
+    getByName("desktopMain") {
       dependencies {
-        implementation(kotlin("test-junit"))
-        implementation("junit:junit:4.13.2")
+        implementation(libs.cash.sqldelight.jvm)
       }
     }
 
-    val iosX64Main by getting
-    val iosArm64Main by getting
-    val iosSimulatorArm64Main by getting
-    val iosMain by creating {
-      dependsOn(commonMain)
-
+    getByName("iosMain") {
       dependencies {
-        implementation("com.squareup.sqldelight:native-driver:1.5.3")
+        implementation(libs.cash.sqldelight.native)
 
-        implementation("io.ktor:ktor-client-ios:2.0.0-beta-1")
-
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt") {
-          version {
-            strictly("1.6.0-native-mt")
-          }
-        }
-      }
-
-      iosX64Main.dependsOn(this)
-      iosArm64Main.dependsOn(this)
-      iosSimulatorArm64Main.dependsOn(this)
-    }
-
-    val iosX64Test by getting
-    val iosArm64Test by getting
-    val iosSimulatorArm64Test by getting
-    val iosTest by creating {
-      dependsOn(commonTest)
-
-      iosX64Test.dependsOn(this)
-      iosArm64Test.dependsOn(this)
-      iosSimulatorArm64Test.dependsOn(this)
-    }
-
-    val desktopMain by getting {
-      dependencies {
-        implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
+        implementation(libs.ktor.client.ios)
       }
     }
   }
@@ -137,4 +132,5 @@ kotlin {
 
 kotlin.sourceSets.all {
   languageSettings.optIn("kotlin.RequiresOptIn")
+  languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }

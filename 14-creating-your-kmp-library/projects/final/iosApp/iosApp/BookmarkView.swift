@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,39 +32,42 @@
 
 import SwiftUI
 import SharedKit
+import SDWebImageSwiftUI
 
 struct BookmarkView: View {
   let TAG = "BookmarkView"
 
   @State private var showDialog = false
 
-  @State private var selectedEntry: RWEntry?
+  @State private var selectedEntry: KodecoEntry?
 
-  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+  @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
   var body: some View {
     NavigationView {
       ZStack(alignment: .topLeading) {
-        Color("rw-dark")
+        Color("black-night")
         if feedViewModel.bookmarks.isEmpty {
           VStack(alignment: .center) {
             Text("You currently don't have any bookmark.")
               .foregroundColor(.white)
-              .font(Font.custom("Bitter-Bold", size: 15))
+              .font(Font.custom("OpenSans-Bold", size: 15))
           }
           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-          .background(Color("rw-dark"))
-          .navigationBarTitle("learn", displayMode: .inline)
+          .background(Color("black-night"))
         } else {
           ScrollView(.vertical) {
             ForEach(feedViewModel.bookmarks, id: \.id) { item in
-              RWEntryRow(item: item, addToBookmarks: false)
+              KodecoEntryRow(item: item, addToBookmarks: false)
                 .environmentObject(feedViewModel)
             }
           }
         }
       }
-      .navigationBarTitle("learn", displayMode: .inline)
+      .navigationTitle("learn")
+      .toolbar {
+        MainToolbarContent()
+      }
     }
     .onAppear {
       Logger().d(tag: TAG, message: "Retrieving all bookmarks")

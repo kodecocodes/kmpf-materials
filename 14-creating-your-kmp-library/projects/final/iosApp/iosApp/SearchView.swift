@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -40,11 +40,11 @@ struct SearchView: View {
 
   @State private var showDialog = false
 
-  @State private var selectedEntry: RWEntry?
+  @State private var selectedEntry: KodecoEntry?
 
-  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+  @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
-  var filteredItems: [RWEntry] {
+  var filteredItems: [KodecoEntry] {
     if self.text.isEmpty {
       return feedViewModel.items[PLATFORM.all.description()] ?? []
     } else {
@@ -56,7 +56,7 @@ struct SearchView: View {
   var body: some View {
     NavigationView {
       ZStack(alignment: .topLeading) {
-        Color("rw-dark")
+        Color("black-night")
         ScrollView(.vertical) {
           VStack {
             HStack {
@@ -108,13 +108,16 @@ struct SearchView: View {
             .padding(.vertical, 8.0)
 
             ForEach(filteredItems, id: \.id) { item in
-              RWEntryRow(item: item, addToBookmarks: true)
+              KodecoEntryRow(item: item, addToBookmarks: true)
                 .environmentObject(feedViewModel)
             }
           }
         }
       }
       .navigationBarTitle("learn", displayMode: .inline)
+      .toolbar {
+        MainToolbarContent()
+      }
     }
   }
 }
