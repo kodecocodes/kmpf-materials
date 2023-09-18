@@ -72,7 +72,7 @@ class KodecoEntryViewModel: ObservableObject {
   }
 
   @MainActor
-  func fetchFeedsWithPreview() {
+  func fetchLinkImage() {
     for platform in self.items.keys {
       guard let items = self.items[platform] else { continue }
       let subsetItems = Array(items[0 ..< Swift.min(self.fetchNImages, items.count)])
@@ -99,8 +99,6 @@ class KodecoEntryViewModel: ObservableObject {
             imageUrl: url,
             bookmarked: item.bookmarked
           )
-
-          Logger().d(tag: TAG, message: "\(list[index].title)Updated to:\(list[index].imageUrl)")
 
           self.items[platform.description] = list
         }

@@ -46,19 +46,16 @@ struct LatestView: View {
         ScrollView(.vertical) {
           VStack {
             ForEach(Array(feedViewModel.items.keys.sorted()), id: \.self) { key in
-              Section(platform: key, entries: feedViewModel.items[key] ?? [])
+              let item = feedViewModel.items[key] ?? []
+              Section(platform: item.first?.platform.value ?? key, entries: item)
             }
           }
-          .navigationTitle("learn")
+          .navigationBarTitle("learn", displayMode: .inline)
           .toolbar {
             MainToolbarContent()
           }
         }
       }
-    }
-    .onAppear {
-      Logger().d(tag: TAG, message: "Retrieving all feeds")
-      feedViewModel.fetchFeedsWithPreview()
     }
   }
 }
