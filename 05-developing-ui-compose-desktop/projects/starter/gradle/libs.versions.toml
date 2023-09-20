@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.0-beta03"
+agp = "8.2.0-beta04"
 kotlin = "1.9.10"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -17,7 +17,7 @@ material3 = "1.2.0-alpha07"
 kotlinxDateTime = "0.4.0"
 napier = "2.6.1"
 composePlugin = "1.5.1"
-multiplatformPlugin = "1.9.0"
+multiplatformPlugin = "1.9.10"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
