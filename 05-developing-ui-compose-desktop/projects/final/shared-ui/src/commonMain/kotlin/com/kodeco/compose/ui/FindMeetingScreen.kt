@@ -71,7 +71,7 @@ fun FindMeetingScreen(
                 .fillMaxWidth()
                 .wrapContentWidth(Alignment.CenterHorizontally),
             text = "Time Range",
-            style = MaterialTheme.typography.headlineSmall.copy(color = Color.Black)
+            style = MaterialTheme.typography.headlineSmall.copy(color = MaterialTheme.colorScheme.onBackground)
         )
         Spacer(modifier = Modifier.size(16.dp))
         Row(
@@ -98,7 +98,7 @@ fun FindMeetingScreen(
                     .fillMaxWidth()
                     .wrapContentWidth(Alignment.CenterHorizontally),
                 text = "Time Zones",
-                style = MaterialTheme.typography.headlineSmall.copy(color = Color.Black)
+                style = MaterialTheme.typography.headlineSmall.copy(color = MaterialTheme.colorScheme.onBackground)
             )
         }
         Spacer(modifier = Modifier.size(16.dp))
@@ -141,16 +141,16 @@ fun FindMeetingScreen(
             OutlinedButton(
                 colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {
-                meetingHours.clear()
-                meetingHours.addAll(
-                    timezoneHelper.search(
-                        startTime.intValue,
-                        endTime.intValue,
-                        getSelectedTimeZones(timezoneStrings, selectedTimeZones)
+                    meetingHours.clear()
+                    meetingHours.addAll(
+                        timezoneHelper.search(
+                            startTime.intValue,
+                            endTime.intValue,
+                            getSelectedTimeZones(timezoneStrings, selectedTimeZones)
+                        )
                     )
-                )
-                showMeetingDialog.value = true
-            }) {
+                    showMeetingDialog.value = true
+                }) {
                 Text("Search")
             }
         }

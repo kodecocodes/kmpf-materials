@@ -26,6 +26,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
@@ -100,7 +101,7 @@ fun NumberPicker(
         IconButton(onClick = {
             hour.value++
         }) {
-            Icon(Icons.Filled.ArrowUpward, contentDescription = "Up")
+            Icon(Icons.Filled.ArrowUpward, contentDescription = "Up", tint = Color.Black)
         }
 
         Spacer(modifier = Modifier.height(spacing))
@@ -136,7 +137,7 @@ fun NumberPicker(
         IconButton(onClick = {
             hour.value--
         }) {
-            Icon(Icons.Filled.ArrowDownward, contentDescription = "Down")
+            Icon(Icons.Filled.ArrowDownward, contentDescription = "Down", tint = Color.Black)
         }
 
     }
@@ -146,6 +147,7 @@ fun NumberPicker(
 private fun Label(text: String, modifier: Modifier) {
     Text(
         text = text,
+        color = Color.Black,
         modifier = modifier.pointerInput(Unit) {
             detectTapGestures(onLongPress = {
                 // FIXME: Empty to disable text selection
