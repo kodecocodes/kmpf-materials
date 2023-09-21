@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -40,21 +40,20 @@ struct TimezoneApp: App {
         tabBarItemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
         tabBarItemAppearance.normal.iconColor = .black
         tabBarItemAppearance.selected.iconColor = .white
-        
+
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.stackedLayoutAppearance = tabBarItemAppearance
         appearance.backgroundColor = .systemBlue
-        
+
         UITabBar.appearance().standardAppearance = appearance
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
     }
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+		}
+	}
 }

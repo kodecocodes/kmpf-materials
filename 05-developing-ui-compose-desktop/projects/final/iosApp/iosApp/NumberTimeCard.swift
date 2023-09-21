@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -72,7 +72,6 @@ struct NumberTimeCard: View {
         .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 1.0), lineWidth: 1)
     )
     .padding(.leading, 16).padding(.bottom, 16).padding(.trailing, 16)
-//    .padding([.vertical, .horizontal])
   }
 }
 
