@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ import SharedKit
 public class FeedClient {
   private init() { }
 
-  public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
+  public typealias FeedHandler = (_ platform: String, _ items: [KodecoEntry]) -> Void
   public typealias FeedHandlerImage = (_ id: String, _ url: String, _ platform: PLATFORM) -> Void
 
   public typealias ProfileHandler = (_ profile: GravatarEntry) -> Void
@@ -48,7 +48,7 @@ public class FeedClient {
   private var handlerImage: FeedHandlerImage?
   private var handlerProfile: ProfileHandler?
 
-  public func getContent() -> [RWContent] {
+  public func getContent() -> [KodecoContent] {
     return feedPresenter.content
   }
 
@@ -67,8 +67,8 @@ public class FeedClient {
 }
 
 extension FeedClient: FeedData {
-  public func onNewDataAvailable(items: [RWEntry], platform: PLATFORM, exception: KotlinException?) {
-    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
+  public func onNewDataAvailable(items: [KodecoEntry], platform: PLATFORM, exception: KotlinException?) {
+    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items.count)")
     self.handler?(platform.description(), items)
   }
 
