@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -34,15 +34,15 @@ import SwiftUI
 
 struct NewReminderTextField: View {
   @Binding var text: String
-  var onCommit: () -> Void
+  var onSubmit: () -> Void
 
   var body: some View {
     TextField(
       "Add new reminder here",
-      text: $text,
-      onEditingChanged: { _ in },
-      onCommit: onCommit
-    )
+      text: $text
+    ).onSubmit {
+      onSubmit()
+    }
   }
 }
 

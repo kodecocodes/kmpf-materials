@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,13 +32,10 @@
 
 import XCTest
 
-// swiftlint:disable type_name
-class iosAppUITests: XCTestCase {
+final class iosAppUITests: XCTestCase {
   private let app = XCUIApplication()
 
   override func setUp() {
-    super.setUp()
-
     continueAfterFailure = false
     app.launch()
   }
@@ -59,4 +56,3 @@ class iosAppUITests: XCTestCase {
     XCTAssertTrue(remindersPageTitle.exists)
   }
 }
-// swiftlint:enable type_name

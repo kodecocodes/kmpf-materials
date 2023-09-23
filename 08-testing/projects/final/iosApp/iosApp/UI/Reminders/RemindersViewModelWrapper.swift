@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Combine
-import shared
+import Observation
+import Shared
 
-final class RemindersViewModelWrapper: ObservableObject {
+@Observable
+final class RemindersViewModelWrapper {
   let viewModel = RemindersViewModel()
 
-  @Published private(set) var reminders: [Reminder] = []
+  private(set) var reminders: [Reminder] = []
 
   init() {
     viewModel.onRemindersUpdated = { [weak self] items in

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,13 +34,13 @@
 
 package ui.theme
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val LightColorPalette = lightColors(
+private val lightColorScheme = lightColorScheme(
   primary = ColorPrimary,
-  primaryVariant = ColorPrimaryDark,
+  primaryContainer = ColorPrimaryDark,
   secondary = ColorAccent
 
   /* Other default colors to override
@@ -55,10 +55,8 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun AppTheme(content: @Composable () -> Unit) {
-  val colors = LightColorPalette
-
   MaterialTheme(
-    colors = colors,
+    colorScheme = lightColorScheme,
     typography = Typography,
     shapes = Shapes,
     content = content
