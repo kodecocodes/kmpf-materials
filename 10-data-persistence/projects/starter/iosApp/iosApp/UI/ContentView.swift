@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,10 @@ struct ContentView: View {
   @State private var shouldOpenAbout = false
 
   var body: some View {
-    NavigationView {
+    NavigationStack {
       RemindersView()
         .toolbar {
-          ToolbarItem(placement: .bottomBar) {
+          ToolbarItem {
             Button {
               shouldOpenAbout = true
             } label: {
@@ -47,7 +47,6 @@ struct ContentView: View {
                 .labelStyle(.titleAndIcon)
             }
             .accessibilityIdentifier("aboutButton")
-            .padding(8)
             .popover(isPresented: $shouldOpenAbout) {
               AboutView()
                 .frame(

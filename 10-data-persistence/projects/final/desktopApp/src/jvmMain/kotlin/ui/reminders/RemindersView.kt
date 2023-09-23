@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,22 +36,42 @@ package ui.reminders
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.neverEqualPolicy
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.*
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEvent
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -61,8 +81,8 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.organize.domain.Reminder
-import com.raywenderlich.organize.presentation.RemindersViewModel
+import com.yourcompany.organize.domain.Reminder
+import com.yourcompany.organize.presentation.RemindersViewModel
 import koin
 
 @Composable
@@ -76,6 +96,7 @@ fun RemindersView(
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Toolbar(
   onAboutButtonClick: () -> Unit,
@@ -85,7 +106,7 @@ private fun Toolbar(
     actions = {
       IconButton(
         onClick = onAboutButtonClick,
-        modifier = Modifier.semantics { contentDescription = "aboutButton" },
+        modifier = Modifier.semantics { contentDescription = "aboutButton" }
       ) {
         Icon(
           imageVector = Icons.Outlined.Info,
@@ -97,27 +118,27 @@ private fun Toolbar(
 }
 
 @Composable
-private fun ContentView(viewModel: RemindersViewModel) {
-  var textFieldValue by remember { mutableStateOf("") }
+private fun ContentView(
+  viewModel: RemindersViewModel
+) {
   var reminders by remember {
     mutableStateOf(listOf<Reminder>(), policy = neverEqualPolicy())
   }
+
   val focusManager = LocalFocusManager.current
-  val focusRequester = FocusRequester.Default
+  val focusRequester = remember { FocusRequester() }
   var shouldFocusOnTextField by remember { mutableStateOf(false) }
+
+  var textFieldValue by remember { mutableStateOf("") }
 
   viewModel.onRemindersUpdated = {
     reminders = it
   }
 
-  LazyColumn(
-    modifier = Modifier
-      .fillMaxSize()
-      .padding(top = 4.dp, bottom = 8.dp)
-  ) {
+  LazyColumn(modifier = Modifier.fillMaxSize()) {
     items(items = reminders) { item ->
       val onItemClick = {
-        focusManager.clearFocus()
+        focusManager.clearFocus(true)
         viewModel.markReminder(id = item.id, isCompleted = !item.isCompleted)
       }
 
@@ -177,13 +198,13 @@ private fun ReminderItem(
     Text(
       text = title,
       style = if (isCompleted) {
-        MaterialTheme.typography.body1.copy(
+        MaterialTheme.typography.bodyLarge.copy(
           textDecoration = TextDecoration.LineThrough,
           fontStyle = FontStyle.Italic,
           color = Color.Gray,
         )
       } else {
-        MaterialTheme.typography.body1
+        MaterialTheme.typography.bodyLarge
       },
       modifier = Modifier.padding(8.dp),
     )
