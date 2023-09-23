@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -35,14 +35,14 @@ import SwiftUI
 // swiftlint:disable type_name
 @main
 struct iOSApp: App {
-  init() {
-    Koin.start()
-  }
-
   var body: some Scene {
     WindowGroup {
       ContentView()
     }
+  }
+
+  init() {
+    Koin.start()
   }
 }
 // swiftlint:enable type_name

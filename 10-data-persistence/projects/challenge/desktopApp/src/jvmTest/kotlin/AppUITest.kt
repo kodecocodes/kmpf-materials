@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +36,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.raywenderlich.organize.presentation.Screen
+import com.yourcompany.organize.presentation.Screen
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -70,14 +71,14 @@ class AppUITest {
   fun testAboutButtonExistence() {
     composeTestRule
       .onNodeWithContentDescription("aboutButton")
-      .assertExists()
+      .assertIsDisplayed()
   }
 
   @Test
   fun testOpeningAboutPage() {
     composeTestRule
       .onNodeWithText("Reminders")
-      .assertExists()
+      .assertIsDisplayed()
 
     composeTestRule
       .onNodeWithContentDescription("aboutButton")
@@ -87,6 +88,6 @@ class AppUITest {
 
     composeTestRule
       .onNodeWithContentDescription("aboutView")
-      .assertExists()
+      .assertIsDisplayed()
   }
 }
