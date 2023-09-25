@@ -51,7 +51,7 @@ actual val platformModule = module {
   }
 
   single<SqlDriver> {
-    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+    val driver = JdbcSqliteDriver("jdbc:sqlite:OrganizeDb.db")
     OrganizeDb.Schema.create(driver)
     driver
   }
