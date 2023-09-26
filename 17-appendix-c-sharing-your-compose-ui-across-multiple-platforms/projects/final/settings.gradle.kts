@@ -10,10 +10,11 @@ pluginManagement {
 rootProject.name = "learn"
 include(":androidApp")
 include(":desktopApp")
-include(":iosAppCompose")
 
 include(":shared")
 include(":shared-ui")
+include(":shared-dto")
 include(":shared-action")
 
 includeBuild("plugins/multiplatform-swiftpackage-m1_support")
+include(":shared-logger")

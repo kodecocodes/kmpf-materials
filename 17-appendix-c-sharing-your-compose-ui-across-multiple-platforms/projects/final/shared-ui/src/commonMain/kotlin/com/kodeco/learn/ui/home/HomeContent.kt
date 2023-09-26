@@ -63,9 +63,10 @@ import com.kodeco.learn.ServiceLocator
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.common.AddEntryContent
-import com.kodeco.learn.ui.theme.Fonts
+import dev.icerock.moko.resources.compose.fontFamilyResource
 import kotlinx.coroutines.CoroutineScope
 
 private const val TAG = "HomeContent"
@@ -149,7 +150,7 @@ fun AddPlatformHeadings(
 
         Text(
           text = it.platform.value,
-          fontFamily = Fonts.OpenSansFontFamily()
+          fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
         )
       }
     }

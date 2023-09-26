@@ -32,182 +32,102 @@
  * THE SOFTWARE.
  */
 
-import org.jetbrains.compose.desktop.application.tasks.AbstractNativeMacApplicationPackageAppDirTask
-import org.jetbrains.kotlin.gradle.plugin.mpp.AbstractExecutable
-import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
-import org.jetbrains.kotlin.library.impl.KotlinLibraryLayoutImpl
-import java.io.FileFilter
-import org.jetbrains.kotlin.konan.file.File as KonanFile
-
-
 plugins {
-  alias(libs.plugins.jetbrains.kotlin.multiplatform)
-  alias(libs.plugins.jetbrains.compose)
-  alias(libs.plugins.android.library)
-  alias(libs.plugins.moko.multiplatform.resources)
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.moko.multiplatform.resources)
 }
 
 multiplatformResources {
-  multiplatformResourcesPackage = "com.kodeco.learn.ui"
+    multiplatformResourcesPackage = "com.kodeco.learn.ui"
 }
 
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-  androidTarget()
+    targetHierarchy.default()
 
-  jvm("desktop")
+    androidTarget()
 
-  listOf(
-    iosX64(),
-    iosArm64(),
-    iosSimulatorArm64()
-  ).forEach { iosTarget ->
-    iosTarget.binaries.framework {
-      baseName = "shared"
-      isStatic = true
-      linkerOpts.add("-lsqlite3")
-    }
-  }
-
-  sourceSets {
-    val commonMain by getting {
-      dependencies {
-        api(compose.foundation)
-        api(compose.runtime)
-        api(compose.material)
-        api(compose.material3)
-        api(compose.ui)
-
-        @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-        implementation(compose.components.resources)
-
-        api(project(":shared"))
-
-        api(libs.kotlinx.datetime)
-
-        api(libs.image.loader)
-
-        api(libs.precompose)
-        api(libs.precompose.viewmodel)
-
-        api(libs.moko.resources)
-        api(libs.moko.resources.compose)
-      }
+    jvm("desktop")
+    
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "SharedUIKit"
+            linkerOpts.add("-lsqlite3")
+        }
     }
 
-    val androidMain by getting
+    sourceSets {
+        getByName("commonMain") {
+            dependencies {
+                api(project(":shared"))
+                api(project(":shared-logger"))
 
-    val desktopMain by getting {
-      dependsOn(commonMain)
+                api(compose.foundation)
+                api(compose.material)
+                api(compose.material3)
+                api(compose.runtime)
+                api(compose.ui)
 
-      // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/desktopMain/src")
-    }
+                implementation(libs.kotlinx.datetime)
 
-    val iosX64Main by getting {
-      // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/iosX64Main/src")
-    }
-    val iosArm64Main by getting{
-      // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/iosArm64Main/src")
-    }
-    val iosSimulatorArm64Main by getting{
-      // https://github.com/icerockdev/moko-resources/issues/510
-      resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
-    }
-    val iosMain by creating {
-      dependsOn(commonMain)
+                implementation(libs.image.loader)
 
-      iosX64Main.dependsOn(this)
-      iosArm64Main.dependsOn(this)
-      iosSimulatorArm64Main.dependsOn(this)
+                api(libs.precompose)
+                api(libs.precompose.viewmodel)
+
+                api(libs.moko.resources)
+                api(libs.moko.resources.compose)
+            }
+        }
+
+        getByName("commonTest") {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+
+        getByName("desktopMain") {
+            // https://github.com/icerockdev/moko-resources/issues/510
+            resources.srcDirs("build/generated/moko/desktopMain/src")
+        }
+
+        getByName("iosX64Main") {
+            // https://github.com/icerockdev/moko-resources/issues/510
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+
+        getByName("iosArm64Main") {
+            // https://github.com/icerockdev/moko-resources/issues/510
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
+
+        getByName("iosSimulatorArm64Main") {
+            // https://github.com/icerockdev/moko-resources/issues/510
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+        }
     }
-  }
 }
 
 android {
-  compileSdkPreview = libs.versions.android.sdk.compile.get()
+    namespace = "com.kodeco.learn.ui"
 
-  sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  // https://github.com/icerockdev/moko-resources/issues/510
-  sourceSets["main"].java.srcDirs("build/generated/moko/androidMain/src")
-  sourceSets["main"].res.srcDirs("src/androidMain/res", "src/commonMain/resources")
+    compileSdk = 33
 
-  defaultConfig {
-    minSdk = libs.versions.android.sdk.min.get().toInt()
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-  }
-
-  sourceSets {
-    named("main") {
-      resources.srcDir("src/commonMain/resources")
+    defaultConfig {
+        minSdk = 24
     }
-  }
 
-  namespace = "com.kodeco.learn.ui"
-}
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
-// todo: Remove when resolved: https://github.com/icerockdev/moko-resources/issues/372
-tasks.withType<KotlinNativeLink>()
-        .matching { linkTask -> linkTask.binary is AbstractExecutable }
-        .configureEach {
-          val task: KotlinNativeLink = this
-
-          doLast {
-            val outputDir: File = task.outputFile.get().parentFile
-            task.libraries
-                    .filter { library -> library.extension == "klib" }
-                    .filter(File::exists)
-                    .forEach { inputFile ->
-                      val klibKonan = KonanFile(inputFile.path)
-                      val klib = KotlinLibraryLayoutImpl(
-                              klib = klibKonan,
-                              component = "default"
-                      )
-                      val layout = klib.extractingToTemp
-
-                      // extracting bundles
-                      layout
-                              .resourcesDir
-                              .absolutePath
-                              .let(::File)
-                              .listFiles(FileFilter { it.extension == "bundle" })
-                              // copying bundles to app
-                              ?.forEach { bundleFile ->
-                                logger.info("${bundleFile.absolutePath} copying to $outputDir")
-                                bundleFile.copyRecursively(
-                                        target = File(outputDir, bundleFile.name),
-                                        overwrite = true
-                                )
-                              }
-                    }
-          }
-        }
-
-tasks.withType<AbstractNativeMacApplicationPackageAppDirTask> {
-  val task: AbstractNativeMacApplicationPackageAppDirTask = this
-
-  doLast {
-    val execFile: File = task.executable.get().asFile
-    val execDir: File = execFile.parentFile
-    val destDir: File = task.destinationDir.asFile.get()
-    val bundleID: String = task.bundleID.get()
-
-    val outputDir = File(destDir, "$bundleID.app/Contents/Resources")
-    outputDir.mkdirs()
-
-    execDir.listFiles().orEmpty()
-            .filter { it.extension == "bundle" }
-            .forEach { bundleFile ->
-              logger.info("${bundleFile.absolutePath} copying to $outputDir")
-              bundleFile.copyRecursively(
-                      target = File(outputDir, bundleFile.name),
-                      overwrite = true
-              )
-            }
-  }
+    // https://github.com/icerockdev/moko-resources/issues/510
+    sourceSets["main"].java.srcDirs("build/generated/moko/androidMain/src")
 }

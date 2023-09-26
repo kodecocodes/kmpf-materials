@@ -40,7 +40,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -53,27 +52,26 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.common.AddEntryContent
-import com.kodeco.learn.ui.theme.Fonts
+import dev.icerock.moko.resources.compose.fontFamilyResource
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.CoroutineScope
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 private const val TAG = "SearchContent"
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchContent(
-  selected: MutableState<KodecoEntry>,
-  items: SnapshotStateMap<PLATFORM, List<KodecoEntry>>,
-  coroutineScope: CoroutineScope,
-  bottomSheetScaffoldState: BottomSheetScaffoldState,
-  onOpenEntry: (String) -> Unit
+    selected: MutableState<KodecoEntry>,
+    items: SnapshotStateMap<PLATFORM, List<KodecoEntry>>,
+    coroutineScope: CoroutineScope,
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    onOpenEntry: (String) -> Unit
 ) {
 
   Surface {
@@ -100,60 +98,59 @@ fun SearchContent(
     }
 
     LazyColumn(
-      modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
 
-      content = {
+        content = {
 
-        item {
-          AddSearchField(search)
+          item {
+            AddSearchField(search)
+          }
+
+          items(results) {
+
+            AddEntryContent(
+                item = it,
+                selected = selected,
+                coroutineScope = coroutineScope,
+                bottomSheetScaffoldState = bottomSheetScaffoldState,
+                onOpenEntry = onOpenEntry
+            )
+          }
         }
-
-        items(results) {
-
-          AddEntryContent(
-            item = it,
-            selected = selected,
-            coroutineScope = coroutineScope,
-            bottomSheetScaffoldState = bottomSheetScaffoldState,
-            onOpenEntry = onOpenEntry
-          )
-        }
-      }
     )
   }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 fun AddSearchField(search: MutableState<String>) {
 
   val focused = remember { mutableStateOf(false) }
 
   OutlinedTextField(
-    value = search.value,
-    onValueChange = { value ->
-      search.value = value
-    },
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(16.dp)
-      .onFocusChanged {
-        focused.value = it.isFocused
+      value = search.value,
+      onValueChange = { value ->
+        search.value = value
       },
-    placeholder = {
-      Text(
-        text = stringResource(MR.strings.search_hint),
-        fontFamily = Fonts.OpenSansFontFamily()
-      )
-    },
-    leadingIcon = {
-      val resource = painterResource("ic_search.xml")
-      val description = stringResource(MR.strings.description_search)
+      modifier = Modifier
+          .fillMaxWidth()
+          .padding(16.dp)
+          .onFocusChanged {
+            focused.value = it.isFocused
+          },
+      placeholder = {
+        Text(
+            text = stringResource(MR.strings.search_hint),
+            fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
+        )
+      },
+      leadingIcon = {
+        val resource = painterResource(MR.images.ic_search)
+        val description = stringResource(MR.strings.description_search)
 
-      Icon(
-        painter = resource,
-        contentDescription = description
-      )
-    }
+        Icon(
+            painter = resource,
+            contentDescription = description
+        )
+      }
   )
 }

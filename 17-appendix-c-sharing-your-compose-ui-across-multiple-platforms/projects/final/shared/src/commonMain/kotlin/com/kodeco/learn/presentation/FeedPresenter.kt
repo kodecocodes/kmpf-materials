@@ -36,16 +36,23 @@ package com.kodeco.learn.presentation
 
 import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoContent
+import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.GetFeedData
 import com.kodeco.learn.domain.cb.FeedData
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
+import io.ktor.utils.io.core.toByteArray
 import korlibs.crypto.md5
-import korlibs.io.lang.toByteArray
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
@@ -61,11 +68,10 @@ private const val KODECO_CONTENT = "[" +
     "{\"platform\":\"growth\", \"url\":\"https://kodeco.com/professional-growth/feed\", \"image\":\"https://files.carolus.kodeco.com/gl22boss4ptciv7px3nnzcnct4ht?response_content_disposition=inline%3B+filename%3D%22progro.png%22%3B+filename%2A%3DUTF-8%27%27progro.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
+
 
 class FeedPresenter(private val feed: GetFeedData) {
-
-  private val scope = CoroutineScope(Dispatchers.IO)
 
   private val json = Json { ignoreUnknownKeys = true }
 
@@ -73,51 +79,55 @@ class FeedPresenter(private val feed: GetFeedData) {
     json.decodeFromString(KODECO_CONTENT)
   }
 
-  public fun fetchAllFeeds(cb: FeedData) {
+  @NativeCoroutines
+  public fun fetchAllFeeds(): Flow<List<KodecoEntry>> {
     Logger.d(TAG, "fetchAllFeeds")
 
-    for (feed in content) {
-      fetchFeed(feed.platform, feed.image, feed.url, cb)
-    }
+    return flow {
+      for (feed in content) {
+        emit(
+            fetchFeed(feed.platform, feed.image, feed.url)
+        )
+      }
+    }.flowOn(Dispatchers.IO)
   }
 
-  private fun fetchFeed(
-    platform: PLATFORM,
-    imageUrl: String,
-    feedUrl: String,
-    cb: FeedData
-  ) {
-    scope.launch {
+  private suspend fun fetchFeed(
+      platform: PLATFORM,
+      imageUrl: String,
+      feedUrl: String,
+  ): List<KodecoEntry> {
+    return CoroutineScope(Dispatchers.IO).async {
       feed.invokeFetchKodecoEntry(
-        platform = platform,
-        imageUrl = imageUrl,
-        feedUrl = feedUrl,
-        onSuccess = { cb.onNewDataAvailable(it, platform, null) },
-        onFailure = { cb.onNewDataAvailable(emptyList(), platform, it) }
-      )
-    }
-  }
-
-  public suspend fun fetchLinkImage(link: String): String {
-    return scope.async {
-      feed.invokeFetchImageUrlFromLink(
-        link
+          platform = platform,
+          imageUrl = imageUrl,
+          feedUrl = feedUrl
       )
     }.await()
   }
 
+  public suspend fun fetchLinkImage(link: String): String {
+    return CoroutineScope(Dispatchers.IO).async {
+      feed.invokeFetchImageUrlFromLink(
+          link
+      )
+    }.await()
+  }
+
+
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
 
-    CoroutineScope(Dispatchers.Default).launch {
+    CoroutineScope(Dispatchers.IO).launch {
       cb.onMyGravatarData(fetchMyGravatar())
     }
   }
 
-  private suspend fun fetchMyGravatar(): GravatarEntry {
-    return CoroutineScope(Dispatchers.Default).async {
+  @NativeCoroutines
+  public suspend fun fetchMyGravatar(): GravatarEntry {
+    return CoroutineScope(Dispatchers.IO).async {
       feed.invokeGetMyGravatar(
-        hash = GRAVATAR_EMAIL.toByteArray().md5().toString()
+          hash = GRAVATAR_EMAIL.toByteArray().md5().toString()
       )
     }.await()
   }

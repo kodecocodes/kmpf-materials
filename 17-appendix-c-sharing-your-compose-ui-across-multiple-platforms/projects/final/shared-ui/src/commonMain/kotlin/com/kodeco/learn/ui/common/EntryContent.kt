@@ -57,22 +57,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
-import com.kodeco.learn.platform.formatDate
-import com.kodeco.learn.ui.theme.Fonts
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
+import com.kodeco.learn.utils.converterIso8601ToReadableDate
+import dev.icerock.moko.resources.compose.fontFamilyResource
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.datetime.toInstant
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 private const val TAG = "EntryContent"
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalResourceApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AddEntryContent(
   item: KodecoEntry,
@@ -124,12 +122,12 @@ fun AddEntryContent(
 
           Text(
             text = stringResource(MR.strings.app_kodeco),
-            fontFamily = Fonts.OpenSansFontFamily()
+            fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
           )
 
           Text(
-            text = formatDate(item.updated.toInstant().toEpochMilliseconds()),
-            fontFamily = Fonts.OpenSansFontFamily()
+            text = converterIso8601ToReadableDate(item.updated),
+            fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
           )
         }
       }
@@ -139,7 +137,7 @@ fun AddEntryContent(
         horizontalArrangement = Arrangement.End
       ) {
 
-        val resource = painterResource("ic_more.xml")
+        val resource = painterResource(MR.images.ic_more)
         val description = stringResource(MR.strings.description_more)
 
         Icon(
@@ -161,16 +159,16 @@ fun AddEntryContent(
 
     Text(
       text = item.title,
-      fontFamily = Fonts.OpenSansFontFamily()
+      fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
     )
 
     Spacer(modifier = Modifier.height(4.dp))
 
     Text(
       text = item.summary,
-      fontFamily = Fonts.OpenSansFontFamily(),
       maxLines = 2,
-      overflow = TextOverflow.Ellipsis
+      overflow = TextOverflow.Ellipsis,
+      fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
     )
 
     Spacer(modifier = Modifier.height(16.dp))

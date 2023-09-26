@@ -43,9 +43,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.common.AddEmptyScreen
 import com.kodeco.learn.ui.common.AddEntryContent
 import dev.icerock.moko.resources.compose.stringResource

@@ -46,10 +46,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
-import com.kodeco.learn.ui.theme.Fonts
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
+import dev.icerock.moko.resources.compose.fontFamilyResource
 import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -95,7 +95,7 @@ fun HomeSheetContent(
         modifier = Modifier
           .fillMaxWidth()
           .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 12.dp),
-        fontFamily = Fonts.OpenSansFontFamily()
+        fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
       )
     }
 
@@ -115,7 +115,7 @@ fun HomeSheetContent(
         modifier = Modifier
           .fillMaxWidth()
           .padding(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp),
-        fontFamily = Fonts.OpenSansFontFamily()
+        fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
       )
     }
   }

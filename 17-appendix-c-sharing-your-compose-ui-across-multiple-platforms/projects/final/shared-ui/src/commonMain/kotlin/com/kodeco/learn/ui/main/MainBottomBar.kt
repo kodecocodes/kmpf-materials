@@ -43,11 +43,12 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.theme.Fonts
+import com.kodeco.learn.ui.MR
+import dev.icerock.moko.resources.compose.fontFamilyResource
 import dev.icerock.moko.resources.compose.stringResource
 import moe.tlaster.precompose.navigation.Navigator
 
@@ -55,55 +56,55 @@ private lateinit var selectedIndex: MutableState<Int>
 
 @Composable
 fun MainBottomBar(
-  navController: Navigator,
-  items: List<BottomNavigationScreens>
+    navController: Navigator,
+    items: List<BottomNavigationScreens>
 ) {
 
   Column {
     Row(
-      modifier = Modifier
-        .fillMaxWidth()
-        .height(1.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(1.dp)
     ) {}
 
     AppBottomNavigation(
-      navController = navController,
-      items = items
+        navController = navController,
+        items = items
     )
   }
 }
 
 @Composable
 private fun AppBottomNavigation(
-  navController: Navigator,
-  items: List<BottomNavigationScreens>
+    navController: Navigator,
+    items: List<BottomNavigationScreens>
 ) {
   BottomAppBar {
 
-    selectedIndex = remember { mutableStateOf(0) }
+    selectedIndex = remember { mutableIntStateOf(0) }
 
     items.forEachIndexed { index, screen ->
 
       val isSelected = selectedIndex.value == index
 
       NavigationBarItem(
-        icon = {
-          screen.icon()
-        },
-        label = {
-          Text(
-            text = stringResource(screen.title),
-            fontFamily = Fonts.OpenSansFontFamily()
-          )
-        },
-        selected = isSelected,
-        alwaysShowLabel = true,
-        onClick = {
-          if (!isSelected) {
-            selectedIndex.value = index
-            navController.navigate(screen.route)
+          icon = {
+            screen.icon()
+          },
+          label = {
+            Text(
+                text = stringResource(screen.title),
+                fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
+            )
+          },
+          selected = isSelected,
+          alwaysShowLabel = true,
+          onClick = {
+            if (!isSelected) {
+              selectedIndex.value = index
+              navController.navigate(screen.route)
+            }
           }
-        }
       )
     }
   }

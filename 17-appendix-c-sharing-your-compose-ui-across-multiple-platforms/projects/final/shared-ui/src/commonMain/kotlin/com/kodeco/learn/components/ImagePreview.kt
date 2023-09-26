@@ -45,20 +45,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.ui.MR
-import com.kodeco.learn.platform.Logger
 import com.seiko.imageloader.rememberImagePainter
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 private const val TAG = "ImagePreview"
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun AddImagePreview(
-  url: String,
-  modifier: Modifier
+    url: String,
+    modifier: Modifier
 ) {
 
   Logger.d(TAG, "Loading image from uri=$url")
@@ -70,54 +68,53 @@ fun AddImagePreview(
   } else {
     Box {
 
-      val resource = painterResource("ic_brand.xml")
+      val resource = painterResource(MR.images.ic_brand)
 
       val painter = rememberImagePainter(
-        url = url,
-        placeholderPainter = { resource },
-        errorPainter = { resource }
+          url = url,
+          placeholderPainter = { resource },
+          errorPainter = { resource }
       )
 
       Image(
-        painter = painter,
-        contentScale = ContentScale.Crop,
-        contentDescription = "Image preview",
-        modifier = modifier
+          painter = painter,
+          contentScale = ContentScale.Crop,
+          contentDescription = "Image preview",
+          modifier = modifier
       )
     }
   }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun AddImagePreviewEmpty(
-  modifier: Modifier
+    modifier: Modifier
 ) {
 
   Column(
-    modifier = modifier.fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
+      modifier = modifier.fillMaxSize(),
+      verticalArrangement = Arrangement.Center,
+      horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
     Surface(
-      modifier = modifier,
-      color = Color.Transparent
+        modifier = modifier,
+        color = Color.Transparent
     ) {
 
-      val resource = painterResource("ic_brand.xml")
+      val resource = painterResource(MR.images.ic_brand)
       val description = stringResource(MR.strings.description_preview_error)
 
       Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+          horizontalAlignment = Alignment.CenterHorizontally,
+          verticalArrangement = Arrangement.Center
       ) {
 
         Image(
-          painter = resource,
-          contentScale = ContentScale.Crop,
-          contentDescription = description,
-          modifier = modifier
+            painter = resource,
+            contentScale = ContentScale.Crop,
+            contentDescription = description,
+            modifier = modifier
         )
       }
     }

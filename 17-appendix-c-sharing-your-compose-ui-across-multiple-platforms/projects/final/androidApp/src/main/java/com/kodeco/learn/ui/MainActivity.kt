@@ -34,9 +34,17 @@
 
 package com.kodeco.learn.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+import com.kodeco.learn.ui.R
 import com.kodeco.learn.action.Action.openLink
 import com.kodeco.learn.action.activityContext
 import com.kodeco.learn.data.model.KodecoEntry
@@ -74,14 +82,28 @@ class MainActivity : PreComposeActivity() {
       val profile = feedViewModel.profile
       val bookmarks = bookmarkViewModel.items
 
-      KodecoTheme {
+      val darkTheme = isSystemInDarkTheme()
+      KodecoTheme(
+          darkTheme = darkTheme
+      ) {
+
+        val view = LocalView.current
+        val colorScheme = MaterialTheme.colorScheme
+        if (!view.isInEditMode) {
+          SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = colorScheme.surface.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+          }
+        }
+
         MainScreen(
-          avatarUrl = profile.value.thumbnailUrl,
-          feeds = items,
-          bookmarks = bookmarks,
-          onUpdateBookmark = { onUpdateBookmark(it) },
-          onShareAsLink = { shareAsLink(it) },
-          onOpenEntry = { openEntry(it) }
+            profile = profile.value,
+            feeds = items,
+            bookmarks = bookmarks,
+            onUpdateBookmark = { onUpdateBookmark(it) },
+            onShareAsLink = { shareAsLink(it) },
+            onOpenEntry = { openEntry(it) }
         )
       }
     }

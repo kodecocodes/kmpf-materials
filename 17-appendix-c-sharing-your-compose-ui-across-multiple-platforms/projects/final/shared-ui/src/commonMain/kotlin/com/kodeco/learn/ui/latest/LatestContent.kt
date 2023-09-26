@@ -60,19 +60,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.components.HorizontalPagerIndicator
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.common.AddEmptyScreen
-import com.kodeco.learn.ui.theme.Fonts
 import com.kodeco.learn.ui.theme.colorContent20Transparency
 import com.kodeco.learn.ui.theme.colorContent85Transparency
+import dev.icerock.moko.resources.compose.fontFamilyResource
 import dev.icerock.moko.resources.compose.stringResource
 
 private const val TAG = "LatestContent"
+
+private const val ITEMS = 5
 
 @Composable
 fun LatestContent(
@@ -110,7 +112,7 @@ fun AddPages(
 
       AddNewPage(
         platform = platform,
-        items = items[platform] ?: emptyList(),
+        items = items[platform]?.subList(0, ITEMS) ?: emptyList(),
         onOpenEntry = onOpenEntry
       )
     }
@@ -137,7 +139,7 @@ fun AddNewPage(
   ) {
     Text(
       text = platform.value,
-      fontFamily = Fonts.OpenSansFontFamily()
+      fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
     )
 
     HorizontalPager(
@@ -204,7 +206,7 @@ fun AddNewPageEntry(
       Text(
         text = entry.title,
         modifier = Modifier.padding(16.dp),
-        fontFamily = Fonts.OpenSansFontFamily()
+        fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
       )
     }
   }

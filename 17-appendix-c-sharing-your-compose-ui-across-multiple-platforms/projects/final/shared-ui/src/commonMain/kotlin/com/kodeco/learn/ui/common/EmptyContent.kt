@@ -41,7 +41,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.kodeco.learn.ui.theme.Fonts
+import com.kodeco.learn.ui.MR
+import dev.icerock.moko.resources.compose.fontFamilyResource
 
 @Composable
 fun AddEmptyScreen(text: String) {
@@ -53,7 +54,7 @@ fun AddEmptyScreen(text: String) {
 
     Text(
       text = text,
-      fontFamily = Fonts.OpenSansFontFamily()
+      fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
     )
   }
 }

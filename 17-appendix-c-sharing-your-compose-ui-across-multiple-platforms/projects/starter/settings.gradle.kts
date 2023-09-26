@@ -12,8 +12,8 @@ include(":androidApp")
 include(":desktopApp")
 
 include(":shared")
+include(":shared-dto")
 include(":shared-action")
+include(":shared-logger")
 
-include(":kamel-core")
-include(":kamel-image")
-include(":precompose")
+includeBuild("plugins/multiplatform-swiftpackage-m1_support")

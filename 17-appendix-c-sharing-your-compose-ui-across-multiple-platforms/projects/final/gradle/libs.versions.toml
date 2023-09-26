@@ -1,31 +1,41 @@
 [versions]
 gradle = "8.1.1"
-android-sdk-compile = "UpsideDownCake"
+android-sdk-compile = "34"
 android-sdk-min = "24"
 android-sdk-target = "34"
-android-compose-compiler = "1.5.1"
+android-compose-compiler = "1.5.3"
 android-material = "1.9.0"
+androidx-compose-bom = "2023.09.00"
+androidx-lifecycle-runtime-ktx = "2.6.1"
+androidx-navigation-compose = "2.7.1"
 image-loader = "1.6.4"
-junit = "4.13.2"
 korio = "4.0.9"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kotlinx-datetime = "0.4.0"
-jetbrains-compose = "1.5.0"
-kotlinx-serialization-json = "1.5.1"
-ktor-client-logging = "2.3.3"
-ktor-serialization-kotlinx-json = "2.3.3"
-ktor-client-content-negotiation = "2.3.3"
-ktor-client-serialization = "2.3.3"
-ktor-client-core = "2.3.3"
-maven-publish = "0.25.3"
+kotlinx-serialization-json = "1.6.0"
+ktor = "2.3.4"
+ksp = "1.9.10-1.0.13"
+jetbrains-compose = "1.5.1"
+junit = "4.13.2"
 moko-resources = "0.23.0"
-multiplatform-swift-package = "2.0.4"
+nativeCoroutines = "1.0.0-ALPHA-18"
 okio = "3.5.0"
-precompose = "1.5.0"
+precompose = "1.5.1"
 sqldelight = "2.0.0"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-material = { module = "androidx.compose.material:material" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
+
 cash-sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 cash-sqldelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 cash-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
@@ -34,14 +44,14 @@ junit = { module = "junit:junit", version.ref = "junit" }
 korio = { module = "com.soywiz.korlibs.korio:korio", version.ref = "korio" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
-ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-client-logging" }
-ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor-client-logging" }
-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-client-logging" }
-ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor-client-logging" }
-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-serialization-kotlinx-json" }
-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-client-content-negotiation" }
-ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor-client-serialization" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client-core" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
@@ -52,11 +62,11 @@ precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
 cash-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+kmp-NativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativeCoroutines" }
 moko-multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
-multiplatform-swift = { id = "com.chromaticnoise.multiplatform-swiftpackage-m1-support", version.ref = "multiplatform-swift-package" }

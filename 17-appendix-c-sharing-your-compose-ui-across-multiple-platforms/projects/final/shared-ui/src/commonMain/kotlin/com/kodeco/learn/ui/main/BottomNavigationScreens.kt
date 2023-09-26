@@ -38,9 +38,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import com.kodeco.learn.ui.MR
 import dev.icerock.moko.resources.StringResource
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 sealed class BottomNavigationScreens(
   val route: String,
@@ -48,49 +47,45 @@ sealed class BottomNavigationScreens(
   val icon: @Composable () -> Unit
 ) {
 
-  @OptIn(ExperimentalResourceApi::class)
-  object Home : BottomNavigationScreens(
+  data object Home : BottomNavigationScreens(
     route = "Home",
     title = MR.strings.navigation_home,
     icon = {
       Icon(
-        painter = painterResource("ic_home.xml"),
+        painter = painterResource(MR.images.ic_home),
         contentDescription = stringResource(MR.strings.navigation_home)
       )
     }
   )
 
-  @OptIn(ExperimentalResourceApi::class)
-  object Bookmark : BottomNavigationScreens(
+  data object Bookmark : BottomNavigationScreens(
     route = "Bookmark",
     title = MR.strings.navigation_bookmark,
     icon = {
       Icon(
-        painter = painterResource("ic_bookmarks.xml"),
+        painter = painterResource(MR.images.ic_bookmarks),
         contentDescription = stringResource(MR.strings.navigation_bookmark)
       )
     }
   )
 
-  @OptIn(ExperimentalResourceApi::class)
-  object Latest : BottomNavigationScreens(
+  data object Latest : BottomNavigationScreens(
     route = "Latest",
     title = MR.strings.navigation_latest,
     icon = {
       Icon(
-        painter = painterResource("ic_latest.xml"),
+        painter = painterResource(MR.images.ic_latest),
         contentDescription = stringResource(MR.strings.navigation_latest)
       )
     }
   )
 
-  @OptIn(ExperimentalResourceApi::class)
-  object Search : BottomNavigationScreens(
+  data object Search : BottomNavigationScreens(
     route = "Search",
     title = MR.strings.navigation_search,
     icon = {
       Icon(
-        painter = painterResource("ic_search.xml"),
+        painter = painterResource(MR.images.ic_search),
         contentDescription = stringResource(MR.strings.navigation_search)
       )
     }

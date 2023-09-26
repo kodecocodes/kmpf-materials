@@ -47,42 +47,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.kodeco.learn.ui.MR
 import com.kodeco.learn.components.AddImagePreview
-import com.kodeco.learn.ui.theme.Fonts
+import com.kodeco.learn.data.model.GravatarEntry
+import com.kodeco.learn.ui.MR
+import dev.icerock.moko.resources.compose.fontFamilyResource
 import dev.icerock.moko.resources.compose.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainTopAppBar(
-  avatarUrl: String?
+    profile: GravatarEntry?
 ) {
 
   CenterAlignedTopAppBar(
-    title = {
-      Text(
-        text = stringResource(MR.strings.app_name),
-        fontFamily = Fonts.OpenSansFontFamily()
-      )
-    },
-    actions = {
-      IconButton(onClick = {
-        //Do nothing
-      }) {
-        if (avatarUrl == null) {
-          Icon(
-            imageVector = Icons.Filled.Person,
-            contentDescription = stringResource(MR.strings.description_profile)
-          )
-        } else {
-          AddImagePreview(
-            url = avatarUrl,
-            modifier = Modifier
-              .clip(CircleShape)
-              .size(25.dp)
-          )
+      title = {
+        Text(
+            text = stringResource(MR.strings.app_name),
+            fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
+        )
+      },
+      actions = {
+        IconButton(onClick = {
+          //Do nothing
+        }) {
+          val avatarUrl = profile?.thumbnailUrl
+          if (avatarUrl == null) {
+            Icon(
+                imageVector = Icons.Filled.Person,
+                contentDescription = stringResource(MR.strings.description_profile)
+            )
+          } else {
+            AddImagePreview(
+                url = avatarUrl,
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(25.dp)
+            )
+          }
         }
       }
-    }
   )
 }

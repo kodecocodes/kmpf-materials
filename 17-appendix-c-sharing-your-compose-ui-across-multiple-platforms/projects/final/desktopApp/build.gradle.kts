@@ -9,16 +9,16 @@ kotlin {
 
   jvm {
     compilations.all {
-      kotlinOptions.jvmTarget = "11"
+      kotlinOptions.jvmTarget = "17"
     }
   }
 
   sourceSets {
-    val jvmMain by getting {
+    getByName("jvmMain") {
       dependencies {
-        implementation(project(":shared"))
         implementation(project(":shared-ui"))
         implementation(project(":shared-action"))
+
         implementation(compose.desktop.currentOs)
       }
     }
@@ -51,8 +51,4 @@ compose.desktop {
       }
     }
   }
-}
-
-kotlin.sourceSets.all {
-  languageSettings.optIn("kotlin.RequiresOptIn")
 }
