@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,18 +35,22 @@
 package ui.about
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.organize.Platform
+import com.yourcompany.organize.Platform
 import kotlin.math.max
 import kotlin.math.min
 
@@ -71,18 +75,20 @@ private fun ContentView() {
 private fun makeItems(): List<Pair<String, String>> {
   val platform = Platform()
 
-  val items = mutableListOf(
+  val items = mutableListOf<Pair<String, String>>(
     Pair("Operating System", "${platform.osName} ${platform.osVersion}"),
     Pair("Device", platform.deviceModel),
     Pair("CPU", platform.cpuType)
   )
 
-  platform.screen?.let {
-    val max = max(it.width, it.height)
-    val min = min(it.width, it.height)
+  val max = max(platform.screen.width, platform.screen.height)
+  val min = min(platform.screen.width, platform.screen.height)
 
-    items.add(Pair("Display", "${max}×${min} @${it.density}x"))
+  var displayInfo = "${max}×${min}"
+  platform.screen.density?.let {
+    displayInfo += " ${it}x"
   }
+  items.add(Pair("Display", displayInfo))
 
   return items
 }
@@ -99,13 +105,13 @@ private fun RowView(
     ) {
       Text(
         text = title,
-        style = MaterialTheme.typography.caption,
+        style = MaterialTheme.typography.bodySmall,
         color = Color.Gray,
         modifier = Modifier.weight(1f)
       )
       Text(
         text = subtitle,
-        style = MaterialTheme.typography.body1,
+        style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(8.dp)
       )
     }

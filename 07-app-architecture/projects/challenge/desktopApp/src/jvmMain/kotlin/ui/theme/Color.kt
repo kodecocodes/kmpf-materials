@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,4 +38,4 @@ import androidx.compose.ui.graphics.Color
 
 val ColorPrimary = Color(0xFF006837)
 val ColorPrimaryDark = Color(0xFF004012)
-val ColorAccent = Color(0xFFC75F00)
+val ColorAccent = Color(0xFFC75f00)

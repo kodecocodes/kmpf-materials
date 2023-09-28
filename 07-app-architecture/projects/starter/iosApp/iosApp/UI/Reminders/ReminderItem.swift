@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -38,13 +38,19 @@ struct ReminderItem: View {
 
   var body: some View {
     HStack {
-      Image(systemName: isCompleted ? "largecircle.fill.circle" : "circle")
-        .imageScale(.large)
-        .foregroundColor(isCompleted ? .accentColor : .secondary)
+      Image(
+        systemName: isCompleted ? "largecircle.fill.circle" : "circle"
+      )
+      .imageScale(.large)
+      .foregroundStyle(
+        isCompleted ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary)
+      )
       Text(title)
         .font(.body)
         .strikethrough(isCompleted, color: nil)
-        .foregroundColor(isCompleted ? .secondary : .primary)
+        .foregroundStyle(
+          isCompleted ? .secondary : .primary
+        )
       Spacer()
     }
     .contentShape(Rectangle())
@@ -57,6 +63,5 @@ struct ReminderItem_Previews: PreviewProvider {
       ReminderItem(title: "New Item", isCompleted: false)
       ReminderItem(title: "Done Item", isCompleted: true)
     }
-    .previewLayout(.sizeThatFits)
   }
 }

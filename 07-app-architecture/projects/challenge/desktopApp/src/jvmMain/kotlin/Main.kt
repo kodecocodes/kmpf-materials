@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,6 @@
  * THE SOFTWARE.
  */
 
-
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,8 +41,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.raywenderlich.organize.presentation.AboutViewModel
-import com.raywenderlich.organize.presentation.Screen
+import com.yourcompany.organize.presentation.Screen
 import ui.about.AboutView
 import ui.about.AboutWindow
 import ui.reminders.RemindersView
@@ -57,7 +55,9 @@ fun main() {
     AppTheme {
       RemindersWindow(
         onCloseRequest = ::exitApplication,
-        onAboutButtonClick = { screenState = Screen.AboutDevice }
+        onAboutButtonClick = {
+          screenState = Screen.AboutDevice
+        }
       )
 
       if (screenState == Screen.AboutDevice) {
