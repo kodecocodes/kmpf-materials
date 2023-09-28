@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
+*/
 
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  kotlin("multiplatform") // kotlin("jvm") doesn't work well in IDEA/AndroidStudio (https://github.com/JetBrains/compose-jb/issues/22)
+  kotlin("multiplatform")
   id("org.jetbrains.compose")
 }
-
-group = "com.raywenderlich.organize"
-version = "1.0.0"
 
 kotlin {
   jvm {
@@ -49,19 +45,17 @@ kotlin {
   }
 
   sourceSets {
-    named("jvmMain") {
-      kotlin.srcDirs("src/jvmMain/kotlin")
-      resources.srcDirs("src/jvmMain/resources")
-
+    val jvmMain by getting {
       dependencies {
         implementation(project(":shared"))
         implementation(compose.desktop.currentOs)
+        implementation(compose.material3)
       }
     }
-    named("jvmTest") {
+
+    val jvmTest by getting {
       dependencies {
-        @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-        implementation(compose.uiTestJUnit4)
+        implementation(compose.desktop.uiTestJUnit4)
         implementation(compose.desktop.currentOs)
       }
     }
@@ -78,11 +72,11 @@ compose.desktop {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       appResourcesRootDir.set(resources)
       packageName = "Organize"
-      packageVersion = "1.0.0"
+      packageVersion = "2.0.0"
 
       macOS {
         // Use -Pcompose.desktop.mac.sign=true to sign and notarize.
-        bundleID = "com.raywenderlich.organize.desktop"
+        bundleID = "com.yourcompany.organize.desktop"
         iconFile.set(resources.file("macos-icon.icns"))
       }
 
@@ -95,12 +89,4 @@ compose.desktop {
       }
     }
   }
-}
-
-tasks.named<Copy>("jvmProcessResources") {
-  duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-  kotlinOptions.freeCompilerArgs += "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi"
 }
