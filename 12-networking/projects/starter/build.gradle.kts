@@ -1,36 +1,18 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-
-buildscript {
-  repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-    classpath("org.jetbrains.kotlin:kotlin-serialization:1.6.10")
-    classpath("com.android.tools.build:gradle:7.1.2")
-    classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
-  }
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.jetbrains.kotlin) apply false
+  alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
+  alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
+  alias(libs.plugins.jetbrains.kotlin.serialization) apply false
 }
 
 allprojects {
   repositories {
     google()
     mavenCentral()
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
-  }
-  afterEvaluate {
-    project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
-      ext.sourceSets.removeAll { sourceSet ->
-        setOf(
-          "androidAndroidTestRelease",
-          "androidTestFixtures",
-          "androidTestFixturesDebug",
-          "androidTestFixturesRelease",
-        ).contains(sourceSet.name)
-      }
-    }
   }
 }
 
