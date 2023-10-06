@@ -36,6 +36,11 @@ kotlin {
     targetHierarchy.default()
 
     androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_17.toString()
+            }
+        }
         publishLibraryVariants("release", "debug")
     }
 
@@ -57,12 +62,6 @@ kotlin {
         getByName("commonMain") {
             dependencies {
                 //put your multiplatform dependencies here
-            }
-        }
-
-        getByName("commonTest") {
-            dependencies {
-                implementation(kotlin("test"))
             }
         }
 
