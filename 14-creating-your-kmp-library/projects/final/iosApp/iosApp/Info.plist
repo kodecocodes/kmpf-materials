@@ -24,21 +24,19 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BitterBold.ttf</string>
-		<string>BitterExtraBold.ttf</string>
-		<string>BitterLight.ttf</string>
-		<string>BitterRegular.ttf</string>
-		<string>BitterSemiBold.ttf</string>
+		<string>OpenSansBold.ttf</string>
+		<string>OpenSansExtraBold.ttf</string>
+		<string>OpenSansLight.ttf</string>
+		<string>OpenSansRegular.ttf</string>
+		<string>OpenSansSemiBold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-	<key>UILaunchScreen</key>
-	<dict/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>LaunchScreen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
