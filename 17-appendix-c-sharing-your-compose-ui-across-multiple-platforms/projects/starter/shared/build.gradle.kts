@@ -66,11 +66,6 @@ kotlin {
       xcf.add(this)
 
       export(project(":shared-dto"))
-
-      // FIXME: https://youtrack.jetbrains.com/issue/KT-60230/Native-unknown-options-iossimulatorversionmin-sdkversion-with-Xcode-15-beta-3
-      if (System.getenv("XCODE_VERSION_MAJOR") == "1500") {
-        linkerOpts += "-ld64"
-      }
     }
   }
 
