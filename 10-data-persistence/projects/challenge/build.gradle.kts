@@ -33,7 +33,7 @@
  */
 
 plugins {
-  val agpVersion = "8.1.1"
+  val agpVersion = "8.1.2"
   val kotlinVersion = "1.9.10"
   val jetbrainsComposeVersion = "1.5.1"
   val sqlDelightVersion = "2.0.0"
