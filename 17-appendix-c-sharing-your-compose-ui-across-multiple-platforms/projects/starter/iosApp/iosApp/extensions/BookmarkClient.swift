@@ -31,6 +31,7 @@
 /// THE SOFTWARE.
 
 import SharedKit
+import SharedLogger
 
 public class BookmarkClient {
   public typealias BookmarkHandler = (_ items: [KodecoEntry]) -> Void

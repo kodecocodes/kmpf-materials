@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 /*
  * Copyright (c) 2023 Kodeco Inc
  *
@@ -35,6 +37,17 @@
 plugins {
   kotlin("multiplatform")
   id("com.android.library")
+  id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
+}
+
+version = "1.0"
+
+multiplatformSwiftPackage {
+  xcframeworkName("SharedLogger")
+  swiftToolsVersion("5.3")
+  targetPlatforms {
+    iOS { v("13") }
+  }
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -45,6 +58,7 @@ kotlin {
 
   jvm("desktop")
 
+  val xcf = XCFramework("SharedLogger")
   listOf(
       iosX64(),
       iosArm64(),
@@ -52,6 +66,7 @@ kotlin {
   ).forEach {
     it.binaries.framework {
       baseName = "SharedLogger"
+      xcf.add(this)
     }
   }
 

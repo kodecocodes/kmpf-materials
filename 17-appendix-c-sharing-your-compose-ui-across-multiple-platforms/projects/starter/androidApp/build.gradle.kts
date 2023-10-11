@@ -39,7 +39,7 @@ plugins {
 
 dependencies {
   implementation(project(":shared"))
-  implementation("com.kodeco.shared:shared-action:1.0")
+  implementation(project(":shared-action"))
 
   implementation(libs.android.material)
   implementation(libs.androidx.navigation.compose)

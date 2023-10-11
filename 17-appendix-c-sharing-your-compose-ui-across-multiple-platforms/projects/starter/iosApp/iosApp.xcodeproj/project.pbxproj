@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		2DB30AF32AD73C5D006A9510 /* SharedAction.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; };
+		2DB30AF42AD73C5D006A9510 /* SharedAction.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2DB30AF62AD73E5A006A9510 /* SharedLogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB30AF52AD73E5A006A9510 /* SharedLogger.xcframework */; };
+		2DB30AF72AD73E5A006A9510 /* SharedLogger.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB30AF52AD73E5A006A9510 /* SharedLogger.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF412AB6828E0043F9A3 /* KMPNativeCoroutinesAsync */; };
 		6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF432AB6828E0043F9A3 /* KMPNativeCoroutinesCombine */; };
 		6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF452AB6828E0043F9A3 /* KMPNativeCoroutinesCore */; };
@@ -34,7 +38,6 @@
 		67C6FF342A98FD95008A2221 /* KodecoEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */; };
 		67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; };
 		67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		67D0DC5C2AB7EAAA007D0EA9 /* SharedAction in Frameworks */ = {isa = PBXBuildFile; productRef = 67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +48,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2DB30AF42AD73C5D006A9510 /* SharedAction.xcframework in Embed Frameworks */,
 				67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */,
+				2DB30AF72AD73E5A006A9510 /* SharedLogger.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		2DB30AF22AD73C38006A9510 /* sharedaction */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = sharedaction; path = "../shared-action/sharedaction"; sourceTree = "<group>"; };
+		2DB30AF52AD73E5A006A9510 /* SharedLogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedLogger.xcframework; path = "../shared-logger/swiftpackage/SharedLogger.xcframework"; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
 		670990602714FDEA0048A7B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,10 +95,11 @@
 				6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */,
 				67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */,
 				6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */,
+				2DB30AF32AD73C5D006A9510 /* SharedAction.xcframework in Frameworks */,
 				6702DF482AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift in Frameworks */,
 				6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */,
+				2DB30AF62AD73E5A006A9510 /* SharedLogger.xcframework in Frameworks */,
 				67BD5C082A9B555900FFDFEA /* SDWebImageSwiftUI in Frameworks */,
-				67D0DC5C2AB7EAAA007D0EA9 /* SharedAction in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +148,8 @@
 		67D0DC522AB7DDF9007D0EA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DB30AF52AD73E5A006A9510 /* SharedLogger.xcframework */,
+				2DB30AF22AD73C38006A9510 /* sharedaction */,
 				67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */,
 				67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */,
 			);
@@ -201,7 +211,6 @@
 				6702DF432AB6828E0043F9A3 /* KMPNativeCoroutinesCombine */,
 				6702DF452AB6828E0043F9A3 /* KMPNativeCoroutinesCore */,
 				6702DF472AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift */,
-				67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */,
 			);
 			productName = iosApp;
 			productReference = 6763BD832AA6402000A70BAA /* iosApp.app */;
@@ -235,7 +244,6 @@
 			packageReferences = (
 				67BD5C012A9B543E00FFDFEA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				6702DF402AB6828E0043F9A3 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
-				67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */,
 			);
 			productRefGroup = 7555FF72242A565900829871;
 			projectDirPath = "";
@@ -544,14 +552,6 @@
 				minimumVersion = 2.2.3;
 			};
 		};
-		67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cmota/shared-action";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -579,11 +579,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 67BD5C012A9B543E00FFDFEA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */;
-			productName = SharedAction;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -32,6 +32,7 @@
 
 import SharedKit
 import KMPNativeCoroutinesAsync
+import SharedLogger
 
 public class FeedClient {
   private init() { }
