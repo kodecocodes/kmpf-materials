@@ -2,10 +2,10 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.android.application) apply false
-  alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.androidLibrary) apply false
   alias(libs.plugins.google.ksp) apply false
   alias(libs.plugins.jetbrains.kotlin) apply false
-  alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
+  alias(libs.plugins.kotlinMultiplatform) apply false
   alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
   alias(libs.plugins.jetbrains.kotlin.serialization) apply false
   alias(libs.plugins.kmp.nativeCoroutines) apply false

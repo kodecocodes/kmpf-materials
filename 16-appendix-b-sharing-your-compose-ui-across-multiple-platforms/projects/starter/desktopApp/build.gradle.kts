@@ -1,7 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.kotlinMultiplatform)
   alias(libs.plugins.jetbrains.compose)
 }
 

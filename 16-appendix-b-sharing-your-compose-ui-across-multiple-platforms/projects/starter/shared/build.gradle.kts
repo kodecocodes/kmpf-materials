@@ -3,9 +3,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-  alias(libs.plugins.android.library)
+  alias(libs.plugins.androidLibrary)
   alias(libs.plugins.google.ksp)
-  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.kotlinMultiplatform)
   alias(libs.plugins.jetbrains.kotlin.parcelize)
   alias(libs.plugins.jetbrains.kotlin.serialization)
   alias(libs.plugins.cash.sqldelight)
