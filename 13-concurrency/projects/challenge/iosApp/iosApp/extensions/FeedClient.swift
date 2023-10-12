@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,46 +31,52 @@
 /// THE SOFTWARE.
 
 import SharedKit
+import KMPNativeCoroutinesAsync
 
 public class FeedClient {
   private init() { }
 
-  public typealias FeedHandler = (_ platform: String, _ items: [RWEntry]) -> Void
   public typealias FeedHandlerImage = (_ url: String) -> Void
-
-  public typealias ProfileHandler = (_ profile: GravatarEntry) -> Void
 
   public static let shared = FeedClient()
 
   private let feedPresenter = ServiceLocator.init().getFeedPresenter
 
-  private var handler: FeedHandler?
   private var handlerImage: FeedHandlerImage?
-  private var handlerProfile: ProfileHandler?
 
-  public func getContent() -> [RWContent] {
+  private var items: [String: [KodecoEntry]] = [:]
+
+  public func getContent() -> [KodecoContent] {
     return feedPresenter.content
   }
 
-  public func fetchProfile(completion: @escaping ProfileHandler) {
-    feedPresenter.fetchMyGravatar(cb: self)
-    handlerProfile = completion
+  public func fetchProfile() async -> GravatarEntry? {
+    let result = await asyncResult(for: feedPresenter.fetchMyGravatar())
+    switch result {
+    case .success(let value):
+      return value
+    case .failure(let value):
+      Logger().e(tag: TAG, message: "Unable to fetch profile. Reason:\(value)")
+      return nil
+    }
   }
 
-  public func fetchFeeds(completion: @escaping FeedHandler) {
-    feedPresenter.fetchAllFeeds(cb: self)
-    handler = completion
+  public func fetchFeeds() async -> [String: [KodecoEntry]] {
+    do {
+      let result = asyncSequence(for: feedPresenter.fetchAllFeeds())
+      for try await data in result {
+        guard let item = data.first else { continue }
+        self.items[item.platform.name] = data
+      }
+    } catch {
+      Logger().e(tag: TAG, message: "Unable to fetch all feeds")
+    }
+    return self.items
   }
 }
 
 extension FeedClient: FeedData {
-  public func onNewDataAvailable(items: [RWEntry], platform: PLATFORM, exception: KotlinException?) {
-    Logger().d(tag: TAG, message: "onNewDataAvailable: \(items)")
-    self.handler?(platform.description(), items)
-  }
-
   public func onMyGravatarData(item: GravatarEntry) {
     Logger().d(tag: TAG, message: "onMyGravatarData")
-    self.handlerProfile?(item)
   }
 }

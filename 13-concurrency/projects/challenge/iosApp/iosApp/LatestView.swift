@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -37,19 +37,23 @@ import SDWebImageSwiftUI
 struct LatestView: View {
   let TAG = "LatestView"
 
-  @EnvironmentObject private var feedViewModel: RWEntryViewModel
+  @EnvironmentObject private var feedViewModel: KodecoEntryViewModel
 
   var body: some View {
     NavigationView {
       ZStack {
-        Color("rw-dark")
+        Color("black-night")
         ScrollView(.vertical) {
           VStack {
-            ForEach(Array(feedViewModel.items.keys), id: \.self) { key in
-              Section(platform: key, entries: feedViewModel.items[key] ?? [])
+            ForEach(Array(feedViewModel.items.keys.sorted()), id: \.self) { key in
+              let item = feedViewModel.items[key] ?? []
+              Section(platform: item.first?.platform.value ?? key, entries: item)
             }
           }
           .navigationBarTitle("learn", displayMode: .inline)
+          .toolbar {
+            MainToolbarContent()
+          }
         }
       }
     }
@@ -59,11 +63,12 @@ struct LatestView: View {
 let itemsSection = 4
 
 struct Section: View {
-  @Environment(\.openURL) var openURL
+  @Environment(\.openURL)
+  var openURL
 
   @State var platform: String
 
-  var entries: [RWEntry]
+  var entries: [KodecoEntry]
 
   var body: some View {
     let max = entries.count < itemsSection ? entries.count : itemsSection
@@ -74,7 +79,7 @@ struct Section: View {
         HStack {
           Text(platform)
             .foregroundColor(.white)
-            .font(Font.custom("Bitter-Bold", size: 18))
+            .font(Font.custom("OpenSans-Bold", size: 18))
             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
 
           Spacer()
@@ -94,7 +99,7 @@ struct Section: View {
               }, label: {
                 if item.imageUrl.isEmpty {
                   Rectangle().foregroundColor(.gray)
-                  Image("razerware")
+                  Image("kodeco")
                 } else {
                   AnimatedImage(url: URL(string: "\(item.imageUrl)"))
                     .resizable()
