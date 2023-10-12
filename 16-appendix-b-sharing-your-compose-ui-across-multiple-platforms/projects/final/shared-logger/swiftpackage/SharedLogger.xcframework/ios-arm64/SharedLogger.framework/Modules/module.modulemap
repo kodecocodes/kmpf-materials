@@ -1,0 +1,8 @@
+framework module SharedLogger {
+    umbrella header "SharedLogger.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

@@ -1,0 +1,69 @@
+[versions]
+gradle = "8.1.2"
+android-sdk-compile = "34"
+android-sdk-min = "24"
+android-sdk-target = "34"
+android-compose-compiler = "1.5.3"
+android-material = "1.10.0"
+androidx-compose-bom = "2023.10.00"
+androidx-lifecycle-runtime-ktx = "2.6.2"
+androidx-navigation-compose = "2.7.4"
+image-loader = "1.6.7"
+korio = "4.0.9"
+kotlin = "1.9.10"
+kotlinx-datetime = "0.4.0"
+kotlinx-serialization-json = "1.6.0"
+ktor = "2.3.4"
+ksp = "1.9.10-1.0.13"
+jetbrains-compose = "1.5.1"
+junit = "4.13.2"
+nativeCoroutines = "1.0.0-ALPHA-18"
+okio = "3.5.0"
+precompose = "1.5.1"
+sqldelight = "2.0.0"
+
+[libraries]
+android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-material = { module = "androidx.compose.material:material" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
+
+cash-sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+cash-sqldelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+cash-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
+junit = { module = "junit:junit", version.ref = "junit" }
+korio = { module = "com.soywiz.korlibs.korio:korio", version.ref = "korio" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-common", version.ref = "kotlin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle" }
+androidLibrary = { id = "com.android.library", version.ref = "gradle" }
+cash-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kmp-NativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativeCoroutines" }
