@@ -1,12 +1,12 @@
 [versions]
-agp = "8.2.0-beta01"
-kotlin = "1.8.21"
-core-ktx = "1.10.1"
+agp = "8.1.2"
+kotlin = "1.9.10"
+core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.9.0"
+material = "1.10.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

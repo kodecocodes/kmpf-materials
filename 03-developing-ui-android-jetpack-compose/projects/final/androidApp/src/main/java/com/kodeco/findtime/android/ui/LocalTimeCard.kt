@@ -28,7 +28,7 @@ fun LocalTimeCard(city: String, time: String, date: String) {
         modifier = Modifier
             .fillMaxWidth()
             .height(140.dp)
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(8.dp)
     ) {
         Card(
