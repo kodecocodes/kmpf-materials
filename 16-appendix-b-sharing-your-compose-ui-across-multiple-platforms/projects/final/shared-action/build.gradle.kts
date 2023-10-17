@@ -36,6 +36,11 @@ kotlin {
     targetHierarchy.default()
 
     androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_17.toString()
+            }
+        }
         publishLibraryVariants("release", "debug")
     }
 

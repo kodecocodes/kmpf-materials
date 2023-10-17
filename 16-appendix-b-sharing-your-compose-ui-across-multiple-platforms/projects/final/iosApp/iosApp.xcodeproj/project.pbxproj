@@ -23,7 +23,6 @@
 		67099065271502080048A7B5 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099064271502080048A7B5 /* BookmarkView.swift */; };
 		67099067271502210048A7B5 /* LatestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099066271502210048A7B5 /* LatestView.swift */; };
 		670990692715023E0048A7B5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990682715023E0048A7B5 /* SearchView.swift */; };
-		670990722715B5B00048A7B5 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990712715B5B00048A7B5 /* AppIcon.swift */; };
 		6709909D2717ABF80048A7B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709909C2717ABF80048A7B5 /* Utils.swift */; };
 		6761C5672A9B4AD1008BB48B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */; };
 		6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763BD842AA6613400A70BAA /* MainToolbarContent.swift */; };
@@ -67,7 +66,6 @@
 		67099064271502080048A7B5 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		67099066271502210048A7B5 /* LatestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestView.swift; sourceTree = "<group>"; };
 		670990682715023E0048A7B5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		670990712715B5B00048A7B5 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		6709909C2717ABF80048A7B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6763BD832AA6402000A70BAA /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +115,6 @@
 		6709906E2715B1A10048A7B5 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				670990712715B5B00048A7B5 /* AppIcon.swift */,
 				67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */,
 			);
 			path = common;
@@ -309,7 +306,6 @@
 				6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */,
 				67C6FF262A98FC8D008A2221 /* KodecoEntryViewModel.swift in Sources */,
 				67099067271502210048A7B5 /* LatestView.swift in Sources */,
-				670990722715B5B00048A7B5 /* AppIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

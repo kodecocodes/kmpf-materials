@@ -12,7 +12,7 @@ kotlin {
     androidTarget()
 
     jvm()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
