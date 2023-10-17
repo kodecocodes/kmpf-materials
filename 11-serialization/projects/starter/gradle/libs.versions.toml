@@ -8,13 +8,14 @@ android-material = "1.10.0"
 androidx-compose-bom = "2023.10.00"
 androidx-lifecycle-runtime-ktx = "2.6.2"
 androidx-navigation-compose = "2.7.4"
+coil = "2.4.0"
 image-loader = "1.6.7"
-korio = "4.0.9"
+korio = "4.0.10"
 kotlin = "1.9.10"
 kotlinx-datetime = "0.4.1"
-jetbrains-compose = "1.5.1"
+jetbrains-compose = "1.5.3"
 okio = "3.5.0"
-precompose = "1.5.1"
+precompose = "1.5.3"
 sqldelight = "2.0.0"
 
 [libraries]
@@ -33,6 +34,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 cash-sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 cash-sqldelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 cash-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+image-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
 korio = { module = "com.soywiz.korlibs.korio:korio", version.ref = "korio" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
