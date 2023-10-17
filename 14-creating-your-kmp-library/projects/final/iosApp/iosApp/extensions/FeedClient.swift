@@ -44,8 +44,6 @@ public class FeedClient {
 
   private var handlerImage: FeedHandlerImage?
 
-  private var items: [String: [KodecoEntry]] = [:]
-
   public func getContent() -> [KodecoContent] {
     return feedPresenter.content
   }
@@ -62,16 +60,17 @@ public class FeedClient {
   }
 
   public func fetchFeeds() async -> [String: [KodecoEntry]] {
+    var items: [String: [KodecoEntry]] = [:]
     do {
       let result = asyncSequence(for: feedPresenter.fetchAllFeeds())
       for try await data in result {
         guard let item = data.first else { continue }
-        self.items[item.platform.name] = data
+        items[item.platform.name] = data
       }
     } catch {
       Logger().e(tag: TAG, message: "Unable to fetch all feeds")
     }
-    return self.items
+    return items
   }
 
   @MainActor
