@@ -34,8 +34,11 @@
 
 package com.kodeco.learn.action
 
+import com.kodeco.learn.logger.Logger
 import java.awt.Desktop
 import java.net.URI
+
+private const val TAG = "Action"
 
 public actual object Action {
 
@@ -44,7 +47,7 @@ public actual object Action {
       val desktop = Desktop.getDesktop()
       desktop.browse(URI.create(url))
     } catch(e: Exception) {
-      println("Unable to open url. Reason: ${e.stackTrace}")
+      Logger.d(TAG, "Unable to open url. Reason: ${e.stackTrace}")
     }
   }
 }

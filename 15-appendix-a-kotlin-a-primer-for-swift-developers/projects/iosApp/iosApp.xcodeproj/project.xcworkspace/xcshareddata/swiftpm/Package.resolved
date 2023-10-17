@@ -35,6 +35,15 @@
         "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
         "version" : "2.2.3"
       }
+    },
+    {
+      "identity" : "shared-action",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cmota/shared-action",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fb09529cd1e49ca88d2aa1a1ee74f3ac8e0b9d83"
+      }
     }
   ],
   "version" : 2

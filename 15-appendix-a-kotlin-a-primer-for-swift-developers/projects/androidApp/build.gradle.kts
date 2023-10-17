@@ -39,6 +39,7 @@ plugins {
 
 dependencies {
   implementation(project(":shared"))
+  implementation(project(":shared-logger"))
   implementation(project(":shared-action"))
 
   implementation(libs.android.material)
@@ -54,7 +55,7 @@ dependencies {
   
   implementation(libs.kotlinx.datetime)
 
-  implementation(libs.image.loader)
+  implementation(libs.image.coil)
 }
 
 android {

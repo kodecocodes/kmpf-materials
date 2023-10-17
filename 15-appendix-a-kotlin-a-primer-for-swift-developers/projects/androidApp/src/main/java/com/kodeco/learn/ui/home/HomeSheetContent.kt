@@ -49,7 +49,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.R
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

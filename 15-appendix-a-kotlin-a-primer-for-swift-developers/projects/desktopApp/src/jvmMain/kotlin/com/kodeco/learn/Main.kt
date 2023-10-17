@@ -42,7 +42,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.kodeco.learn.action.Action.openLink
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen

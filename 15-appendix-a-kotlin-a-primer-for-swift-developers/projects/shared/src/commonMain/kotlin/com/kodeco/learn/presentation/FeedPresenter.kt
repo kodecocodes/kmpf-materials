@@ -40,7 +40,7 @@ import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.GetFeedData
 import com.kodeco.learn.domain.cb.FeedData
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import io.ktor.utils.io.core.toByteArray
@@ -68,7 +68,7 @@ private const val KODECO_CONTENT = "[" +
     "{\"platform\":\"growth\", \"url\":\"https://kodeco.com/professional-growth/feed\", \"image\":\"https://files.carolus.kodeco.com/gl22boss4ptciv7px3nnzcnct4ht?response_content_disposition=inline%3B+filename%3D%22progro.png%22%3B+filename%2A%3DUTF-8%27%27progro.png\"}" +
     "]"
 
-private const val GRAVATAR_EMAIL = "cafonsomota@gmail.com"
+private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 
 class FeedPresenter(private val feed: GetFeedData) {

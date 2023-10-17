@@ -64,7 +64,7 @@ import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.components.HorizontalPagerIndicator
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.ui.common.AddEmptyScreen
 import com.kodeco.learn.ui.theme.colorContent20Transparency
 import com.kodeco.learn.ui.theme.colorContent85Transparency

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		2D0962862AD978EB001C0A80 /* SharedAction.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; };
-		2D0962872AD978EB001C0A80 /* SharedAction.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF412AB6828E0043F9A3 /* KMPNativeCoroutinesAsync */; };
 		6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF432AB6828E0043F9A3 /* KMPNativeCoroutinesCombine */; };
 		6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF452AB6828E0043F9A3 /* KMPNativeCoroutinesCore */; };
@@ -21,7 +19,6 @@
 		67099065271502080048A7B5 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099064271502080048A7B5 /* BookmarkView.swift */; };
 		67099067271502210048A7B5 /* LatestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099066271502210048A7B5 /* LatestView.swift */; };
 		670990692715023E0048A7B5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990682715023E0048A7B5 /* SearchView.swift */; };
-		670990722715B5B00048A7B5 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990712715B5B00048A7B5 /* AppIcon.swift */; };
 		6709909D2717ABF80048A7B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709909C2717ABF80048A7B5 /* Utils.swift */; };
 		6761C5672A9B4AD1008BB48B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */; };
 		6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763BD842AA6613400A70BAA /* MainToolbarContent.swift */; };
@@ -36,6 +33,7 @@
 		67C6FF342A98FD95008A2221 /* KodecoEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */; };
 		67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; };
 		67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67D0DC5C2AB7EAAA007D0EA9 /* SharedAction in Frameworks */ = {isa = PBXBuildFile; productRef = 67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +44,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2D0962872AD978EB001C0A80 /* SharedAction.xcframework in Embed Frameworks */,
 				67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -63,7 +60,6 @@
 		67099064271502080048A7B5 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		67099066271502210048A7B5 /* LatestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestView.swift; sourceTree = "<group>"; };
 		670990682715023E0048A7B5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		670990712715B5B00048A7B5 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		6709909C2717ABF80048A7B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6763BD832AA6402000A70BAA /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,10 +86,10 @@
 				6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */,
 				67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */,
 				6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */,
-				2D0962862AD978EB001C0A80 /* SharedAction.xcframework in Frameworks */,
 				6702DF482AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift in Frameworks */,
 				6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */,
 				67BD5C082A9B555900FFDFEA /* SDWebImageSwiftUI in Frameworks */,
+				67D0DC5C2AB7EAAA007D0EA9 /* SharedAction in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +108,6 @@
 		6709906E2715B1A10048A7B5 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				670990712715B5B00048A7B5 /* AppIcon.swift */,
 				67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */,
 			);
 			path = common;
@@ -203,6 +198,7 @@
 				6702DF432AB6828E0043F9A3 /* KMPNativeCoroutinesCombine */,
 				6702DF452AB6828E0043F9A3 /* KMPNativeCoroutinesCore */,
 				6702DF472AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift */,
+				67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */,
 			);
 			productName = iosApp;
 			productReference = 6763BD832AA6402000A70BAA /* iosApp.app */;
@@ -236,6 +232,7 @@
 			packageReferences = (
 				67BD5C012A9B543E00FFDFEA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				6702DF402AB6828E0043F9A3 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+				67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */,
 			);
 			productRefGroup = 7555FF72242A565900829871;
 			projectDirPath = "";
@@ -303,7 +300,6 @@
 				6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */,
 				67C6FF262A98FC8D008A2221 /* KodecoEntryViewModel.swift in Sources */,
 				67099067271502210048A7B5 /* LatestView.swift in Sources */,
-				670990722715B5B00048A7B5 /* AppIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +540,14 @@
 				minimumVersion = 2.2.3;
 			};
 		};
+		67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cmota/shared-action";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -571,6 +575,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 67BD5C012A9B543E00FFDFEA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67D0DC5A2AB7EAAA007D0EA9 /* XCRemoteSwiftPackageReference "shared-action" */;
+			productName = SharedAction;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

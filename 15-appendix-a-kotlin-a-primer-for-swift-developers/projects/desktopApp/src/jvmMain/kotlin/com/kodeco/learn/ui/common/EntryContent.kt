@@ -60,7 +60,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.KodecoEntry
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.utils.converterIso8601ToReadableDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

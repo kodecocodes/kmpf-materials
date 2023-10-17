@@ -34,7 +34,7 @@
 
 package com.kodeco.learn.data
 
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 
 private const val TAG = "HttpClientLogger"
 

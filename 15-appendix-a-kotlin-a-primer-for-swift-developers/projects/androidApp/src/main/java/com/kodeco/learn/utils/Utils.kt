@@ -35,7 +35,7 @@
 package com.kodeco.learn.utils
 
 import android.annotation.SuppressLint
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import kotlinx.datetime.toInstant
 import java.text.SimpleDateFormat
 import java.util.*

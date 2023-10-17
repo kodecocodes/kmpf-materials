@@ -40,7 +40,7 @@ import androidx.lifecycle.viewModelScope
 import com.kodeco.learn.ServiceLocator
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.domain.cb.BookmarkData
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

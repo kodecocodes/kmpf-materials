@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 /*
  * Copyright (c) 2023 Kodeco Inc
  *
@@ -32,30 +34,68 @@
  * THE SOFTWARE.
  */
 
-package com.kodeco.learn.platform
-
-internal expect class Log() {
-
-  fun debug(tag: String, message: String)
-
-  fun warn(tag: String, message: String)
-
-  fun error(tag: String, message: String)
+plugins {
+  kotlin("multiplatform")
+  id("com.android.library")
+  id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
 }
 
-public object Logger {
+version = "1.0"
 
-  private val logger = Log()
+multiplatformSwiftPackage {
+  xcframeworkName("SharedLogger")
+  swiftToolsVersion("5.3")
+  targetPlatforms {
+    iOS { v("13") }
+  }
+}
 
-  public fun d(tag: String, message: String) {
-    logger.debug(tag, message)
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+kotlin {
+  targetHierarchy.default()
+
+  androidTarget()
+
+  jvm("desktop")
+
+  val xcf = XCFramework("SharedLogger")
+  listOf(
+      iosX64(),
+      iosArm64(),
+      iosSimulatorArm64()
+  ).forEach {
+    it.binaries.framework {
+      baseName = "SharedLogger"
+      xcf.add(this)
+    }
   }
 
-  public fun w(tag: String, message: String) {
-    logger.warn(tag, message)
+  sourceSets {
+    getByName("commonMain") {
+      dependencies {
+        //put your multiplatform dependencies here
+      }
+    }
+
+    getByName("commonTest") {
+      dependencies {
+        implementation(kotlin("test"))
+      }
+    }
+  }
+}
+
+android {
+  namespace = "com.kodeco.learn.logger"
+
+  compileSdk = 33
+
+  defaultConfig {
+    minSdk = 24
   }
 
-  public fun e(tag: String, message: String) {
-    logger.error(tag, message)
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 }

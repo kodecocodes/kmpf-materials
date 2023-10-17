@@ -32,11 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.kodeco.learn.platform
+package com.kodeco.learn.logger
 
 import android.util.Log
 
-internal actual class Log {
+internal actual class PlatformLogger {
 
   actual fun debug(tag: String, message: String) {
     Log.d(tag, message)

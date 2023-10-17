@@ -46,7 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.seiko.imageloader.rememberImagePainter
 
 private const val TAG = "ImagePreview"

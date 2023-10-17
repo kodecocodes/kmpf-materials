@@ -44,7 +44,7 @@ import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.cb.FeedData
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"

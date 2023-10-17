@@ -34,8 +34,11 @@
 
 package com.kodeco.learn.action
 
+import com.kodeco.learn.logger.Logger
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
+
+private const val TAG = "Action"
 
 public actual object Action {
 
@@ -43,7 +46,7 @@ public actual object Action {
     val application = UIApplication.sharedApplication
     val nsurl = NSURL(string = url)
     if (!application.canOpenURL(nsurl)) {
-      println("Unable to open url: $url")
+      Logger.d(TAG, "Unable to open url: $url")
       return
     }
 

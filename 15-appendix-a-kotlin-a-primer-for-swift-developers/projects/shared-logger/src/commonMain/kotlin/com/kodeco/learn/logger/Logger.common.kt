@@ -32,19 +32,30 @@
  * THE SOFTWARE.
  */
 
-package com.kodeco.learn.platform
+package com.kodeco.learn.logger
 
-internal actual class Log {
+internal expect class PlatformLogger() {
 
-  actual fun debug(tag: String, message: String) {
-    println("$tag | $message")
+  fun debug(tag: String, message: String)
+
+  fun warn(tag: String, message: String)
+
+  fun error(tag: String, message: String)
+}
+
+public object Logger {
+
+  private val logger = PlatformLogger()
+
+  public fun d(tag: String, message: String) {
+    logger.debug(tag, message)
   }
 
-  actual fun warn(tag: String, message: String) {
-    println("$tag | $message")
+  public fun w(tag: String, message: String) {
+    logger.warn(tag, message)
   }
 
-  actual fun error(tag: String, message: String) {
-    println("$tag | $message")
+  public fun e(tag: String, message: String) {
+    logger.error(tag, message)
   }
 }

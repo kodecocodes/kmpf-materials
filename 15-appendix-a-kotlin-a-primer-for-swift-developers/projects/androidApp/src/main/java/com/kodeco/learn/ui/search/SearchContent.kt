@@ -57,7 +57,7 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.learn.R
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
-import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.ui.common.AddEntryContent
 import kotlinx.coroutines.CoroutineScope
 

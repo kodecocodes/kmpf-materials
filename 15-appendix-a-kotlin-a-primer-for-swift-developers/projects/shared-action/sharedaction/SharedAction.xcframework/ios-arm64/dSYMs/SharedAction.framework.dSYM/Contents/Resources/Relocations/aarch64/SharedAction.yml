@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/subhrajyoti.sen/kodeco/kmpf-materials/15-appendix-a-kotlin-a-primer-for-swift-developers/projects/shared-action/build/bin/iosArm64/releaseFramework/SharedAction.framework/SharedAction'
+binary-path:     '/Users/carlosmota/Projects/kodecocodes/kmpf-materials/14-creating-your-kmp-library/projects/starter/shared-action/build/bin/iosArm64/releaseFramework/SharedAction.framework/SharedAction'
 relocations:
   - { offsetInCU: 0x1A6, offset: 0x1A6, size: 0x8, addend: 0x0, symName: "_kfun:kotlin.collections#copyInto__at__kotlin.Array<out|0:0>(kotlin.Array<0:0>;kotlin.Int;kotlin.Int;kotlin.Int){0§<kotlin.Any?>}kotlin.Array<0:0>", symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x15C }
   - { offsetInCU: 0x1AE, offset: 0x1AE, size: 0x8, addend: 0x0, symName: "_kfun:kotlin.collections#copyOfUninitializedElements__at__kotlin.Array<0:0>(kotlin.Int;kotlin.Int){0§<kotlin.Any?>}kotlin.Array<0:0>", symObjAddr: 0x15C, symBinAddr: 0x415C, symSize: 0x194 }
