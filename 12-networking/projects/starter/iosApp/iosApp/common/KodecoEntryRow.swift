@@ -39,7 +39,7 @@ struct KodecoEntryRow: View {
 
   let addToBookmarks: Bool
 
-  @Environment(\.openURL) 
+  @Environment(\.openURL)
   var openURL
 
   @State private var showDialog = false
