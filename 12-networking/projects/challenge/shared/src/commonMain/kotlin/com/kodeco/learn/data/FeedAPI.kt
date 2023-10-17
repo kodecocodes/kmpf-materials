@@ -71,7 +71,7 @@ public object FeedAPI {
 
     install(Logging) {
       logger = HttpClientLogger
-      level = LogLevel.ALL
+      level = LogLevel.HEADERS
     }
   }
 
