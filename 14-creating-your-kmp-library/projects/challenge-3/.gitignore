@@ -20,14 +20,14 @@ out/
 build/
 androidApp/build
 desktopApp/build
-kamel-core/build
-kamel-image/build
-precompose/build
 shared/build
-shared/swiftpackage
+shared-dto/build
 shared-action/build
-shared-action/sharedaction
 shared-logger/build
+shared/swiftpackage
+shared-dto/swiftpackage
+shared-action/swiftpackage
+shared-logger/swiftpackage
 
 # Local configuration file (sdk path, etc)
 local.properties
