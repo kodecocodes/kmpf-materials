@@ -1,30 +1,20 @@
-import org.jetbrains.compose.compose
-
 plugins {
-    kotlin(multiplatform)
-    id(androidLib)
-    id(composePlugin) version Versions.desktop_compose_plugin
-}
-
-android {
-    compileSdk =  Versions.compile_sdk
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = Versions.min_sdk
-        targetSdk = Versions.target_sdk
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
+    kotlin("multiplatform")
+    id("com.android.library")
+    alias(libs.plugins.composePlugin)
 }
 
 kotlin {
-    android()
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_17.toString()
+            }
+        }
+    }
     jvm("desktop") {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = "17"
         }
     }
 
@@ -32,22 +22,38 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared"))
-                implementation(project(":shared-logger"))
-
                 api(compose.foundation)
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api(compose.material3)
                 api(compose.materialIconsExtended)
                 api(compose.ui)
                 api(compose.uiTooling)
             }
         }
-        val commonTest by getting
         val androidMain by getting {
             dependencies {
+                implementation(project(":shared"))
             }
         }
-        val desktopMain by getting
+        val desktopMain by getting {
+            dependencies {
+                implementation(project(":shared"))
+            }
+        }
+    }
+}
+
+
+android {
+    namespace = "com.kodeco.findtime.android"
+    compileSdk = 34
+    defaultConfig {
+        minSdk = 26
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
