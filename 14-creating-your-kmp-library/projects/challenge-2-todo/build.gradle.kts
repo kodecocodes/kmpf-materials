@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Razeware LLC
+ * Copyright (c) 2023 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,34 +32,22 @@
  * THE SOFTWARE.
  */
 
-val composeVersion by extra("1.0.5")
-val koinVersion by extra("3.1.4")
-val settingsVersion by extra("0.8.1")
-val sqlDelightVersion by extra("1.5.3")
+plugins {
+  val agpVersion = "8.1.2"
+  val kotlinVersion = "1.9.10"
+  val jetbrainsComposeVersion = "1.5.1"
+  val sqlDelightVersion = "2.0.0"
 
-buildscript {
-    repositories {
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
-        classpath("com.android.tools.build:gradle:7.0.4")
-        classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
-    }
-}
+  id("com.android.application").version(agpVersion).apply(false)
+  id("com.android.library").version(agpVersion).apply(false)
+  id("org.jetbrains.compose").version(jetbrainsComposeVersion).apply(false)
+  id("app.cash.sqldelight").version(sqlDelightVersion).apply(false)
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/")
-    }
+  kotlin("android").version(kotlinVersion).apply(false)
+  kotlin("multiplatform").version(kotlinVersion).apply(false)
+  kotlin("jvm").version(kotlinVersion).apply(false)
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+  delete(rootProject.buildDir)
 }
