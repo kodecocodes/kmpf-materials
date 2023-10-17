@@ -40,7 +40,6 @@ import com.kodeco.learn.data.model.GravatarProfile
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
@@ -66,7 +65,7 @@ public object FeedAPI {
 
     install(Logging) {
       logger = HttpClientLogger
-      level = LogLevel.ALL
+      level = LogLevel.HEADERS
     }
   }
 
