@@ -1,43 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "KMPNativeCoroutines",
-        "repositoryURL": "https://github.com/rickclephas/KMP-NativeCoroutines.git",
-        "state": {
-          "branch": "master",
-          "revision": "7f2c99fb4a93dcd5327fafd577aa3cd7fff47a30",
-          "version": null
-        }
-      },
-      {
-        "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
-          "version": "6.6.0"
-        }
-      },
-      {
-        "package": "SDWebImage",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
-        "state": {
-          "branch": null,
-          "revision": "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
-          "version": "5.17.0"
-        }
-      },
-      {
-        "package": "SDWebImageSwiftUI",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
-        "state": {
-          "branch": null,
-          "revision": "e837c37d45449fbd3b4745c10c5b5274e73edead",
-          "version": "2.2.3"
-        }
+  "pins" : [
+    {
+      "identity" : "kmp-nativecoroutines",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rickclephas/KMP-NativeCoroutines.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "7f2c99fb4a93dcd5327fafd577aa3cd7fff47a30"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
+        "version" : "6.6.0"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
+        "version" : "5.17.0"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
+        "version" : "2.2.3"
+      }
+    }
+  ],
+  "version" : 2
 }

@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
     }
     dependencies {
         classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.2.4")
@@ -38,6 +37,11 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+kotlinDslPluginOptions {
+    @Suppress("DEPRECATION")
+    jvmTarget.set(provider { java.targetCompatibility.toString() })
 }
 
 tasks.withType<Test> {
