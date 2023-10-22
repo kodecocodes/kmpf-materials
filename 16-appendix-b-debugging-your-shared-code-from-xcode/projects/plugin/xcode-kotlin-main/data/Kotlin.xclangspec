@@ -1,0 +1,552 @@
+// Kotlin lang specs
+(
+
+/****************************************************************************/
+// MARK: Javadoc
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin.comment.javadoc.keyword";
+        Syntax = {
+            StartChars = "@";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Words = (
+                "@author",
+                "@beaninfo",
+                "@deprecated",
+                "@docRoot",
+                "@exception",
+                "@inheritDoc",
+                "@link",
+                "@linkplain",
+                "@param",
+                "@return",
+                "@see",
+                "@serial",
+                "@serialData",
+                "@serialField",
+                "@since",
+                "@throws",
+                "@value",
+                "@version"
+            );
+            Type = "xcode.syntax.comment.doc.keyword";
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.comment.javadoc";
+        Syntax = {
+            Start = "/**";
+            End = "*/";
+            Foldable = YES;
+            IncludeRules = ( "xcode.lang.kotlin.comment.javadoc.keyword", "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment.doc";
+        };
+    },
+    {
+        // Handle the degenerate case of '/**/' comments. They look like the start of a JavaDoc comment, but they aren't.
+        Identifier = "xcode.lang.kotlin.comment.degenerate";
+        Syntax = {
+            StartChars = "/";
+            Chars = "/*";
+            Words = ( "/**/" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Kotlin Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "abstract",
+                "assert",
+                "actual",
+                "boolean",
+                "break",
+                "byte",
+                "case",
+                "cast",
+                "catch",
+                "char",
+                "class",
+                "const",
+                "continue",
+                "data",
+                "default",
+                "do",
+                "double",
+                "else",
+                "enum",
+                "expect",
+                "extends",
+                "false",
+                "final",
+                "finally",
+                "float",
+                "for",
+                "fun",
+                "goto",
+                "if",
+                "implements",
+                "import",
+                "init",
+                "instanceof",
+                "int",
+                "internal",
+                "interface",
+                "long",
+                "native",
+                "new",
+                "null",
+                "object",
+                "override",
+                "package",
+                "private",
+                "protected",
+                "public",
+                "return",
+                "sealed",
+                "short",
+                "static",
+                "strictfp",
+                "super",
+                "suspend",
+                "switch",
+                "synchronized",
+                "this",
+                "throw",
+                "throws",
+                "transient",
+                "true",
+                "try",
+                "val",
+                "var",
+                "void",
+                "volatile",
+                "when",
+                "while"
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+/****************************************************************************/
+// MARK: Kotlin Top Level
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin";
+        Description = "Kotlin Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "Kotlin";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            IncludeRules = (        // processed in order
+                "xcode.lang.kotlin.package",
+                "xcode.lang.kotlin.import",
+                "xcode.lang.kotlin.class",
+                "xcode.lang.kotlin.interface",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Lexers
+/****************************************************************************/
+
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.kotlin.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.kotlin.comment.degenerate",
+                "xcode.lang.kotlin.comment.javadoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+
+/****************************************************************************/
+// MARK: Classes/Interfaces
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin.class";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.class.declarator",
+                "xcode.lang.kotlin.class.block",
+            );
+            Type = "xcode.syntax.definition.kotlin.class";
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.innerclass";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.method.declarator",
+                "xcode.lang.kotlin.class.block",
+            );
+            Type = "xcode.syntax.definition.kotlin.class";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.class.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "class",
+                "xcode.lang.kotlin.class.name",
+                "xcode.lang.kotlin.class.declarator.extends?",
+                "xcode.lang.kotlin.class.declarator.implements?",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.class.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.kotlin.templateclause?",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.class.declarator.extends";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "extends",
+                "xcode.lang.kotlin.qualifiedname",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.class.declarator.implements";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "implements",
+                "xcode.lang.kotlin.qualifiedname",
+                "xcode.lang.kotlin.classnames.list*",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.interface";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Foldable = YES;
+            Recursive = YES;
+            Rules = (
+                "xcode.lang.kotlin.interface.declarator",
+                "xcode.lang.kotlin.interface.block",
+            );
+            Type = "xcode.syntax.declaration.kotlin.interface";
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.interface.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "interface",
+                "xcode.lang.kotlin.class.name",
+                "xcode.lang.kotlin.interface.declarator.extends?",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.interface.declarator.extends";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "extends",
+                "xcode.lang.kotlin.qualifiedname",
+                "xcode.lang.kotlin.classnames.list*",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.classnames.list";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                ",",
+                "xcode.lang.kotlin.qualifiedname",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.qualifiedname";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.kotlin.qualifiedname.more*",
+                "xcode.lang.kotlin.templateclause?",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.templateclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "<";
+            End = ">";
+            Recursive = YES;
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.package.qualifiedname";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.kotlin.import.qualifiedname.more*",
+            );
+            Type = "xcode.syntax.kotlin.package";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.import.qualifiedname";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.kotlin.import.qualifiedname.more*",
+                "*?",
+            );
+            Type = "xcode.syntax.kotlin.import";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.import.qualifiedname.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                ".",
+                "xcode.lang.kotlin.identifier?",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.qualifiedname.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                ".",
+                "xcode.lang.kotlin.identifier",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.package";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "package",
+                "xcode.lang.kotlin.package.qualifiedname",
+                ";",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.import";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "import",
+                "xcode.lang.kotlin.import.qualifiedname",
+                ";",
+            );
+        };
+    },
+
+/****************************************************************************/
+// MARK: Methods
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin.method.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.method.declarator",
+                "xcode.lang.kotlin.method.declarator.throws?",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.method";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.method.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.method.declarator",
+                "xcode.lang.kotlin.method.declarator.throws?",
+                "xcode.lang.kotlin.block",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.method.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "xcode.lang.kotlin.identifier",
+                "xcode.lang.kotlin.parenexpr",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.method.declarator.throws";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Rules = (
+                "throws",
+                "xcode.lang.kotlin.qualifiedname",
+                "xcode.lang.kotlin.classnames.list*",
+            );
+        };
+    },
+
+/****************************************************************************/
+// MARK: Blocks
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.kotlin.class.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.kotlin.class",
+                "xcode.lang.kotlin.interface",
+                "xcode.lang.kotlin.method.definition",
+                "xcode.lang.kotlin.method.declaration",
+                "xcode.lang.kotlin.bracketexpr",
+                "xcode.lang.kotlin.parenexpr",
+                "xcode.lang.kotlin.initializer",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.interface.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.kotlin.interface",
+                "xcode.lang.kotlin.method.definition",
+                "xcode.lang.kotlin.method.declaration",
+                "xcode.lang.kotlin.bracketexpr",
+                "xcode.lang.kotlin.parenexpr",
+                "xcode.lang.kotlin.initializer",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.kotlin.class",
+                "xcode.lang.kotlin.interface",
+                "xcode.lang.kotlin.bracketexpr",
+                "xcode.lang.kotlin.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.kotlin.bracketexpr",
+                "xcode.lang.kotlin.block",
+                "xcode.lang.kotlin.innerclass",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.kotlin.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.kotlin.parenexpr",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.kotlin.initializer";
+        Syntax = {
+            Tokenizer = "xcode.lang.kotlin.lexer";
+            Start = "=";
+            End = ";";
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.kotlin.parenexpr",
+                "xcode.lang.kotlin.bracketexpr",
+            );
+        };
+    },
+
+)
