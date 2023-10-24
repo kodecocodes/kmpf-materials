@@ -36,8 +36,6 @@ package com.kodeco.learn
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.application

@@ -53,7 +53,7 @@ dependencies {
   
   implementation(libs.kotlinx.datetime)
 
-  implementation(libs.image.loader)
+  implementation(libs.image.coil)
 }
 
 android {

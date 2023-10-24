@@ -47,9 +47,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import coil.compose.rememberAsyncImagePainter
 import com.kodeco.learn.R
 import com.kodeco.learn.platform.Logger
-import com.seiko.imageloader.rememberImagePainter
 
 private const val TAG = "ImagePreview"
 
@@ -68,12 +68,8 @@ fun AddImagePreview(
   } else {
     Box {
 
-      val resource = painterResource(R.drawable.ic_brand)
-
-      val painter = rememberImagePainter(
-          url = url,
-          placeholderPainter = { resource },
-          errorPainter = { resource }
+      val painter = rememberAsyncImagePainter(
+        model = url
       )
 
       Image(

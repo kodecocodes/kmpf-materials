@@ -9,16 +9,10 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    android {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
+    androidTarget()
 
     jvm()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,12 +24,12 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        getByName("commonMain") {
             dependencies {
                 implementation(libs.kotlinx.serialization.json)
             }
         }
-        val commonTest by getting {
+        getByName("commonTest") {
             dependencies {
                 implementation(kotlin("test"))
             }
@@ -45,8 +39,15 @@ kotlin {
 
 android {
     namespace = "com.kodeco.shared"
+
     compileSdk = 33
+
     defaultConfig {
         minSdk = 24
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

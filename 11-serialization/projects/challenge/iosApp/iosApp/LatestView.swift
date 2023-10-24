@@ -63,7 +63,7 @@ struct LatestView: View {
 let itemsSection = 4
 
 struct Section: View {
-  @Environment(\.openURL) 
+  @Environment(\.openURL)
   var openURL
 
   @State var platform: String

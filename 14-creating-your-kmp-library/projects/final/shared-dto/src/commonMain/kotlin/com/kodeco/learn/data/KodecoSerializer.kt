@@ -48,7 +48,7 @@ object KodecoSerializer : KSerializer<PLATFORM> {
       PrimitiveSerialDescriptor("PLATFORM", PrimitiveKind.STRING)
 
   override fun serialize(encoder: Encoder, value: PLATFORM) {
-    encoder.encodeString(value.value)
+    encoder.encodeString(value.value.lowercase())
   }
 
   override fun deserialize(decoder: Decoder): PLATFORM {

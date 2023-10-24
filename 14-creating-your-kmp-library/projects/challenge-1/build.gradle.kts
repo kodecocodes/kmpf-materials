@@ -1,23 +1,54 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+/*
+ * Copyright (c) 2023 Kodeco Inc
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+ * distribute, sublicense, create a derivative work, and/or sell copies of the
+ * Software in any work that is designed, intended, or marketed for pedagogical or
+ * instructional purposes related to programming, coding, application development,
+ * or information technology.  Permission for such use, copying, modification,
+ * merger, publication, distribution, sublicensing, creation of derivative works,
+ * or sale is expressly withheld.
+ *
+ * This project and source code may use libraries or frameworks that are
+ * released under various Open-Source licenses. Use of those libraries and
+ * frameworks are governed by their own individual licenses.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
-buildscript {
-  repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-    classpath("org.jetbrains.kotlin:kotlin-serialization:1.6.10")
-    classpath("com.android.tools.build:gradle:7.1.2")
-    classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
-  }
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.google.ksp) apply false
+  alias(libs.plugins.jetbrains.kotlin) apply false
+  alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
+  alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
+  alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+  alias(libs.plugins.cash.sqldelight) apply false
+  alias(libs.plugins.kmp.nativeCoroutines) apply false
 }
 
 allprojects {
   repositories {
     google()
-    mavenLocal()
     mavenCentral()
     maven {
       url = uri("https://maven.pkg.github.com/cmota/shared-action")
@@ -26,22 +57,9 @@ allprojects {
         create<BasicAuthentication>("basic")
       }
     }
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
-  }
-  afterEvaluate {
-    project.extensions.findByType<KotlinMultiplatformExtension>()?.let { ext ->
-      ext.sourceSets.removeAll { sourceSet ->
-        setOf(
-          "androidAndroidTestRelease",
-          "androidTestFixtures",
-          "androidTestFixturesDebug",
-          "androidTestFixturesRelease",
-        ).contains(sourceSet.name)
-      }
-    }
   }
 }
 
 tasks.register("clean", Delete::class) {
-  delete(rootProject.buildDir)
+  delete(rootProject.layout.buildDirectory)
 }

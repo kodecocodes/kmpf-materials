@@ -1,79 +1,62 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
-    kotlin(multiplatform)
-    id(androidLib)
-    kotlin(cocopods)
+    kotlin("multiplatform")
+    id("com.android.library")
 }
 
-version = "1.0"
-
 kotlin {
-    android()
-    jvm("desktop"){
+
+    androidTarget {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_17.toString()
+            }
         }
     }
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iosTarget("ios") {}
-    // Add the ARM64 simulator target
+    ios()
     iosSimulatorArm64()
 
-    cocoapods {
-        summary = "Holds Time zone information"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
-        podfile = project.file("../iosApp/Podfile")
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "shared"
+        }
     }
-    
+
+    jvm("desktop")
+
     sourceSets {
         val commonMain by getting {
+            kotlin.srcDirs("src/commonMain/kotlin")
             dependencies {
-                implementation(Deps.JetBrains.datetime)
-
-                implementation(project(":shared-logger"))
+                implementation(libs.datetime)
+                implementation(libs.napier)
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
+        val androidMain by getting {
+            kotlin.srcDirs("src/androidMain/kotlin")
         }
-        val androidMain by getting
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-            }
-        }
-
-        // Set up dependencies between the source sets
         val iosMain by getting {
-            dependsOn(commonMain)
+            kotlin.srcDirs("src/iosMain/kotlin")
         }
         val iosTest by getting
         val iosSimulatorArm64Main by getting
         val iosSimulatorArm64Test by getting
-        iosSimulatorArm64Main.dependsOn(iosMain)
-        iosSimulatorArm64Test.dependsOn(iosTest)
     }
 }
 
 android {
-    compileSdk =  Versions.compile_sdk
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "com.kodeco.findtime"
+    compileSdk = 34
     defaultConfig {
-        minSdk = Versions.min_sdk
-        targetSdk = Versions.target_sdk
+        minSdk = 26
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
-

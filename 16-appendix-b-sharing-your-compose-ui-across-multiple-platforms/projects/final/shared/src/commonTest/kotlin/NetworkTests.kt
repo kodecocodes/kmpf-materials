@@ -32,8 +32,6 @@
  * THE SOFTWARE.
  */
 
-package com.kodeco.learn
-
 import com.kodeco.learn.data.GRAVATAR_RESPONSE_FORMAT
 import com.kodeco.learn.data.GRAVATAR_URL
 import com.kodeco.learn.data.model.GravatarEntry

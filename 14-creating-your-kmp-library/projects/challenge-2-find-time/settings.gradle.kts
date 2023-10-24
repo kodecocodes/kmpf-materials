@@ -3,6 +3,15 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -11,7 +20,6 @@ include(":androidApp")
 include(":shared")
 include(":desktop")
 include(":shared-ui")
-
 include(":shared-logger")
-includeBuild("plugins/multiplatform-swiftpackage-m1_support")
 
+includeBuild("plugins/multiplatform-swiftpackage-m1_support")

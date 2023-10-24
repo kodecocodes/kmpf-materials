@@ -25,22 +25,22 @@ __attribute__((swift_name("KotlinBase")))
 - (instancetype)init __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
 + (void)initialize __attribute__((objc_requires_super));
-@end;
+@end
 
 @interface SharedLoggerBase (SharedLoggerBaseCopying) <NSCopying>
-@end;
+@end
 
 __attribute__((swift_name("KotlinMutableSet")))
 @interface SharedLoggerMutableSet<ObjectType> : NSMutableSet<ObjectType>
-@end;
+@end
 
 __attribute__((swift_name("KotlinMutableDictionary")))
 @interface SharedLoggerMutableDictionary<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
-@end;
+@end
 
 @interface NSError (NSErrorSharedLoggerKotlinException)
 @property (readonly) id _Nullable kotlinException;
-@end;
+@end
 
 __attribute__((swift_name("KotlinNumber")))
 @interface SharedLoggerNumber : NSNumber
@@ -74,73 +74,73 @@ __attribute__((swift_name("KotlinNumber")))
 + (instancetype)numberWithBool:(BOOL)value __attribute__((unavailable));
 + (instancetype)numberWithInteger:(NSInteger)value __attribute__((unavailable));
 + (instancetype)numberWithUnsignedInteger:(NSUInteger)value __attribute__((unavailable));
-@end;
+@end
 
 __attribute__((swift_name("KotlinByte")))
 @interface SharedLoggerByte : SharedLoggerNumber
 - (instancetype)initWithChar:(char)value;
 + (instancetype)numberWithChar:(char)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUByte")))
 @interface SharedLoggerUByte : SharedLoggerNumber
 - (instancetype)initWithUnsignedChar:(unsigned char)value;
 + (instancetype)numberWithUnsignedChar:(unsigned char)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinShort")))
 @interface SharedLoggerShort : SharedLoggerNumber
 - (instancetype)initWithShort:(short)value;
 + (instancetype)numberWithShort:(short)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUShort")))
 @interface SharedLoggerUShort : SharedLoggerNumber
 - (instancetype)initWithUnsignedShort:(unsigned short)value;
 + (instancetype)numberWithUnsignedShort:(unsigned short)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinInt")))
 @interface SharedLoggerInt : SharedLoggerNumber
 - (instancetype)initWithInt:(int)value;
 + (instancetype)numberWithInt:(int)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinUInt")))
 @interface SharedLoggerUInt : SharedLoggerNumber
 - (instancetype)initWithUnsignedInt:(unsigned int)value;
 + (instancetype)numberWithUnsignedInt:(unsigned int)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinLong")))
 @interface SharedLoggerLong : SharedLoggerNumber
 - (instancetype)initWithLongLong:(long long)value;
 + (instancetype)numberWithLongLong:(long long)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinULong")))
 @interface SharedLoggerULong : SharedLoggerNumber
 - (instancetype)initWithUnsignedLongLong:(unsigned long long)value;
 + (instancetype)numberWithUnsignedLongLong:(unsigned long long)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinFloat")))
 @interface SharedLoggerFloat : SharedLoggerNumber
 - (instancetype)initWithFloat:(float)value;
 + (instancetype)numberWithFloat:(float)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinDouble")))
 @interface SharedLoggerDouble : SharedLoggerNumber
 - (instancetype)initWithDouble:(double)value;
 + (instancetype)numberWithDouble:(double)value;
-@end;
+@end
 
 __attribute__((swift_name("KotlinBoolean")))
 @interface SharedLoggerBoolean : SharedLoggerNumber
 - (instancetype)initWithBool:(BOOL)value;
 + (instancetype)numberWithBool:(BOOL)value;
-@end;
+@end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Logger")))
@@ -152,7 +152,7 @@ __attribute__((swift_name("Logger")))
 - (void)dTag:(NSString *)tag message:(NSString *)message __attribute__((swift_name("d(tag:message:)")));
 - (void)eTag:(NSString *)tag message:(NSString *)message __attribute__((swift_name("e(tag:message:)")));
 - (void)wTag:(NSString *)tag message:(NSString *)message __attribute__((swift_name("w(tag:message:)")));
-@end;
+@end
 
 #pragma pop_macro("_Nullable_result")
 #pragma clang diagnostic pop

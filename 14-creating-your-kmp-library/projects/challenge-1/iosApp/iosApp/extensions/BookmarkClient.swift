@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2023 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,9 @@
 /// THE SOFTWARE.
 
 import SharedKit
-import SharedLogger
 
 public class BookmarkClient {
-  public typealias BookmarkHandler = (_ items: [RWEntry]) -> Void
+  public typealias BookmarkHandler = (_ items: [KodecoEntry]) -> Void
 
   public static let shared = BookmarkClient()
 
@@ -46,19 +45,19 @@ public class BookmarkClient {
     BookmarkClient.shared.handler = completion
   }
 
-  public func addToBookmarks(_ entry: RWEntry, completion: @escaping BookmarkHandler) {
+  public func addToBookmarks(_ entry: KodecoEntry, completion: @escaping BookmarkHandler) {
     Logger().d(tag: TAG, message: "addToBookmarks | entry=\(entry)")
     BookmarkClient.shared.bookmarkPresenter.addAsBookmark(entry: entry, cb: BookmarkClient.shared)
   }
 
-  public func removeFromBookmarks(_ entry: RWEntry, completion: @escaping BookmarkHandler) {
+  public func removeFromBookmarks(_ entry: KodecoEntry, completion: @escaping BookmarkHandler) {
     Logger().d(tag: TAG, message: "removeFromBookmarks")
     BookmarkClient.shared.bookmarkPresenter.removeFromBookmark(entry: entry, cb: BookmarkClient.shared)
   }
 }
 
 extension BookmarkClient: BookmarkData {
-  public func onNewBookmarksList(bookmarks: [RWEntry]) {
+  public func onNewBookmarksList(bookmarks: [KodecoEntry]) {
     Logger().d(tag: TAG, message: "onNewBookmarksList: \(bookmarks)")
     self.handler?(bookmarks)
   }

@@ -54,7 +54,7 @@ dependencies {
   
   implementation(libs.kotlinx.datetime)
 
-  implementation("io.coil-kt:coil-compose:2.4.0")
+  implementation(libs.image.coil)
 }
 
 android {
@@ -89,6 +89,13 @@ android {
 
   composeOptions {
     kotlinCompilerExtensionVersion = libs.versions.android.compose.compiler.get()
+  }
+
+  packaging {
+    resources {
+      excludes += "/META-INF/{AL2.0,LGPL2.1}"
+      excludes += "/META-INF/versions/9/previous-compilation-data.bin"
+    }
   }
 
   namespace = "com.kodeco.learn"

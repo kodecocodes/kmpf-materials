@@ -32,6 +32,7 @@
 
 import SwiftUI
 import SharedKit
+import SharedLogger
 
 let TAG = "KodecoEntryViewModel"
 

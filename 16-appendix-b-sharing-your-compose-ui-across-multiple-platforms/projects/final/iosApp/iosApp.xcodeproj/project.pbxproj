@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		2DB30AF92AD742A2006A9510 /* SharedLogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB30AF82AD742A2006A9510 /* SharedLogger.xcframework */; };
-		2DB30AFA2AD742A2006A9510 /* SharedLogger.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB30AF82AD742A2006A9510 /* SharedLogger.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2DB30AFB2AD742B0006A9510 /* SharedAction.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; };
-		2DB30AFC2AD742B0006A9510 /* SharedAction.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF412AB6828E0043F9A3 /* KMPNativeCoroutinesAsync */; };
 		6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF432AB6828E0043F9A3 /* KMPNativeCoroutinesCombine */; };
 		6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6702DF452AB6828E0043F9A3 /* KMPNativeCoroutinesCore */; };
@@ -23,7 +19,6 @@
 		67099065271502080048A7B5 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099064271502080048A7B5 /* BookmarkView.swift */; };
 		67099067271502210048A7B5 /* LatestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67099066271502210048A7B5 /* LatestView.swift */; };
 		670990692715023E0048A7B5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990682715023E0048A7B5 /* SearchView.swift */; };
-		670990722715B5B00048A7B5 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670990712715B5B00048A7B5 /* AppIcon.swift */; };
 		6709909D2717ABF80048A7B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709909C2717ABF80048A7B5 /* Utils.swift */; };
 		6761C5672A9B4AD1008BB48B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */; };
 		6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763BD842AA6613400A70BAA /* MainToolbarContent.swift */; };
@@ -36,8 +31,6 @@
 		67C6FF312A98FD39008A2221 /* OpenSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67C6FF2C2A98FD39008A2221 /* OpenSansLight.ttf */; };
 		67C6FF322A98FD39008A2221 /* OpenSansExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67C6FF2D2A98FD39008A2221 /* OpenSansExtraBold.ttf */; };
 		67C6FF342A98FD95008A2221 /* KodecoEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */; };
-		67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; };
-		67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,9 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2DB30AFA2AD742A2006A9510 /* SharedLogger.xcframework in Embed Frameworks */,
-				67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */,
-				2DB30AFC2AD742B0006A9510 /* SharedAction.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
-		2DB30AF82AD742A2006A9510 /* SharedLogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedLogger.xcframework; path = "../shared-logger/swiftpackage/SharedLogger.xcframework"; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
 		670990602714FDEA0048A7B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,7 +56,6 @@
 		67099064271502080048A7B5 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		67099066271502210048A7B5 /* LatestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestView.swift; sourceTree = "<group>"; };
 		670990682715023E0048A7B5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		670990712715B5B00048A7B5 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		6709909C2717ABF80048A7B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6761C5662A9B4AD1008BB48B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6763BD832AA6402000A70BAA /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,8 +68,6 @@
 		67C6FF2C2A98FD39008A2221 /* OpenSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansLight.ttf; sourceTree = "<group>"; };
 		67C6FF2D2A98FD39008A2221 /* OpenSansExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansExtraBold.ttf; sourceTree = "<group>"; };
 		67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KodecoEntryRow.swift; sourceTree = "<group>"; };
-		67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedAction.xcframework; path = "../shared-action/sharedaction/SharedAction.xcframework"; sourceTree = "<group>"; };
-		67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedKit.xcframework; path = ../shared/swiftpackage/SharedKit.xcframework; sourceTree = "<group>"; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,11 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DB30AF92AD742A2006A9510 /* SharedLogger.xcframework in Frameworks */,
 				6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */,
-				67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */,
 				6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */,
-				2DB30AFB2AD742B0006A9510 /* SharedAction.xcframework in Frameworks */,
 				6702DF482AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift in Frameworks */,
 				6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */,
 				67BD5C082A9B555900FFDFEA /* SDWebImageSwiftUI in Frameworks */,
@@ -117,7 +100,6 @@
 		6709906E2715B1A10048A7B5 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				670990712715B5B00048A7B5 /* AppIcon.swift */,
 				67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */,
 			);
 			path = common;
@@ -147,9 +129,6 @@
 		67D0DC522AB7DDF9007D0EA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2DB30AF82AD742A2006A9510 /* SharedLogger.xcframework */,
-				67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */,
-				67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +171,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
+				67B9179E2ADFD29D00CAFDE7 /* Compile Kotlin */,
+				67B9179F2ADFD2B800CAFDE7 /* Compile Action */,
+				67B917A02ADFD2C100CAFDE7 /* Compile Logger */,
 				67A1CBB627B1867F005629A1 /* SwiftLint */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
@@ -289,6 +271,60 @@
 			shellPath = /bin/sh;
 			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
 		};
+		67B9179E2ADFD29D00CAFDE7 /* Compile Kotlin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Kotlin";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		67B9179F2ADFD2B800CAFDE7 /* Compile Action */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Action";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared-action:embedAndSignAppleFrameworkForXcode\n";
+		};
+		67B917A02ADFD2C100CAFDE7 /* Compile Logger */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Logger";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared-logger:embedAndSignAppleFrameworkForXcode\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -309,7 +345,6 @@
 				6763BD852AA6613400A70BAA /* MainToolbarContent.swift in Sources */,
 				67C6FF262A98FC8D008A2221 /* KodecoEntryViewModel.swift in Sources */,
 				67099067271502210048A7B5 /* LatestView.swift in Sources */,
-				670990722715B5B00048A7B5 /* AppIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +481,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared-action/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared-logger/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -465,6 +502,12 @@
 					"$(inherited)",
 					"-framework",
 					SharedKit,
+					"$(inherited)",
+					"-framework",
+					SharedLogger,
+					"-framework",
+					"$(inherited)",
+					SharedAction,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodeco.learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +526,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared-action/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared-logger/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -502,6 +547,12 @@
 					"$(inherited)",
 					"-framework",
 					SharedKit,
+					"$(inherited)",
+					"-framework",
+					SharedLogger,
+					"-framework",
+					"$(inherited)",
+					SharedAction,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodeco.learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
