@@ -39,8 +39,6 @@ struct RemindersView: View {
   }
 }
 
-struct RemindersView_Previews: PreviewProvider {
-  static var previews: some View {
-    RemindersView()
-  }
+#Preview {
+  RemindersView()
 }

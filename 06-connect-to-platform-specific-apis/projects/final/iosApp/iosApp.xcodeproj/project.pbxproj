@@ -12,7 +12,7 @@
 		301A789A2A96023200D37A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A78992A96023200D37A08 /* LaunchScreen.storyboard */; };
 		301A78A02A96030500D37A08 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A789F2A96030500D37A08 /* AboutView.swift */; };
 		301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A78A12A96030E00D37A08 /* RemindersView.swift */; };
-		3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3088EB642A9B77B4002D249F /* AboutListView.swift */; };
+		30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,7 @@
 		301A78992A96023200D37A08 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		301A789F2A96030500D37A08 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		301A78A12A96030E00D37A08 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
-		3088EB642A9B77B4002D249F /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
+		30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				301A789F2A96030500D37A08 /* AboutView.swift */,
-				3088EB642A9B77B4002D249F /* AboutListView.swift */,
+				30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
@@ -223,7 +223,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/sharedFramework",
+				"$(DERIVED_FILE_DIR)/kmpShared",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -239,7 +239,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				301A78A02A96030500D37A08 /* AboutView.swift in Sources */,
 				301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */,
-				3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */,
+				30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
