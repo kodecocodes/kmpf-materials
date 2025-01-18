@@ -32,12 +32,37 @@
  * THE SOFTWARE.
  */
 
-plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
+package com.yourcompany.organize.android.ui.root
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.yourcompany.organize.android.ui.about.AboutView
+import com.yourcompany.organize.android.ui.reminders.RemindersView
+import com.yourcompany.organize.presentation.Screen
+
+@Composable
+fun AppNavHost(
+  navController: NavHostController,
+  modifier: Modifier = Modifier,
+) {
+  NavHost(
+    navController = navController,
+    startDestination = Screen.Reminders.route,
+    modifier = modifier,
+  ) {
+    composable(Screen.Reminders.route) {
+      RemindersView(
+        onAboutButtonClick = { navController.navigate(Screen.AboutDevice.route) }
+      )
+    }
+
+    composable(Screen.AboutDevice.route) {
+      AboutView(
+        onUpButtonClick = { navController.popBackStack() }
+      )
+    }
+  }
 }

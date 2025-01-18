@@ -32,12 +32,10 @@
  * THE SOFTWARE.
  */
 
-plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
-}
+package ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+val ColorPrimary = Color(0xFF006837)
+val ColorPrimaryDark = Color(0xFF004012)
+val ColorAccent = Color(0xFFC75f00)

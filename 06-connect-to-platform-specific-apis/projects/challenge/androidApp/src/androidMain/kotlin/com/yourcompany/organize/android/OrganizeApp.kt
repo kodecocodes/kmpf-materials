@@ -30,14 +30,11 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
+*/
 
-plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
+package com.yourcompany.organize.android
+
+import android.app.Application
+
+class OrganizeApp : Application() {
 }

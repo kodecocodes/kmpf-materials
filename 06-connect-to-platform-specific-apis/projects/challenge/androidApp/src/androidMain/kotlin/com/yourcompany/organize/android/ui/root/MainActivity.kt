@@ -32,12 +32,36 @@
  * THE SOFTWARE.
  */
 
-plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
+package com.yourcompany.organize.android.ui.root
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.yourcompany.organize.android.R
+import com.yourcompany.organize.android.ui.theme.AppTheme
+
+class MainActivity : ComponentActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    setTheme(R.style.AppTheme)
+
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
+    setContent {
+      AppTheme {
+        AppScaffold()
+      }
+    }
+  }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun DefaultPreview() {
+  AppTheme {
+    AppScaffold()
+  }
 }

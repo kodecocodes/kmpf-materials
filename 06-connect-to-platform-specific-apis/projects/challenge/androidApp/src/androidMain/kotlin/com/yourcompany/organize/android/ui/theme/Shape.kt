@@ -32,12 +32,14 @@
  * THE SOFTWARE.
  */
 
-plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
-}
+package com.yourcompany.organize.android.ui.theme
+
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Shapes
+import androidx.compose.ui.unit.dp
+
+val Shapes = Shapes(
+  small = RoundedCornerShape(4.dp),
+  medium = RoundedCornerShape(4.dp),
+  large = RoundedCornerShape(0.dp)
+)
