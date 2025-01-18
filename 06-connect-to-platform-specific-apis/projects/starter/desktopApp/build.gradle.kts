@@ -35,17 +35,16 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose")
+  alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.composeMultiplatform)
+  alias(libs.plugins.composeCompiler)
 }
 
 kotlin {
-  jvm {
-    withJava()
-  }
+  jvm("desktop")
 
   sourceSets {
-    val jvmMain by getting {
+    val desktopMain by getting {
       dependencies {
         implementation(project(":shared"))
         implementation(compose.desktop.currentOs)
@@ -60,12 +59,12 @@ compose.desktop {
     mainClass = "MainKt"
 
     nativeDistributions {
-      val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
+      val resources = project.layout.projectDirectory.dir("src/desktopMain/resources")
 
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       appResourcesRootDir.set(resources)
       packageName = "Organize"
-      packageVersion = "2.0.0"
+      packageVersion = "3.0.0"
 
       macOS {
         // Use -Pcompose.desktop.mac.sign=true to sign and notarize.
