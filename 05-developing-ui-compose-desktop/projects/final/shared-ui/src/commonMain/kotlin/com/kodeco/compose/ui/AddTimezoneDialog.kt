@@ -30,7 +30,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import com.kodeco.findtime.TimeZoneHelper
 import com.kodeco.findtime.TimeZoneHelperImpl
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco LLC
+/// Copyright (c) 2025 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,55 +31,22 @@
 /// THE SOFTWARE.
 
 import SwiftUI
-import shared
 
-extension String: Identifiable {
-    public var id: String { return self }
-}
+struct ListModifier: ViewModifier {
 
-struct TimezoneDialog: View {
-    @State private var searchText: String = ""
-    @EnvironmentObject var timezoneItems: TimezoneItems
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        VStack {
-            Searchbar(text: $searchText)
-            List(selection: $timezoneItems.selectedTimezones) {
-                ForEach(
-                    timezoneItems.timezones.filter {
-                        searchText.isEmpty ? true : $0.lowercased().contains(searchText.lowercased())
-                    },
-                    id: \.self) { timezone in
-                        HStack {
-                            Image(systemName: timezoneItems.selectedTimezones.contains(timezone) ? "checkmark.circle" : "circle")
-                                .onTapGesture {
-                                    selectTimezone(timezone: timezone)
-                                }
-                            Text(timezone)
-                                .onTapGesture {
-                                    selectTimezone(timezone: timezone)
-                                }
-                        }
-                    }
-            }
-        }
-        Button("Dismiss") {
-            presentationMode.wrappedValue.dismiss()
-        }
-    }
-    func selectTimezone(timezone: String) {
-        if timezoneItems.selectedTimezones.contains(timezone) {
-            timezoneItems.selectedTimezones.remove(timezone)
+    func body(content: Content) -> some View {
+        if #available(iOS 15.0, *) {
+            content
+                .listRowInsets(.init())
+                .listRowSeparator(.hidden)
         } else {
-            timezoneItems.selectedTimezones.insert(timezone)
+            content
         }
     }
 }
 
-
-struct TimezoneDialog_Previews: PreviewProvider {
-    static var previews: some View {
-        TimezoneDialog().environmentObject(TimezoneItems())
+extension View {
+    func withListModifier() -> some View {
+        modifier(ListModifier())
     }
 }

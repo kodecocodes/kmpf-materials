@@ -12,10 +12,10 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,16 +26,17 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.kodeco.findtime.TimeZoneHelper
 import com.kodeco.findtime.TimeZoneHelperImpl
 
+// 1
 @Composable
 fun FindMeetingScreen(
     timezoneStrings: List<String>
 ) {
     val listState = rememberLazyListState()
+    // 2
     // 8am
     val startTime = remember {
         mutableIntStateOf(8)
@@ -44,15 +45,18 @@ fun FindMeetingScreen(
     val endTime = remember {
         mutableIntStateOf(17)
     }
+    // 3
     val selectedTimeZones = remember {
         val selected = SnapshotStateMap<Int, Boolean>()
         for (i in timezoneStrings.indices) selected[i] = true
         selected
     }
+    // 4
     val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
     val showMeetingDialog = remember { mutableStateOf(false) }
     val meetingHours = remember { SnapshotStateList<Int>() }
 
+    // 5
     if (showMeetingDialog.value) {
         MeetingDialog(
             hours = meetingHours,
@@ -66,6 +70,7 @@ fun FindMeetingScreen(
             .fillMaxSize()
     ) {
         Spacer(modifier = Modifier.size(16.dp))
+        // 2
         Text(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,6 +79,7 @@ fun FindMeetingScreen(
             style = MaterialTheme.typography.headlineSmall.copy(color = MaterialTheme.colorScheme.onBackground)
         )
         Spacer(modifier = Modifier.size(16.dp))
+        // 3
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -81,12 +87,14 @@ fun FindMeetingScreen(
                 .wrapContentWidth(Alignment.CenterHorizontally),
 
             ) {
+            // 4
             Spacer(modifier = Modifier.size(16.dp))
             NumberTimeCard("Start", startTime)
             Spacer(modifier = Modifier.size(32.dp))
             NumberTimeCard("End", endTime)
         }
         Spacer(modifier = Modifier.size(16.dp))
+        // 5
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -109,6 +117,7 @@ fun FindMeetingScreen(
             contentPadding = PaddingValues(16.dp),
             state = listState,
         ) {
+            // 2
             itemsIndexed(timezoneStrings) { i, timezone ->
                 Surface(
                     modifier = Modifier
@@ -120,6 +129,7 @@ fun FindMeetingScreen(
                         modifier = Modifier
                             .fillMaxWidth(),
                     ) {
+                        // 3
                         Checkbox(checked = isSelected(selectedTimeZones, i),
                             onCheckedChange = {
                                 selectedTimeZones[i] = it
@@ -133,11 +143,12 @@ fun FindMeetingScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.3F)
+                .weight(0.2F)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(start = 4.dp, end = 4.dp)
 
         ) {
+            // 4
             OutlinedButton(
                 colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {

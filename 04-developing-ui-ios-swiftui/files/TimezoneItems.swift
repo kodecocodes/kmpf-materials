@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco LLC
+/// Copyright (c) 2025 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,57 +29,15 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+
 import SwiftUI
+import shared
 
-struct TimeCard: View {
-  var timezone: String
-  var time: String
-  var date: String
-  var body: some View {
-    HStack {
-      VStack(alignment: .leading) {
-        Text("Your Location")
-          .font(Font.caption)
-          .foregroundColor(Color.white)
-        Spacer().frame(height:8.0)
-        Text(timezone)
-          .lineLimit(1)
-          .font(.system(size: 16.0))
-          .foregroundColor(Color.white)
-      }
-      .padding(.leading, 8).padding(.bottom, 16)
-      Spacer()
-      VStack(alignment: .trailing) {
-        Text(time)
-          .font(.system(size: 34.0))
-          .foregroundColor(Color.white)
-        Spacer().frame(height:8.0)
-        Text(date)
-          .lineLimit(1)
-          .font(.system(size: 12.0))
-          .foregroundColor(Color.white)
-      }
-      .padding(.trailing, 8).padding(.bottom, 16)
-    }
-    .frame(maxWidth: .infinity, minHeight: 120, alignment: Alignment(horizontal: .leading, vertical: .bottom))
-    .background(LinearGradient(gradient: Gradient(colors:
-                                                    [
-                                                      Color(.sRGB, red: 25/255, green: 117/255, blue: 210/255),
-                                                      Color(.sRGB, red: 99/255, green: 164/255, blue: 255/255),
-                                                    ]),
-                               startPoint: .trailing, endPoint: .leading))
-    .cornerRadius(10)
-    .overlay(
-      RoundedRectangle(cornerRadius: 8)
-        .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 1.0), lineWidth: 1)
-    )
-    .padding([.top, .horizontal])
-  }
-}
+class TimezoneItems: ObservableObject {
+  @Published var timezones: [String] = []
+  @Published var selectedTimezones = Set<String>()
 
-struct TimeCard_Previews: PreviewProvider {
-  static var previews: some View {
-    TimeCard(timezone: "America/Los_Angeles",
-             time: "1:39 pm", date: "Saturday, October 16")
+  init() {
+      self.timezones = TimeZoneHelperImpl().getTimeZoneStrings()
   }
 }

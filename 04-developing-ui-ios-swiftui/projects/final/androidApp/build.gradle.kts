@@ -1,38 +1,45 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
+    // 2
     namespace = "com.kodeco.findtime.android"
-    compileSdk = 34
+    // 3
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
+        // 4
         applicationId = "com.kodeco.findtime.android"
-        minSdk = 26
-        targetSdk = 34
+        // 5
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
     }
+    // 6
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
-    }
+    // 7
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    // 8
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+    // 9
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    // 10
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
         freeCompilerArgs = freeCompilerArgs + listOf(
@@ -46,10 +53,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(projects.shared)
+    // 2
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.ui)
-    implementation(libs.bundles.androidx.activity)
-    implementation(libs.bundles.material)
     implementation(libs.napier)
+    debugImplementation(libs.compose.ui.tooling)
 }

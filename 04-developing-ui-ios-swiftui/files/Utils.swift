@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco LLC
+/// Copyright (c) 2025 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,66 +29,19 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+import Foundation
 
-import SwiftUI
-
-struct Searchbar: View {
-  @Binding var text: String
-  @State private var isEditing = false
-
-  var body: some View {
-    VStack {
-      Spacer()
-        .frame(height: 8)
-      HStack {
-        TextField("Search ...", text: $text)
-          .padding(7)
-          .padding(.horizontal, 25)
-          .background(Color(.systemGray6))
-          .cornerRadius(8)
-          .overlay(
-            HStack {
-              Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 8)
-
-              if isEditing {
-                Button(
-                  action: { self.text = "" },
-                  label: {
-                    Image(systemName: "multiply.circle.fill")
-                      .foregroundColor(.gray)
-                      .padding(.trailing, 8)
-                  })
-              }
-            }
-          )
-          .padding(.horizontal, 10)
-          .onTapGesture {
-            self.isEditing = true
-          }
-
-        if isEditing {
-          Button(
-            action: {
-              self.isEditing = false
-              self.text = ""
-            },
-            label: {
-              Text("Cancel")
-            })
-            .padding(.trailing, 10)
-            .transition(.move(edge: .trailing))
-            .animation(.default)
-        }
-      }
-    }
-  }
-}
-
-struct Searchbar_Previews: PreviewProvider {
-  static var previews: some View {
-    Searchbar(text: .constant("Test"))
-  }
+extension DateFormatter {
+    static let short: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    static let long: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
 }

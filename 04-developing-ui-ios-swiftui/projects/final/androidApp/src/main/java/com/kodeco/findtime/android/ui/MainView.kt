@@ -2,9 +2,6 @@ package com.kodeco.findtime.android.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Language
@@ -13,12 +10,11 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -31,8 +27,8 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.findtime.android.MyApplicationTheme
 
 sealed class Screen(val title: String) {
-    object TimeZonesScreen : Screen("Timezones")
-    object FindTimeScreen : Screen("Find Time")
+    data object TimeZonesScreen : Screen("Timezones")
+    data object FindTimeScreen : Screen("Find Time")
 }
 
 data class BottomItem(
@@ -54,11 +50,17 @@ val bottomNavigationItems = listOf(
     )
 )
 
+
 @Composable
+// 2
 fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
+    // 3
     val showAddDialog = remember { mutableStateOf(false) }
+    // 4
     val currentTimezoneStrings = remember { SnapshotStateList<String>() }
-    val selectedIndex = remember { mutableIntStateOf(0) }
+    // 5
+    val selectedIndex = remember { mutableIntStateOf(0)}
+    // 6
     MyApplicationTheme {
         Scaffold(
             topBar = {
@@ -66,15 +68,19 @@ fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
             },
             floatingActionButton = {
                 if (selectedIndex.intValue == 0) {
+                    // 1
                     FloatingActionButton(
+                        // 2
                         modifier = Modifier
                             .padding(16.dp),
                         shape = FloatingActionButtonDefaults.largeShape,
                         containerColor = MaterialTheme.colorScheme.secondary,
+                        // 3
                         onClick = {
                             showAddDialog.value = true
                         }
                     ) {
+                        // 4
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = "Add Timezone"
@@ -86,7 +92,9 @@ fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
                 NavigationBar(
                     containerColor = MaterialTheme.colorScheme.primary
                 ) {
+                    // 2
                     bottomNavigationItems.forEachIndexed { i, bottomNavigationItem ->
+                        // 3
                         NavigationBarItem(
                             colors =  NavigationBarItemDefaults.colors(
                                 selectedIconColor = Color.White,
@@ -96,18 +104,18 @@ fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
                                 indicatorColor = MaterialTheme.colorScheme.primary,
                             ),
                             label = {
-                                Text(
-                                    bottomNavigationItem.route,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                Text(bottomNavigationItem.route, style = MaterialTheme.typography.bodyMedium)
                             },
+                            // 4
                             icon = {
                                 Icon(
                                     bottomNavigationItem.icon,
                                     contentDescription = bottomNavigationItem.iconContentDescription
                                 )
                             },
-                            selected = (selectedIndex.intValue == i),
+                            // 5
+                            selected = selectedIndex.intValue == i,
+                            // 6
                             onClick = {
                                 selectedIndex.intValue = i
                             }
@@ -119,22 +127,25 @@ fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
             Box(modifier = Modifier.padding(padding)) {
                 if (showAddDialog.value) {
                     AddTimeZoneDialog(
+                        // 2
                         onAdd = { newTimezones ->
                             showAddDialog.value = false
                             for (zone in newTimezones) {
+                                // 3
                                 if (!currentTimezoneStrings.contains(zone)) {
                                     currentTimezoneStrings.add(zone)
                                 }
                             }
                         },
                         onDismiss = {
+                            // 4
                             showAddDialog.value = false
                         },
                     )
                 }
-                when (selectedIndex.intValue) {
+                when (selectedIndex.intValue	) {
                     0 -> TimeZoneScreen(currentTimezoneStrings)
-                    1 -> FindMeetingScreen(currentTimezoneStrings)
+                     1 -> FindMeetingScreen(currentTimezoneStrings)
                 }
             }
         }

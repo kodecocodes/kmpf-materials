@@ -11,11 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 val startGradientColor = Color(0xFF1e88e5)
 val endGradientColor = Color(0xFF005cb2)
 
@@ -68,7 +66,6 @@ fun MyApplicationTheme(
         medium = RoundedCornerShape(4.dp),
         large = RoundedCornerShape(0.dp)
     )
-
     MaterialTheme(
         colorScheme = colors,
         typography = typography,
