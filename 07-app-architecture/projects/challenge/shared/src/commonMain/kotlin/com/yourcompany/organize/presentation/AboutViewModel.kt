@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@ import com.yourcompany.organize.Platform
 import kotlin.math.max
 import kotlin.math.min
 
-class AboutViewModel: BaseViewModel() {
+class AboutViewModel : BaseViewModel() {
   private val platform = Platform()
 
   val items: List<RowItem> = makeRowItems(platform)
-
   val title: String = "About Device"
+
   private fun makeRowItems(platform: Platform): List<RowItem> {
     val rowItems = mutableListOf(
       RowItem("Operating System", "${platform.osName} ${platform.osVersion}"),
@@ -56,7 +56,7 @@ class AboutViewModel: BaseViewModel() {
 
     var displayInfo = "${max}×${min}"
     platform.screen.density?.let {
-      displayInfo += " ${it}x"
+      displayInfo += " @${it}x"
     }
 
     rowItems.add(
