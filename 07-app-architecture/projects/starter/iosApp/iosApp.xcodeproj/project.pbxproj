@@ -12,9 +12,9 @@
 		301A789A2A96023200D37A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A78992A96023200D37A08 /* LaunchScreen.storyboard */; };
 		301A78A02A96030500D37A08 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A789F2A96030500D37A08 /* AboutView.swift */; };
 		301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A78A12A96030E00D37A08 /* RemindersView.swift */; };
-		3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3088EB642A9B77B4002D249F /* AboutListView.swift */; };
-		30ECB49F2AA0C97E00878A44 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB49E2AA0C97E00878A44 /* ReminderItem.swift */; };
-		30ECB4A12AA0C99F00878A44 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB4A02AA0C99F00878A44 /* NewReminderTextField.swift */; };
+		30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */; };
+		30C8DED22D4BA3150059A499 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C8DED02D4BA3150059A499 /* NewReminderTextField.swift */; };
+		30C8DED32D4BA3150059A499 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C8DED12D4BA3150059A499 /* ReminderItem.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +37,9 @@
 		301A78992A96023200D37A08 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		301A789F2A96030500D37A08 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		301A78A12A96030E00D37A08 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
-		3088EB642A9B77B4002D249F /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
-		30ECB49E2AA0C97E00878A44 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
-		30ECB4A02AA0C99F00878A44 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
+		30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
+		30C8DED02D4BA3150059A499 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
+		30C8DED12D4BA3150059A499 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				301A789F2A96030500D37A08 /* AboutView.swift */,
-				3088EB642A9B77B4002D249F /* AboutListView.swift */,
+				30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -88,9 +88,9 @@
 		301A789E2A96029000D37A08 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
+				30C8DED02D4BA3150059A499 /* NewReminderTextField.swift */,
+				30C8DED12D4BA3150059A499 /* ReminderItem.swift */,
 				301A78A12A96030E00D37A08 /* RemindersView.swift */,
-				30ECB49E2AA0C97E00878A44 /* ReminderItem.swift */,
-				30ECB4A02AA0C99F00878A44 /* NewReminderTextField.swift */,
 			);
 			path = Reminders;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
@@ -229,7 +229,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/sharedFramework",
+				"$(DERIVED_FILE_DIR)/kmpShared",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -243,11 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				30ECB4A12AA0C99F00878A44 /* NewReminderTextField.swift in Sources */,
 				301A78A02A96030500D37A08 /* AboutView.swift in Sources */,
+				30C8DED22D4BA3150059A499 /* NewReminderTextField.swift in Sources */,
+				30C8DED32D4BA3150059A499 /* ReminderItem.swift in Sources */,
 				301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */,
-				3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */,
-				30ECB49F2AA0C97E00878A44 /* ReminderItem.swift in Sources */,
+				30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -363,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -386,6 +386,7 @@
 				);
 				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Organize;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,6 +417,7 @@
 				);
 				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Organize;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
