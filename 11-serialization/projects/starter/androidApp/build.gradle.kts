@@ -35,6 +35,8 @@
 plugins {
   id("com.android.application")
   kotlin("android")
+
+  alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 dependencies {
@@ -63,8 +65,8 @@ android {
     applicationId = "com.kodeco.learn"
     minSdk = libs.versions.android.sdk.min.get().toInt()
     targetSdk = libs.versions.android.sdk.target.get().toInt()
-    versionCode = 2
-    versionName = "2.0"
+    versionCode = 3
+    versionName = "3.0"
   }
 
   buildTypes {
@@ -84,10 +86,6 @@ android {
 
   kotlinOptions {
     jvmTarget = "17"
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.android.compose.compiler.get()
   }
 
   packaging {

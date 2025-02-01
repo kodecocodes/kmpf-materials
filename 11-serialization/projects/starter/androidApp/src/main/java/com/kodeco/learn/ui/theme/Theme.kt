@@ -35,6 +35,7 @@
 package com.kodeco.learn.ui.theme
 
 import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -63,6 +64,7 @@ private val LightColorScheme = lightColorScheme(
     onSecondaryContainer = lightBackground
 )
 
+@Suppress("DEPRECATION")
 @Composable
 fun KodecoTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -77,7 +79,14 @@ fun KodecoTheme(
   if (!view.isInEditMode) {
     SideEffect {
       val window = (view.context as Activity).window
-      window.statusBarColor = colorScheme.surface.toArgb()
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+          view.setBackgroundColor(colorScheme.surface.toArgb())
+          insets
+        }
+      } else {
+        window.statusBarColor = colorScheme.surface.toArgb()
+      }
       WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
     }
   }

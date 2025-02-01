@@ -33,41 +33,46 @@
  */
 
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.jetbrains.kotlin.multiplatform)
+
   alias(libs.plugins.jetbrains.compose)
+  alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 kotlin {
 
   jvm {
     compilations.all {
-      kotlinOptions.jvmTarget = "17"
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.JVM_17)
+        }
+      }
     }
   }
 
   sourceSets {
-    getByName("jvmMain") {
-      dependencies {
-        implementation(project(":shared"))
+    jvmMain.dependencies {
+      implementation(project(":shared"))
 
-        implementation(compose.desktop.currentOs)
+      implementation(compose.desktop.currentOs)
 
-        implementation(compose.foundation)
-        implementation(compose.runtime)
-        implementation(compose.foundation)
-        implementation(compose.material)
-        implementation(compose.material3)
-        implementation(compose.ui)
+      implementation(compose.foundation)
+      implementation(compose.runtime)
+      implementation(compose.foundation)
+      implementation(compose.material)
+      implementation(compose.material3)
+      implementation(compose.material3AdaptiveNavigationSuite)
+      implementation(compose.ui)
 
-        implementation(libs.kotlinx.datetime)
+      implementation(libs.kotlinx.datetime)
 
-        implementation(libs.image.loader)
+      implementation(libs.image.loader)
 
-        implementation(libs.precompose)
-        implementation(libs.precompose.viewmodel)
-      }
+      implementation(libs.jetbrains.compose.lifecycle)
     }
   }
 }
@@ -79,7 +84,7 @@ compose.desktop {
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "learn"
-      packageVersion = "2.0.0"
+      packageVersion = "3.0.0"
 
       val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
       appResourcesRootDir.set(resources)

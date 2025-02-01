@@ -35,8 +35,8 @@
 package com.kodeco.learn.ui.main
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -54,7 +54,7 @@ import kotlinx.coroutines.CoroutineScope
 
 private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainContent(
     navController: NavHostController,
@@ -79,7 +79,7 @@ fun MainContent(
   }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MainScreenNavigationConfigurations(
     navController: NavHostController,

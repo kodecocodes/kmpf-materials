@@ -38,16 +38,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.platform.Logger
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen
 import com.kodeco.learn.ui.theme.KodecoTheme
-import moe.tlaster.precompose.PreComposeWindow
-import moe.tlaster.precompose.viewmodel.viewModel
 import java.awt.Desktop
 import java.net.URI
 
@@ -61,7 +61,7 @@ fun main() {
   application {
     val windowState = rememberWindowState(width = 460.dp, height = 900.dp)
 
-    PreComposeWindow(
+    Window(
       onCloseRequest = ::exitApplication,
       state = windowState,
       title = "learn"
