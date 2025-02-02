@@ -34,7 +34,5 @@
 
 package com.kodeco.learn.platform
 
-import android.os.Parcelable
-
-actual typealias Parcelable = Parcelable
+actual typealias Parcelable = android.os.Parcelable
 actual typealias Parcelize = kotlinx.parcelize.Parcelize
