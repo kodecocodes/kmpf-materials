@@ -58,7 +58,6 @@ struct KodecoEntryRow: View {
       VStack(alignment: .leading) {
         HStack {
           if item.imageUrl.isEmpty {
-            Rectangle().foregroundColor(.gray)
             Image("kodeco")
               .resizable()
               .frame(width: 50, height: 50)
