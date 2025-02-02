@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,13 +38,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.lifecycle.ViewModel
 import com.kodeco.learn.ServiceLocator
 import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.cb.FeedData
 import com.kodeco.learn.platform.Logger
-import moe.tlaster.precompose.viewmodel.ViewModel
 
 private const val TAG = "FeedViewModel"
 
@@ -63,6 +63,7 @@ class FeedViewModel : ViewModel(), FeedData {
 
   fun fetchAllFeeds() {
     Logger.d(TAG, "fetchAllFeeds")
+    _items[PLATFORM.ALL] = presenter.allFeeds
   }
 
   fun fetchMyGravatar() {
