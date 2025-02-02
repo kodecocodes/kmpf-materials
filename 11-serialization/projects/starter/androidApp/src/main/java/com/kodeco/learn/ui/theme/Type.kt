@@ -90,5 +90,39 @@ val Typography = Typography(
   bodySmall = TextStyle(
     fontFamily = OpenSansFontFamily,
     fontSize = fontSizeSmall
+  ),
+
+  titleLarge = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  titleMedium = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  titleSmall = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontSize = fontSizeSmall
+  ),
+
+  labelLarge = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  labelMedium = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  labelSmall = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontSize = fontSizeSmall
   )
 )

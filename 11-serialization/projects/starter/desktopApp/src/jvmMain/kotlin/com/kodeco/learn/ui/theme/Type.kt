@@ -35,59 +35,102 @@
 package com.kodeco.learn.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.unit.sp
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.opensans_bold
+import com.kodeco.learn.resources.opensans_extrabold
+import com.kodeco.learn.resources.opensans_light
+import com.kodeco.learn.resources.opensans_regular
+import com.kodeco.learn.resources.opensans_semibold
+import org.jetbrains.compose.resources.Font
 
 private val fontSizeBig = 16.sp
 private val fontSizeMedium = 15.sp
 private val fontSizeSmall = 14.sp
 private val fontSizeTiny = 12.sp
 
-private val OpenSansFontFamily = FontFamily(
-  Font("font/opensans_bold.ttf", FontWeight.Bold),
-  Font("font/opensans_extrabold.ttf", FontWeight.ExtraBold),
-  Font("font/opensans_light.ttf", FontWeight.Light),
-  Font("font/opensans_regular.ttf", FontWeight.Normal),
-  Font("font/opensans_semibold.ttf", FontWeight.SemiBold),
+@Composable
+fun OpenSansFontFamily() = FontFamily(
+  Font(Res.font.opensans_bold, FontWeight.Bold, FontStyle.Normal),
+  Font(Res.font.opensans_extrabold, FontWeight.ExtraBold, FontStyle.Normal),
+  Font(Res.font.opensans_light, FontWeight.Light, FontStyle.Normal),
+  Font(Res.font.opensans_regular, FontWeight.Normal, FontStyle.Normal),
+  Font(Res.font.opensans_semibold, FontWeight.SemiBold, FontStyle.Normal)
 )
 
 // Set of Material typography styles to start with
-val Typography = Typography(
+fun Typography(family: FontFamily) = Typography(
     headlineLarge = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
         fontWeight = FontWeight.Bold,
         fontSize = fontSizeMedium
     ),
 
     headlineMedium = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
         fontWeight = FontWeight.Normal,
         fontSize = fontSizeSmall
     ),
 
     headlineSmall = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
         fontWeight = FontWeight.Bold,
         fontSize = fontSizeTiny
     ),
 
     bodyLarge = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
         fontWeight = FontWeight.Normal,
         fontSize = fontSizeBig
     ),
 
     bodyMedium = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
         fontWeight = FontWeight.Bold,
         fontSize = fontSizeSmall
     ),
 
     bodySmall = TextStyle(
-        fontFamily = OpenSansFontFamily,
+        fontFamily = family,
+        fontSize = fontSizeSmall
+    ),
+
+    titleLarge = TextStyle(
+        fontFamily = family,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeBig
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = family,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeSmall
+    ),
+
+    titleSmall = TextStyle(
+        fontFamily = family,
+        fontSize = fontSizeSmall
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = family,
+        fontWeight = FontWeight.Normal,
+        fontSize = fontSizeBig
+    ),
+
+    labelMedium = TextStyle(
+        fontFamily = family,
+        fontWeight = FontWeight.Bold,
+        fontSize = fontSizeSmall
+    ),
+
+    labelSmall = TextStyle(
+        fontFamily = family,
         fontSize = fontSizeSmall
     )
 )

@@ -49,6 +49,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.GravatarEntry
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.app_name
+import com.kodeco.learn.resources.description_profile
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +63,7 @@ fun MainTopAppBar(
   CenterAlignedTopAppBar(
       title = {
         Text(
-            text = "learn"
+            text = stringResource(Res.string.app_name),
         )
       },
       actions = {
@@ -70,7 +74,7 @@ fun MainTopAppBar(
           if (avatarUrl == null) {
             Icon(
               imageVector = Icons.Filled.Person,
-              contentDescription = "User profile"
+              contentDescription = stringResource(Res.string.description_profile)
             )
           } else {
             AddImagePreview(

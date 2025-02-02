@@ -70,7 +70,7 @@ fun KodecoTheme(
 
   MaterialTheme(
     colorScheme = colorScheme,
-    typography = Typography,
+    typography = Typography(OpenSansFontFamily()),
     content = content
   )
 }

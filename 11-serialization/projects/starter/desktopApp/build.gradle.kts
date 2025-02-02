@@ -55,6 +55,10 @@ kotlin {
   }
 
   sourceSets {
+    commonMain.dependencies {
+      implementation(compose.components.resources)
+    }
+
     jvmMain.dependencies {
       implementation(project(":shared"))
 
@@ -103,4 +107,9 @@ compose.desktop {
       }
     }
   }
+}
+
+compose.resources {
+  publicResClass = true
+  packageOfResClass = "com.kodeco.learn.resources"
 }

@@ -36,54 +36,65 @@ package com.kodeco.learn.ui.main
 
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.ic_bookmarks
+import com.kodeco.learn.resources.ic_home
+import com.kodeco.learn.resources.ic_latest
+import com.kodeco.learn.resources.ic_search
+import com.kodeco.learn.resources.navigation_bookmark
+import com.kodeco.learn.resources.navigation_home
+import com.kodeco.learn.resources.navigation_latest
+import com.kodeco.learn.resources.navigation_search
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 sealed class BottomNavigationScreens(
   val route: String,
-  val title: String,
+  val title: StringResource,
   val icon: @Composable () -> Unit
 ) {
 
   data object Home : BottomNavigationScreens(
     route = "Home",
-    title = "Home",
+    title = Res.string.navigation_home,
     icon = {
       Icon(
-        painter = painterResource("images/ic_home.xml"),
-        contentDescription = "Home"
+        painter = painterResource(Res.drawable.ic_home),
+        contentDescription = stringResource(Res.string.navigation_home)
       )
     }
   )
 
   data object Bookmark : BottomNavigationScreens(
     route = "Bookmark",
-    title = "Bookmark",
+    title = Res.string.navigation_bookmark,
     icon = {
       Icon(
-        painter = painterResource("images/ic_bookmarks.xml"),
-        contentDescription = "Bookmark"
+        painter = painterResource(Res.drawable.ic_bookmarks),
+        contentDescription = stringResource(Res.string.navigation_bookmark)
       )
     }
   )
 
   data object Latest : BottomNavigationScreens(
     route = "Latest",
-    title = "Latest",
+    title = Res.string.navigation_latest,
     icon = {
       Icon(
-        painter = painterResource("images/ic_latest.xml"),
-        contentDescription = "Latest"
+        painter = painterResource(Res.drawable.ic_latest),
+        contentDescription = stringResource(Res.string.navigation_latest)
       )
     }
   )
 
   data object Search : BottomNavigationScreens(
     route = "Search",
-    title = "Search",
+    title = Res.string.navigation_search,
     icon = {
       Icon(
-        painter = painterResource("images/ic_search.xml"),
-        contentDescription = "Search"
+        painter = painterResource(Res.drawable.ic_search),
+        contentDescription = stringResource(Res.string.navigation_search)
       )
     }
   )

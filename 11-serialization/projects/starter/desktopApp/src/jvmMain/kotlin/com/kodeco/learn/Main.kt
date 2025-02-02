@@ -44,10 +44,13 @@ import androidx.compose.ui.window.rememberWindowState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.app_name
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen
 import com.kodeco.learn.ui.theme.KodecoTheme
+import org.jetbrains.compose.resources.stringResource
 import java.awt.Desktop
 import java.net.URI
 
@@ -64,7 +67,7 @@ fun main() {
     Window(
       onCloseRequest = ::exitApplication,
       state = windowState,
-      title = "learn"
+      title = stringResource(Res.string.app_name)
     ) {
       bookmarkViewModel = viewModel {
         BookmarkViewModel()

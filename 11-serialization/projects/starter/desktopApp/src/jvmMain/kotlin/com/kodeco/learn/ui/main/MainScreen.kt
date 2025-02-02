@@ -55,6 +55,7 @@ import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.ui.home.HomeSheetContent
+import org.jetbrains.compose.resources.stringResource
 
 private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 private lateinit var selected: MutableState<KodecoEntry>
@@ -112,7 +113,7 @@ fun MainScreen(
             },
             label = {
               Text(
-                text = screen.title
+                text = stringResource(screen.title)
               )
             },
             selected = screen == currentDestination.value,
