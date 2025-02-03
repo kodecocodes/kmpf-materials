@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,4 +34,20 @@
 
 package com.kodeco.learn.platform
 
-actual interface Parcelable
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
+import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver.Companion.IN_MEMORY
+import data.AppDb
+
+public actual class Database {
+
+  public actual fun createDatabase(): AppDb {
+    return AppDb(createDriver())
+  }
+
+  private fun createDriver(): SqlDriver {
+    val driver: SqlDriver = JdbcSqliteDriver(IN_MEMORY)
+    AppDb.Schema.create(driver)
+    return driver
+  }
+}
