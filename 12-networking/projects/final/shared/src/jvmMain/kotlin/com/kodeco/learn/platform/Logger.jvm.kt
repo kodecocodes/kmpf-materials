@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,76 +32,19 @@
  * THE SOFTWARE.
  */
 
-package com.kodeco.learn.ui.main
+package com.kodeco.learn.platform
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import moe.tlaster.precompose.navigation.Navigator
+internal actual class Log {
 
-private lateinit var selectedIndex: MutableState<Int>
-
-@Composable
-fun MainBottomBar(
-    navController: Navigator,
-    items: List<BottomNavigationScreens>
-) {
-
-  Column {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(1.dp)
-    ) {}
-
-    AppBottomNavigation(
-        navController = navController,
-        items = items
-    )
+  actual fun debug(tag: String, message: String) {
+    println("$tag | $message")
   }
-}
 
-@Composable
-private fun AppBottomNavigation(
-    navController: Navigator,
-    items: List<BottomNavigationScreens>
-) {
-  BottomAppBar {
+  actual fun warn(tag: String, message: String) {
+    println("$tag | $message")
+  }
 
-    selectedIndex = remember { mutableIntStateOf(0) }
-
-    items.forEachIndexed { index, screen ->
-
-      val isSelected = selectedIndex.value == index
-
-      NavigationBarItem(
-          icon = {
-            screen.icon()
-          },
-          label = {
-            Text(
-                text = screen.title
-            )
-          },
-          selected = isSelected,
-          alwaysShowLabel = true,
-          onClick = {
-            if (!isSelected) {
-              selectedIndex.value = index
-              navController.navigate(screen.route)
-            }
-          }
-      )
-    }
+  actual fun error(tag: String, message: String) {
+    println("$tag | $message")
   }
 }
