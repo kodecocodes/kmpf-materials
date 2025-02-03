@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,11 @@ package com.kodeco.learn.data
 import com.kodeco.learn.APP_NAME
 import com.kodeco.learn.X_APP_NAME
 import com.kodeco.learn.data.model.GravatarProfile
+import com.kodeco.learn.platform.PlatformIdentifier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
@@ -58,6 +60,10 @@ public object FeedAPI {
   private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
   private val client: HttpClient = HttpClient {
+
+    defaultRequest {
+      header(X_APP_NAME, PlatformIdentifier.identifier)
+    }
 
     install(ContentNegotiation) {
       json(nonStrictJson)
