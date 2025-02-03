@@ -52,7 +52,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 private const val TAG = "FeedPresenter"
@@ -67,50 +66,6 @@ private const val KODECO_CONTENT = "[" +
     "{\"platform\":\"growth\", \"url\":\"https://kodeco.com/professional-growth/feed\", \"image\":\"https://files.carolus.kodeco.com/gl22boss4ptciv7px3nnzcnct4ht?response_content_disposition=inline%3B+filename%3D%22progro.png%22%3B+filename%2A%3DUTF-8%27%27progro.png\"}" +
     "]"
 
-private const val KODECO_ALL_FEED = """
-  [
-  {
-    "id": "https://www.kodeco.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-    "link": "https://www.kodeco.com/26244793-building-a-camera-app-with-swiftui-and-combine",
-    "title": "Building a Camera App With SwiftUI and Combine [FREE]",
-    "summary":"Learn to natively build your own SwiftUI camera app using Combine and create fun filters using the power of Core Image.",
-    "updated": "2021-11-10T13:59:59Z"
-  },
-
-  {
-    "id": "https://www.kodeco.com/29045204-announcing-swiftui-by-tutorials-fourth-edition",
-    "link": "https://www.kodeco.com/29045204-announcing-swiftui-by-tutorials-fourth-edition",
-    "title": "Announcing SwiftUI by Tutorials, Fourth Edition! [FREE]",
-    "summary":"Build apps more efficiently with SwiftUI’s declarative approach and leave the old ways of imperative coding in the dust, with this freshly-updated book.",
-    "updated": "2021-11-10T13:44:43Z"
-  },
-
-  {
-    "id": "https://www.kodeco.com/books/swiftui-by-tutorialse",
-    "link": "https://www.kodeco.com/books/swiftui-by-tutorials",
-    "title": "SwiftUI by Tutorials [SUBSCRIBER]",
-    "summary":"Build fluid and engaging declarative UI for your apps — using less code — with SwiftUI!</h2> <p>SwiftUI by Tutorials is designed to help you learn how to transition from the “old way” of building your app UI with UIKit, to the “new way” of building responsive UI with modern declarative syntax with SwiftUI. This book is for readers who are comfortable building Swift apps, and want to make the exciting leap into building their app UI with modern, declarative code.</p> <h3>What is SwiftUI?</h3> <p>SwiftUI lets you build better apps, faster, and with less code. It’s a developer’s dream come true! With SwiftUI, you can design your user interfaces in a declarative way; instead of developing app interfaces in an imperative way, by coding all of the application state logic before time, you can instead define what your app’s UI <em>should</em> do in a particular state and let the underlying OS figure out <em>how</em> to do it. What’s more is that SwiftUI lets you build modern, responsive UI and animations for <em>all</em> Apple devices — not just iOS. So whether you’re building apps for iOS, watchOS, tvOS or any other Apple platform, you can use the same concise, natural language to describe your UI and have it look stunning — no matter where your code runs. In addition, SwiftUI’s built-in automatic support for things such as dark mode, localization and accessibility, along with Xcode 11 support for drag-and-drop design and instant preview makes it easier to build apps than ever before.</p> <h3>How is this book different than SwiftUI Apprentice?</h3> <p>Our other book on getting started with SwiftUI, <a href=\"https://www.kodeco.com/books/swiftui-apprentice/\">SwiftUI Apprentice</a>, is designed to teach new developers how to build iOS apps, using a SwiftUI-first approach. The goal of that book is to teach you fundamental development practices as you build out some fully-functional and great-looking apps! This book, <em>SwiftUI by Tutorials</em>, is designed for developers who have a solid background in iOS development, and are looking to make the leap from building apps with UIKit, to building apps with SwiftUI.",
-    "updated": "2021-11-10T00:00:00Z"
-  },
-
-  {
-    "id": "https://www.kodeco.com/26933987-flutter-ui-widgets",
-    "link": "https://www.kodeco.com/26933987-flutter-ui-widgets",
-    "title": "Flutter UI Widgets [SUBSCRIBER]",
-    "summary":"Explore commonly used UI widgets in Flutter and see how they relate to their native iOS and Android counterparts.",
-    "updated": "2021-11-09T00:00:00Z"
-  },
-
-  {
-    "id": "https://www.kodeco.com/26236685-shazamkit-tutorial-for-ios-getting-started",
-    "link": "https://www.kodeco.com/26236685-shazamkit-tutorial-for-ios-getting-started",
-    "title": "ShazamKit Tutorial for iOS: Getting Started [FREE]",
-    "summary":"Learn how to use ShazamKit to find information about specific audio recordings by matching a segment of that audio against a reference catalog of audio signatures.",
-    "updated": "2021-11-08T13:59:30Z"
-  }
-]
-"""
-
 private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
 
 class FeedPresenter(private val feed: GetFeedData) {
@@ -119,10 +74,6 @@ class FeedPresenter(private val feed: GetFeedData) {
 
   val content: List<KodecoContent> by lazy {
     json.decodeFromString(KODECO_CONTENT)
-  }
-
-  val allFeeds: List<KodecoEntry> by lazy {
-    json.decodeFromString(KODECO_ALL_FEED)
   }
 
   @NativeCoroutines
