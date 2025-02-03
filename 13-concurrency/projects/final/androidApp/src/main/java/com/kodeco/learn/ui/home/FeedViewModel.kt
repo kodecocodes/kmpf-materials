@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,6 +48,8 @@ import com.kodeco.learn.platform.Logger
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedViewModel"
+
+private const val FETCH_N_IMAGES = 5
 
 class FeedViewModel : ViewModel(), FeedData {
 
