@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,17 +32,16 @@
  * THE SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
-  alias(libs.plugins.google.ksp) apply false
+  alias(libs.plugins.jetbrains.compose.compiler) apply false
   alias(libs.plugins.jetbrains.kotlin) apply false
   alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
-  alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
   alias(libs.plugins.jetbrains.kotlin.serialization) apply false
+  alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
   alias(libs.plugins.cash.sqldelight) apply false
+  alias(libs.plugins.google.ksp) apply false
   alias(libs.plugins.kmp.nativeCoroutines) apply false
 }
 

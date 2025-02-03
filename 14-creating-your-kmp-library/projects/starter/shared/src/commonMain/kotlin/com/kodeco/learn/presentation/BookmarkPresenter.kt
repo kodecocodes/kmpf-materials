@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,6 @@ import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.domain.cb.BookmarkData
 import com.kodeco.learn.domain.dao.KodecoEntryDAO
 import com.kodeco.learn.platform.Logger
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.launch
 
 private const val TAG = "BookmarkPresenter"
 
@@ -55,12 +51,7 @@ class BookmarkPresenter(private val kodecoEntryDAO: KodecoEntryDAO) {
     getBookmarks()
   }
 
-  private fun getBookmarks() {
-    CoroutineScope(Dispatchers.IO).launch {
-      val bookmarks = kodecoEntryDAO.getAllEntries().filter { it.bookmarked }
-      listener?.onNewBookmarksList(bookmarks)
-    }
-  }
+  private fun getBookmarks() {}
 
   public fun addAsBookmark(entry: KodecoEntry, cb: BookmarkData) {
     Logger.d(TAG, "addAsBookmark")
@@ -68,12 +59,7 @@ class BookmarkPresenter(private val kodecoEntryDAO: KodecoEntryDAO) {
     addAsBookmark(entry.copy(bookmarked = true))
   }
 
-  private fun addAsBookmark(entry: KodecoEntry) {
-    CoroutineScope(Dispatchers.IO).launch {
-      kodecoEntryDAO.insertOrReplace(entry)
-      getBookmarks()
-    }
-  }
+  private fun addAsBookmark(entry: KodecoEntry) {}
 
   public fun removeFromBookmark(entry: KodecoEntry, cb: BookmarkData) {
     Logger.d(TAG, "removeFromBookmark")
@@ -81,10 +67,5 @@ class BookmarkPresenter(private val kodecoEntryDAO: KodecoEntryDAO) {
     removeFromBookmark(entry.copy(bookmarked = false))
   }
 
-  private fun removeFromBookmark(entry: KodecoEntry) {
-    CoroutineScope(Dispatchers.IO).launch {
-      kodecoEntryDAO.remove(entry)
-      getBookmarks()
-    }
-  }
+  private fun removeFromBookmark(entry: KodecoEntry) {}
 }
