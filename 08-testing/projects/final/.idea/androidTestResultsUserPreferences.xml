@@ -3,13 +3,13 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
-        <entry key="28629151">
+        <entry key="-1570584197">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
-                  <entry key="Resizable_13_API_33" value="120" />
+                  <entry key="Pixel_9_Pro_Fold_API_35_Android_15_" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -22,20 +22,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
-                  <entry key="Resizable_13_API_33" value="120" />
-                  <entry key="Tests" value="360" />
-                </map>
-              </option>
-            </AndroidTestResultsTableState>
-          </value>
-        </entry>
-        <entry key="1208521016">
-          <value>
-            <AndroidTestResultsTableState>
-              <option name="preferredColumnWidths">
-                <map>
-                  <entry key="Duration" value="90" />
-                  <entry key="Resizable_13_API_33" value="120" />
+                  <entry key="Pixel_9_Pro_Fold_API_35_Android_15_" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
