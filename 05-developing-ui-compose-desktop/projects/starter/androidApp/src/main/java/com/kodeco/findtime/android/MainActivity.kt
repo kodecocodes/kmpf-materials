@@ -7,9 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.kodeco.findtime.android.ui.MainView
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -34,10 +32,4 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        Text("Hello, Android!")
-    }
-}
+

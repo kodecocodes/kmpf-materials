@@ -1,14 +1,20 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("multiplatform")
-    alias(libs.plugins.composePlugin)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "17"
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
+            }
         }
     }
     sourceSets {
