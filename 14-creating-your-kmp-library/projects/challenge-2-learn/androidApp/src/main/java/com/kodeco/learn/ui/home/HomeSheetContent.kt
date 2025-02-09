@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -55,7 +55,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "HomeSheetContent"
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeSheetContent(
   item: MutableState<KodecoEntry>,
@@ -76,7 +76,7 @@ fun HomeSheetContent(
         .fillMaxWidth()
         .clickable {
           coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
+            bottomSheetScaffoldState.bottomSheetState.hide()
           }
 
           onUpdateBookmark(item.value)
@@ -102,7 +102,7 @@ fun HomeSheetContent(
         .fillMaxWidth()
         .clickable {
           coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
+            bottomSheetScaffoldState.bottomSheetState.hide()
           }
 
           onShareAsLink(item.value)
