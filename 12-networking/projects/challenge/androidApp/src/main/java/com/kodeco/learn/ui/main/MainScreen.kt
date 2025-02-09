@@ -41,6 +41,7 @@ import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -80,7 +81,9 @@ fun MainScreen(
   navController.enableOnBackPressed(false)
 
   val coroutineScope = rememberCoroutineScope()
-  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
+  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+    bottomSheetState = rememberStandardBottomSheetState(skipHiddenState = false)
+  )
 
   selected = remember { mutableStateOf(KodecoEntry()) }
 
