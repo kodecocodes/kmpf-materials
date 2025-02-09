@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,6 @@
 
 package com.yourcompany.organize.presentation
 
-import com.yourcompany.organize.data.RemindersRepository
 import com.yourcompany.organize.initKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
