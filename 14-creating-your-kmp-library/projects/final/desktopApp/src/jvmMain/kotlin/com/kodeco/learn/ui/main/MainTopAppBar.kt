@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,17 +49,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.GravatarEntry
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.app_name
+import com.kodeco.learn.resources.description_profile
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainTopAppBar(
-    profile: GravatarEntry?
+    profile: GravatarEntry?,
 ) {
 
   CenterAlignedTopAppBar(
       title = {
         Text(
-            text = "learn"
+            text = stringResource(Res.string.app_name),
         )
       },
       actions = {
@@ -69,15 +73,15 @@ fun MainTopAppBar(
           val avatarUrl = profile?.thumbnailUrl
           if (avatarUrl == null) {
             Icon(
-                imageVector = Icons.Filled.Person,
-                contentDescription = "User profile"
+              imageVector = Icons.Filled.Person,
+              contentDescription = stringResource(Res.string.description_profile)
             )
           } else {
             AddImagePreview(
-                url = avatarUrl,
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .size(25.dp)
+              url = avatarUrl,
+              modifier = Modifier
+                .clip(CircleShape)
+                .size(25.dp)
             )
           }
         }
