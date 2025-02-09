@@ -1,4 +1,4 @@
-framework module SharedAction {
+framework module "SharedAction" {
     umbrella header "SharedAction.h"
 
     export *

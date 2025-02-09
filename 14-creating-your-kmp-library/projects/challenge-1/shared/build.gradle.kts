@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,25 +32,25 @@
  * THE SOFTWARE.
  */
 
-@file:Suppress("OPT_IN_USAGE")
-
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
   alias(libs.plugins.android.library)
-  alias(libs.plugins.google.ksp)
   alias(libs.plugins.jetbrains.kotlin.multiplatform)
-  alias(libs.plugins.jetbrains.kotlin.parcelize)
   alias(libs.plugins.jetbrains.kotlin.serialization)
+  alias(libs.plugins.jetbrains.kotlin.parcelize)
   alias(libs.plugins.cash.sqldelight)
+  alias(libs.plugins.google.ksp)
   alias(libs.plugins.kmp.nativeCoroutines)
-  id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
+
+  id("io.github.luca992.multiplatform-swiftpackage") version "2.2.3"
 }
 
-version = "2.0"
+version = "3.0"
 
 multiplatformSwiftPackage {
-  xcframeworkName("SharedKit")
+  packageName("SharedKit")
   swiftToolsVersion("5.3")
   targetPlatforms {
     iOS { v("13") }
@@ -83,9 +83,21 @@ android {
 }
 
 kotlin {
-  androidTarget()
+  androidTarget {
+    compilerOptions {
+      // Issue #KT-58892: https://youtrack.jetbrains.com/issue/KT-58892/K2-Parcelize-doesnt-work-in-common-code-when-expect-annotation-is-actualized-with-typealias-to-Parcelize
+      freeCompilerArgs.addAll("-P", "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.kodeco.learn.platform.Parcelize")
+    }
+    compilations.all {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.JVM_17)
+        }
+      }
+    }
+  }
 
-  jvm("desktop")
+  jvm()
 
   val xcf = XCFramework("SharedKit")
 
@@ -103,69 +115,62 @@ kotlin {
   }
 
   sourceSets {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
-    getByName("commonMain") {
-      dependencies {
-        api(project(":shared-dto"))
-        api(project(":shared-logger"))
+    commonMain.dependencies {
+      api(project(":shared-dto"))
+      api(project(":shared-logger"))
 
-        implementation(libs.kotlinx.datetime)
-        implementation(libs.kotlinx.serialization.json)
+      implementation(libs.kotlinx.datetime)
+      implementation(libs.kotlinx.serialization.json)
 
-        implementation(libs.ktor.client.core)
-        implementation(libs.ktor.client.serialization)
-        implementation(libs.ktor.client.content.negotiation)
-        implementation(libs.ktor.client.logging)
-        implementation(libs.ktor.serialization.kotlinx.json)
+      implementation(libs.ktor.client.core)
+      implementation(libs.ktor.client.serialization)
+      implementation(libs.ktor.client.content.negotiation)
+      implementation(libs.ktor.serialization.kotlinx.json)
+      implementation(libs.ktor.client.logging)
 
-        implementation(libs.okio)
-        implementation(libs.korio)
-      }
+      implementation(libs.okio)
+      implementation(libs.korio)
     }
 
-    getByName("commonTest") {
-      dependencies {
-        implementation(kotlin("test-common"))
-        implementation(kotlin("test-annotations-common"))
+    commonTest.dependencies {
+      implementation(kotlin("test-common"))
+      implementation(kotlin("test-annotations-common"))
 
-        implementation(kotlin("test-junit"))
-        implementation(libs.junit)
-        implementation(libs.ktor.client.mock)
-      }
+      implementation(libs.ktor.client.mock)
     }
 
-    getByName("androidMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.android)
+    androidMain.dependencies {
+      implementation(libs.cash.sqldelight.android)
 
-        implementation(libs.ktor.client.android)
-      }
+      implementation(libs.ktor.client.android)
     }
 
-    getByName("androidUnitTest") {
-      dependencies {
-        implementation(kotlin("test-junit"))
-      }
+    androidUnitTest.dependencies {
+      implementation(kotlin("test-junit"))
     }
 
-    getByName("desktopMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.jvm)
-      }
+    jvmMain.dependencies {
+      implementation(libs.cash.sqldelight.jvm)
     }
 
-    getByName("iosMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.native)
+    iosMain.dependencies {
+      implementation(libs.cash.sqldelight.native)
 
-        implementation(libs.ktor.client.ios)
-      }
+      implementation(libs.ktor.client.ios)
+    }
+  }
+}
+
+kotlin.targets.configureEach {
+  compilations.configureEach {
+    compileTaskProvider.get().compilerOptions {
+      freeCompilerArgs.add("-Xexpect-actual-classes")
     }
   }
 }
 
 kotlin.sourceSets.all {
-  languageSettings.optIn("kotlin.RequiresOptIn")
   languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
