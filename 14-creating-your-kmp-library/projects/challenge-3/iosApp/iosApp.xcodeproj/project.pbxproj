@@ -31,25 +31,9 @@
 		67C6FF312A98FD39008A2221 /* OpenSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67C6FF2C2A98FD39008A2221 /* OpenSansLight.ttf */; };
 		67C6FF322A98FD39008A2221 /* OpenSansExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67C6FF2D2A98FD39008A2221 /* OpenSansExtraBold.ttf */; };
 		67C6FF342A98FD95008A2221 /* KodecoEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */; };
-		67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; };
-		67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67D0DC5C2AB7EAAA007D0EA9 /* SharedAction in Frameworks */ = {isa = PBXBuildFile; productRef = 67D0DC5B2AB7EAAA007D0EA9 /* SharedAction */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		67D0DC562AB7DDF9007D0EA9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				67D0DC592AB7DE8F007D0EA9 /* SharedKit.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
@@ -73,7 +57,6 @@
 		67C6FF2D2A98FD39008A2221 /* OpenSansExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansExtraBold.ttf; sourceTree = "<group>"; };
 		67C6FF332A98FD95008A2221 /* KodecoEntryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KodecoEntryRow.swift; sourceTree = "<group>"; };
 		67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedAction.xcframework; path = "../shared-action/sharedaction/SharedAction.xcframework"; sourceTree = "<group>"; };
-		67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SharedKit.xcframework; path = ../shared/swiftpackage/SharedKit.xcframework; sourceTree = "<group>"; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,7 +67,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6702DF442AB6828E0043F9A3 /* KMPNativeCoroutinesCombine in Frameworks */,
-				67D0DC582AB7DE8F007D0EA9 /* SharedKit.xcframework in Frameworks */,
 				6702DF422AB6828E0043F9A3 /* KMPNativeCoroutinesAsync in Frameworks */,
 				6702DF482AB6828E0043F9A3 /* KMPNativeCoroutinesRxSwift in Frameworks */,
 				6702DF462AB6828E0043F9A3 /* KMPNativeCoroutinesCore in Frameworks */,
@@ -137,7 +119,6 @@
 		67D0DC522AB7DDF9007D0EA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				67D0DC572AB7DE8F007D0EA9 /* SharedKit.xcframework */,
 				67D0DC532AB7DDF9007D0EA9 /* SharedAction.xcframework */,
 			);
 			name = Frameworks;
@@ -181,11 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
+				0DF427AB2D584A4500627308 /* Compile Kotlin */,
 				67A1CBB627B1867F005629A1 /* SwiftLint */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				CACF3F8D9D78A3F656C6B24D /* Frameworks */,
-				67D0DC562AB7DDF9007D0EA9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,6 +242,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DF427AB2D584A4500627308 /* Compile Kotlin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Kotlin";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
 		67A1CBB627B1867F005629A1 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
