@@ -36,6 +36,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DB562352D599074000682C5 /* FeedAPI.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = FeedAPI.kt; sourceTree = "<group>"; };
+		0DB562362D599074000682C5 /* HttpClientLogger.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = HttpClientLogger.kt; sourceTree = "<group>"; };
+		0DB562382D599074000682C5 /* BookmarkData.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BookmarkData.kt; sourceTree = "<group>"; };
+		0DB562392D599074000682C5 /* FeedData.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = FeedData.kt; sourceTree = "<group>"; };
+		0DB5623B2D599074000682C5 /* KodecoEntryDAO.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = KodecoEntryDAO.kt; sourceTree = "<group>"; };
+		0DB5623D2D599074000682C5 /* GetFeedData.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetFeedData.kt; sourceTree = "<group>"; };
+		0DB5623F2D599074000682C5 /* Database.common.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Database.common.kt; sourceTree = "<group>"; };
+		0DB562402D599074000682C5 /* Identifier.common.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Identifier.common.kt; sourceTree = "<group>"; };
+		0DB562412D599074000682C5 /* Test.common.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.common.kt; sourceTree = "<group>"; };
+		0DB562432D599074000682C5 /* BookmarkPresenter.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BookmarkPresenter.kt; sourceTree = "<group>"; };
+		0DB562442D599074000682C5 /* FeedPresenter.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = FeedPresenter.kt; sourceTree = "<group>"; };
+		0DB562462D599074000682C5 /* ServiceLocator.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ServiceLocator.kt; sourceTree = "<group>"; };
+		0DB562472D599074000682C5 /* Values.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Values.kt; sourceTree = "<group>"; };
+		0DB5624C2D599074000682C5 /* KodecoEntryModel.sq */ = {isa = PBXFileReference; lastKnownFileType = text; path = KodecoEntryModel.sq; sourceTree = "<group>"; };
+		0DB562502D599074000682C5 /* Database.ios.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Database.ios.kt; sourceTree = "<group>"; };
+		0DB562512D599074000682C5 /* Identifier.ios.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Identifier.ios.kt; sourceTree = "<group>"; };
+		0DB562522D599074000682C5 /* Test.ios.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.ios.kt; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		6709905A2714FA5D0048A7B5 /* BookmarkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkClient.swift; sourceTree = "<group>"; };
 		6709905C2714FAA00048A7B5 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
@@ -78,6 +95,184 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DB562342D598FF1000682C5 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5624F2D599074000682C5 /* commonMain */,
+				0DB562582D599074000682C5 /* iosMain */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		0DB562372D599074000682C5 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562352D599074000682C5 /* FeedAPI.kt */,
+				0DB562362D599074000682C5 /* HttpClientLogger.kt */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		0DB5623A2D599074000682C5 /* cb */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562382D599074000682C5 /* BookmarkData.kt */,
+				0DB562392D599074000682C5 /* FeedData.kt */,
+			);
+			path = cb;
+			sourceTree = "<group>";
+		};
+		0DB5623C2D599074000682C5 /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5623B2D599074000682C5 /* KodecoEntryDAO.kt */,
+			);
+			path = dao;
+			sourceTree = "<group>";
+		};
+		0DB5623E2D599074000682C5 /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5623A2D599074000682C5 /* cb */,
+				0DB5623C2D599074000682C5 /* dao */,
+				0DB5623D2D599074000682C5 /* GetFeedData.kt */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		0DB562422D599074000682C5 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5623F2D599074000682C5 /* Database.common.kt */,
+				0DB562402D599074000682C5 /* Identifier.common.kt */,
+				0DB562412D599074000682C5 /* Test.common.kt */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		0DB562452D599074000682C5 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562432D599074000682C5 /* BookmarkPresenter.kt */,
+				0DB562442D599074000682C5 /* FeedPresenter.kt */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		0DB562482D599074000682C5 /* learn */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562372D599074000682C5 /* data */,
+				0DB5623E2D599074000682C5 /* domain */,
+				0DB562422D599074000682C5 /* platform */,
+				0DB562452D599074000682C5 /* presentation */,
+				0DB562462D599074000682C5 /* ServiceLocator.kt */,
+				0DB562472D599074000682C5 /* Values.kt */,
+			);
+			path = learn;
+			sourceTree = "<group>";
+		};
+		0DB562492D599074000682C5 /* kodeco */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562482D599074000682C5 /* learn */,
+			);
+			path = kodeco;
+			sourceTree = "<group>";
+		};
+		0DB5624A2D599074000682C5 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562492D599074000682C5 /* kodeco */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		0DB5624B2D599074000682C5 /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5624A2D599074000682C5 /* com */,
+			);
+			path = kotlin;
+			sourceTree = "<group>";
+		};
+		0DB5624D2D599074000682C5 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5624C2D599074000682C5 /* KodecoEntryModel.sq */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		0DB5624E2D599074000682C5 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5624D2D599074000682C5 /* data */,
+			);
+			path = sqldelight;
+			sourceTree = "<group>";
+		};
+		0DB5624F2D599074000682C5 /* commonMain */ = {
+			isa = PBXGroup;
+			children = (
+				0DB5624B2D599074000682C5 /* kotlin */,
+				0DB5624E2D599074000682C5 /* sqldelight */,
+			);
+			name = commonMain;
+			path = ../shared/src/commonMain;
+			sourceTree = SOURCE_ROOT;
+		};
+		0DB562532D599074000682C5 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562502D599074000682C5 /* Database.ios.kt */,
+				0DB562512D599074000682C5 /* Identifier.ios.kt */,
+				0DB562522D599074000682C5 /* Test.ios.kt */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		0DB562542D599074000682C5 /* learn */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562532D599074000682C5 /* platform */,
+			);
+			path = learn;
+			sourceTree = "<group>";
+		};
+		0DB562552D599074000682C5 /* kodeco */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562542D599074000682C5 /* learn */,
+			);
+			path = kodeco;
+			sourceTree = "<group>";
+		};
+		0DB562562D599074000682C5 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562552D599074000682C5 /* kodeco */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		0DB562572D599074000682C5 /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562562D599074000682C5 /* com */,
+			);
+			path = kotlin;
+			sourceTree = "<group>";
+		};
+		0DB562582D599074000682C5 /* iosMain */ = {
+			isa = PBXGroup;
+			children = (
+				0DB562572D599074000682C5 /* kotlin */,
+			);
+			name = iosMain;
+			path = ../shared/src/iosMain;
+			sourceTree = SOURCE_ROOT;
+		};
 		670990592714FA4A0048A7B5 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +322,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				0DB562342D598FF1000682C5 /* Shared */,
 				7555FF7D242A565900829871 /* iosApp */,
 				6763BD832AA6402000A70BAA /* iosApp.app */,
 				67D0DC522AB7DDF9007D0EA9 /* Frameworks */,
