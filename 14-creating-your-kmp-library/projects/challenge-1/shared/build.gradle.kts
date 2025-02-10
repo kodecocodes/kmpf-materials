@@ -111,6 +111,7 @@ kotlin {
       xcf.add(this)
 
       export(project(":shared-dto"))
+      export(project(":shared-logger"))
     }
   }
 
