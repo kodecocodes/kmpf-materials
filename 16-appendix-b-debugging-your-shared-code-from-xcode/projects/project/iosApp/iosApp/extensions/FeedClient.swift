@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc
+/// Copyright (c) 2025 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,6 @@
 
 import SharedKit
 import KMPNativeCoroutinesAsync
-import SharedLogger
 
 public class FeedClient {
   private init() { }
@@ -72,18 +71,6 @@ public class FeedClient {
       Logger().e(tag: TAG, message: "Unable to fetch all feeds")
     }
     return items
-  }
-
-  @MainActor
-  public func fetchLinkImage(_ link: String, completion: @escaping FeedHandlerImage) {
-    Task {
-      do {
-        let result = try await feedPresenter.fetchLinkImage(link: link)
-        completion(result)
-      } catch {
-        Logger().e(tag: TAG, message: "Unable to fetch article image link")
-      }
-    }
   }
 }
 
