@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,9 +36,10 @@ package com.kodeco.learn.utils
 
 import android.annotation.SuppressLint
 import com.kodeco.learn.logger.Logger
-import kotlinx.datetime.toInstant
+import kotlinx.datetime.Instant
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 private const val TAG = "Utils"
 
@@ -47,7 +48,7 @@ private val simpleDateFormat = SimpleDateFormat(TIME_FORMAT, Locale.getDefault()
 
 actual fun converterIso8601ToReadableDate(date: String): String {
   return try {
-    val instant = date.toInstant()
+    val instant = Instant.parse(date)
     val millis = Date(instant.toEpochMilliseconds())
     return simpleDateFormat.format(millis)
   } catch (e: Exception) {

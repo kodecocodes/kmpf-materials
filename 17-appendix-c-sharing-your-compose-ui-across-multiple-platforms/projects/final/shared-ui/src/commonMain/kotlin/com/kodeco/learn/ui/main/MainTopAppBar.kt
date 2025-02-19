@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,7 @@ fun MainTopAppBar(
       title = {
         Text(
             text = stringResource(MR.strings.app_name),
-            fontFamily = fontFamilyResource(MR.fonts.OpenSans.regular)
+            fontFamily = fontFamilyResource(MR.fonts.opensans_regular)
         )
       },
       actions = {
@@ -73,15 +73,15 @@ fun MainTopAppBar(
           val avatarUrl = profile?.thumbnailUrl
           if (avatarUrl == null) {
             Icon(
-                imageVector = Icons.Filled.Person,
-                contentDescription = stringResource(MR.strings.description_profile)
+              imageVector = Icons.Filled.Person,
+              contentDescription = stringResource(MR.strings.description_profile)
             )
           } else {
             AddImagePreview(
-                url = avatarUrl,
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .size(25.dp)
+              url = avatarUrl,
+              modifier = Modifier
+                .clip(CircleShape)
+                .size(25.dp)
             )
           }
         }

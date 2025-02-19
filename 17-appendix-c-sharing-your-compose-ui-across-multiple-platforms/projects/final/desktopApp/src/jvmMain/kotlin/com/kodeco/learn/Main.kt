@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,19 +36,22 @@ package com.kodeco.learn
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kodeco.learn.action.Action.openLink
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen
 import com.kodeco.learn.ui.theme.KodecoTheme
-import moe.tlaster.precompose.PreComposeWindow
-import moe.tlaster.precompose.viewmodel.viewModel
+import dev.icerock.moko.resources.compose.stringResource
 import java.awt.Desktop
 import java.net.URI
 
@@ -62,10 +65,10 @@ fun main() {
   application {
     val windowState = rememberWindowState(width = 460.dp, height = 900.dp)
 
-    PreComposeWindow(
+    Window(
       onCloseRequest = ::exitApplication,
       state = windowState,
-      title = "learn"
+      title = stringResource(MR.strings.app_name)
     ) {
       bookmarkViewModel = viewModel {
         BookmarkViewModel()
@@ -80,8 +83,8 @@ fun main() {
       bookmarkViewModel.getBookmarks()
 
       val items = feedViewModel.items
-      val profile = feedViewModel.profile
-      val bookmarks = bookmarkViewModel.items
+      val profile = feedViewModel.profile.collectAsState()
+      val bookmarks = bookmarkViewModel.items.collectAsState()
 
       Surface(modifier = Modifier.fillMaxSize()) {
 

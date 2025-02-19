@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,8 +34,11 @@
 
 package com.kodeco.learn.action
 
+import com.kodeco.learn.logger.Logger
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
+
+private const val TAG = "Action"
 
 public actual object Action {
 
@@ -43,10 +46,10 @@ public actual object Action {
     val application = UIApplication.sharedApplication
     val nsurl = NSURL(string = url)
     if (!application.canOpenURL(nsurl)) {
-      println("Unable to open url: $url")
+      Logger.e(TAG, "Unable to open url: $url")
       return
     }
 
-    application.openURL(nsurl)
+    application.openURL(nsurl, options = mapOf<Any?, Any?>()) {}
   }
 }

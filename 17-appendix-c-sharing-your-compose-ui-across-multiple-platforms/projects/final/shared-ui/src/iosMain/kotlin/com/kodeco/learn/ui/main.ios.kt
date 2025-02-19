@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,14 +36,15 @@ package com.kodeco.learn.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.ComposeUIViewController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen
 import com.kodeco.learn.ui.theme.KodecoTheme
-import moe.tlaster.precompose.PreComposeApplication
-import moe.tlaster.precompose.viewmodel.viewModel
 import platform.Foundation.NSLog
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
@@ -51,14 +52,14 @@ import platform.UIKit.UIApplication
 private lateinit var bookmarkViewModel: BookmarkViewModel
 private lateinit var feedViewModel: FeedViewModel
 
-fun MainViewController() = PreComposeApplication {
+fun MainViewController() = ComposeUIViewController {
   Surface(modifier = Modifier.fillMaxSize()) {
 
-    bookmarkViewModel = viewModel(BookmarkViewModel::class) {
+    bookmarkViewModel = viewModel {
       BookmarkViewModel()
     }
 
-    feedViewModel = viewModel(FeedViewModel::class) {
+    feedViewModel = viewModel {
       FeedViewModel()
     }
 
@@ -67,17 +68,17 @@ fun MainViewController() = PreComposeApplication {
     bookmarkViewModel.getBookmarks()
 
     val items = feedViewModel.items
-    val profile = feedViewModel.profile
-    val bookmarks = bookmarkViewModel.items
+    val profile = feedViewModel.profile.collectAsState()
+    val bookmarks = bookmarkViewModel.items.collectAsState()
 
     KodecoTheme {
       MainScreen(
-          profile = profile.value,
-          feeds = items,
-          bookmarks = bookmarks,
-          onUpdateBookmark = { updateBookmark(it) },
-          onShareAsLink = {},
-          onOpenEntry = { openLink(it) }
+        profile = profile.value,
+        feeds = items,
+        bookmarks = bookmarks,
+        onUpdateBookmark = { updateBookmark(it) },
+        onShareAsLink = {},
+        onOpenEntry = { openLink(it) }
       )
     }
   }

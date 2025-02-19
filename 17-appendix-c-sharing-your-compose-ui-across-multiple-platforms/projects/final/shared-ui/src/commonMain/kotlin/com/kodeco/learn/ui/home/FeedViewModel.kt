@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,19 +34,20 @@
 
 package com.kodeco.learn.ui.home
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kodeco.learn.ServiceLocator
 import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.cb.FeedData
 import com.kodeco.learn.logger.Logger
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
 
 private const val TAG = "FeedViewModel"
 
@@ -55,7 +56,8 @@ class FeedViewModel : ViewModel(), FeedData {
   private val _items = mutableStateMapOf<PLATFORM, List<KodecoEntry>>()
   val items: SnapshotStateMap<PLATFORM, List<KodecoEntry>> = _items
 
-  val profile: MutableState<GravatarEntry> = mutableStateOf(GravatarEntry())
+  private val _profile = MutableStateFlow<GravatarEntry>(GravatarEntry())
+  val profile: StateFlow<GravatarEntry> = _profile.asStateFlow()
 
   private val presenter by lazy {
     ServiceLocator.getFeedPresenter
@@ -67,25 +69,7 @@ class FeedViewModel : ViewModel(), FeedData {
       presenter.fetchAllFeeds().collect {
         val platform = it.first().platform
         _items[platform] = it
-
-        for (item in _items[platform]!!) {
-          fetchLinkImage(platform, item.id, item.link)
-        }
       }
-    }
-  }
-
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link)
-
-      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
-      val list = _items[platform]?.toMutableList() ?: return@launch
-      val index = list.indexOf(item)
-
-      list[index] = item.copy(imageUrl = url)
-      _items[platform] = list
     }
   }
 
@@ -99,7 +83,7 @@ class FeedViewModel : ViewModel(), FeedData {
   override fun onMyGravatarData(item: GravatarEntry) {
     Logger.d(TAG, "onMyGravatarData | item=$item")
     viewModelScope.launch {
-      profile.value = item
+      _profile.value = item
     }
   }
 

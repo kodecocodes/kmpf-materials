@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,8 @@
 plugins {
   id("com.android.application")
   kotlin("android")
+
+  alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 dependencies {
@@ -42,6 +44,7 @@ dependencies {
   implementation(project(":shared-action"))
 
   implementation(libs.android.material)
+  implementation(libs.androidx.navigation.compose)
 }
 
 android {
@@ -51,8 +54,8 @@ android {
     applicationId = "com.kodeco.learn"
     minSdk = libs.versions.android.sdk.min.get().toInt()
     targetSdk = libs.versions.android.sdk.target.get().toInt()
-    versionCode = 2
-    versionName = "2.0"
+    versionCode = 3
+    versionName = "3.0"
   }
 
   buildTypes {
@@ -72,10 +75,6 @@ android {
 
   kotlinOptions {
     jvmTarget = "17"
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.android.compose.compiler.get()
   }
 
   packaging {

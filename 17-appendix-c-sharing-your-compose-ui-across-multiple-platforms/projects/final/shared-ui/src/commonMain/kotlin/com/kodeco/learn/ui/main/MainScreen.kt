@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,10 +37,12 @@ package com.kodeco.learn.ui.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -53,12 +55,14 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
+import com.kodeco.learn.ui.MR
 import com.kodeco.learn.ui.home.HomeSheetContent
-import moe.tlaster.precompose.navigation.rememberNavigator
+import dev.icerock.moko.resources.compose.fontFamilyResource
+import dev.icerock.moko.resources.compose.stringResource
 
 private lateinit var selected: MutableState<KodecoEntry>
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     profile: GravatarEntry?,
@@ -76,10 +80,14 @@ fun MainScreen(
       BottomNavigationScreens.Search
   )
 
-  val navController = rememberNavigator()
+  val currentDestination = remember {
+    mutableStateOf<BottomNavigationScreens>(BottomNavigationScreens.Home)
+  }
 
   val coroutineScope = rememberCoroutineScope()
-  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
+  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+    bottomSheetState = rememberStandardBottomSheetState(skipHiddenState = false)
+  )
 
   selected = remember { mutableStateOf(KodecoEntry()) }
 
@@ -100,33 +108,43 @@ fun MainScreen(
       scaffoldState = bottomSheetScaffoldState, sheetPeekHeight = 0.dp
   ) {
 
-    Scaffold(
-        topBar = {
-          MainTopAppBar(
-              profile = profile
+    NavigationSuiteScaffold(
+      navigationSuiteItems = {
+        bottomNavigationItems.forEach { screen ->
+          item(
+            icon = {
+              screen.icon()
+            },
+            label = {
+              Text(
+                text = stringResource(screen.title),
+                fontFamily = fontFamilyResource(MR.fonts.opensans_regular)
+              )
+            },
+            selected = it == currentDestination.value,
+            onClick = { currentDestination.value = screen }
           )
-        },
-        bottomBar = {
-          MainBottomBar(
-              navController = navController,
-              items = bottomNavigationItems
-          )
-        },
-        content = {
-          Column(
-              modifier = Modifier.padding(it)
-          ) {
-            MainContent(
-                navController = navController,
-                coroutineScope = coroutineScope,
-                bottomSheetScaffoldState = bottomSheetScaffoldState,
-                selected = selected,
-                feeds = feeds,
-                bookmarks = bookmarks,
-                onOpenEntry = onOpenEntry
-            )
-          }
         }
+      },
+      content = {
+        Column(
+          modifier = Modifier.padding(it)
+        ) {
+          MainTopAppBar(
+            profile = profile
+          )
+
+          MainContent(
+            destination = currentDestination.value,
+            coroutineScope = coroutineScope,
+            bottomSheetScaffoldState = bottomSheetScaffoldState,
+            selected = selected,
+            feeds = feeds,
+            bookmarks = bookmarks,
+            onOpenEntry = onOpenEntry
+          )
+        }
+      }
     )
   }
 }
