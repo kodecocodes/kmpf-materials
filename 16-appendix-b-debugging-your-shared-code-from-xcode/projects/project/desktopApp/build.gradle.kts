@@ -61,7 +61,7 @@ kotlin {
 
     jvmMain.dependencies {
       implementation(project(":shared"))
-      implementation("com.kodeco.shared:shared-action:1.0")
+      implementation(project(":shared-action"))
 
       implementation(compose.desktop.currentOs)
 
