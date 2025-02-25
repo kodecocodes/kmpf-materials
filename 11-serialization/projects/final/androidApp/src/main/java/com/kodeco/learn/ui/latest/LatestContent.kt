@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -73,6 +73,8 @@ import com.kodeco.learn.ui.theme.colorContent85Transparency
 
 private const val TAG = "LatestContent"
 
+private const val ITEMS = 5
+
 @Composable
 fun LatestContent(
   items: SnapshotStateMap<PLATFORM, List<KodecoEntry>>,
@@ -109,7 +111,7 @@ fun AddPages(
 
       AddNewPage(
         platform = platform,
-        items = items[platform] ?: emptyList(),
+        items = items[platform]?.subList(0, ITEMS) ?: emptyList(),
         onOpenEntry = onOpenEntry
       )
     }
