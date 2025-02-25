@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ class AboutViewModel(
 
     var displayInfo = "${max}×${min}"
     platform.screen.density?.let {
-      displayInfo += " ${it}x"
+      displayInfo += " @${it}x"
     }
 
     rowItems.add(

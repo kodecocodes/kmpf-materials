@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,26 +35,26 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose")
+  alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.composeMultiplatform)
+  alias(libs.plugins.composeCompiler)
 }
 
 kotlin {
-  jvm {
-    withJava()
-  }
+  jvm("desktop")
 
   sourceSets {
-    val jvmMain by getting {
+    val desktopMain by getting {
       dependencies {
         implementation(project(":shared"))
         implementation(compose.desktop.currentOs)
         implementation(compose.material3)
+        implementation(project.dependencies.platform(libs.koin.bom))
         implementation(libs.koin.core)
       }
     }
 
-    val jvmTest by getting {
+    val desktopTest by getting {
       dependencies {
         implementation(compose.desktop.uiTestJUnit4)
         implementation(compose.desktop.currentOs)
@@ -68,12 +68,12 @@ compose.desktop {
     mainClass = "MainKt"
 
     nativeDistributions {
-      val resources = project.layout.projectDirectory.dir("src/jvmMain/resources")
+      val resources = project.layout.projectDirectory.dir("src/desktopMain/resources")
 
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       appResourcesRootDir.set(resources)
       packageName = "Organize"
-      packageVersion = "2.0.0"
+      packageVersion = "3.0.0"
 
       macOS {
         // Use -Pcompose.desktop.mac.sign=true to sign and notarize.
