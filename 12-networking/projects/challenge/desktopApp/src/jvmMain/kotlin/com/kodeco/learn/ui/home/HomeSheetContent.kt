@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,8 +48,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.action_add_bookmarks
+import com.kodeco.learn.resources.action_remove_bookmarks
+import com.kodeco.learn.resources.action_share_link
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 
 private const val TAG = "HomeSheetContent"
 
@@ -82,9 +87,9 @@ fun HomeSheetContent(
     ) {
 
       val text = if (item.value.bookmarked) {
-        "Remove from bookmarks"
+        stringResource(Res.string.action_remove_bookmarks)
       } else {
-        "Add to bookmarks"
+        stringResource(Res.string.action_add_bookmarks)
       }
 
       Text(
@@ -107,7 +112,7 @@ fun HomeSheetContent(
         }
     ) {
       Text(
-        text = "Share as link",
+        text = stringResource(Res.string.action_share_link),
         modifier = Modifier
           .fillMaxWidth()
           .padding(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp)

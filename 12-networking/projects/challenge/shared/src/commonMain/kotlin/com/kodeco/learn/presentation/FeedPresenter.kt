@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,7 @@ package com.kodeco.learn.presentation
 
 import com.kodeco.learn.data.model.GravatarEntry
 import com.kodeco.learn.data.model.KodecoContent
+import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.GetFeedData
 import com.kodeco.learn.domain.cb.FeedData
@@ -92,7 +93,6 @@ class FeedPresenter(private val feed: GetFeedData) {
       )
     }
   }
-
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")

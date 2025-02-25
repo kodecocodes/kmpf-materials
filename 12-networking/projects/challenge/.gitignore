@@ -15,8 +15,9 @@ bin/
 gen/
 out/
 
-# Gradle files
+# Project files
 .gradle/
+.kotlin/
 build/
 androidApp/build
 desktopApp/build

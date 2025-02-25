@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,6 +63,7 @@ class FeedViewModel : ViewModel(), FeedData {
 
   fun fetchAllFeeds() {
     Logger.d(TAG, "fetchAllFeeds")
+    _items[PLATFORM.ALL] = presenter.allFeeds
   }
 
   fun fetchMyGravatar() {

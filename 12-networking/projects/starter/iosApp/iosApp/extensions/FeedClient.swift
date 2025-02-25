@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc
+/// Copyright (c) 2025 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -58,6 +58,7 @@ public class FeedClient {
 
   public func fetchFeeds(completion: @escaping FeedHandler) {
     handler = completion
+    handler?(PLATFORM.all.description(), feedPresenter.allFeeds)
   }
 
   public func fetchLinkImage(_ platform: PLATFORM, _ id: String, _ link: String, completion: @escaping FeedHandlerImage) {
