@@ -6,10 +6,9 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.material3.DismissDirection
-import androidx.compose.material3.DismissValue
-import androidx.compose.material3.SwipeToDismiss
-import androidx.compose.material3.rememberDismissState
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
@@ -17,9 +16,8 @@ import androidx.compose.ui.Modifier
 fun <T>  AnimatedSwipeDismiss(
     modifier: Modifier = Modifier,
     item: T,
-    background: @Composable (dismissedValue: DismissValue) -> Unit,
-    content: @Composable (dismissedValue: DismissValue) -> Unit,
-    directions: Set<DismissDirection> = setOf(DismissDirection.EndToStart),
+    background: @Composable (dismissedValue: SwipeToDismissBoxValue) -> Unit,
+    content: @Composable (dismissedValue: SwipeToDismissBoxValue) -> Unit,
     enter: EnterTransition = expandVertically(),
     exit: ExitTransition = shrinkVertically(
         animationSpec = tween(
@@ -28,26 +26,24 @@ fun <T>  AnimatedSwipeDismiss(
     ),
     onDismiss: (T) -> Unit
 ) {
-    val dismissState = rememberDismissState(confirmValueChange = { dismissValue ->
-        if (dismissValue == DismissValue.DismissedToStart) {
+    val dismissState = rememberSwipeToDismissBoxState(confirmValueChange = { dismissValue ->
+        if (dismissValue == SwipeToDismissBoxValue.StartToEnd || dismissValue == SwipeToDismissBoxValue.EndToStart) {
             onDismiss(item)
         }
         true
     })
-    val isDismissed = dismissState.isDismissed(DismissDirection.EndToStart)
 
     AnimatedVisibility(
         modifier = modifier,
-        visible = !isDismissed,
+        visible = true,
         enter = enter,
         exit = exit
     ) {
-        SwipeToDismiss(
+        SwipeToDismissBox (
             modifier = modifier,
             state = dismissState,
-            directions = directions,
-            background = { background(dismissState.currentValue) },
-            dismissContent = { content(dismissState.currentValue) }
+            backgroundContent = { background(dismissState.currentValue) },
+            content = { content(dismissState.currentValue) }
         )
     }
 }

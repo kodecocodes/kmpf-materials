@@ -19,5 +19,6 @@ actual fun AddTimeDialogWrapper(onDismiss: onDismissType, content: @Composable (
         title = "Add Timezones",
         content = {
             content()
-        })
+        }
+    )
 }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco LLC
+/// Copyright (c) 2025 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,15 +29,12 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 import SwiftUI
-import shared
 
-class TimezoneItems: ObservableObject {
-  @Published var timezones: [String] = []
-  @Published var selectedTimezones = Set<String>()
-
-  init() {
-      self.timezones = TimeZoneHelperImpl().getTimeZoneStrings()
+struct CardModifier: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .cornerRadius(16)
+      .shadow(color: Color.black.opacity(0.2), radius: 16, x: 0, y: 0)
   }
 }

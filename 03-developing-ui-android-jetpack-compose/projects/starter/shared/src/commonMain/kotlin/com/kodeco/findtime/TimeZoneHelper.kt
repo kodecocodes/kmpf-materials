@@ -8,4 +8,5 @@ interface TimeZoneHelper {
     fun getTime(timezoneId: String): String
     fun getDate(timezoneId: String): String
     fun search(startHour: Int, endHour: Int, timezoneStrings: List<String>): List<Int>
+
 }

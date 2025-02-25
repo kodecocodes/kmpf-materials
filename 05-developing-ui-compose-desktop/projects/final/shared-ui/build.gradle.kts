@@ -1,27 +1,36 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    alias(libs.plugins.composePlugin)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
             }
         }
     }
     jvm("desktop") {
         compilations.all {
-            kotlinOptions.jvmTarget = "17"
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
+            }
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":shared"))
+                implementation(projects.shared)
                 api(compose.foundation)
                 api(compose.runtime)
                 api(compose.foundation)
@@ -34,12 +43,12 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(project(":shared"))
+                implementation(projects.shared)
             }
         }
         val desktopMain by getting {
             dependencies {
-                implementation(project(":shared"))
+                implementation(projects.shared)
             }
         }
     }
@@ -48,9 +57,9 @@ kotlin {
 
 android {
     namespace = "com.kodeco.findtime.android"
-    compileSdk = 34
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

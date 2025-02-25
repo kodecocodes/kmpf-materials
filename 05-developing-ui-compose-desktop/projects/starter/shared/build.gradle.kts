@@ -1,20 +1,20 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
             }
         }
     }
-
-    ios()
-    iosSimulatorArm64()
 
 
     listOf(
@@ -24,36 +24,28 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            isStatic = true
         }
     }
 
     jvm("desktop")
 
     sourceSets {
-        val commonMain by getting {
-            kotlin.srcDirs("src/commonMain/kotlin")
-            dependencies {
-                implementation(libs.datetime)
-                implementation(libs.napier)
-            }
+        commonMain.dependencies {
+            implementation(libs.datetime)
+            implementation(libs.napier)
         }
-        val androidMain by getting {
-            kotlin.srcDirs("src/androidMain/kotlin")
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
-        val iosMain by getting {
-            kotlin.srcDirs("src/iosMain/kotlin")
-        }
-        val iosTest by getting
-        val iosSimulatorArm64Main by getting
-        val iosSimulatorArm64Test by getting
     }
 }
 
 android {
-    namespace = "com.kodeco.findtime"
-    compileSdk = 34
+    namespace = "com.kodeco.findtime.shared"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

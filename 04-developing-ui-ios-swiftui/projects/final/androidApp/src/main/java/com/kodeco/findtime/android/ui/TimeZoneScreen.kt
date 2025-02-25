@@ -34,19 +34,24 @@ const val timeMillis = 1000 * 60L // 1 second
 fun TimeZoneScreen(
     currentTimezoneStrings: SnapshotStateList<String>
 ) {
+    // 1
     val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
+    // 2
     val listState = rememberLazyListState()
+    // 3
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         var time by remember { mutableStateOf(timezoneHelper.currentTime()) }
+// 2
         LaunchedEffect(Unit) {
             while (true) {
                 time = timezoneHelper.currentTime()
                 delay(timeMillis) // Every minute
             }
         }
+// 3
         LocalTimeCard(
             city = timezoneHelper.currentTimeZone(),
             time = time, date = timezoneHelper.getDate(timezoneHelper.currentTimeZone())
@@ -56,13 +61,17 @@ fun TimeZoneScreen(
         LazyColumn(
             state = listState,
         ) {
+            // 2
             items(currentTimezoneStrings.size,
+                // 3
                 key = { timezone ->
                     timezone
                 }) { index ->
                 val timezoneString = currentTimezoneStrings[index]
+                // 4
                 AnimatedSwipeDismiss(
                     item = timezoneString,
+                    // 5
                     background = { _ ->
                         Box(
                             modifier = Modifier
@@ -79,12 +88,20 @@ fun TimeZoneScreen(
                                 Icons.Filled.Delete,
                                 contentDescription = "Delete",
                                 modifier = Modifier
+                                    .align(Alignment.CenterStart),
+                                tint = Color.White.copy(alpha = alpha)
+                            )
+                            Icon(
+                                Icons.Filled.Delete,
+                                contentDescription = "Delete",
+                                modifier = Modifier
                                     .align(Alignment.CenterEnd),
                                 tint = Color.White.copy(alpha = alpha)
                             )
                         }
                     },
                     content = {
+                        // 6
                         TimeCard(
                             timezone = timezoneString,
                             hours = timezoneHelper.hoursFromTimeZone(timezoneString),
@@ -92,6 +109,7 @@ fun TimeZoneScreen(
                             date = timezoneHelper.getDate(timezoneString)
                         )
                     },
+                    // 7
                     onDismiss = { zone ->
                         if (currentTimezoneStrings.contains(zone)) {
                             currentTimezoneStrings.remove(zone)

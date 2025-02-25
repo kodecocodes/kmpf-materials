@@ -81,6 +81,13 @@ fun TimeZoneScreen(
                                 Icons.Filled.Delete,
                                 contentDescription = "Delete",
                                 modifier = Modifier
+                                    .align(Alignment.CenterStart),
+                                tint = Color.White.copy(alpha = alpha)
+                            )
+                            Icon(
+                                Icons.Filled.Delete,
+                                contentDescription = "Delete",
+                                modifier = Modifier
                                     .align(Alignment.CenterEnd),
                                 tint = Color.White.copy(alpha = alpha)
                             )

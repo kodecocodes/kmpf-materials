@@ -23,7 +23,9 @@ import com.kodeco.findtime.android.endGradientColor
 import com.kodeco.findtime.android.startGradientColor
 
 @Composable
+// 1
 fun LocalTimeCard(city: String, time: String, date: String) {
+    // 2
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,6 +33,7 @@ fun LocalTimeCard(city: String, time: String, date: String) {
             .background(MaterialTheme.colorScheme.background)
             .padding(8.dp)
     ) {
+        // 3
         Card(
             shape = RoundedCornerShape(8.dp),
             border = BorderStroke(1.dp, Color.Black),
@@ -50,33 +53,41 @@ fun LocalTimeCard(city: String, time: String, date: String) {
                     )
                     .padding(8.dp)
             ) {
+                // 2
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                 ) {
+                    // 3
                     Column(
                         horizontalAlignment = Alignment.Start
 
                     ) {
+                        // 4
                         Spacer(modifier = Modifier.weight(1.0f))
                         Text(
-                            "Your Location", style = MaterialTheme.typography.labelSmall
+                            "Your Location", style = MaterialTheme.typography.bodySmall
                         )
                         Spacer(Modifier.height(8.dp))
+                        // 5
                         Text(
-                            city, style = MaterialTheme.typography.labelLarge
+                            city, style = MaterialTheme.typography.headlineSmall
                         )
                         Spacer(Modifier.height(8.dp))
                     }
+                    // 6
                     Spacer(modifier = Modifier.weight(1.0f))
+                    // 7
                     Column(
                         horizontalAlignment = Alignment.End
                     ) {
                         Spacer(modifier = Modifier.weight(1.0f))
+                        // 8
                         Text(
                             time, style = MaterialTheme.typography.headlineSmall
                         )
                         Spacer(Modifier.height(8.dp))
+                        // 9
                         Text(
                             date, style = MaterialTheme.typography.bodySmall
                         )

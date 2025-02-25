@@ -2,9 +2,6 @@ package com.kodeco.compose.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Language
@@ -13,12 +10,11 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -30,8 +26,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 sealed class Screen(val title: String) {
-    object TimeZonesScreen : Screen("Timezones")
-    object FindTimeScreen : Screen("Find Time")
+    data object TimeZonesScreen : Screen("Timezones")
+    data object FindTimeScreen : Screen("Find Time")
 }
 
 data class BottomItem(
@@ -95,10 +91,7 @@ fun MainView(actionBarFun: topBarFun = { EmptyComposable() }) {
                                 indicatorColor = MaterialTheme.colorScheme.primary,
                             ),
                             label = {
-                                Text(
-                                    bottomNavigationItem.route,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                Text(bottomNavigationItem.route, style = MaterialTheme.typography.bodyMedium)
                             },
                             icon = {
                                 Icon(

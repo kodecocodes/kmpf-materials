@@ -58,11 +58,11 @@ fun LocalTimeCard(city: String, time: String, date: String) {
                     ) {
                         Spacer(modifier = Modifier.weight(1.0f))
                         Text(
-                            "Your Location", style = MaterialTheme.typography.labelSmall
+                            "Your Location", style = MaterialTheme.typography.bodySmall
                         )
                         Spacer(Modifier.height(8.dp))
                         Text(
-                            city, style = MaterialTheme.typography.labelLarge
+                            city, style = MaterialTheme.typography.headlineSmall
                         )
                         Spacer(Modifier.height(8.dp))
                     }

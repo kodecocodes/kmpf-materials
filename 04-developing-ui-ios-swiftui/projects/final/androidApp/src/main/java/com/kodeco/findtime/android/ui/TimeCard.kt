@@ -22,8 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
 @Composable
+// 1
 fun TimeCard(timezone: String, hours: Double, time: String, date: String) {
+    // 2
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +42,6 @@ fun TimeCard(timezone: String, hours: Double, time: String, date: String) {
                 .fillMaxWidth()
         )
         {
-            // 1
             Box(
                 modifier = Modifier
                     .background(

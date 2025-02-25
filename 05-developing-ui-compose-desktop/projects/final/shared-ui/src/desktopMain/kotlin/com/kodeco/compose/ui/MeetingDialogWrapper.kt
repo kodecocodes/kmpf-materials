@@ -15,5 +15,6 @@ actual fun MeetingDialogWrapper(onDismiss: onDismissType, content: @Composable (
         state = rememberDialogState(size = DpSize(width = 400.dp, height = Dp.Unspecified)),
         content = {
             content()
-        })
+        }
+    )
 }

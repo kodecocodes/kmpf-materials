@@ -9,19 +9,19 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		0A5210972A8A40CA009C5E0D /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */; };
-		0A5210982A8A40CA009C5E0D /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */; };
-		0A5210992A8A40CA009C5E0D /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210902A8A40CA009C5E0D /* Searchbar.swift */; };
-		0A52109A2A8A40CA009C5E0D /* TimezoneItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */; };
-		0A52109B2A8A40CA009C5E0D /* NumberTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */; };
-		0A52109C2A8A40CA009C5E0D /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210932A8A40CA009C5E0D /* CardModifier.swift */; };
-		0A52109D2A8A40CA009C5E0D /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210942A8A40CA009C5E0D /* TimeCard.swift */; };
-		0A52109E2A8A40CA009C5E0D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210952A8A40CA009C5E0D /* Utils.swift */; };
-		0A52109F2A8A40CA009C5E0D /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210962A8A40CA009C5E0D /* ListModifier.swift */; };
-		0A5210A12A8AA871009C5E0D /* TimezoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210A02A8AA871009C5E0D /* TimezoneView.swift */; };
-		0A5210A32A8AAA74009C5E0D /* HourSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210A22A8AAA74009C5E0D /* HourSheet.swift */; };
-		0A5210A52A8AAAC9009C5E0D /* FindMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5210A42A8AAAC9009C5E0D /* FindMeeting.swift */; };
-		2152FB042600AC8F00CF470E /* TimezoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* TimezoneApp.swift */; };
+		0A9D026E2D3DEB9F0078044E /* NumberTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02652D3DEB9F0078044E /* NumberTimeCard.swift */; };
+		0A9D026F2D3DEB9F0078044E /* TimezoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D026C2D3DEB9F0078044E /* TimezoneView.swift */; };
+		0A9D02702D3DEB9F0078044E /* HourSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02632D3DEB9F0078044E /* HourSheet.swift */; };
+		0A9D02712D3DEB9F0078044E /* TimezoneItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D026B2D3DEB9F0078044E /* TimezoneItems.swift */; };
+		0A9D02722D3DEB9F0078044E /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02682D3DEB9F0078044E /* TimeCard.swift */; };
+		0A9D02732D3DEB9F0078044E /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02612D3DEB9F0078044E /* CardModifier.swift */; };
+		0A9D02742D3DEB9F0078044E /* ListModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02642D3DEB9F0078044E /* ListModifier.swift */; };
+		0A9D02752D3DEB9F0078044E /* FindMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02622D3DEB9F0078044E /* FindMeeting.swift */; };
+		0A9D02762D3DEB9F0078044E /* PresentationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02662D3DEB9F0078044E /* PresentationSettings.swift */; };
+		0A9D02772D3DEB9F0078044E /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02672D3DEB9F0078044E /* Searchbar.swift */; };
+		0A9D02782D3DEB9F0078044E /* TimezoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D02692D3DEB9F0078044E /* TimezoneApp.swift */; };
+		0A9D02792D3DEB9F0078044E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D026D2D3DEB9F0078044E /* Utils.swift */; };
+		0A9D027A2D3DEB9F0078044E /* TimezoneDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D026A2D3DEB9F0078044E /* TimezoneDialog.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,19 +41,19 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
-		0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
-		0A5210902A8A40CA009C5E0D /* Searchbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
-		0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimezoneItems.swift; sourceTree = "<group>"; };
-		0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTimeCard.swift; sourceTree = "<group>"; };
-		0A5210932A8A40CA009C5E0D /* CardModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
-		0A5210942A8A40CA009C5E0D /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
-		0A5210952A8A40CA009C5E0D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		0A5210962A8A40CA009C5E0D /* ListModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
-		0A5210A02A8AA871009C5E0D /* TimezoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneView.swift; sourceTree = "<group>"; };
-		0A5210A22A8AAA74009C5E0D /* HourSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourSheet.swift; sourceTree = "<group>"; };
-		0A5210A42A8AAAC9009C5E0D /* FindMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMeeting.swift; sourceTree = "<group>"; };
-		2152FB032600AC8F00CF470E /* TimezoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneApp.swift; sourceTree = "<group>"; };
+		0A9D02612D3DEB9F0078044E /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		0A9D02622D3DEB9F0078044E /* FindMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMeeting.swift; sourceTree = "<group>"; };
+		0A9D02632D3DEB9F0078044E /* HourSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourSheet.swift; sourceTree = "<group>"; };
+		0A9D02642D3DEB9F0078044E /* ListModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifier.swift; sourceTree = "<group>"; };
+		0A9D02652D3DEB9F0078044E /* NumberTimeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTimeCard.swift; sourceTree = "<group>"; };
+		0A9D02662D3DEB9F0078044E /* PresentationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSettings.swift; sourceTree = "<group>"; };
+		0A9D02672D3DEB9F0078044E /* Searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
+		0A9D02682D3DEB9F0078044E /* TimeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
+		0A9D02692D3DEB9F0078044E /* TimezoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneApp.swift; sourceTree = "<group>"; };
+		0A9D026A2D3DEB9F0078044E /* TimezoneDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneDialog.swift; sourceTree = "<group>"; };
+		0A9D026B2D3DEB9F0078044E /* TimezoneItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneItems.swift; sourceTree = "<group>"; };
+		0A9D026C2D3DEB9F0078044E /* TimezoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimezoneView.swift; sourceTree = "<group>"; };
+		0A9D026D2D3DEB9F0078044E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,23 +98,23 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				0A5210932A8A40CA009C5E0D /* CardModifier.swift */,
-				0A5210962A8A40CA009C5E0D /* ListModifier.swift */,
-				0A5210922A8A40CA009C5E0D /* NumberTimeCard.swift */,
-				0A52108F2A8A40CA009C5E0D /* PresentationSettings.swift */,
-				0A5210902A8A40CA009C5E0D /* Searchbar.swift */,
-				0A5210942A8A40CA009C5E0D /* TimeCard.swift */,
-				0A52108E2A8A40CA009C5E0D /* TimezoneDialog.swift */,
-				0A5210912A8A40CA009C5E0D /* TimezoneItems.swift */,
-				0A5210952A8A40CA009C5E0D /* Utils.swift */,
+				0A9D02612D3DEB9F0078044E /* CardModifier.swift */,
+				0A9D02622D3DEB9F0078044E /* FindMeeting.swift */,
+				0A9D02632D3DEB9F0078044E /* HourSheet.swift */,
+				0A9D02642D3DEB9F0078044E /* ListModifier.swift */,
+				0A9D02652D3DEB9F0078044E /* NumberTimeCard.swift */,
+				0A9D02662D3DEB9F0078044E /* PresentationSettings.swift */,
+				0A9D02672D3DEB9F0078044E /* Searchbar.swift */,
+				0A9D02682D3DEB9F0078044E /* TimeCard.swift */,
+				0A9D02692D3DEB9F0078044E /* TimezoneApp.swift */,
+				0A9D026A2D3DEB9F0078044E /* TimezoneDialog.swift */,
+				0A9D026B2D3DEB9F0078044E /* TimezoneItems.swift */,
+				0A9D026C2D3DEB9F0078044E /* TimezoneView.swift */,
+				0A9D026D2D3DEB9F0078044E /* Utils.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* TimezoneApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				0A5210A02A8AA871009C5E0D /* TimezoneView.swift */,
-				0A5210A22A8AAA74009C5E0D /* HourSheet.swift */,
-				0A5210A42A8AAAC9009C5E0D /* FindMeeting.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -218,20 +218,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2152FB042600AC8F00CF470E /* TimezoneApp.swift in Sources */,
-				0A5210972A8A40CA009C5E0D /* TimezoneDialog.swift in Sources */,
-				0A52109D2A8A40CA009C5E0D /* TimeCard.swift in Sources */,
-				0A5210992A8A40CA009C5E0D /* Searchbar.swift in Sources */,
-				0A52109B2A8A40CA009C5E0D /* NumberTimeCard.swift in Sources */,
-				0A52109E2A8A40CA009C5E0D /* Utils.swift in Sources */,
-				0A52109F2A8A40CA009C5E0D /* ListModifier.swift in Sources */,
-				0A5210A12A8AA871009C5E0D /* TimezoneView.swift in Sources */,
-				0A5210A32A8AAA74009C5E0D /* HourSheet.swift in Sources */,
-				0A52109A2A8A40CA009C5E0D /* TimezoneItems.swift in Sources */,
-				0A5210982A8A40CA009C5E0D /* PresentationSettings.swift in Sources */,
-				0A52109C2A8A40CA009C5E0D /* CardModifier.swift in Sources */,
-				0A5210A52A8AAAC9009C5E0D /* FindMeeting.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				0A9D026E2D3DEB9F0078044E /* NumberTimeCard.swift in Sources */,
+				0A9D026F2D3DEB9F0078044E /* TimezoneView.swift in Sources */,
+				0A9D02702D3DEB9F0078044E /* HourSheet.swift in Sources */,
+				0A9D02712D3DEB9F0078044E /* TimezoneItems.swift in Sources */,
+				0A9D02722D3DEB9F0078044E /* TimeCard.swift in Sources */,
+				0A9D02732D3DEB9F0078044E /* CardModifier.swift in Sources */,
+				0A9D02742D3DEB9F0078044E /* ListModifier.swift in Sources */,
+				0A9D02752D3DEB9F0078044E /* FindMeeting.swift in Sources */,
+				0A9D02762D3DEB9F0078044E /* PresentationSettings.swift in Sources */,
+				0A9D02772D3DEB9F0078044E /* Searchbar.swift in Sources */,
+				0A9D02782D3DEB9F0078044E /* TimezoneApp.swift in Sources */,
+				0A9D02792D3DEB9F0078044E /* Utils.swift in Sources */,
+				0A9D027A2D3DEB9F0078044E /* TimezoneDialog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,12 +360,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = TELQUP4TY8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,7 +377,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodeco.findtime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -388,12 +390,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = TELQUP4TY8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -403,7 +407,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodeco.findtime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
