@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,15 +55,20 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.components.AddImagePreview
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.platform.Logger
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.app_kodeco
+import com.kodeco.learn.resources.description_more
+import com.kodeco.learn.resources.ic_more
 import com.kodeco.learn.utils.converterIso8601ToReadableDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 private const val TAG = "EntryContent"
 
@@ -118,7 +123,7 @@ fun AddEntryContent(
         ) {
 
           Text(
-            text = "Kodeco"
+            text = stringResource(Res.string.app_kodeco)
           )
 
           Text(
@@ -132,8 +137,8 @@ fun AddEntryContent(
         horizontalArrangement = Arrangement.End
       ) {
 
-        val resource = painterResource("images/ic_more.xml")
-        val description = "More actions"
+        val resource = painterResource(Res.drawable.ic_more)
+        val description = stringResource(Res.string.description_more)
 
         Icon(
           painter = resource,
@@ -167,7 +172,7 @@ fun AddEntryContent(
     Spacer(modifier = Modifier.height(16.dp))
 
     if (divider) {
-      Divider(
+      HorizontalDivider(
         modifier = Modifier.fillMaxWidth(),
         thickness = 1.dp
       )

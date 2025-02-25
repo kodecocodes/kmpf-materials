@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,14 +34,10 @@
 
 package com.kodeco.learn.data.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 public data class GravatarProfile(
   val entry: List<GravatarEntry> = emptyList()
 )
 
-@Serializable
 public data class GravatarEntry(
   val id: String? = null,
   val hash: String? = null,

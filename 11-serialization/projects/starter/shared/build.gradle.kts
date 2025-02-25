@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,7 @@
  * THE SOFTWARE.
  */
 
-@file:Suppress("OPT_IN_USAGE")
-
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -42,7 +41,7 @@ plugins {
   alias(libs.plugins.cash.sqldelight)
 }
 
-version = "2.0"
+version = "3.0"
 
 sqldelight {
   databases {
@@ -70,9 +69,17 @@ android {
 }
 
 kotlin {
-  androidTarget()
+  androidTarget {
+    compilations.all {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.JVM_17)
+        }
+      }
+    }
+  }
 
-  jvm("desktop")
+  jvm()
 
   val xcf = XCFramework("SharedKit")
 
@@ -88,46 +95,42 @@ kotlin {
   }
 
   sourceSets {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
-    getByName("commonMain") {
-      dependencies {
-        implementation(libs.kotlinx.datetime)
+    commonMain.dependencies {
+      implementation(libs.kotlinx.datetime)
 
-        implementation(libs.okio)
-        implementation(libs.korio)
-      }
+      implementation(libs.okio)
+      implementation(libs.korio)
     }
 
-    getByName("commonTest") {
-      dependencies {
-        implementation(kotlin("test-common"))
-        implementation(kotlin("test-annotations-common"))
-      }
+    commonTest.dependencies {
+      implementation(kotlin("test-common"))
+      implementation(kotlin("test-annotations-common"))
     }
 
-    getByName("androidMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.android)
-      }
+    androidMain.dependencies {
+      implementation(libs.cash.sqldelight.android)
     }
 
-    getByName("androidUnitTest") {
-      dependencies {
-        implementation(kotlin("test-junit"))
-      }
+    androidUnitTest.dependencies {
+      implementation(kotlin("test-junit"))
     }
 
-    getByName("desktopMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.jvm)
-      }
+    jvmMain.dependencies {
+      implementation(libs.cash.sqldelight.jvm)
     }
 
-    getByName("iosMain") {
-      dependencies {
-        implementation(libs.cash.sqldelight.native)
-      }
+    iosMain.dependencies {
+      implementation(libs.cash.sqldelight.native)
+    }
+  }
+}
+
+kotlin.targets.configureEach {
+  compilations.configureEach {
+    compileTaskProvider.get().compilerOptions {
+      freeCompilerArgs.add("-Xexpect-actual-classes")
     }
   }
 }
