@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,6 @@ import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.GetFeedData
 import com.kodeco.learn.domain.cb.FeedData
 import com.kodeco.learn.platform.Logger
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import io.ktor.utils.io.core.toByteArray
 import korlibs.crypto.md5
@@ -49,7 +48,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -71,7 +69,6 @@ private const val KODECO_CONTENT = "[" +
     "]"
 
 private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
-
 
 class FeedPresenter(private val feed: GetFeedData) {
 
@@ -125,7 +122,6 @@ class FeedPresenter(private val feed: GetFeedData) {
       )
     }.await()
   }
-
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")

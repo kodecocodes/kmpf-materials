@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,15 +48,11 @@ import com.kodeco.learn.ui.home.HomeContent
 import com.kodeco.learn.ui.latest.LatestContent
 import com.kodeco.learn.ui.search.SearchContent
 import kotlinx.coroutines.CoroutineScope
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.Navigator
-
-private val DEFAULT_SCREEN = BottomNavigationScreens.Home
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainContent(
-    navController: Navigator,
+    destination: BottomNavigationScreens,
     coroutineScope: CoroutineScope,
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     selected: MutableState<KodecoEntry>,
@@ -67,7 +63,7 @@ fun MainContent(
 
   Column {
     MainScreenNavigationConfigurations(
-        navController = navController,
+        destination = destination,
         coroutineScope = coroutineScope,
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         selected = selected,
@@ -81,7 +77,7 @@ fun MainContent(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MainScreenNavigationConfigurations(
-    navController: Navigator,
+    destination: BottomNavigationScreens,
     coroutineScope: CoroutineScope,
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     selected: MutableState<KodecoEntry>,
@@ -90,41 +86,38 @@ private fun MainScreenNavigationConfigurations(
     onOpenEntry: (String) -> Unit
 ) {
 
-  NavHost(
-      navigator = navController,
-      initialRoute = DEFAULT_SCREEN.route
-  ) {
-    scene(BottomNavigationScreens.Home.route) {
+  when(destination) {
+    BottomNavigationScreens.Home -> {
       HomeContent(
-          selected = selected,
-          items = feeds,
-          coroutineScope = coroutineScope,
-          bottomSheetScaffoldState = bottomSheetScaffoldState,
-          onOpenEntry = onOpenEntry
+        selected = selected,
+        items = feeds,
+        coroutineScope = coroutineScope,
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
+        onOpenEntry = onOpenEntry
       )
     }
-    scene(BottomNavigationScreens.Bookmark.route) {
+    BottomNavigationScreens.Bookmark -> {
       BookmarkContent(
-          selected = selected,
-          items = bookmarks,
-          coroutineScope = coroutineScope,
-          bottomSheetScaffoldState = bottomSheetScaffoldState,
-          onOpenEntry = onOpenEntry
+        selected = selected,
+        items = bookmarks,
+        coroutineScope = coroutineScope,
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
+        onOpenEntry = onOpenEntry
       )
     }
-    scene(BottomNavigationScreens.Latest.route) {
+    BottomNavigationScreens.Latest -> {
       LatestContent(
-          items = feeds,
-          onOpenEntry = onOpenEntry
+        items = feeds,
+        onOpenEntry = onOpenEntry
       )
     }
-    scene(BottomNavigationScreens.Search.route) {
+    BottomNavigationScreens.Search -> {
       SearchContent(
-          selected = selected,
-          items = feeds,
-          coroutineScope = coroutineScope,
-          bottomSheetScaffoldState = bottomSheetScaffoldState,
-          onOpenEntry = onOpenEntry
+        selected = selected,
+        items = feeds,
+        coroutineScope = coroutineScope,
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
+        onOpenEntry = onOpenEntry
       )
     }
   }

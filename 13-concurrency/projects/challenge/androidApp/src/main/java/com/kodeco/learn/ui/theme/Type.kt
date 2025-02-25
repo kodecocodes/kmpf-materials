@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -88,6 +88,40 @@ val Typography = Typography(
   ),
 
   bodySmall = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontSize = fontSizeSmall
+  ),
+
+  titleLarge = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  titleMedium = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  titleSmall = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontSize = fontSizeSmall
+  ),
+
+  labelLarge = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  labelMedium = TextStyle(
+    fontFamily = OpenSansFontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  labelSmall = TextStyle(
     fontFamily = OpenSansFontFamily,
     fontSize = fontSizeSmall
   )

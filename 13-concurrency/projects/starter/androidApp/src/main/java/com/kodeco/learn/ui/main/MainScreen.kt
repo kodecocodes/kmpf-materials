@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,10 +37,11 @@ package com.kodeco.learn.ui.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -58,7 +59,7 @@ import com.kodeco.learn.ui.home.HomeSheetContent
 
 private lateinit var selected: MutableState<KodecoEntry>
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     profile: GravatarEntry?,
@@ -80,7 +81,9 @@ fun MainScreen(
   navController.enableOnBackPressed(false)
 
   val coroutineScope = rememberCoroutineScope()
-  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
+  val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+    bottomSheetState = rememberStandardBottomSheetState(skipHiddenState = false)
+  )
 
   selected = remember { mutableStateOf(KodecoEntry()) }
 
