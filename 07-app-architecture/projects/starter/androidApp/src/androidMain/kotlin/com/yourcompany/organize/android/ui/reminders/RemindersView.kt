@@ -34,20 +34,39 @@
 
 package com.yourcompany.organize.android.ui.reminders
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEvent
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun RemindersView(
@@ -85,6 +104,68 @@ private fun ContentView() {
   ) {
     Text("Hello World!")
   }
+}
+
+@Composable
+private fun ReminderItem(
+  title: String,
+  isCompleted: Boolean,
+  modifier: Modifier = Modifier,
+) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.Start,
+    modifier = modifier
+  ) {
+    RadioButton(
+      selected = isCompleted,
+      onClick = null
+    )
+
+    Text(
+      text = title,
+      style = if (isCompleted) {
+        MaterialTheme.typography.bodyLarge.copy(
+          textDecoration = TextDecoration.LineThrough,
+          fontStyle = FontStyle.Italic,
+          color = Color.Gray,
+        )
+      } else {
+        MaterialTheme.typography.bodyLarge
+      },
+      modifier = Modifier.padding(8.dp),
+    )
+  }
+}
+
+@Composable
+private fun NewReminderTextField(
+  value: String,
+  onValueChange: (String) -> Unit,
+  onSubmit: () -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  OutlinedTextField(
+    value = value,
+    onValueChange = onValueChange,
+    placeholder = { Text("Add a new reminder here") },
+    keyboardOptions = KeyboardOptions.Default.copy(
+      capitalization = KeyboardCapitalization.Words,
+      keyboardType = KeyboardType.Text,
+      imeAction = ImeAction.Done,
+    ),
+    keyboardActions = KeyboardActions(
+      onDone = { onSubmit() }
+    ),
+    modifier = modifier
+      .onPreviewKeyEvent { event: KeyEvent ->
+        if (event.key == Key.Enter) {
+          onSubmit()
+          return@onPreviewKeyEvent true
+        }
+        false
+      }
+  )
 }
 
 @Preview(showBackground = true)
