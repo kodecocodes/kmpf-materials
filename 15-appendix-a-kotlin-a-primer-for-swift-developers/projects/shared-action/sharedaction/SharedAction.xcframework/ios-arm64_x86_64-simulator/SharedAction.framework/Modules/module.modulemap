@@ -1,0 +1,5 @@
+framework module "SharedAction" {
+    umbrella header "SharedAction.h"
+    export *
+    module * { export * }
+}
