@@ -51,6 +51,13 @@ kotlin {
         implementation(compose.material3)
       }
     }
+
+    val desktopTest by getting {
+      dependencies {
+        implementation(compose.desktop.uiTestJUnit4)
+        implementation(compose.desktop.currentOs)
+      }
+    }
   }
 }
 
