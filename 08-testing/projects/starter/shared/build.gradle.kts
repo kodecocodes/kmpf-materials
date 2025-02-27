@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,14 +32,26 @@
  * THE SOFTWARE.
  */
 
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-  kotlin("multiplatform")
-  id("com.android.library")
-  id("org.jetbrains.compose")
+  alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.androidLibrary)
+  alias(libs.plugins.composeMultiplatform)
+  alias(libs.plugins.composeCompiler)
 }
 
 kotlin {
-  androidTarget()
+  compilerOptions {
+    freeCompilerArgs.add("-Xexpect-actual-classes")
+  }
+
+  androidTarget {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
+    }
+  }
 
   jvm("desktop")
 
@@ -50,8 +62,11 @@ kotlin {
   ).forEach {
     it.binaries.framework {
       baseName = "Shared"
+      isStatic = true
     }
   }
+
+  applyDefaultHierarchyTemplate()
 
   sourceSets {
     val commonMain by getting {
@@ -66,45 +81,26 @@ kotlin {
     }
 
     val androidMain by getting {
-      dependsOn(commonMain)
       dependencies {
         implementation(libs.androidx.annotation)
         implementation(libs.androidx.lifecycle.viewmodel.ktx)
       }
     }
-
-    val iosX64Main by getting
-    val iosArm64Main by getting
-    val iosSimulatorArm64Main by getting
-    val iosMain by creating {
-      dependsOn(commonMain)
-      iosX64Main.dependsOn(this)
-      iosArm64Main.dependsOn(this)
-      iosSimulatorArm64Main.dependsOn(this)
-    }
-
-    val desktopMain by getting {
-      dependsOn(commonMain)
+    val androidUnitTest by getting {
       dependencies {
-        implementation(compose.desktop.common)
+        implementation(kotlin("test-junit"))
+        implementation(libs.junit)
       }
     }
   }
 }
 
-compose {
-  kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.5.3")
-}
-
 android {
-  compileSdk = 34
+  compileSdk = libs.versions.android.compileSdk.get().toInt()
   namespace = "com.yourcompany.organize"
 
-  sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  sourceSets["main"].res.srcDirs("src/androidMain/res")
-
   defaultConfig {
-    minSdk = 27
+    minSdk = libs.versions.android.minSdk.get().toInt()
   }
 
   compileOptions {
