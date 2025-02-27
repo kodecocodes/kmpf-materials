@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco LLC
+/// Copyright (c) 2025 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -53,15 +53,13 @@ struct AboutListView: View {
   }
 }
 
-struct AboutListView_Previews: PreviewProvider {
-  static var previews: some View {
-    AboutListView(
-      items: [
-        AboutViewModel.RowItem(
-          title: "Title",
-          subtitle: "Subtitle"
-        )
-      ]
-    )
-  }
+#Preview {
+  AboutListView(
+    items: [
+      AboutViewModel.RowItem(
+        title: "Title",
+        subtitle: "Subtitle"
+      )
+    ]
+  )
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,17 +12,16 @@
 		301A789A2A96023200D37A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A78992A96023200D37A08 /* LaunchScreen.storyboard */; };
 		301A78A02A96030500D37A08 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A789F2A96030500D37A08 /* AboutView.swift */; };
 		301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A78A12A96030E00D37A08 /* RemindersView.swift */; };
-		30454C252AA922C400B13429 /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30454C242AA922C400B13429 /* iosAppUITests.swift */; };
-		3059CE792AADFB1E00E05B50 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059CE782AADFB1E00E05B50 /* Koin.swift */; };
-		3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3088EB642A9B77B4002D249F /* AboutListView.swift */; };
-		30ECB4992AA0B78B00878A44 /* RemindersViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */; };
-		30ECB49B2AA0C32E00878A44 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */; };
-		30ECB49D2AA0C3C300878A44 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */; };
+		3033186A2D54EE7600E34D72 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303318692D54EE7600E34D72 /* Koin.swift */; };
+		30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */; };
+		30C8DECB2D4B985A0059A499 /* RemindersViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C8DECA2D4B985A0059A499 /* RemindersViewModelWrapper.swift */; };
+		30C8DECE2D4B99290059A499 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C8DECD2D4B99290059A499 /* ReminderItem.swift */; };
+		30C8DECF2D4B99290059A499 /* NewReminderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C8DECC2D4B99290059A499 /* NewReminderTextField.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		30454C282AA922C400B13429 /* PBXContainerItemProxy */ = {
+		30866AA42D52449C00C5AD48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7555FF73242A565900829871 /* Project object */;
 			proxyType = 1;
@@ -50,20 +49,23 @@
 		301A78992A96023200D37A08 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		301A789F2A96030500D37A08 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		301A78A12A96030E00D37A08 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
-		30454C222AA922C400B13429 /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		30454C242AA922C400B13429 /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
-		3059CE782AADFB1E00E05B50 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
-		3088EB642A9B77B4002D249F /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
-		30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModelWrapper.swift; sourceTree = "<group>"; };
-		30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
-		30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
+		303318692D54EE7600E34D72 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
+		30866A9E2D52449C00C5AD48 /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
+		30C8DECA2D4B985A0059A499 /* RemindersViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModelWrapper.swift; sourceTree = "<group>"; };
+		30C8DECC2D4B99290059A499 /* NewReminderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderTextField.swift; sourceTree = "<group>"; };
+		30C8DECD2D4B99290059A499 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		30866A9F2D52449C00C5AD48 /* iosAppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = iosAppUITests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		30454C1F2AA922C400B13429 /* Frameworks */ = {
+		30866A9B2D52449C00C5AD48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,10 +95,10 @@
 		301A789C2A96026100D37A08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				303318692D54EE7600E34D72 /* Koin.swift */,
 				301A78992A96023200D37A08 /* LaunchScreen.storyboard */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				3059CE782AADFB1E00E05B50 /* Koin.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -105,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				301A789F2A96030500D37A08 /* AboutView.swift */,
-				3088EB642A9B77B4002D249F /* AboutListView.swift */,
+				30980E0F2D3BF0C500E8DF09 /* AboutListView.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -113,27 +115,19 @@
 		301A789E2A96029000D37A08 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
+				30C8DECC2D4B99290059A499 /* NewReminderTextField.swift */,
+				30C8DECD2D4B99290059A499 /* ReminderItem.swift */,
 				301A78A12A96030E00D37A08 /* RemindersView.swift */,
-				30ECB4982AA0B78B00878A44 /* RemindersViewModelWrapper.swift */,
-				30ECB49A2AA0C32E00878A44 /* ReminderItem.swift */,
-				30ECB49C2AA0C3C300878A44 /* NewReminderTextField.swift */,
+				30C8DECA2D4B985A0059A499 /* RemindersViewModelWrapper.swift */,
 			);
 			path = Reminders;
-			sourceTree = "<group>";
-		};
-		30454C232AA922C400B13429 /* iosAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				30454C242AA922C400B13429 /* iosAppUITests.swift */,
-			);
-			path = iosAppUITests;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
-				30454C232AA922C400B13429 /* iosAppUITests */,
+				30866A9F2D52449C00C5AD48 /* iosAppUITests */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
 			);
@@ -143,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* iosApp.app */,
-				30454C222AA922C400B13429 /* iosAppUITests.xctest */,
+				30866A9E2D52449C00C5AD48 /* iosAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,22 +162,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30454C212AA922C400B13429 /* iosAppUITests */ = {
+		30866A9D2D52449C00C5AD48 /* iosAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30454C2C2AA922C400B13429 /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
+			buildConfigurationList = 30866AA82D52449C00C5AD48 /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
 			buildPhases = (
-				30454C1E2AA922C400B13429 /* Sources */,
-				30454C1F2AA922C400B13429 /* Frameworks */,
-				30454C202AA922C400B13429 /* Resources */,
+				30866A9A2D52449C00C5AD48 /* Sources */,
+				30866A9B2D52449C00C5AD48 /* Frameworks */,
+				30866A9C2D52449C00C5AD48 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				30454C292AA922C400B13429 /* PBXTargetDependency */,
+				30866AA52D52449C00C5AD48 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				30866A9F2D52449C00C5AD48 /* iosAppUITests */,
 			);
 			name = iosAppUITests;
+			packageProductDependencies = (
+			);
 			productName = iosAppUITests;
-			productReference = 30454C222AA922C400B13429 /* iosAppUITests.xctest */;
+			productReference = 30866A9E2D52449C00C5AD48 /* iosAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		7555FF7A242A565900829871 /* iosApp */ = {
@@ -213,12 +212,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
-					30454C212AA922C400B13429 = {
-						CreatedOnToolsVersion = 15.0;
+					30866A9D2D52449C00C5AD48 = {
+						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 7555FF7A242A565900829871;
 					};
 					7555FF7A242A565900829871 = {
@@ -240,13 +239,13 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* iosApp */,
-				30454C212AA922C400B13429 /* iosAppUITests */,
+				30866A9D2D52449C00C5AD48 /* iosAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30454C202AA922C400B13429 /* Resources */ = {
+		30866A9C2D52449C00C5AD48 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,7 +294,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/sharedFramework",
+				"$(DERIVED_FILE_DIR)/kmpShared",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -304,11 +303,10 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30454C1E2AA922C400B13429 /* Sources */ = {
+		30866A9A2D52449C00C5AD48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30454C252AA922C400B13429 /* iosAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,14 +314,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3059CE792AADFB1E00E05B50 /* Koin.swift in Sources */,
-				30ECB4992AA0B78B00878A44 /* RemindersViewModelWrapper.swift in Sources */,
+				3033186A2D54EE7600E34D72 /* Koin.swift in Sources */,
+				30C8DECB2D4B985A0059A499 /* RemindersViewModelWrapper.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				301A78A02A96030500D37A08 /* AboutView.swift in Sources */,
 				301A78A22A96030E00D37A08 /* RemindersView.swift in Sources */,
-				3088EB652A9B77B4002D249F /* AboutListView.swift in Sources */,
-				30ECB49B2AA0C32E00878A44 /* ReminderItem.swift in Sources */,
-				30ECB49D2AA0C3C300878A44 /* NewReminderTextField.swift in Sources */,
+				30C8DECE2D4B99290059A499 /* ReminderItem.swift in Sources */,
+				30C8DECF2D4B99290059A499 /* NewReminderTextField.swift in Sources */,
+				30980E102D3BF0C500E8DF09 /* AboutListView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,15 +329,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		30454C292AA922C400B13429 /* PBXTargetDependency */ = {
+		30866AA52D52449C00C5AD48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7555FF7A242A565900829871 /* iosApp */;
-			targetProxy = 30454C282AA922C400B13429 /* PBXContainerItemProxy */;
+			targetProxy = 30866AA42D52449C00C5AD48 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		30454C2A2AA922C400B13429 /* Debug */ = {
+		30866AA62D52449C00C5AD48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -349,9 +347,10 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize.iosAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.iosAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -361,7 +360,7 @@
 			};
 			name = Debug;
 		};
-		30454C2B2AA922C400B13429 /* Release */ = {
+		30866AA72D52449C00C5AD48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -370,9 +369,10 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.organize.iosAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.iosAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -433,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -489,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -512,6 +512,7 @@
 				);
 				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Organize;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,6 +543,7 @@
 				);
 				INFOPLIST_FILE = "iosApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Organize;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,11 +564,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30454C2C2AA922C400B13429 /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
+		30866AA82D52449C00C5AD48 /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30454C2A2AA922C400B13429 /* Debug */,
-				30454C2B2AA922C400B13429 /* Release */,
+				30866AA62D52449C00C5AD48 /* Debug */,
+				30866AA72D52449C00C5AD48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

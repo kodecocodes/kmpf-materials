@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,31 +32,34 @@
  * THE SOFTWARE.
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-  id("com.android.application")
-  kotlin("android")
+  alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.androidApplication)
+  alias(libs.plugins.composeMultiplatform)
+  alias(libs.plugins.composeCompiler)
+}
+
+kotlin {
+  androidTarget {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
+    }
+  }
 }
 
 android {
   namespace = "com.yourcompany.organize.android"
-  compileSdk = 34
+  compileSdk = libs.versions.android.compileSdk.get().toInt()
 
   defaultConfig {
     applicationId = "com.yourcompany.organize.android"
-    minSdk = 27
-    targetSdk = 34
-    versionCode = 2
-    versionName = "2.0"
-
+    minSdk = libs.versions.android.minSdk.get().toInt()
+    targetSdk = libs.versions.android.targetSdk.get().toInt()
+    versionCode = 3
+    versionName = "3.0"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  buildFeatures {
-    compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.3"
   }
 
   packaging {
@@ -89,11 +92,10 @@ dependencies {
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.core.splashscreen)
-  debugImplementation(libs.androidx.ui.test.manifest)
 
+  debugImplementation(libs.androidx.ui.test.manifest)
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.junit)
   androidTestImplementation(libs.androidx.ui.test.junit4)
-  androidTestImplementation(libs.androidx.fragment.testing)
   androidTestImplementation(libs.androidx.test.runner)
 }
