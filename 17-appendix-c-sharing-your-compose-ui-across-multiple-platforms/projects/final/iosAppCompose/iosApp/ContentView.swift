@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc
+/// Copyright (c) 2025 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -35,18 +35,18 @@ import SwiftUI
 import SharedUIKit
 
 struct ComposeView: UIViewControllerRepresentable {
-  func makeUIViewController(context: Context) -> UIViewController {
-    Main_iosKt.MainViewController()
-  }
+    func makeUIViewController(context: Context) -> UIViewController {
+      Main_iosKt.MainViewController()
+    }
 
-  func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 struct ContentView: View {
-  var body: some View {
-    ComposeView()
-      .ignoresSafeArea(.all, edges: .all)
-  }
+    var body: some View {
+        ComposeView()
+            .ignoresSafeArea(.all, edges: .all)
+    }
 }
 
 

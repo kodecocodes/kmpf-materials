@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,13 +51,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.ic_search
 import com.kodeco.learn.ui.common.AddEntryContent
 import kotlinx.coroutines.CoroutineScope
+import org.jetbrains.compose.resources.painterResource
 
 private const val TAG = "SearchContent"
 
@@ -140,7 +142,7 @@ fun AddSearchField(search: MutableState<String>) {
         )
       },
       leadingIcon = {
-        val resource = painterResource("images/ic_search.xml")
+        val resource = painterResource(Res.drawable.ic_search)
         val description = "Search for a specific article"
 
         Icon(

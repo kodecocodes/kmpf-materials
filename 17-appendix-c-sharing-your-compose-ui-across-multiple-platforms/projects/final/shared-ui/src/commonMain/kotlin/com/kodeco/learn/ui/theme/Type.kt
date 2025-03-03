@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,8 @@ package com.kodeco.learn.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
@@ -72,6 +74,34 @@ val Typography = Typography(
   ),
 
   bodySmall = TextStyle(
+    fontSize = fontSizeSmall
+  ),
+
+  titleLarge = TextStyle(
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  titleMedium = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  titleSmall = TextStyle(
+    fontSize = fontSizeSmall
+  ),
+
+  labelLarge = TextStyle(
+    fontWeight = FontWeight.Normal,
+    fontSize = fontSizeBig
+  ),
+
+  labelMedium = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = fontSizeSmall
+  ),
+
+  labelSmall = TextStyle(
     fontSize = fontSizeSmall
   )
 )

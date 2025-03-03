@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,10 +26,12 @@ import kotlin.math.sign
  * Code adapted from: com.google.accompanist:accompanist-pager-indicators
  */
 
+private const val DisabledAlpha = 0.38f
+
 /**
  * A horizontally laid out indicator for a [androidx.compose.foundation.pager.HorizontalPager] or
  * [androidx.compose.foundation.pager.VerticalPager], representing
- * the currently active page and total pages drawn using a [Shape].
+ * the currently active page and total pages drawn using a [androidx.compose.ui.graphics.Shape].
  *
  * This element allows the setting of the [indicatorShape], which defines how the
  * indicator is visually represented.
@@ -44,30 +44,30 @@ import kotlin.math.sign
  * @param modifier the modifier to apply to this layout.
  * @param pageCount the size of indicators should be displayed.
  * If you are implementing a looping pager with a much larger [pageCount]
- * than indicators should displayed, e.g. [Int.MAX_VALUE], specify you real size in this param.
+ * than indicators should displayed, e.g. [Int.Companion.MAX_VALUE], specify you real size in this param.
  * @param pageIndexMapping describe how to get the position of active indicator by the giving page
  * from [androidx.compose.foundation.pager.PagerState.currentPage].
  * @param activeColor the color of the active Page indicator
  * @param inactiveColor the color of page indicators that are inactive. This defaults to
- * [activeColor] with the alpha component set to the [ContentAlpha.disabled].
- * @param indicatorWidth the width of each indicator in [Dp].
- * @param indicatorHeight the height of each indicator in [Dp]. Defaults to [indicatorWidth].
- * @param spacing the spacing between each indicator in [Dp].
- * @param indicatorShape the shape representing each indicator. This defaults to [CircleShape].
+ * [activeColor] with the alpha component set to the [androidx.compose.material.ContentAlpha.disabled].
+ * @param indicatorWidth the width of each indicator in [androidx.compose.ui.unit.Dp].
+ * @param indicatorHeight the height of each indicator in [androidx.compose.ui.unit.Dp]. Defaults to [indicatorWidth].
+ * @param spacing the spacing between each indicator in [androidx.compose.ui.unit.Dp].
+ * @param indicatorShape the shape representing each indicator. This defaults to [androidx.compose.foundation.shape.CircleShape].
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalPagerIndicator(
-    pagerState: androidx.compose.foundation.pager.PagerState,
-    pageCount: Int,
-    modifier: Modifier = Modifier,
-    pageIndexMapping: (Int) -> Int = { it },
-    activeColor: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current),
-    inactiveColor: Color = activeColor.copy(ContentAlpha.disabled),
-    indicatorWidth: Dp = 8.dp,
-    indicatorHeight: Dp = indicatorWidth,
-    spacing: Dp = indicatorWidth,
-    indicatorShape: Shape = CircleShape,
+  pagerState: androidx.compose.foundation.pager.PagerState,
+  pageCount: Int,
+  modifier: Modifier = Modifier,
+  pageIndexMapping: (Int) -> Int = { it },
+  activeColor: Color = LocalContentColor.current.copy(alpha = LocalContentColor.current.alpha),
+  inactiveColor: Color = activeColor.copy(DisabledAlpha),
+  indicatorWidth: Dp = 8.dp,
+  indicatorHeight: Dp = indicatorWidth,
+  spacing: Dp = indicatorWidth,
+  indicatorShape: Shape = CircleShape,
 ) {
   val stateBridge = remember(pagerState) {
     object : PagerStateBridge {
@@ -98,8 +98,8 @@ private fun HorizontalPagerIndicator(
     pageCount: Int,
     modifier: Modifier = Modifier,
     pageIndexMapping: (Int) -> Int = { it },
-    activeColor: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current),
-    inactiveColor: Color = activeColor.copy(ContentAlpha.disabled),
+    activeColor: Color = LocalContentColor.current.copy(alpha = LocalContentColor.current.alpha),
+    inactiveColor: Color = activeColor.copy(DisabledAlpha),
     indicatorWidth: Dp = 8.dp,
     indicatorHeight: Dp = indicatorWidth,
     spacing: Dp = indicatorWidth,

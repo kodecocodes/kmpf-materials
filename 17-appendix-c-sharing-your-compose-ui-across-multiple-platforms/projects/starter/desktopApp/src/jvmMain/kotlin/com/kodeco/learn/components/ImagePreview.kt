@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,9 +45,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import com.kodeco.learn.logger.Logger
+import com.kodeco.learn.resources.Res
+import com.kodeco.learn.resources.description_preview
+import com.kodeco.learn.resources.description_preview_error
+import com.kodeco.learn.resources.ic_brand
 import com.seiko.imageloader.rememberImagePainter
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 private const val TAG = "ImagePreview"
 
@@ -65,8 +70,7 @@ fun AddImagePreview(
 
   } else {
     Box {
-
-      val resource = painterResource("images/ic_brand.xml")
+      val resource = painterResource(Res.drawable.ic_brand)
 
       val painter = rememberImagePainter(
           url = url,
@@ -77,7 +81,7 @@ fun AddImagePreview(
       Image(
           painter = painter,
           contentScale = ContentScale.Crop,
-          contentDescription = "Image preview",
+          contentDescription = stringResource(Res.string.description_preview),
           modifier = modifier
       )
     }
@@ -100,8 +104,8 @@ fun AddImagePreviewEmpty(
         color = Color.Transparent
     ) {
 
-      val resource = painterResource("images/ic_brand.xml")
-      val description = "Unable to load image preview"
+      val resource = painterResource(Res.drawable.ic_brand)
+      val description = stringResource(Res.string.description_preview_error)
 
       Column(
           horizontalAlignment = Alignment.CenterHorizontally,

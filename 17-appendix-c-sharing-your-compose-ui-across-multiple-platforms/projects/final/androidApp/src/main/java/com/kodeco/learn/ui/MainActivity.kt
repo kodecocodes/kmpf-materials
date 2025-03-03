@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,74 +36,75 @@ package com.kodeco.learn.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.kodeco.learn.ui.R
 import com.kodeco.learn.action.Action.openLink
 import com.kodeco.learn.action.activityContext
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.ui.bookmark.BookmarkViewModel
 import com.kodeco.learn.ui.home.FeedViewModel
 import com.kodeco.learn.ui.main.MainScreen
+import com.kodeco.learn.ui.R
 import com.kodeco.learn.ui.theme.KodecoTheme
-import moe.tlaster.precompose.lifecycle.PreComposeActivity
-import moe.tlaster.precompose.lifecycle.setContent
-import moe.tlaster.precompose.viewmodel.viewModel
 
-class MainActivity : PreComposeActivity() {
+class MainActivity : ComponentActivity() {
 
-  private lateinit var bookmarkViewModel: BookmarkViewModel
-  private lateinit var feedViewModel: FeedViewModel
+  private val bookmarkViewModel: BookmarkViewModel by viewModels()
+  private val feedViewModel: FeedViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    feedViewModel.fetchAllFeeds()
+    feedViewModel.fetchMyGravatar()
+    bookmarkViewModel.getBookmarks()
+
     setContent {
 
-      feedViewModel = viewModel {
-        FeedViewModel()
-      }
-
-      bookmarkViewModel = viewModel {
-        BookmarkViewModel()
-      }
-
-      feedViewModel.fetchAllFeeds()
-      feedViewModel.fetchMyGravatar()
-      bookmarkViewModel.getBookmarks()
-
       val items = feedViewModel.items
-      val profile = feedViewModel.profile
-      val bookmarks = bookmarkViewModel.items
+      val profile = feedViewModel.profile.collectAsState()
+      val bookmarks = bookmarkViewModel.items.collectAsState()
 
-      val darkTheme = isSystemInDarkTheme()
-      KodecoTheme(
-          darkTheme = darkTheme
-      ) {
+      KodecoTheme {
 
         val view = LocalView.current
-        val colorScheme = MaterialTheme.colorScheme
         if (!view.isInEditMode) {
+          val color = colorScheme.surface.toArgb()
+          val darkTheme = isSystemInDarkTheme()
+
           SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.surface.toArgb()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+              window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+                view.setBackgroundColor(color)
+                insets
+              }
+            } else {
+              window.statusBarColor = color
+            }
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
           }
         }
 
         MainScreen(
-            profile = profile.value,
-            feeds = items,
-            bookmarks = bookmarks,
-            onUpdateBookmark = { onUpdateBookmark(it) },
-            onShareAsLink = { shareAsLink(it) },
-            onOpenEntry = { openEntry(it) }
+          profile = profile.value,
+          feeds = items,
+          bookmarks = bookmarks,
+          onUpdateBookmark = { onUpdateBookmark(it) },
+          onShareAsLink = { shareAsLink(it) },
+          onOpenEntry = { openEntry(it) }
         )
       }
     }

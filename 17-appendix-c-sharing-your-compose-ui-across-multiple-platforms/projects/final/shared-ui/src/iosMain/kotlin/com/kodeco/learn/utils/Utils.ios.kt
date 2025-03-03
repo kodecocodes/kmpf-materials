@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,12 +34,9 @@
 
 package com.kodeco.learn.utils
 
-import kotlinx.datetime.toInstant
-import platform.CoreFoundation.kCFAbsoluteTimeIntervalSince1970
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.NSISO8601DateFormatter
-import platform.Foundation.NSTimeIntervalSince1970
 
 actual fun converterIso8601ToReadableDate(date: String): String {
   val dateFormatter = NSDateFormatter()

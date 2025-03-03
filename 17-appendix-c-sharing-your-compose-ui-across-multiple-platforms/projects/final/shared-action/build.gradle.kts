@@ -1,22 +1,21 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    id("com.chromaticnoise.multiplatform-swiftpackage-m1-support")
-    id("maven-publish")
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
+  alias(libs.plugins.android.kotlin.multiplatform.library)
+
+  id("io.github.luca992.multiplatform-swiftpackage") version "2.2.3"
+  id("maven-publish")
 }
 
 version = "1.0"
 group = "com.kodeco.shared"
 
 multiplatformSwiftPackage {
-    xcframeworkName("SharedAction")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("13") }
-    }
-    outputDirectory(File(projectDir, "sharedaction"))
+  packageName("SharedAction")
+  swiftToolsVersion("5.3")
+  targetPlatforms {
+    iOS { v("13") }
+  }
+  outputDirectory(File(projectDir, "sharedaction"))
 }
 
 publishing {
@@ -33,58 +32,62 @@ publishing {
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
+  androidLibrary {
+    namespace = "com.kodeco.learn.action"
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
+    minSdk = libs.versions.android.sdk.min.get().toInt()
+  }
 
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
-            }
-        }
-        publishLibraryVariants("release", "debug")
+  val xcfName = "SharedAction"
+
+  iosX64 {
+    binaries.framework {
+      baseName = xcfName
+    }
+  }
+
+  iosArm64 {
+    binaries.framework {
+      baseName = xcfName
+    }
+  }
+
+  iosSimulatorArm64 {
+    binaries.framework {
+      baseName = xcfName
+    }
+  }
+
+  jvm()
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        implementation(libs.kotlin.stdlib)
+        implementation(project(":shared-logger"))
+      }
     }
 
-    val xcf = XCFramework("SharedAction")
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "SharedAction"
-            xcf.add(this)
-        }
+    commonTest {
+      dependencies {
+        implementation(libs.kotlin.test)
+      }
     }
 
-    jvm("desktop")
-
-    sourceSets {
-        getByName("commonMain") {
-            dependencies {
-                //put your multiplatform dependencies here
-            }
-        }
-
-        getByName("commonTest") {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-
-        getByName("desktopMain") {
-            dependencies { }
-        }
+    androidMain {
+      dependencies { }
     }
+
+    iosMain {
+      dependencies { }
+    }
+  }
 }
 
-android {
-    namespace = "com.kodeco.learn.action"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 24
+kotlin.targets.configureEach {
+  compilations.configureEach {
+    compileTaskProvider.get().compilerOptions {
+      freeCompilerArgs.add("-Xexpect-actual-classes")
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+  }
 }

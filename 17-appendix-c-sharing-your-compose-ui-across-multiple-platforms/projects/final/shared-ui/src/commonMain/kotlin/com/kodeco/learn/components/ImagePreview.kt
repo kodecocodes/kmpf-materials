@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,9 +45,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import coil3.compose.rememberAsyncImagePainter
 import com.kodeco.learn.logger.Logger
 import com.kodeco.learn.ui.MR
-import com.seiko.imageloader.rememberImagePainter
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -68,12 +68,8 @@ fun AddImagePreview(
   } else {
     Box {
 
-      val resource = painterResource(MR.images.ic_brand)
-
-      val painter = rememberImagePainter(
-          url = url,
-          placeholderPainter = { resource },
-          errorPainter = { resource }
+      val painter = rememberAsyncImagePainter(
+        model = url
       )
 
       Image(
