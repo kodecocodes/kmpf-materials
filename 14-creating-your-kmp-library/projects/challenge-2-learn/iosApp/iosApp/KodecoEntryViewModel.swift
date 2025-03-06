@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc
+/// Copyright (c) 2025 Kodeco Inc
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -42,8 +42,6 @@ class KodecoEntryViewModel: ObservableObject {
 
   @Published var profile: GravatarEntry?
 
-  let fetchNImages = 5
-
   init() {
     fetchProfile()
     fetchFeeds()
@@ -56,7 +54,7 @@ class KodecoEntryViewModel: ObservableObject {
   func fetchProfile() {
     Task {
       guard let profile = await FeedClient.shared.fetchProfile() else { return }
-      DispatchQueue.main.async {
+      Task { @MainActor in
         self.profile = profile
       }
     }
@@ -64,41 +62,9 @@ class KodecoEntryViewModel: ObservableObject {
 
   func fetchFeeds() {
     Task {
-      let test = await FeedClient.shared.fetchFeeds()
-      DispatchQueue.main.async {
-        self.items = test
-        self.fetchLinkImage()
-      }
-    }
-  }
-
-  @MainActor
-  func fetchLinkImage() {
-    for platform in self.items.keys {
-      guard let items = self.items[platform] else { continue }
-      let subsetItems = Array(items[0 ..< Swift.min(self.fetchNImages, items.count)])
-      for item in subsetItems {
-        FeedClient.shared.fetchLinkImage(item.link) { url in
-          guard var list = self.items[platform.description] else {
-            return
-          }
-          guard let index = list.firstIndex(of: item) else {
-            return
-          }
-
-          list[index] = item.doCopy(
-            id: item.id,
-            link: item.link,
-            title: item.title,
-            summary: item.summary,
-            updated: item.updated,
-            platform: item.platform,
-            imageUrl: url,
-            bookmarked: item.bookmarked
-          )
-
-          self.items[platform.description] = list
-        }
+      let feeds = await FeedClient.shared.fetchFeeds()
+      Task { @MainActor in
+        self.items = feeds
       }
     }
   }

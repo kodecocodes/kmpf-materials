@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@
 package com.kodeco.learn.ui.theme
 
 import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -46,27 +47,28 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-  primary = darkTextPrimary,
-  surface = darkBackground,
-  onSurfaceVariant = darkTextPrimary,
-  background = darkBackground,
-  secondaryContainer = darkSecondaryContainer,
-  onSecondaryContainer = darkBackground
+    primary = darkTextPrimary,
+    surface = darkBackground,
+    onSurfaceVariant = darkTextPrimary,
+    background = darkBackground,
+    secondaryContainer = darkSecondaryContainer,
+    onSecondaryContainer = darkBackground
 )
 
 private val LightColorScheme = lightColorScheme(
-  primary = lightTextPrimary,
-  surface = lightBackground,
-  onSurfaceVariant = lightTextPrimary,
-  background = lightBackground,
-  secondaryContainer = lightSecondaryContainer,
-  onSecondaryContainer = lightBackground
+    primary = lightTextPrimary,
+    surface = lightBackground,
+    onSurfaceVariant = lightTextPrimary,
+    background = lightBackground,
+    secondaryContainer = lightSecondaryContainer,
+    onSecondaryContainer = lightBackground
 )
 
+@Suppress("DEPRECATION")
 @Composable
 fun KodecoTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable () -> Unit
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
 ) {
   val colorScheme = when {
     darkTheme -> DarkColorScheme
@@ -77,14 +79,21 @@ fun KodecoTheme(
   if (!view.isInEditMode) {
     SideEffect {
       val window = (view.context as Activity).window
-      window.statusBarColor = colorScheme.surface.toArgb()
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+          view.setBackgroundColor(colorScheme.surface.toArgb())
+          insets
+        }
+      } else {
+        window.statusBarColor = colorScheme.surface.toArgb()
+      }
       WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
     }
   }
 
   MaterialTheme(
-    colorScheme = colorScheme,
-    typography = Typography,
-    content = content
+      colorScheme = colorScheme,
+      typography = Typography,
+      content = content
   )
 }

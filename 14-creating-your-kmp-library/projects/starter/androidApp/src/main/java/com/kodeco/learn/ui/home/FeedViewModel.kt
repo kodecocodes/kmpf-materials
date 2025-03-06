@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,25 +67,7 @@ class FeedViewModel : ViewModel(), FeedData {
       presenter.fetchAllFeeds().collect {
         val platform = it.first().platform
         _items[platform] = it
-
-        for (item in _items[platform]!!) {
-          fetchLinkImage(platform, item.id, item.link)
-        }
       }
-    }
-  }
-
-  private fun fetchLinkImage(platform: PLATFORM, id: String, link: String) {
-    Logger.d(TAG, "fetchLinkImage | link=$link")
-    viewModelScope.launch {
-      val url = presenter.fetchLinkImage(link)
-
-      val item = _items[platform]?.firstOrNull { it.id == id } ?: return@launch
-      val list = _items[platform]?.toMutableList() ?: return@launch
-      val index = list.indexOf(item)
-
-      list[index] = item.copy(imageUrl = url)
-      _items[platform] = list
     }
   }
 

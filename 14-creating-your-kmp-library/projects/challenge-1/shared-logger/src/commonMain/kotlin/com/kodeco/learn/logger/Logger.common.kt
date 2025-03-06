@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@
 
 package com.kodeco.learn.logger
 
-internal expect class PlatformLogger() {
+internal expect class Log() {
 
   fun debug(tag: String, message: String)
 
@@ -45,7 +45,7 @@ internal expect class PlatformLogger() {
 
 public object Logger {
 
-  private val logger = PlatformLogger()
+  private val logger = Log()
 
   public fun d(tag: String, message: String) {
     logger.debug(tag, message)

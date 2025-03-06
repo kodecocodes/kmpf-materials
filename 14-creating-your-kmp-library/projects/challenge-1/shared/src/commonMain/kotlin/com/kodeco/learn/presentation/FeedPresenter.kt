@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco Inc
+ * Copyright (c) 2025 Kodeco Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,18 +41,18 @@ import com.kodeco.learn.data.model.PLATFORM
 import com.kodeco.learn.domain.GetFeedData
 import com.kodeco.learn.domain.cb.FeedData
 import com.kodeco.learn.logger.Logger
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import io.ktor.utils.io.core.toByteArray
 import korlibs.crypto.md5
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
@@ -69,7 +69,6 @@ private const val KODECO_CONTENT = "[" +
     "]"
 
 private const val GRAVATAR_EMAIL = "YOUR_GRAVATAR_EMAIL"
-
 
 class FeedPresenter(private val feed: GetFeedData) {
 
@@ -98,22 +97,31 @@ class FeedPresenter(private val feed: GetFeedData) {
       feedUrl: String,
   ): List<KodecoEntry> {
     return CoroutineScope(Dispatchers.IO).async {
-      feed.invokeFetchKodecoEntry(
+      val entries = feed.invokeFetchKodecoEntry(
           platform = platform,
           imageUrl = imageUrl,
           feedUrl = feedUrl
       )
+
+      val tasks = mutableListOf<Job>()
+      for (entry in entries) {
+        tasks.add(CoroutineScope(Dispatchers.IO).launch {
+          entry.imageUrl = fetchLinkImage(entry.link)
+        })
+      }
+
+      tasks.joinAll()
+      entries
     }.await()
   }
 
-  public suspend fun fetchLinkImage(link: String): String {
+  private suspend fun fetchLinkImage(link: String): String {
     return CoroutineScope(Dispatchers.IO).async {
       feed.invokeFetchImageUrlFromLink(
           link
       )
     }.await()
   }
-
 
   public fun fetchMyGravatar(cb: FeedData) {
     Logger.d(TAG, "fetchMyGravatar")
