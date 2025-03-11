@@ -10,12 +10,17 @@ androidx-navigation-compose = "2.8.6"
 coil = "2.7.0"
 image-loader = "1.10.0"
 korio = "4.0.10"
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 kotlinx-datetime = "0.6.1"
 jetbrains-compose = "1.7.3"
 jetbrains-compose-lifecycle = "2.8.0"
 okio = "3.10.2"
 sqldelight = "2.0.2"
+kotlin-stdlib = "2.1.10"
+kotlin-test = "2.1.10"
+runner = "1.5.2"
+core = "1.5.0"
+junit = "1.1.5"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
@@ -40,6 +45,11 @@ image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imag
 korio = { module = "com.soywiz.korlibs.korio:korio", version.ref = "korio" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin-stdlib" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin-test" }
+androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
@@ -49,3 +59,4 @@ jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-com
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "gradle" }
