@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,10 +27,10 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.findtime.TimeZoneHelper
 import com.kodeco.findtime.TimeZoneHelperImpl
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.itemsIndexed
 
 const val timeMillis = 1000 * 60L // 1 second
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimeZoneScreen(
     currentTimezoneStrings: SnapshotStateList<String>
@@ -58,11 +57,7 @@ fun TimeZoneScreen(
         LazyColumn(
             state = listState,
         ) {
-            items(currentTimezoneStrings.size,
-                key = { timezone ->
-                    timezone
-                }) { index ->
-                val timezoneString = currentTimezoneStrings[index]
+            itemsIndexed(currentTimezoneStrings, key = { _, timezone -> timezone }) { _, timezoneString ->
                 AnimatedSwipeDismiss(
                     item = timezoneString,
                     background = { _ ->
