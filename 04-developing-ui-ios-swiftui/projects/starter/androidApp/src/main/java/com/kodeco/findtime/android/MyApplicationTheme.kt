@@ -14,6 +14,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+val startGradientColor = Color(0xFF1e88e5)
+val endGradientColor = Color(0xFF005cb2)
 
 @Composable
 fun MyApplicationTheme(
@@ -22,30 +24,48 @@ fun MyApplicationTheme(
 ) {
     val colors = if (darkTheme) {
         darkColorScheme(
-            primary = Color(0xFFBB86FC),
-            secondary = Color(0xFF03DAC5),
-            tertiary = Color(0xFF3700B3)
+            primary = Color(0xFF005cb2),
+            onPrimary = Color.White,
+            secondary = Color(0xFF00766c)
         )
     } else {
         lightColorScheme(
-            primary = Color(0xFF6200EE),
-            secondary = Color(0xFF03DAC5),
-            tertiary = Color(0xFF3700B3)
+            primary = Color(0xFF1e88e5),
+            onPrimary = Color.Black,
+            secondary = Color(0xFF26a69a)
         )
     }
     val typography = Typography(
-        bodyMedium = TextStyle(
-            fontFamily = FontFamily.Default,
+        bodySmall = TextStyle(
+            fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
-        )
+            fontSize = 16.sp,
+            color = Color.White
+        ),
+        headlineSmall = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            color = Color.White
+        ),
+        labelLarge = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Normal,
+            fontSize = 20.sp,
+            color = Color.White
+        ),
+        labelSmall = TextStyle(
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Normal,
+            fontSize = 11.sp,
+            color = Color.White
+        ),
     )
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),
         medium = RoundedCornerShape(4.dp),
         large = RoundedCornerShape(0.dp)
     )
-
     MaterialTheme(
         colorScheme = colors,
         typography = typography,

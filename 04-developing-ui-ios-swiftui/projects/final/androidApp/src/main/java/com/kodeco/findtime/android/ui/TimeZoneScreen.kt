@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.findtime.TimeZoneHelper
 import com.kodeco.findtime.TimeZoneHelperImpl
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.itemsIndexed
 
 const val timeMillis = 1000 * 60L // 1 second
 
@@ -34,24 +35,19 @@ const val timeMillis = 1000 * 60L // 1 second
 fun TimeZoneScreen(
     currentTimezoneStrings: SnapshotStateList<String>
 ) {
-    // 1
     val timezoneHelper: TimeZoneHelper = TimeZoneHelperImpl()
-    // 2
     val listState = rememberLazyListState()
-    // 3
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         var time by remember { mutableStateOf(timezoneHelper.currentTime()) }
-// 2
         LaunchedEffect(Unit) {
             while (true) {
                 time = timezoneHelper.currentTime()
                 delay(timeMillis) // Every minute
             }
         }
-// 3
         LocalTimeCard(
             city = timezoneHelper.currentTimeZone(),
             time = time, date = timezoneHelper.getDate(timezoneHelper.currentTimeZone())
@@ -61,17 +57,9 @@ fun TimeZoneScreen(
         LazyColumn(
             state = listState,
         ) {
-            // 2
-            items(currentTimezoneStrings.size,
-                // 3
-                key = { timezone ->
-                    timezone
-                }) { index ->
-                val timezoneString = currentTimezoneStrings[index]
-                // 4
+            itemsIndexed(currentTimezoneStrings, key = { _, timezone -> timezone }) { _, timezoneString ->
                 AnimatedSwipeDismiss(
                     item = timezoneString,
-                    // 5
                     background = { _ ->
                         Box(
                             modifier = Modifier
@@ -101,7 +89,6 @@ fun TimeZoneScreen(
                         }
                     },
                     content = {
-                        // 6
                         TimeCard(
                             timezone = timezoneString,
                             hours = timezoneHelper.hoursFromTimeZone(timezoneString),
@@ -109,7 +96,6 @@ fun TimeZoneScreen(
                             date = timezoneHelper.getDate(timezoneString)
                         )
                     },
-                    // 7
                     onDismiss = { zone ->
                         if (currentTimezoneStrings.contains(zone)) {
                             currentTimezoneStrings.remove(zone)
