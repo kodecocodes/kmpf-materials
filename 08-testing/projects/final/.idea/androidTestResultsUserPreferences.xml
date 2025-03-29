@@ -22,6 +22,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_6_API_33" value="120" />
                   <entry key="Pixel_9_Pro_Fold_API_35_Android_15_" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
