@@ -12,10 +12,10 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +26,6 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.kodeco.findtime.TimeZoneHelper
 import com.kodeco.findtime.TimeZoneHelperImpl
@@ -133,7 +132,7 @@ fun FindMeetingScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.3F)
+                .weight(0.2F)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(start = 4.dp, end = 4.dp)
 

@@ -7,9 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.kodeco.compose.ui.MainView
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -19,25 +17,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         Napier.base(DebugAntilog())
         setContent {
-            MainView {
+            // 2
+            com.kodeco.compose.ui.MainView {
+                // 3
                 TopAppBar(
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     title = {
+                        // 4
                         when (it) {
                             0 -> Text(text = stringResource(R.string.world_clocks))
                             else -> Text(text = stringResource(R.string.findmeeting))
                         }
-                    })
+                    }
+                )
             }
         }
     }
 }
 
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    com.kodeco.compose.ui.MyApplicationTheme {
-        Text("Hello, Android!")
-    }
-}
