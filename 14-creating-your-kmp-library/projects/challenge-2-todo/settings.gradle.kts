@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,28 +31,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 rootProject.name = "Organize"
-
-include(":shared")
-include(":shared-logger")
-include(":androidApp")
-include(":desktopApp")
-
-includeBuild("plugins/multiplatform-swiftpackage-m1_support")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
   repositories {
+    google {
+      mavenContent {
+        includeGroupAndSubgroups("androidx")
+        includeGroupAndSubgroups("com.android")
+        includeGroupAndSubgroups("com.google")
+      }
+    }
+    mavenCentral()
     gradlePluginPortal()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
   }
 }
 
 dependencyResolutionManagement {
   repositories {
-    google()
+    google {
+      mavenContent {
+        includeGroupAndSubgroups("androidx")
+        includeGroupAndSubgroups("com.android")
+        includeGroupAndSubgroups("com.google")
+      }
+    }
     mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   }
 }
+
+include(":shared")
+include(":androidApp")
+include(":desktopApp")
+include(":shared-logger")

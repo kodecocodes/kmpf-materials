@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,21 +33,13 @@
  */
 
 plugins {
-  val agpVersion = "8.1.2"
-  val kotlinVersion = "1.9.10"
-  val jetbrainsComposeVersion = "1.5.1"
-  val sqlDelightVersion = "2.0.0"
-
-  id("com.android.application").version(agpVersion).apply(false)
-  id("com.android.library").version(agpVersion).apply(false)
-  id("org.jetbrains.compose").version(jetbrainsComposeVersion).apply(false)
-  id("app.cash.sqldelight").version(sqlDelightVersion).apply(false)
-
-  kotlin("android").version(kotlinVersion).apply(false)
-  kotlin("multiplatform").version(kotlinVersion).apply(false)
-  kotlin("jvm").version(kotlinVersion).apply(false)
-}
-
-tasks.register("clean", Delete::class) {
-  delete(rootProject.buildDir)
+  // this is necessary to avoid the plugins to be loaded multiple times
+  // in each subproject's classloader
+  alias(libs.plugins.androidApplication) apply false
+  alias(libs.plugins.androidLibrary) apply false
+  alias(libs.plugins.composeMultiplatform) apply false
+  alias(libs.plugins.composeCompiler) apply false
+  alias(libs.plugins.kotlinMultiplatform) apply false
+  alias(libs.plugins.sqldelight) apply false
+  alias(libs.plugins.android.kotlin.multiplatform.library) apply false
 }
