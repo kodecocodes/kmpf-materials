@@ -1,6 +1,6 @@
 package com.kodeco.findtime
 
-import io.github.aakira.napier.Napier
+import com.kodeco.learn.logger.Logger
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
@@ -72,11 +72,11 @@ class TimeZoneHelperImpl : TimeZoneHelper {
                         otherTimeZone = timezone
                     )
                 ) {
-                    Napier.d("Hour $hour is not valid for time range")
+                    Logger.d("TimeZoneHelperImpl", "Hour $hour is not valid for time range")
                     isGoodHour = false
                     break
                 } else {
-                    Napier.d("Hour $hour is Valid for time range")
+                    Logger.d("TimeZoneHelperImpl", "Hour $hour is Valid for time range")
                     isGoodHour = true
                 }
             }
@@ -109,7 +109,7 @@ class TimeZoneHelperImpl : TimeZoneHelper {
         )
         val localInstant = otherDateTimeWithHour.toInstant(currentTimeZone)
         val convertedTime = localInstant.toLocalDateTime(otherTimeZone)
-        Napier.d("Hour $hour in Time Range ${otherTimeZone.id} is ${convertedTime.hour}")
+        Logger.d("TimeZoneHelperImpl", "Hour $hour in Time Range ${otherTimeZone.id} is ${convertedTime.hour}")
         return convertedTime.hour in timeRange
     }
 
