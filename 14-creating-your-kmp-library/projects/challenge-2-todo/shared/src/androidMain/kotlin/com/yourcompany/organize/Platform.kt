@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,14 +36,12 @@ package com.yourcompany.organize
 
 import android.content.res.Resources
 import android.os.Build
-import android.util.Log
 import com.kodeco.learn.logger.Logger
 import kotlin.math.round
 
 actual class Platform actual constructor() {
   actual val osName = "Android"
 
-  @androidx.annotation.ChecksSdkIntAtLeast(extension = 0)
   actual val osVersion = "${Build.VERSION.SDK_INT}"
 
   actual val deviceModel = "${Build.MANUFACTURER} ${Build.MODEL}"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,8 +37,6 @@ package com.yourcompany.organize
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-@kotlinx.cinterop.ExperimentalForeignApi
-@kotlin.experimental.ExperimentalNativeApi
 actual class PlatformTest {
   private val platform = Platform()
 

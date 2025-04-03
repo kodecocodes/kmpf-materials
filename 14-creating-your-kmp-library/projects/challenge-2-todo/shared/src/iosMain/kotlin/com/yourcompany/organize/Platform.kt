@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Kodeco LLC
+ * Copyright (c) 2025 Kodeco LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,6 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import platform.CoreGraphics.CGRectGetHeight
 import platform.CoreGraphics.CGRectGetWidth
-import platform.Foundation.NSLog
 import platform.Foundation.NSString
 import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.stringWithCString
@@ -51,8 +50,6 @@ import platform.UIKit.UIUserInterfaceIdiomPhone
 import platform.posix.uname
 import platform.posix.utsname
 
-@kotlinx.cinterop.ExperimentalForeignApi
-@kotlin.experimental.ExperimentalNativeApi
 actual class Platform actual constructor() {
   actual val osName = when (UIDevice.currentDevice.userInterfaceIdiom) {
     UIUserInterfaceIdiomPhone -> "iOS"
@@ -79,11 +76,10 @@ actual class Platform actual constructor() {
   actual val screen = ScreenInfo()
 
   actual fun logSystemInfo() {
-    Logger.d("Platform", deviceInfo)
+    Logger.d("logSystemInfo", deviceInfo)
   }
 }
 
-@kotlinx.cinterop.ExperimentalForeignApi
 actual class ScreenInfo actual constructor() {
   actual val width = CGRectGetWidth(UIScreen.mainScreen.nativeBounds).toInt()
   actual val height = CGRectGetHeight(UIScreen.mainScreen.nativeBounds).toInt()
