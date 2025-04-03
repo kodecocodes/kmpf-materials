@@ -42,9 +42,7 @@ import com.kodeco.learn.ServiceLocator
 import com.kodeco.learn.data.model.KodecoEntry
 import com.kodeco.learn.domain.cb.BookmarkData
 import com.kodeco.learn.logger.Logger
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val TAG = "BookmarkViewModel"
 
@@ -76,9 +74,7 @@ class BookmarkViewModel : ViewModel(), BookmarkData {
   override fun onNewBookmarksList(bookmarks: List<KodecoEntry>) {
     Logger.d(TAG, "onNewBookmarksList | newItems=${bookmarks.size}")
     viewModelScope.launch {
-      withContext(Dispatchers.Main) {
-        items.value = bookmarks
-      }
+      items.value = bookmarks
     }
   }
 
