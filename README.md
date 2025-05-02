@@ -14,4 +14,4 @@ We’ve set up an official forum for the book at [https://forums.kodeco.com/c/bo
 | --------------------------------------------------------------------------------- |:-------:|:------------:|
 | [editions/1.0](https://github.com/kodecocodes/kmpf-materials/tree/editions/1.0) | 1.0     | 2022-03-16   |
 | [editions/2.0](https://github.com/kodecocodes/kmpf-materials/tree/editions/2.0) | 2.0     | 2023-11-02   |
-
+| [editions/3.0](https://github.com/kodecocodes/kmpf-materials/tree/editions/3.0) | 3.0     | 2025-05-07   |
